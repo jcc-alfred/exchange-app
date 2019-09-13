@@ -1,6 +1,9 @@
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
+import commonStyles from "../style/commonStyles";
 import {
+    FlatList,
+    RefreshControl,
     Image,
     Platform,
     ScrollView,
@@ -8,18 +11,57 @@ import {
     Text,
     TouchableOpacity,
     View,
+    TouchableHighlight,
+    SafeAreaView
 } from 'react-native';
 
 import {MonoText} from '../components/StyledText';
 
+const data = [
+    {
+        id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+        title: 'First Item',
+    },
+    {
+        id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+        title: 'Second Item',
+    },
+    {
+        id: '58694a0f-3da1-471f-bd96-145571e29d72',
+        title: 'Third Item',
+    },
+];
+
 export default class HomeScreen extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {isLoading: true, dataSources: []};
+        this.state = {
+            isLoading: true,
+            dataSources: [],
+            refreshing: false
+        };
     }
 
     componentWillMount() {
-        return fetch("https://www.asiaedx.com:3000/exchange/getMarketList", {method: "POST"})
+        this.loadData(true);
+    }
+
+    loadData(isInit) {
+        if (isInit) {
+            this.setState({
+                isLoading: true
+            });
+        } else {
+            if (this.state.refreshing) {
+                return;
+            }
+
+            this.setState({
+                refreshing: true,
+            });
+        }
+
+        fetch("https://www.asiaedx.com:3000/exchange/getMarketList", {method: "POST"})
             .then((response) => response.json())
             .then((responseData) => {
                 this.setState(
@@ -31,12 +73,16 @@ export default class HomeScreen extends React.Component {
                     }
                 );
             }).catch(error => {
-                console.error(error);
-            }).done();
+            console.error(error);
+        }).done();
+
     }
 
     render() {
-        if(this.state.isLoading){
+        const viewHeight = 110;
+        const separatorHeight = 1;
+
+        if (this.state.isLoading) {
             return <View><Text>Loading...</Text></View>
         }
 
@@ -45,90 +91,204 @@ export default class HomeScreen extends React.Component {
                 <ScrollView
                     style={styles.container}
                     contentContainerStyle={styles.contentContainer}>
-                    <View style={styles.welcomeContainer}>
-                        <Image
-                            source={
-                                __DEV__
-                                    ? require('../assets/images/logo.png')
-                                    : require('../assets/images/logo.png')
+
+
+                    <View>
+
+                        <FlatList
+                            refreshControl={
+                                <RefreshControl
+                                    refreshing={this.state.refreshing}
+                                    onRefresh={this._onRefresh}
+                                />
                             }
-                            style={styles.welcomeImage}
+                            data={this.state.dataSources}
+                            keyExtractor={(item, index) => {
+                                return 'item ' + index;
+                            }}
+                            renderItem={({item, index}) => {
+                                return renderItem(viewHeight, item, index);
+                            }}
+                            // renderItem={({ item }) => <Item title={item.title} />}
+                            ListHeaderComponent={() => {
+                                return this.header();
+                            }}
+                            ItemSeparatorComponent={() => {
+                                return <View
+                                    style={[commonStyles.commonIntervalStyle, {height: separatorHeight}]}/>;
+                            }}
+                            getItemLayout={(data, index) => (
+                                {length: viewHeight, offset: (viewHeight + separatorHeight) * index, index}
+                            )}
+                            onScroll={() => {
+                            }}
                         />
                     </View>
 
-                    <View
-                        style={{
-                            flexDirection: 'row',
-                            height: 100,
-                            justifyContent: 'center'
-                        }}>
 
-                        <View style={{flex: 1, alignItems: 'center'}}>
-                            <Text>ETH/BTC</Text>
-                            <Text>{this.state.dataSources[0].market.last_price}</Text>
-                            <Text> ≈{this.state.dataSources[0].price_usd.toFixed(2)} USD</Text>
-                            {/*{this.state.dataSources.map(dataSource => <Text>{dataSource.market.last_price}</Text>)}*/}
+                    {/*<View style={styles.getStartedContainer}>*/}
+                    {/*<DevelopmentModeNotice/>*/}
 
+                    {/*<Text style={styles.getStartedText}>Get started by opening</Text>*/}
 
+                    {/*<View*/}
+                    {/*style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>*/}
+                    {/*<MonoText>screens/HomeScreen.js</MonoText>*/}
+                    {/*</View>*/}
 
-                        </View>
+                    {/*<Text style={styles.getStartedText}>*/}
+                    {/*Change this text and your app will automatically reload.*/}
+                    {/*</Text>*/}
+                    {/*</View>*/}
 
-                        <View style={{flex: 1, alignItems: 'center'}}>
-                            <Text>GTB/BTC</Text>
-                            <Text>{this.state.dataSources[1].market.last_price}</Text>
-                            <Text> ≈{this.state.dataSources[1].price_usd.toFixed(2)} USD</Text>
-
-                        </View>
-
-                        <View style={{flex: 1, alignItems: 'center'}}>
-                            <Text>GTB/ETH</Text>
-                            <Text>{this.state.dataSources[2].market.last_price}</Text>
-                            <Text> ≈{this.state.dataSources[2].price_usd.toFixed(2)} USD</Text>
-                        </View>
-
-                    </View>
-
-
-                    <View style={styles.getStartedContainer}>
-                        <DevelopmentModeNotice/>
-
-                        <Text style={styles.getStartedText}>Get started by opening</Text>
-
-                        <View
-                            style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-                            <MonoText>screens/HomeScreen.js</MonoText>
-                        </View>
-
-                        <Text style={styles.getStartedText}>
-                            Change this text and your app will automatically reload.
-                        </Text>
-                    </View>
-
-                    <View style={styles.helpContainer}>
-                        <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
-                            <Text style={styles.helpLinkText}>
-                                Help, it didn’t automatically reload!
-                            </Text>
-                        </TouchableOpacity>
-                    </View>
+                    {/*<View style={styles.helpContainer}>*/}
+                    {/*<TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>*/}
+                    {/*<Text style={styles.helpLinkText}>*/}
+                    {/*Help, it didn’t automatically reload!*/}
+                    {/*</Text>*/}
+                    {/*</TouchableOpacity>*/}
+                    {/*</View>*/}
                 </ScrollView>
 
-                <View style={styles.tabBarInfoContainer}>
-                    <Text style={styles.tabBarInfoText}>
-                        This is a tab bar. You can edit it in:
-                    </Text>
+                {/*<View style={styles.tabBarInfoContainer}>*/}
+                {/*<Text style={styles.tabBarInfoText}>*/}
+                {/*This is a tab bar. You can edit it in:*/}
+                {/*</Text>*/}
 
-                    <View
-                        style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-                        <MonoText style={styles.codeHighlightText}>
-                            navigation/MainTabNavigator.js
-                        </MonoText>
-                    </View>
-                </View>
+                {/*<View*/}
+                {/*style={[styles.codeHighlightContainer, styles.navigationFilename]}>*/}
+                {/*<MonoText style={styles.codeHighlightText}>*/}
+                {/*navigation/MainTabNavigator.js*/}
+                {/*</MonoText>*/}
+                {/*</View>*/}
+                {/*</View>*/}
             </View>
         );
     }
+
+    _onRefresh = () => {
+        this.loadData(false);
+    };
+
+    header() {
+        if (this.state.isLoading) {
+            return <View><Text>Loading...</Text></View>
+        }
+
+        return (
+            <View>
+                <View style={styles.welcomeContainer}>
+                    <Image
+                        source={
+                            __DEV__
+                                ? require('../assets/images/logo.png')
+                                : require('../assets/images/logo.png')
+                        }
+                        style={styles.welcomeImage}
+                    />
+                </View>
+
+                <View
+                    style={{
+                        flexDirection: 'row',
+                        height: 80,
+                        justifyContent: 'center'
+                    }}>
+
+                    <View style={{flex: 1, alignItems: 'center'}}>
+                        <Text>ETH/BTC</Text>
+                        <Text>{this.state.dataSources[0].market.last_price}</Text>
+                        <Text> ≈{this.state.dataSources[0].price_usd.toFixed(2)} USD</Text>
+                        {/*{this.state.dataSources.map(dataSource => <Text>{dataSource.market.last_price}</Text>)}*/}
+
+
+                    </View>
+
+                    <View style={{flex: 1, alignItems: 'center'}}>
+                        <Text>GTB/BTC</Text>
+                        <Text>{this.state.dataSources[1].market.last_price}</Text>
+                        <Text> ≈{this.state.dataSources[1].price_usd.toFixed(2)} USD</Text>
+
+                    </View>
+
+                    <View style={{flex: 1, alignItems: 'center'}}>
+                        <Text>GTB/ETH</Text>
+                        <Text>{this.state.dataSources[2].market.last_price}</Text>
+                        <Text> ≈{this.state.dataSources[2].price_usd.toFixed(2)} USD</Text>
+                    </View>
+
+                </View>
+
+                <View
+                    style={{
+                        flexDirection: 'row',
+                        height: 20,
+                        alignItems: 'center'
+                    }}>
+
+                    <View style={{flex: 1, alignItems: 'center'}}>
+                        <Text>名称</Text>
+
+                    </View>
+
+                    <View style={{flex: 1, alignItems: 'center'}}>
+                        <Text>最新价</Text>
+                    </View>
+
+                    <View style={{flex: 1, alignItems: 'center'}}>
+                        <Text>涨跌幅</Text>
+                    </View>
+
+                </View>
+            </View>
+        )
+    }
+
+
 }
+
+
+function renderItem(viewHeight, item, index) {
+    return (
+        <TouchableHighlight
+            underlayColor='#ddd'
+            onPress={() => {
+            }}>
+
+            <View style={{alignItems: 'center', flexDirection: 'row', height: 50, marginStart: 40}}>
+
+                <Text style={{flex: 1}}>
+                    {item.coinEx.coin_name}/{item.coinEx.exchange_coin_name}
+                </Text>
+
+                <Text style={{flex: 1}}>
+                    {item.market.last_price}
+                </Text>
+
+                <View style={{flex: 1, alignItems: 'center'}}>
+                    <Text style={{color: item.market.change_rate > 0 ? 'green' : 'red'}}>
+                        {(item.market.change_rate * 100).toFixed(2)}%
+                    </Text>
+                </View>
+
+                {/*<Text style={[commonStyles.wrapper, {marginTop: 10, marginBottom: 10}]}>*/}
+                {/*{item.title}*/}
+                {/*</Text>*/}
+
+            </View>
+        </TouchableHighlight>
+    );
+
+}
+
+function Item({title}) {
+    return (
+        <View style={styles.item}>
+            <Text style={styles.title}>{title}</Text>
+        </View>
+    );
+}
+
 
 HomeScreen.navigationOptions = {
     header: null,
@@ -274,5 +434,13 @@ const styles = StyleSheet.create({
     helpLinkText: {
         fontSize: 14,
         color: '#2e78b7',
+    },
+    greenText: {
+        fontSize: 14,
+        color: '#00ff00',
+    },
+    redText: {
+        fontSize: 14,
+        color: '#ff0000',
     },
 });
