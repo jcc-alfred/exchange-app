@@ -24,7 +24,13 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false,
+      "bundleIdentifier": "com.exchange.app",
+      "buildNumber": "1"
+    },
+    "android": {
+      "package": "com.exchange.app",
+      "versionCode": 1
     }
   }
 }
