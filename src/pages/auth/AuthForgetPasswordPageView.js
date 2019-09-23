@@ -3,7 +3,7 @@ import { SafeAreaView, StyleSheet, View } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import { Text } from "react-native-elements";
 
-class AuthRegisterPageView extends React.Component {
+class AuthForgetPasswordPageView extends React.Component {
 
     constructor( props ) {
         super( props );
@@ -19,7 +19,7 @@ class AuthRegisterPageView extends React.Component {
         const { params } = state;
 
         return {
-            title: "AuthRegisterPageView",
+            title: "AuthForgetPasswordPageView",
             headerBackTitle: null,
         };
     };
@@ -45,7 +45,7 @@ class AuthRegisterPageView extends React.Component {
             <View style={[ commonStyles.wrapper, ]}>
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
                     <Text>
-                        {"AuthRegisterPageView"}
+                        {"AuthForgetPasswordPageView"}
                     </Text>
                 </SafeAreaView>
             </View>
@@ -55,5 +55,5 @@ class AuthRegisterPageView extends React.Component {
 
 const styles = StyleSheet.create( {} );
 
-export default AuthRegisterPageView;
+export default AuthForgetPasswordPageView;
 

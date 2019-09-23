@@ -6,8 +6,9 @@ import logger from "../logger/superagent-logger";
 import request from "superagent";
 import authRequestRetries from "./authRequestRetries";
 import { getStore } from "../../setup";
-import { netAuthLoginPhonePassword } from "../AuthApiNet1";
+import { netAuthLogin, netAuthLoginPhonePassword } from "../AuthApiNet1";
 import PubSubConstant from "../../pubSub/PubSubConstant";
+import * as env from "../../env";
 
 const PubSub = require( 'pubsub-js' );
 
@@ -57,14 +58,13 @@ function authAndRetry( oldRequest, fn, oldErr, oldRes ) {
     if (
         store &&
         store.getState().userStore.account &&
-        store.getState().userStore.account.phoneRegion &&
-        store.getState().userStore.account.phone &&
+        store.getState().userStore.account.account &&
         store.getState().userStore.account.password
     ) {
-        netAuthLoginPhonePassword(
-            store.getState().userStore.account.phoneRegion,
-            store.getState().userStore.account.phone,
+        netAuthLogin(
+            store.getState().userStore.account.account,
             store.getState().userStore.account.password,
+            env.adminImageCode,
             ( err1, resBody1 ) => {
                 if ( err1 ) {
                     if ( resBody1 && "password_error" === resBody1.msg ) {

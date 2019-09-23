@@ -1,13 +1,14 @@
 {
-  "about": "About",
-  "home": "Home",
+  "about": "关于",
+  "home": "家",
   "language": {
-    "chinese": "Chinese",
-    "english": "English"
+    "chinese": "中文",
+    "english": "英语"
   },
-  "languages": "Languages",
-  "login": "Login",
-  "logout": "Logout",
-  "me": "Me",
-  "settings": "Settings"
+  "languages": "语言",
+  "login": "登录",
+  "login_history": "登录历史",
+  "logout": "登出",
+  "me": "我",
+  "settings": "设置"
 }

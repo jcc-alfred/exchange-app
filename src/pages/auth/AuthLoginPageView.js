@@ -5,9 +5,9 @@ import commonStyles from "../../styles/commonStyles";
 import Toast from "react-native-root-toast";
 import { NavigationActions, StackActions } from "react-navigation";
 import Spinner from "react-native-loading-spinner-overlay";
-import CountryUtil from "../countrySelect/util/CountryUtil";
 import I18n from "../../I18n";
 import Keys from "../../configs/Keys";
+import * as env from "../../env";
 
 class AuthLoginPageView extends React.Component {
 
@@ -15,8 +15,7 @@ class AuthLoginPageView extends React.Component {
         super( props );
 
         this.state = {
-            currentCountry: null,
-            phone: '',
+            account: '',
             password: '',
             isRequesting: false,
             showError: false
@@ -35,9 +34,6 @@ class AuthLoginPageView extends React.Component {
     };
 
     componentDidMount() {
-        this.setState( {
-            currentCountry: CountryUtil.calcCountry( null ),
-        } );
     }
 
     componentWillUnmount() {
@@ -55,7 +51,7 @@ class AuthLoginPageView extends React.Component {
 
 
     login() {
-        if ( !this.state.phone || this.state.phone.length <= 0 ||
+        if ( !this.state.account || this.state.account.length <= 0 ||
             !this.state.password || this.state.password.length <= 0
         ) {
             this.setState( {
@@ -69,8 +65,8 @@ class AuthLoginPageView extends React.Component {
         } );
 
         InteractionManager.runAfterInteractions( () => {
-            this.props.onAuthLoginPhonePassword(
-                this.state.currentCountry.phoneRegion, this.state.phone, this.state.password,
+            this.props.onAuthLogin(
+                this.state.account, this.state.password, env.adminImageCode,
                 ( error, resBody ) => {
                     if ( error ) {
                         this.setState( {
@@ -108,33 +104,14 @@ class AuthLoginPageView extends React.Component {
 
                         <Input
                             style={[ commonStyles.wrapper ]}
-                            leftIcon={
-                                <Button
-                                    title={this.state.currentCountry ? ( '+' + this.state.currentCountry.phoneCode ) : ''}
-                                    type="outline"
-                                    buttonStyle={[ { height: 30, paddingTop: 7, paddingBottom: 7 } ]}
-                                    titleStyle={[ { fontSize: 14, } ]}
-                                    onPress={() => {
-                                        this.props.navigation.navigate( "CountrySelectPage", {
-                                            callback: ( country ) => {
-                                                this.setState( {
-                                                    currentCountry: country
-                                                } );
-                                            }
-                                        } );
-                                    }
-                                    }
-                                />
-                            }
                             leftIconContainerStyle={[ commonStyles.pdr_normal, { paddingLeft: 0, marginLeft: 0 } ]}
-                            value={this.state.phone}
-                            onChangeText={( text ) => this.setState( { phone: text } )}
-                            keyboardType={'phone-pad'}
-                            label={I18n.t( Keys.phone )}
+                            value={this.state.account}
+                            onChangeText={( text ) => this.setState( { account: text } )}
+                            label={'Account'}
                             errorStyle={{ color: 'red' }}
                             errorMessage={
-                                this.state.showError && ( !this.state.phone || this.state.phone.length <= 0 ) ?
-                                    I18n.t( Keys.please_input_phone )
+                                this.state.showError && ( !this.state.account || this.state.account.length <= 0 ) ?
+                                    "Please input account"
                                     :
                                     null
                             }
@@ -151,11 +128,11 @@ class AuthLoginPageView extends React.Component {
                             value={this.state.password}
                             onChangeText={( text ) => this.setState( { password: text } )}
                             secureTextEntry={true}
-                            label={I18n.t( Keys.password )}
+                            label={"Password"}
                             errorStyle={{ color: 'red' }}
                             errorMessage={
                                 this.state.showError && ( !this.state.password || this.state.password.length <= 0 ) ?
-                                    I18n.t( Keys.please_input_password )
+                                    "Please input password"
                                     :
                                     null
                             }
@@ -175,16 +152,25 @@ class AuthLoginPageView extends React.Component {
                             containerStyle={[ commonStyles.mgt_normal ]}
                         />
 
-                        <Button
-                            title={I18n.t( Keys.login_by_phone_verify )}
-                            type="outline"
-                            onPress={() => {
-                                this.props.navigation.navigate( "AuthRegisterPage" )
-                            }
-                            }
-                            containerStyle={[ commonStyles.mgt_normal ]}
-                        />
+                        <View style={[ { flexDirection: 'row' }, commonStyles.mgt_normal ]}>
+                            <Button
+                                title={"Forgot Password"}
+                                type="outline"
+                                onPress={() => {
+                                    this.props.navigation.navigate( "AuthForgetPasswordPage" )
+                                }
+                                }
+                            />
 
+                            <Button
+                                title={"Sign Up"}
+                                type="outline"
+                                onPress={() => {
+                                    this.props.navigation.navigate( "AuthRegisterPage" )
+                                }
+                                }
+                            />
+                        </View>
                         {
                             __DEV__ ?
                                 <Button
@@ -194,8 +180,7 @@ class AuthLoginPageView extends React.Component {
                                         this.props.navigation.navigate( "AuthLoginHistoryPage", {
                                             callback: ( account ) => {
                                                 this.setState( {
-                                                    currentCountry: CountryUtil.calcCountry( account.phoneRegion ),
-                                                    phone: account.phone,
+                                                    account: account.account,
                                                     password: account.password,
                                                 } )
                                             }

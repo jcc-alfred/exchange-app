@@ -3,5 +3,5 @@ export default [
 ];
 
 function accessForbidden( err, res ) {
-    return res && res.status === 403;
+    return res && res.status === 401;
 }

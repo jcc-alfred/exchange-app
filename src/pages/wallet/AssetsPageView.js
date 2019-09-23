@@ -1,7 +1,9 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { InteractionManager, SafeAreaView, StyleSheet, View } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import { Text } from "react-native-elements";
+import Toast from "react-native-root-toast";
+import Spinner from "react-native-loading-spinner-overlay";
 
 class AssetsPageView extends React.Component {
 
@@ -10,6 +12,7 @@ class AssetsPageView extends React.Component {
 
         this.state = {
             isRequesting: false,
+            result: ''
         }
     }
 
@@ -25,6 +28,7 @@ class AssetsPageView extends React.Component {
     };
 
     componentDidMount() {
+        this.loadData()
     }
 
     componentWillUnmount() {
@@ -40,13 +44,39 @@ class AssetsPageView extends React.Component {
         return true;
     }
 
+    loadData() {
+
+        this.setState( {
+            isRequesting: true
+        } );
+
+        InteractionManager.runAfterInteractions( () => {
+            this.props.onUserGetAssets( ( error, resBody ) => {
+                    if ( error ) {
+                        this.setState( {
+                            isRequesting: false
+                        } );
+
+                        Toast.show( error.message );
+                    } else {
+                        this.setState( {
+                            isRequesting: false,
+                            result: JSON.stringify(resBody)
+                        } );
+                    }
+                } );
+        } );
+    }
+
     render() {
         return (
             <View style={[ commonStyles.wrapper, ]}>
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
                     <Text>
-                        {"AssetsPageView"}
+                        {this.state.result}
                     </Text>
+
+                    <Spinner visible={this.state.isRequesting} cancelable={true}/>
                 </SafeAreaView>
             </View>
         );

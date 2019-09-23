@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import AuthRegisterPageView from "./AuthRegisterPageView";
+import AuthForgetPasswordPageView from "./AuthForgetPasswordPageView";
 
 const mapStoreToProps = ( store, ownProps ) => {
     return {
@@ -10,9 +10,9 @@ const mapStoreToProps = ( store, ownProps ) => {
 
 const mapDispatchToProps = ( dispatch, ownProps ) => ( {} );
 
-const AuthRegisterPage = connect(
+const AuthForgetPasswordPage = connect(
     mapStoreToProps,
     mapDispatchToProps
-)( AuthRegisterPageView );
+)( AuthForgetPasswordPageView );
 
-export default AuthRegisterPage;
+export default AuthForgetPasswordPage;

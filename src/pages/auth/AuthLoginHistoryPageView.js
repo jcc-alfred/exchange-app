@@ -51,7 +51,7 @@ class AuthLoginHistoryPageView extends React.Component {
         return (
             <ListItem
                 containerStyle={[ { height: 50 } ]}
-                title={item.phone + "<" + item.phoneRegion + ">"}
+                title={item.account}
                 onPress={() => {
                     if ( this.state.callback instanceof Function ) {
                         this.state.callback( item );

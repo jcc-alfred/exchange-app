@@ -11,13 +11,11 @@ import TabBarIcon from "./components/TabBarIcon";
 import HomePage from "./pages/home/HomePage";
 import MinePage from "./pages/mine/MinePage";
 import AuthLoginPage from "./pages/auth/AuthLoginPage";
-import AuthPasswordSetPage from "./pages/auth/AuthPasswordSetPage";
 import AuthRegisterPage from "./pages/auth/AuthRegisterPage";
 import AboutPage from "./pages/setting/AboutPage";
 import SettingLanguagePage from "./pages/setting/SettingLanguagePage";
 import SettingsPage from "./pages/setting/SettingsPage";
 import WebViewPage from "./pages/WebViewPage";
-import AuthRegisterNextPage from "./pages/auth/AuthRegisterNextPage";
 import AuthLoginHistoryPage from "./pages/auth/AuthLoginHistoryPage";
 import CountrySelectPage from "./pages/countrySelect/CountrySelectPage";
 import CountrySearchPage from "./pages/countrySelect/CountrySearchPage";
@@ -37,6 +35,7 @@ import TokenDepositHistoryPage from "./pages/wallet/TokenDepositHistoryPage";
 import TokenDepositPage from "./pages/wallet/TokenDepositPage";
 import TokenWithdrawHistoryPage from "./pages/wallet/TokenWithdrawHistoryPage";
 import TokenWithdrawPage from "./pages/wallet/TokenWithdrawPage";
+import AuthForgetPasswordPage from "./pages/auth/AuthForgetPasswordPage";
 
 process.env.REACT_NAV_LOGGING = ( global.__DEV__ );
 
@@ -213,14 +212,8 @@ const routeConfiguration = {
     AuthLoginPage: {
         screen: AuthLoginPage
     },
-    AuthPasswordSetPage: {
-        screen: AuthPasswordSetPage
-    },
     AuthRegisterPage: {
         screen: AuthRegisterPage
-    },
-    AuthRegisterNextPage: {
-        screen: AuthRegisterNextPage
     },
     AboutPage: {
         screen: AboutPage
@@ -281,6 +274,9 @@ const routeConfiguration = {
     },
     TokenWithdrawPage: {
         screen: TokenWithdrawPage
+    },
+    AuthForgetPasswordPage: {
+        screen: AuthForgetPasswordPage
     },
 };
 

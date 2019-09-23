@@ -11,28 +11,22 @@ header( request );
 apiDomainParse( request );
 
 
-export function netAuthLoginPhoneVerify( phoneRegion, phone, phoneVerificationCode, callback ) {
-    request
-        .post( '/auth/login' )
-        .query( {
-            phoneRegion: phoneRegion,
-            phone: phone ? phone.replace( /\s+/g, "" ) : '',
-            phoneVerificationCode: phoneVerificationCode,
-            liveData: env.liveData,
-        } )
-        .use( superagent_prefix( env.apiDomain ) )
-        .use( logger )
-        .authRequest()
-        .headerRequest()
-        .apiDomainParse()
-        .end( callback );
-}
+export function netAuthSignUp( account, password, callback ) {
+    let query = {
+        loginPass: password,
+        imgCode: imgCode
+    };
 
+    let accountType = "phone";
+    if ( accountType.indexOf( "@" ) ) {
+        query = { ...query, accountType: "email", email: account }
+    } else {
+        query = { ...query, accountType: "phone", phone: account }
+    }
 
-export function netAuthLogout( callback ) {
     request
-        .post( '/auth/logout' )
-        .query( {} )
+        .post( '/User/signUp' )
+        .query(query )
         .use( superagent_prefix( env.apiDomain ) )
         .use( logger )
         .authRequest()
