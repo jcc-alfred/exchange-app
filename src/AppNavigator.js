@@ -23,6 +23,20 @@ import CountrySelectPage from "./pages/countrySelect/CountrySelectPage";
 import CountrySearchPage from "./pages/countrySelect/CountrySearchPage";
 import I18n from "./I18n";
 import Keys from "./configs/Keys";
+import OrderHistoryPage from "./pages/order/OrderHistoryPage";
+import QuotesPage from "./pages/quotes/QuotesPage";
+import TradePage from "./pages/trade/TradePage";
+import UserEmailVerifyPage from "./pages/user/UserEmailVerifyPage";
+import UserGoogleAuthPage from "./pages/user/UserGoogleAuthPage";
+import UserKYCPage from "./pages/user/UserKYCPage";
+import UserPasswordResetPage from "./pages/user/UserPasswordResetPage";
+import UserPhoneVerifyPage from "./pages/user/UserPhoneVerifyPage";
+import AssetsPage from "./pages/wallet/AssetsPage";
+import FundPasswordResetPage from "./pages/wallet/FundPasswordResetPage";
+import TokenDepositHistoryPage from "./pages/wallet/TokenDepositHistoryPage";
+import TokenDepositPage from "./pages/wallet/TokenDepositPage";
+import TokenWithdrawHistoryPage from "./pages/wallet/TokenWithdrawHistoryPage";
+import TokenWithdrawPage from "./pages/wallet/TokenWithdrawPage";
 
 process.env.REACT_NAV_LOGGING = ( global.__DEV__ );
 
@@ -115,6 +129,9 @@ const HomeStack = createStackNavigator( {
 
 const MineStack = createStackNavigator( { Home: { screen: MinePage, } }, stackNavigatorConfiguration );
 
+const QuotesStack = createStackNavigator( { Home: { screen: QuotesPage, } }, stackNavigatorConfiguration );
+
+
 HomeStack.navigationOptions = {
     tabBarLabel: I18n.t( Keys.home ),
     tabBarIcon: ( { focused } ) => (
@@ -139,6 +156,7 @@ MineStack.navigationOptions = {
 const MainTabContainer = createBottomTabNavigator(
     {
         HomeStack: HomeStack,
+        QuotesStackL: QuotesStack,
         MineStack: MineStack,
     },
     TabNavigatorConfig
@@ -148,6 +166,20 @@ const LanguageUpdate = {
     update: function () {
         HomeStack.navigationOptions = {
             tabBarLabel: I18n.t( Keys.home ),
+            tabBarIcon: ( { focused } ) => (
+                <TabBarIcon
+                    focused={focused}
+                    name={
+                        Platform.OS === 'ios'
+                            ? 'ios-home'
+                            : 'md-home'
+                    }
+                />
+            ),
+        };
+
+        QuotesStack.navigationOptions = {
+            tabBarLabel: "Quotes",
             tabBarIcon: ( { focused } ) => (
                 <TabBarIcon
                     focused={focused}
@@ -210,6 +242,45 @@ const routeConfiguration = {
     },
     CountrySearchPage: {
         screen: CountrySearchPage
+    },
+    OrderHistoryPage: {
+        screen: OrderHistoryPage
+    },
+    TradePage: {
+        screen: TradePage
+    },
+    UserEmailVerifyPage: {
+        screen: UserEmailVerifyPage
+    },
+    UserGoogleAuthPage: {
+        screen: UserGoogleAuthPage
+    },
+    UserKYCPage: {
+        screen: UserKYCPage
+    },
+    UserPasswordResetPage: {
+        screen: UserPasswordResetPage
+    },
+    UserPhoneVerifyPage: {
+        screen: UserPhoneVerifyPage
+    },
+    AssetsPage: {
+        screen: AssetsPage
+    },
+    FundPasswordResetPage: {
+        screen: FundPasswordResetPage
+    },
+    TokenDepositHistoryPage: {
+        screen: TokenDepositHistoryPage
+    },
+    TokenDepositPage: {
+        screen: TokenDepositPage
+    },
+    TokenWithdrawHistoryPage: {
+        screen: TokenWithdrawHistoryPage
+    },
+    TokenWithdrawPage: {
+        screen: TokenWithdrawPage
     },
 };
 
