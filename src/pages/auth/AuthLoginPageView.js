@@ -1,6 +1,6 @@
 import React from 'react';
 import { InteractionManager, PixelRatio, SafeAreaView, StyleSheet, View, } from 'react-native';
-import { Button, Input } from "react-native-elements";
+import { Button, Input,Image } from "react-native-elements";
 import commonStyles from "../../styles/commonStyles";
 import Toast from "react-native-root-toast";
 import { NavigationActions, StackActions } from "react-navigation";
@@ -100,6 +100,12 @@ class AuthLoginPageView extends React.Component {
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
 
                     <View style={[ commonStyles.paddingCommon ]}>
+
+                        <Image
+                            style={{width: 200, height: 200, margin:20}}
+                            // source={require('@expo/snack-static/react-native-logo.png')}
+                        />
+
                         <Input
                             style={[ commonStyles.wrapper ]}
                             leftIcon={
