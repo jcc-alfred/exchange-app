@@ -7,6 +7,8 @@ import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 
+import LoginScreen from '../screens/LoginScreen';
+
 const config = Platform.select({
   web: { headerMode: 'screen' },
   default: {},
@@ -34,6 +36,28 @@ HomeStack.navigationOptions = {
 };
 
 HomeStack.path = '';
+
+
+
+const TradeStack = createStackNavigator(
+    {
+        Links: LoginScreen,
+    },
+    config
+);
+
+
+TradeStack.navigationOptions = {
+    tabBarLabel: 'Trade',
+    tabBarIcon: ({ focused }) => (
+        <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
+    ),
+};
+
+
+
+
+
 
 const LinksStack = createStackNavigator(
   {
@@ -69,7 +93,8 @@ SettingsStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
-  LinksStack,
+    TradeStack,
+    LinksStack,
   SettingsStack,
 });
 
