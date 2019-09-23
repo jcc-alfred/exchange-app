@@ -71,31 +71,6 @@ class MinePageView extends React.Component {
                                     }
                                 </Text>
                             }
-                            rightIcon={
-                                <TouchableHighlight onPress={() => {
-                                    this.props.navigation.navigate( 'WebViewPage',
-                                        {
-                                            url: env.VIP_DES_URL,
-                                            webTitle: "VIP"
-                                        } )
-                                }}>
-                                    <View style={[ {
-                                        backgroundColor: 'white', flexDirection: 'row', alignItems: 'center',
-                                        justifyContent: 'center'
-                                    } ]}>
-                                        <Image
-                                            source={require( '../../../assets/images/vip.png' )}
-                                            style={[ { width: 20, height: 20 } ]}
-                                        />
-
-                                        <Text style={[ { marginLeft: 4 } ]} h4>
-                                            {
-                                                this.props.userInfo.vipLevel
-                                            }
-                                        </Text>
-                                    </View>
-                                </TouchableHighlight>
-                            }
                             onPress={() => {
                                 this.props.navigation.navigate( "UserInfoEditPage" )
                             }}

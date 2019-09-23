@@ -82,23 +82,6 @@ class SettingsPageView extends React.Component {
                                 bottomDivider={true}
                             />
 
-                            {
-                                this.props.isSupportedLocalAuthentication ?
-                                    <ListItem
-                                        title={I18n.t( Keys.local_authentication )}
-                                        onPress={() => {
-                                            if ( this.props.isSetLocalAuthentication ) {
-                                                this.props.navigation.navigate( "SettingLockScreenPage" )
-                                            } else {
-                                                Toast.show( I18n.t( Keys.local_authentication_not_set_tip ) )
-                                            }
-                                        }}
-                                        bottomDivider={true}
-                                    />
-                                    :
-                                    null
-                            }
-
                             <ListItem
                                 title={I18n.t( Keys.about )}
                                 onPress={() => {
