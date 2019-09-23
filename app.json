@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "AsiaEDX",
-    "slug": "AsiaEDX",
+    "name": "Asia EDX",
+    "slug": "asia-edx",
     "privacy": "public",
     "sdkVersion": "34.0.0",
     "platforms": [
@@ -25,12 +25,15 @@
     ],
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.exchange.app",
-      "buildNumber": "1"
+      "bundleIdentifier": "com.asiaedx.client",
+      "buildNumber": "7",
+      "infoPlist": {
+        "NSFaceIDUsageDescription": "This app will optionally use Face ID or Touch ID to protect your privacy"
+      }
     },
     "android": {
-      "package": "com.exchange.app",
-      "versionCode": 1
+      "package": "com.asiaedx.client",
+      "versionCode": 4
     }
   }
 }
