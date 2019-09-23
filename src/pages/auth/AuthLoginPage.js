@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import AuthLoginPageView from "./AuthLoginPageView";
+import { authLogin } from "../../actions/AuthAction";
 
 
 const mapStoreToProps = ( store, ownProps ) => {
@@ -9,7 +10,13 @@ const mapStoreToProps = ( store, ownProps ) => {
     return {}
 };
 
-const mapDispatchToProps = ( dispatch, ownProps ) => ( {} );
+const mapDispatchToProps = ( dispatch, ownProps ) => ( {
+    onAuthLogin: ( account, password, imageCode, callback ) => {
+        dispatch( authLogin( account, password, imageCode, ( err, res ) => {
+            callback && callback( err, res )
+        } ) );
+    },
+} );
 
 const AuthLoginPage = connect(
     mapStoreToProps,
