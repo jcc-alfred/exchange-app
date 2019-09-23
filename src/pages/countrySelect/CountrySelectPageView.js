@@ -13,7 +13,7 @@ import Keys from "../../configs/Keys";
 import I18n from "../../I18n";
 
 
-class CountrySelectPageView extends (React.PureComponent || React.Component) {
+class CountrySelectPageView extends ( React.PureComponent || React.Component ) {
     constructor( props ) {
         super( props );
 

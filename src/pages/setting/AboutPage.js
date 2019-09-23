@@ -8,7 +8,7 @@ const mapStoreToProps = ( store, ownProps ) => {
     return {}
 };
 
-const mapDispatchToProps = ( dispatch, ownProps ) => ({});
+const mapDispatchToProps = ( dispatch, ownProps ) => ( {} );
 
 const AboutPage = connect(
     mapStoreToProps,

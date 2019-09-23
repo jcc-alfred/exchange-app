@@ -2,7 +2,6 @@ import { getStore } from "../../setup";
 import userActionTypes from "../../reducers/user/userActionTypes";
 import { Platform } from "react-native";
 import Constants from 'expo-constants';
-import settingActionTypes from "../../reducers/setting/settingActionTypes";
 
 export default function ( superagent ) {
     const Request = superagent.Request;

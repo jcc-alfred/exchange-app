@@ -1,5 +1,3 @@
-const metaActionTypes = {
-
-};
+const metaActionTypes = {};
 
 export default metaActionTypes;

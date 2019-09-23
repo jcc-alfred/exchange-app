@@ -52,7 +52,7 @@ const Util = {
     },
 
     calcDisplayDiscount( discount ) {
-        let num1 = '' + (discount * 100).toFixed( 0 );
+        let num1 = '' + ( discount * 100 ).toFixed( 0 );
         num1 = parseFloat( num1 );
         num1 = num1.toLocaleString();
 

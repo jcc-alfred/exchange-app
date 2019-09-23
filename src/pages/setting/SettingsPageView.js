@@ -31,7 +31,6 @@ class SettingsPageView extends React.Component {
     };
 
     componentDidMount() {
-        this.props.onLocalAuthenticationCheck( null );
     }
 
     componentWillUnmount() {

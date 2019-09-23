@@ -37,7 +37,7 @@ const defaultProps = {
     },
 };
 
-class ModalPicker extends (React.PureComponent || React.Component) {
+class ModalPicker extends ( React.PureComponent || React.Component ) {
 
     constructor( props ) {
         super( props );
@@ -102,7 +102,7 @@ class ModalPicker extends (React.PureComponent || React.Component) {
                         color: '#0166be'
                     } ]}>{option.label}</Text>
                 </View>
-            </TouchableOpacity>)
+            </TouchableOpacity> )
     }
 
     renderOptionList() {
@@ -126,7 +126,7 @@ class ModalPicker extends (React.PureComponent || React.Component) {
                     borderRadius: 5,
                     backgroundColor: 'white',
                 } ]}>
-                    <ScrollView style={[ { maxHeight: window.height * (3 / 5) } ]}>
+                    <ScrollView style={[ { maxHeight: window.height * ( 3 / 5 ) } ]}>
                         <View>
                             {items}
                         </View>

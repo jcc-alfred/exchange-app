@@ -1,7 +1,4 @@
-import metaActionTypes from "./metaActionTypes";
-
-const initialState = {
-};
+const initialState = {};
 
 export default function metaReducer( state = initialState, action ) {
     switch ( action.type ) {

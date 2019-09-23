@@ -26,20 +26,20 @@ function attachSuperagentLogger( options, req ) {
             (
                 rightPad( uri.protocol.toUpperCase().replace( /[^\w]/g, '' ), 5 )
             ),
-            (rightPad( method.toUpperCase(), 'delete'.length )),
-            options.timestamp ? ('[' + timestamp + ']') : '',
-            (' - '),
-            (uri.href + (req.qs ? '' : '?' + querystring.encode( req.qs ))),
-            ('(pending)')
+            ( rightPad( method.toUpperCase(), 'delete'.length ) ),
+            options.timestamp ? ( '[' + timestamp + ']' ) : '',
+            ( ' - ' ),
+            ( uri.href + ( req.qs ? '' : '?' + querystring.encode( req.qs ) ) ),
+            ( '(pending)' )
         );
     } else {
         requestUrl = format( '[{0} {1} {2} {3}]',
             (
                 rightPad( uri.protocol.toUpperCase().replace( /[^\w]/g, '' ), 5 )
             ),
-            (rightPad( method.toUpperCase(), 'delete'.length )),
-            options.timestamp ? ('[' + timestamp + ']') : '',
-            (uri.href + ' ' + ((req._query && req._query.length > 0) ? req._query[ 0 ] : '')),
+            ( rightPad( method.toUpperCase(), 'delete'.length ) ),
+            options.timestamp ? ( '[' + timestamp + ']' ) : '',
+            ( uri.href + ' ' + ( ( req._query && req._query.length > 0 ) ? req._query[ 0 ] : '' ) ),
         );
     }
 
@@ -53,19 +53,19 @@ function attachSuperagentLogger( options, req ) {
 
         let st = res.status;
         if ( st < 300 ) {
-            st = (st);
+            st = ( st );
         } else if ( st < 400 ) {
-            st = (st);
+            st = ( st );
         } else {
-            st = (st);
+            st = ( st );
         }
 
         console.log( 'NET response [%s] %s %s',
             requestUrl,
             st,
-            ('(') +
-            (elapsed + 'ms') +
-            (')')
+            ( '(' ) +
+            ( elapsed + 'ms' ) +
+            ( ')' )
         );
 
         console.log( 'NET response %s HTTPS header:' + JSON.stringify( res.headers ), requestUrl );

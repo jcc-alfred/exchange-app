@@ -100,7 +100,7 @@ class AuthPasswordSetPageView extends React.Component {
                             secureTextEntry={true}
                             errorStyle={{ color: 'red' }}
                             errorMessage={
-                                this.state.showError && (!this.state.password || this.state.password.length <= 0) ?
+                                this.state.showError && ( !this.state.password || this.state.password.length <= 0 ) ?
                                     I18n.t( Keys.please_input_password )
                                     :
                                     null

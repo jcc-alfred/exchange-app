@@ -6,7 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 const PropTypes = require( 'prop-types' );
 
-class YIndexComponent extends (React.PureComponent || React.Component) {
+class YIndexComponent extends ( React.PureComponent || React.Component ) {
     static propTypes = {
         isContainFav: PropTypes.bool.isRequired,
         onSelect: PropTypes.func.isRequired,

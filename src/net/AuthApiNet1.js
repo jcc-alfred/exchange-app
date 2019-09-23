@@ -5,7 +5,6 @@ import logger from "./logger/superagent-logger";
 
 import header from "./header/headerRequest";
 import apiDomainParse from "./parse/apiDomainParse";
-import NetUtil from "./NetUtil";
 
 header( request );
 apiDomainParse( request );
@@ -13,13 +12,13 @@ apiDomainParse( request );
 export function netAuthLoginPhonePassword( phoneRegion, phone, password, callback ) {
     request
         .post( '/auth/login' )
-        .query(  {
+        .query( {
             phoneRegion: phoneRegion,
             phone: phone ? phone.replace( /\s+/g, "" ) : '',
             password: password,
             "remember-me": 1
-        }  )
-        .use( superagent_prefix(env.apiDomain) )
+        } )
+        .use( superagent_prefix( env.apiDomain ) )
         .use( logger )
         .headerRequest()
         .apiDomainParse()

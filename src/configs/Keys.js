@@ -1,4 +1,2 @@
-const Keys = {
-
-};
+const Keys = {};
 export default Keys;

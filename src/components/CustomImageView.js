@@ -34,7 +34,7 @@ class CustomImageView extends React.Component {
                     }
                     }
                     onSave={( result ) => {
-                        console.log( JSON.stringify( result ) )
+                        console.log( JSON.stringify( result ) );
 
                         const fileName = result.substr( result.lastIndexOf( "/" ) );
 

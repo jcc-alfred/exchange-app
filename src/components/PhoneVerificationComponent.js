@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import commonStyles from "../styles/commonStyles";
 import { Button, Input } from "react-native-elements";
 import { InteractionManager, View } from "react-native";
-import { commonVerificationCodeGet } from "../actions/CommonAction";
 import Spinner from "react-native-loading-spinner-overlay";
 import Toast from "react-native-root-toast";
 import CountDown from 'react-native-countdown-component';
@@ -118,7 +117,7 @@ class PhoneVerificationComponent extends React.Component {
                     keyboardType={'phone-pad'}
                     errorStyle={{ color: 'red' }}
                     errorMessage={
-                        this.props.showError && (!this.props.code || this.props.code.length <= 0) ?
+                        this.props.showError && ( !this.props.code || this.props.code.length <= 0 ) ?
                             I18n.t( Keys.please_input_verify_code )
                             :
                             null
@@ -140,12 +139,9 @@ function select( store ) {
     return {}
 }
 
-const mapDispatchToProps = ( dispatch, ownProps ) => ({
+const mapDispatchToProps = ( dispatch, ownProps ) => ( {
     onCommonVerificationCodeGet: ( phoneRegion, phone, type, callback ) => {
-        dispatch( commonVerificationCodeGet( phoneRegion, phone, type, ( err, res ) => {
-            callback && callback( err, res )
-        } ) );
     },
-});
+} );
 export default connect( select, mapDispatchToProps )( PhoneVerificationComponent )
 

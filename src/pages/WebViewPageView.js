@@ -1,5 +1,5 @@
 import React from "react";
-import { SafeAreaView, StatusBar, StyleSheet, View, WebView } from "react-native";
+import { SafeAreaView, StyleSheet, View, WebView } from "react-native";
 import commonStyles from "../styles/commonStyles";
 
 const styles = StyleSheet.create( {} );

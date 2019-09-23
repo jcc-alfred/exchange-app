@@ -19,9 +19,9 @@ export default class TimeUtil {
 
 
     static timeZoneStr() {
-        let offSetHour = (new Date()).getTimezoneOffset() / 60;
+        let offSetHour = ( new Date() ).getTimezoneOffset() / 60;
         offSetHour = offSetHour > 0 ? Math.floor( offSetHour ) : Math.ceil( offSetHour );
-        let offSetMinute = (new Date()).getTimezoneOffset() % 60;
+        let offSetMinute = ( new Date() ).getTimezoneOffset() % 60;
         let result;
         if ( offSetHour > 0 ) {
             if ( offSetHour < 10 ) {
@@ -39,15 +39,15 @@ export default class TimeUtil {
 
         if ( offSetMinute > 0 ) {
             if ( offSetMinute < 10 ) {
-                result += ('0' + offSetMinute);
+                result += ( '0' + offSetMinute );
             } else {
-                result += (offSetMinute);
+                result += ( offSetMinute );
             }
         } else {
             if ( -offSetMinute < 10 ) {
-                result += ('0' + -offSetMinute);
+                result += ( '0' + -offSetMinute );
             } else {
-                result += (-offSetMinute);
+                result += ( -offSetMinute );
             }
         }
 

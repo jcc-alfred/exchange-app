@@ -93,8 +93,8 @@ class AuthRegisterNextPageView extends React.Component {
 
                     <View style={[ commonStyles.paddingCommon ]}>
                         <PhoneVerificationComponent
-                            phoneRegion={this.state.currentCountry ? (this.state.currentCountry.phoneRegion) : ''}
-                            phoneCode={this.state.currentCountry ? (this.state.currentCountry.phoneCode) : ''}
+                            phoneRegion={this.state.currentCountry ? ( this.state.currentCountry.phoneRegion ) : ''}
+                            phoneCode={this.state.currentCountry ? ( this.state.currentCountry.phoneCode ) : ''}
                             phone={this.state.phone}
                             type={2}
                             code={this.state.code}

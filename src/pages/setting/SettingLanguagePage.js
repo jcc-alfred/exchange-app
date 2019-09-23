@@ -11,14 +11,14 @@ const mapStoreToProps = ( store, ownProps ) => {
     }
 };
 
-const mapDispatchToProps = ( dispatch, ownProps ) => ({
+const mapDispatchToProps = ( dispatch, ownProps ) => ( {
     onChangeLanguage: ( language ) => {
         dispatch( ( dispatch ) => {
             dispatch( { 'type': settingActionTypes.LANGUAGE_UPDATE, data: language } );
         } );
     },
 
-});
+} );
 
 const SettingLanguagePage = connect(
     mapStoreToProps,

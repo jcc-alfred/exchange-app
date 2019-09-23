@@ -2,7 +2,7 @@ import { webDomain } from "../env";
 import url from "url";
 import UrlActionType from "./UrlActionType";
 
-const UrlActionHandlerUtil = (function () {
+const UrlActionHandlerUtil = ( function () {
     let scheme = webDomain + '/';
     return {
         genQRPaymentUrl: function ( account, amount, remark ) {
@@ -43,6 +43,6 @@ const UrlActionHandlerUtil = (function () {
         }
     }
 
-})();
+} )();
 
 export default UrlActionHandlerUtil;

@@ -55,6 +55,6 @@ function select( store ) {
     return {}
 }
 
-const mapDispatchToProps = ( dispatch, ownProps ) => ({});
+const mapDispatchToProps = ( dispatch, ownProps ) => ( {} );
 export default connect( select, mapDispatchToProps )( MediaSingleComponent )
 

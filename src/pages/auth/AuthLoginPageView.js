@@ -104,7 +104,7 @@ class AuthLoginPageView extends React.Component {
                             style={[ commonStyles.wrapper ]}
                             leftIcon={
                                 <Button
-                                    title={this.state.currentCountry ? ('+' + this.state.currentCountry.phoneCode) : ''}
+                                    title={this.state.currentCountry ? ( '+' + this.state.currentCountry.phoneCode ) : ''}
                                     type="outline"
                                     buttonStyle={[ { height: 30, paddingTop: 7, paddingBottom: 7 } ]}
                                     titleStyle={[ { fontSize: 14, } ]}
@@ -127,7 +127,7 @@ class AuthLoginPageView extends React.Component {
                             label={I18n.t( Keys.phone )}
                             errorStyle={{ color: 'red' }}
                             errorMessage={
-                                this.state.showError && (!this.state.phone || this.state.phone.length <= 0) ?
+                                this.state.showError && ( !this.state.phone || this.state.phone.length <= 0 ) ?
                                     I18n.t( Keys.please_input_phone )
                                     :
                                     null
@@ -148,7 +148,7 @@ class AuthLoginPageView extends React.Component {
                             label={I18n.t( Keys.password )}
                             errorStyle={{ color: 'red' }}
                             errorMessage={
-                                this.state.showError && (!this.state.password || this.state.password.length <= 0) ?
+                                this.state.showError && ( !this.state.password || this.state.password.length <= 0 ) ?
                                     I18n.t( Keys.please_input_password )
                                     :
                                     null

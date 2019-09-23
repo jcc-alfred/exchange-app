@@ -82,7 +82,7 @@ class SettingLanguagePageView extends React.Component {
                             )
                         }}
                         getItemLayout={( data, index ) => (
-                            { length: viewHeight, offset: (viewHeight + separatorHeight) * index, index }
+                            { length: viewHeight, offset: ( viewHeight + separatorHeight ) * index, index }
                         )}
                     />
                 </SafeAreaView>

@@ -110,14 +110,14 @@ class CountrySearchPageView extends React.Component {
             let result = [];
             for ( let index = 0; index < modelList.length; index++ ) {
                 const item = modelList[ index ];
-                if ( (item.displayContent).indexOf( searchText ) >= 0 && modelShowArray.indexOf( item ) < 0 ) {
+                if ( ( item.displayContent ).indexOf( searchText ) >= 0 && modelShowArray.indexOf( item ) < 0 ) {
                     result.push( item );
                 }
             }
 
             result = result.sort( function ( a, b ) {
-                const aIndex = (a.displayContent).indexOf( searchText );
-                const bIndex = (b.displayContent).indexOf( searchText );
+                const aIndex = ( a.displayContent ).indexOf( searchText );
+                const bIndex = ( b.displayContent ).indexOf( searchText );
                 if ( aIndex === bIndex ) {
                     return 0;
                 } else if ( aIndex > bIndex ) {
@@ -228,7 +228,7 @@ class CountrySearchPageView extends React.Component {
                         return <View style={[ commonStyles.commonIntervalStyle, { height: separatorHeight } ]}/>
                     }}
                     getItemLayout={( modelList, index ) => (
-                        { length: viewHeight, offset: (viewHeight + separatorHeight) * index, index }
+                        { length: viewHeight, offset: ( viewHeight + separatorHeight ) * index, index }
                     )}
                     onScroll={() => {
                         if ( this.props.onScroll ) {

@@ -11,9 +11,7 @@ const mapStoreToProps = ( store, ownProps ) => {
     }
 };
 
-const mapDispatchToProps = ( dispatch, ownProps ) => ({
-
-});
+const mapDispatchToProps = ( dispatch, ownProps ) => ( {} );
 
 const MinePage = connect(
     mapStoreToProps,

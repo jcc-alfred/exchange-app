@@ -33,7 +33,7 @@ function apiDomainParse( manualParse ) {
 
                 return fn && fn(
                     parseError( err1, res1 ),
-                    (res1 && res1.body) ? res1.body : res1,
+                    ( res1 && res1.body ) ? res1.body : res1,
                     self
                 );
             } );

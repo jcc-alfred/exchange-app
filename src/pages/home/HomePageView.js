@@ -12,15 +12,9 @@ class HomePageView extends React.Component {
     constructor( props ) {
         super( props );
 
-        const searchFilterQuery = {};
-        const { index, routes, scenes } = this.initTabData( props.regionDisplay, searchFilterQuery );
 
         this.state = {
             isRequesting: false,
-            searchFilterQuery: searchFilterQuery,
-            index: index,
-            routes: routes,
-            scenes: scenes,
             updateDialogVisible: false
         }
 
@@ -31,8 +25,6 @@ class HomePageView extends React.Component {
         const { state, setParams } = navigation;
         const { params } = state;
 
-        const isSupportFilter = !!( params && params.isSupportFilter );
-
         return {
             title: I18n.t( Keys.home ),
             headerBackTitle: null,
@@ -40,10 +32,6 @@ class HomePageView extends React.Component {
     };
 
     componentDidMount() {
-
-        this.props.navigation.setParams( { searchByFilter: this.searchByFilter } );
-
-        this.loadRegionDisplayData();
 
         this.checkForUpdate();
     }

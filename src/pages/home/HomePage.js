@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
 import HomePageView from "./HomePageView";
-import { commonRegionGetDisplay } from "../../actions/CommonAction";
 
 const mapStoreToProps = ( store, ownProps ) => {
     const { params } = ownProps.navigation.state;
@@ -13,13 +12,7 @@ const mapStoreToProps = ( store, ownProps ) => {
     }
 };
 
-const mapDispatchToProps = ( dispatch, ownProps ) => ({
-    onCommonRegionGetDisplay: ( callback ) => {
-        dispatch( commonRegionGetDisplay( ( err, res ) => {
-            callback && callback( err, res )
-        } ) );
-    },
-});
+const mapDispatchToProps = ( dispatch, ownProps ) => ( {} );
 
 const HomePage = connect(
     mapStoreToProps,

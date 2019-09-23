@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 const mapStoreToProps = ( store, ownProps ) => {
     return {}
 };
-const mapDispatchToProps = ( dispatch, ownProps ) => ({});
+const mapDispatchToProps = ( dispatch, ownProps ) => ( {} );
 
 const WebViewPage = connect(
     mapStoreToProps,

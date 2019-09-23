@@ -85,7 +85,7 @@ class AuthLoginHistoryPageView extends React.Component {
                         return <View style={[ commonStyles.commonIntervalStyle, { height: separatorHeight } ]}/>;
                     }}
                     getItemLayout={( data, index ) => (
-                        { length: viewHeight, offset: (viewHeight + separatorHeight) * index, index }
+                        { length: viewHeight, offset: ( viewHeight + separatorHeight ) * index, index }
                     )}
                 >
                 </FlatList>

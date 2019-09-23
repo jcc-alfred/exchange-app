@@ -1,5 +1,5 @@
 import React from 'react';
-import { InteractionManager, PixelRatio, SafeAreaView, StyleSheet, View, } from 'react-native';
+import { InteractionManager, SafeAreaView, StyleSheet, View, } from 'react-native';
 import { Button, Input } from "react-native-elements";
 import commonStyles from "../../styles/commonStyles";
 import Toast from "react-native-root-toast";
@@ -95,7 +95,7 @@ class AuthRegisterPageView extends React.Component {
                             style={[ commonStyles.wrapper ]}
                             leftIcon={
                                 <Button
-                                    title={this.state.currentCountry ? ('+' + this.state.currentCountry.phoneCode) : ''}
+                                    title={this.state.currentCountry ? ( '+' + this.state.currentCountry.phoneCode ) : ''}
                                     type="outline"
                                     buttonStyle={[ { height: 30, paddingTop: 7, paddingBottom: 7 } ]}
                                     titleStyle={[ { fontSize: 14, } ]}
@@ -118,7 +118,7 @@ class AuthRegisterPageView extends React.Component {
                             label={I18n.t( Keys.phone )}
                             errorStyle={{ color: 'red' }}
                             errorMessage={
-                                this.state.showError && (!this.state.phone || this.state.phone.length <= 0) ?
+                                this.state.showError && ( !this.state.phone || this.state.phone.length <= 0 ) ?
                                     I18n.t( Keys.please_input_phone )
                                     :
                                     null
@@ -171,9 +171,7 @@ class AuthRegisterPageView extends React.Component {
 }
 
 
-const styles = StyleSheet.create( {
-
-} );
+const styles = StyleSheet.create( {} );
 
 export default AuthRegisterPageView;
 
