@@ -66,13 +66,11 @@ export function parseError( err, res ) {
         return err;
     }
 
-    if ( res.body && res.body.code !== 'ok' ) {
-        if ( res.body.status !== 1 ) {
-            const error = Error( res.body.error.text );
-            error.code = res.body.error.code;
+    if ( res.body && res.body.code !== 1 ) {
+        const error = Error( res.body.msg );
+        error.code = res.body.code;
 
-            return error;
-        }
+        return error;
     }
 
     console.log( err );

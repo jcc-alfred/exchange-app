@@ -30,3 +30,14 @@ export function authLogin( account, password, imageCode, callback ) {
         } );
     };
 }
+
+
+export function authLogout( callback ) {
+    return ( dispatch ) => {
+        dispatch( {
+            type: userActionTypes.LOGOUT,
+        } );
+
+        callback && callback( null, null )
+    };
+}

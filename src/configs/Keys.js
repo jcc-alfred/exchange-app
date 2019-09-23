@@ -6,6 +6,7 @@ const Keys = {
     "language_english": "language.english",
     "languages": "languages",
     "login": "login",
+    "login_history": "login_history",
     "logout": "logout",
     "me": "me",
     "settings": "settings",

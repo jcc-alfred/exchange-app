@@ -5,7 +5,6 @@ import commonStyles from "../../styles/commonStyles";
 import Toast from "react-native-root-toast";
 import { NavigationActions, StackActions } from "react-navigation";
 import Spinner from "react-native-loading-spinner-overlay";
-import CountryUtil from "../countrySelect/util/CountryUtil";
 import I18n from "../../I18n";
 import Keys from "../../configs/Keys";
 import * as env from "../../env";
@@ -35,9 +34,6 @@ class AuthLoginPageView extends React.Component {
     };
 
     componentDidMount() {
-        this.setState( {
-            currentCountry: CountryUtil.calcCountry( null ),
-        } );
     }
 
     componentWillUnmount() {
@@ -55,7 +51,7 @@ class AuthLoginPageView extends React.Component {
 
 
     login() {
-        if ( !this.state.phone || this.state.phone.length <= 0 ||
+        if ( !this.state.account || this.state.account.length <= 0 ||
             !this.state.password || this.state.password.length <= 0
         ) {
             this.setState( {
@@ -126,11 +122,11 @@ class AuthLoginPageView extends React.Component {
                             value={this.state.password}
                             onChangeText={( text ) => this.setState( { password: text } )}
                             secureTextEntry={true}
-                            label={I18n.t( Keys.password )}
+                            label={"Password"}
                             errorStyle={{ color: 'red' }}
                             errorMessage={
                                 this.state.showError && ( !this.state.password || this.state.password.length <= 0 ) ?
-                                    I18n.t( Keys.please_input_password )
+                                    "Please input password"
                                     :
                                     null
                             }

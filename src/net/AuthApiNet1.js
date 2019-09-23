@@ -24,7 +24,7 @@ export function netAuthLogin( account, password, imgCode, callback ) {
 
     request
         .post( '/User/login' )
-        .query( query )
+        .send( query )
         .use( superagent_prefix( env.apiDomain ) )
         .use( logger )
         .headerRequest()

@@ -10,10 +10,10 @@ authRequest( request );
 header( request );
 apiDomainParse( request );
 
-export function netUserMe( callback ) {
+export function netUserGetAssets( callback ) {
     request
-        .get( '/user/me' )
-        .query( {} )
+        .post( '/assets/getUserAssets' )
+        .send( {} )
         .use( superagent_prefix( env.apiDomain ) )
         .use( logger )
         .authRequest()

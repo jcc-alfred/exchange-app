@@ -94,6 +94,15 @@ class MinePageView extends React.Component {
                                 this.props.navigation.navigate( "SettingsPage" )
                             }}
                         />
+
+                        <ListItem
+                            title={"Assets"}
+                            onPress={() => {
+                                this.props.navigation.navigate( "AssetsPage" )
+                            }}
+                        />
+
+
                     </ScrollView>
                 </SafeAreaView>
             </View>
