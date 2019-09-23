@@ -1,0 +1,13 @@
+{
+  "status": 1,
+  "data": [
+    {
+      "domain": "http://54.169.230.205:9003"
+    },
+    {
+      "domain": "http://girlvip.co:9003"
+    }
+  ],
+  "info": null,
+  "error": null
+}

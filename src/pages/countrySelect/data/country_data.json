@@ -1,0 +1,840 @@
+[
+  {
+    "phoneRegion": "AF",
+    "phoneCode": 93
+  },
+  {
+    "phoneRegion": "AL",
+    "phoneCode": 355
+  },
+  {
+    "phoneRegion": "DZ",
+    "phoneCode": 213
+  },
+  {
+    "phoneRegion": "AD",
+    "phoneCode": 376
+  },
+  {
+    "phoneRegion": "AO",
+    "phoneCode": 244
+  },
+  {
+    "phoneRegion": "AI",
+    "phoneCode": 1264
+  },
+  {
+    "phoneRegion": "AG",
+    "phoneCode": 1268
+  },
+  {
+    "phoneRegion": "AR",
+    "phoneCode": 54
+  },
+  {
+    "phoneRegion": "AM",
+    "phoneCode": 374
+  },
+  {
+    "phoneRegion": "AW",
+    "phoneCode": 297
+  },
+  {
+    "phoneRegion": "AU",
+    "phoneCode": 61
+  },
+  {
+    "phoneRegion": "AT",
+    "phoneCode": 43
+  },
+  {
+    "phoneRegion": "AZ",
+    "phoneCode": 994
+  },
+  {
+    "phoneRegion": "BS",
+    "phoneCode": 1242
+  },
+  {
+    "phoneRegion": "BH",
+    "phoneCode": 973
+  },
+  {
+    "phoneRegion": "BD",
+    "phoneCode": 880
+  },
+  {
+    "phoneRegion": "BB",
+    "phoneCode": 1246
+  },
+  {
+    "phoneRegion": "BY",
+    "phoneCode": 375
+  },
+  {
+    "phoneRegion": "BE",
+    "phoneCode": 32
+  },
+  {
+    "phoneRegion": "BZ",
+    "phoneCode": 501
+  },
+  {
+    "phoneRegion": "BJ",
+    "phoneCode": 229
+  },
+  {
+    "phoneRegion": "BM",
+    "phoneCode": 1441
+  },
+  {
+    "phoneRegion": "BT",
+    "phoneCode": 975
+  },
+  {
+    "phoneRegion": "BO",
+    "phoneCode": 591
+  },
+  {
+    "phoneRegion": "BA",
+    "phoneCode": 387
+  },
+  {
+    "phoneRegion": "BW",
+    "phoneCode": 267
+  },
+  {
+    "phoneRegion": "BR",
+    "phoneCode": 55
+  },
+  {
+    "phoneRegion": "BN",
+    "phoneCode": 673
+  },
+  {
+    "phoneRegion": "BG",
+    "phoneCode": 359
+  },
+  {
+    "phoneRegion": "BF",
+    "phoneCode": 226
+  },
+  {
+    "phoneRegion": "BI",
+    "phoneCode": 257
+  },
+  {
+    "phoneRegion": "KH",
+    "phoneCode": 855
+  },
+  {
+    "phoneRegion": "CM",
+    "phoneCode": 237
+  },
+  {
+    "phoneRegion": "CA",
+    "phoneCode": 1
+  },
+  {
+    "phoneRegion": "CV",
+    "phoneCode": 238
+  },
+  {
+    "phoneRegion": "KY",
+    "phoneCode": 1345
+  },
+  {
+    "phoneRegion": "CF",
+    "phoneCode": 236
+  },
+  {
+    "phoneRegion": "TD",
+    "phoneCode": 235
+  },
+  {
+    "phoneRegion": "CL",
+    "phoneCode": 56
+  },
+  {
+    "phoneRegion": "CN",
+    "phoneCode": 86,
+    "symbol": "￥",
+    "currency_code": "CNY"
+  },
+  {
+    "phoneRegion": "CO",
+    "phoneCode": 57
+  },
+  {
+    "phoneRegion": "KM",
+    "phoneCode": 269
+  },
+  {
+    "phoneRegion": "CD",
+    "phoneCode": 243
+  },
+  {
+    "phoneRegion": "CK",
+    "phoneCode": 682
+  },
+  {
+    "phoneRegion": "CR",
+    "phoneCode": 506
+  },
+  {
+    "phoneRegion": "HR",
+    "phoneCode": 385
+  },
+  {
+    "phoneRegion": "CU",
+    "phoneCode": 53
+  },
+  {
+    "phoneRegion": "CY",
+    "phoneCode": 357
+  },
+  {
+    "phoneRegion": "CZ",
+    "phoneCode": 420
+  },
+  {
+    "phoneRegion": "DK",
+    "phoneCode": 45
+  },
+  {
+    "phoneRegion": "DJ",
+    "phoneCode": 253
+  },
+  {
+    "phoneRegion": "DM",
+    "phoneCode": 1767
+  },
+  {
+    "phoneRegion": "DO",
+    "phoneCode": 1829
+  },
+  {
+    "phoneRegion": "EC",
+    "phoneCode": 593
+  },
+  {
+    "phoneRegion": "EG",
+    "phoneCode": 20
+  },
+  {
+    "phoneRegion": "SV",
+    "phoneCode": 503
+  },
+  {
+    "phoneRegion": "GQ",
+    "phoneCode": 240
+  },
+  {
+    "phoneRegion": "EE",
+    "phoneCode": 372
+  },
+  {
+    "phoneRegion": "ET",
+    "phoneCode": 251
+  },
+  {
+    "phoneRegion": "FO",
+    "phoneCode": 298
+  },
+  {
+    "phoneRegion": "FJ",
+    "phoneCode": 679
+  },
+  {
+    "phoneRegion": "FI",
+    "phoneCode": 358
+  },
+  {
+    "phoneRegion": "FR",
+    "phoneCode": 33
+  },
+  {
+    "phoneRegion": "GF",
+    "phoneCode": 594
+  },
+  {
+    "phoneRegion": "PF",
+    "phoneCode": 689
+  },
+  {
+    "phoneRegion": "GA",
+    "phoneCode": 241
+  },
+  {
+    "phoneRegion": "GM",
+    "phoneCode": 220
+  },
+  {
+    "phoneRegion": "GE",
+    "phoneCode": 995
+  },
+  {
+    "phoneRegion": "DE",
+    "phoneCode": 49
+  },
+  {
+    "phoneRegion": "GH",
+    "phoneCode": 233
+  },
+  {
+    "phoneRegion": "GI",
+    "phoneCode": 350
+  },
+  {
+    "phoneRegion": "GR",
+    "phoneCode": 30
+  },
+  {
+    "phoneRegion": "GL",
+    "phoneCode": 299
+  },
+  {
+    "phoneRegion": "GD",
+    "phoneCode": 1473
+  },
+  {
+    "phoneRegion": "GP",
+    "phoneCode": 590
+  },
+  {
+    "phoneRegion": "GU",
+    "phoneCode": 1671
+  },
+  {
+    "phoneRegion": "GT",
+    "phoneCode": 502
+  },
+  {
+    "phoneRegion": "GG",
+    "phoneCode": 44
+  },
+  {
+    "phoneRegion": "GN",
+    "phoneCode": 224
+  },
+  {
+    "phoneRegion": "GW",
+    "phoneCode": 245
+  },
+  {
+    "phoneRegion": "GY",
+    "phoneCode": 592
+  },
+  {
+    "phoneRegion": "HT",
+    "phoneCode": 509
+  },
+  {
+    "phoneRegion": "HN",
+    "phoneCode": 504
+  },
+  {
+    "phoneRegion": "HK",
+    "phoneCode": 852
+  },
+  {
+    "phoneRegion": "HU",
+    "phoneCode": 36
+  },
+  {
+    "phoneRegion": "IS",
+    "phoneCode": 354
+  },
+  {
+    "phoneRegion": "IN",
+    "phoneCode": 91
+  },
+  {
+    "phoneRegion": "ID",
+    "phoneCode": 62
+  },
+  {
+    "phoneRegion": "IR",
+    "phoneCode": 98
+  },
+  {
+    "phoneRegion": "IQ",
+    "phoneCode": 964
+  },
+  {
+    "phoneRegion": "IE",
+    "phoneCode": 353
+  },
+  {
+    "phoneRegion": "IM",
+    "phoneCode": 44
+  },
+  {
+    "phoneRegion": "IL",
+    "phoneCode": 972
+  },
+  {
+    "phoneRegion": "IT",
+    "phoneCode": 39
+  },
+  {
+    "phoneRegion": "JM",
+    "phoneCode": 1876
+  },
+  {
+    "phoneRegion": "JP",
+    "phoneCode": 81
+  },
+  {
+    "phoneRegion": "JE",
+    "phoneCode": 44
+  },
+  {
+    "phoneRegion": "JO",
+    "phoneCode": 962
+  },
+  {
+    "phoneRegion": "KZ",
+    "phoneCode": 7
+  },
+  {
+    "phoneRegion": "KI",
+    "phoneCode": 254
+  },
+  {
+    "phoneRegion": "KR",
+    "phoneCode": 850
+  },
+  {
+    "phoneRegion": "KW",
+    "phoneCode": 965
+  },
+  {
+    "phoneRegion": "KG",
+    "phoneCode": 996
+  },
+  {
+    "phoneRegion": "LA",
+    "phoneCode": 856
+  },
+  {
+    "phoneRegion": "LV",
+    "phoneCode": 371
+  },
+  {
+    "phoneRegion": "LB",
+    "phoneCode": 961
+  },
+  {
+    "phoneRegion": "LS",
+    "phoneCode": 266
+  },
+  {
+    "phoneRegion": "LR",
+    "phoneCode": 231
+  },
+  {
+    "phoneRegion": "LY",
+    "phoneCode": 218
+  },
+  {
+    "phoneRegion": "LI",
+    "phoneCode": 423
+  },
+  {
+    "phoneRegion": "LT",
+    "phoneCode": 370
+  },
+  {
+    "phoneRegion": "MO",
+    "phoneCode": 853
+  },
+  {
+    "phoneRegion": "MK",
+    "phoneCode": 389
+  },
+  {
+    "phoneRegion": "MG",
+    "phoneCode": 261
+  },
+  {
+    "phoneRegion": "MW",
+    "phoneCode": 265
+  },
+  {
+    "phoneRegion": "MY",
+    "phoneCode": 60,
+    "symbol": "RM",
+    "currency_code": "MYR"
+  },
+  {
+    "phoneRegion": "MV",
+    "phoneCode": 960
+  },
+  {
+    "phoneRegion": "ML",
+    "phoneCode": 223
+  },
+  {
+    "phoneRegion": "MT",
+    "phoneCode": 356
+  },
+  {
+    "phoneRegion": "MQ",
+    "phoneCode": 596
+  },
+  {
+    "phoneRegion": "MR",
+    "phoneCode": 222
+  },
+  {
+    "phoneRegion": "MU",
+    "phoneCode": 230
+  },
+  {
+    "phoneRegion": "YT",
+    "phoneCode": 262
+  },
+  {
+    "phoneRegion": "MX",
+    "phoneCode": 52
+  },
+  {
+    "phoneRegion": "MD",
+    "phoneCode": 373
+  },
+  {
+    "phoneRegion": "MC",
+    "phoneCode": 377
+  },
+  {
+    "phoneRegion": "MN",
+    "phoneCode": 976
+  },
+  {
+    "phoneRegion": "ME",
+    "phoneCode": 382
+  },
+  {
+    "phoneRegion": "MS",
+    "phoneCode": 1664
+  },
+  {
+    "phoneRegion": "MA",
+    "phoneCode": 212
+  },
+  {
+    "phoneRegion": "MZ",
+    "phoneCode": 258
+  },
+  {
+    "phoneRegion": "NA",
+    "phoneCode": 264
+  },
+  {
+    "phoneRegion": "NR",
+    "phoneCode": 674
+  },
+  {
+    "phoneRegion": "NL",
+    "phoneCode": 31
+  },
+  {
+    "phoneRegion": "NA",
+    "phoneCode": 599
+  },
+  {
+    "phoneRegion": "NC",
+    "phoneCode": 687
+  },
+  {
+    "phoneRegion": "NZ",
+    "phoneCode": 64
+  },
+  {
+    "phoneRegion": "NI",
+    "phoneCode": 505
+  },
+  {
+    "phoneRegion": "NE",
+    "phoneCode": 227
+  },
+  {
+    "phoneRegion": "NG",
+    "phoneCode": 234
+  },
+  {
+    "phoneRegion": "NO",
+    "phoneCode": 47
+  },
+  {
+    "phoneRegion": "OM",
+    "phoneCode": 968
+  },
+  {
+    "phoneRegion": "PK",
+    "phoneCode": 92
+  },
+  {
+    "phoneRegion": "PS",
+    "phoneCode": 970
+  },
+  {
+    "phoneRegion": "PA",
+    "phoneCode": 507
+  },
+  {
+    "phoneRegion": "PG",
+    "phoneCode": 675
+  },
+  {
+    "phoneRegion": "PY",
+    "phoneCode": 595
+  },
+  {
+    "phoneRegion": "PE",
+    "phoneCode": 51
+  },
+  {
+    "phoneRegion": "PH",
+    "phoneCode": 63
+  },
+  {
+    "phoneRegion": "PL",
+    "phoneCode": 48
+  },
+  {
+    "phoneRegion": "PT",
+    "phoneCode": 351
+  },
+  {
+    "phoneRegion": "PR",
+    "phoneCode": 1
+  },
+  {
+    "phoneRegion": "QA",
+    "phoneCode": 974
+  },
+  {
+    "phoneRegion": "RE",
+    "phoneCode": 262
+  },
+  {
+    "phoneRegion": "RO",
+    "phoneCode": 40
+  },
+  {
+    "phoneRegion": "RU",
+    "phoneCode": 7
+  },
+  {
+    "phoneRegion": "RW",
+    "phoneCode": 250
+  },
+  {
+    "phoneRegion": "WS",
+    "phoneCode": 685
+  },
+  {
+    "phoneRegion": "SM",
+    "phoneCode": 378
+  },
+  {
+    "phoneRegion": "SA",
+    "phoneCode": 966
+  },
+  {
+    "phoneRegion": "SN",
+    "phoneCode": 221
+  },
+  {
+    "phoneRegion": "RS",
+    "phoneCode": 381
+  },
+  {
+    "phoneRegion": "SC",
+    "phoneCode": 248
+  },
+  {
+    "phoneRegion": "SL",
+    "phoneCode": 232
+  },
+  {
+    "phoneRegion": "SG",
+    "phoneCode": 65,
+    "symbol": "S$",
+    "currency_code": "SGD"
+  },
+  {
+    "phoneRegion": "SK",
+    "phoneCode": 421
+  },
+  {
+    "phoneRegion": "SI",
+    "phoneCode": 386
+  },
+  {
+    "phoneRegion": "ZA",
+    "phoneCode": 27
+  },
+  {
+    "phoneRegion": "KR",
+    "phoneCode": 82
+  },
+  {
+    "phoneRegion": "ES",
+    "phoneCode": 34
+  },
+  {
+    "phoneRegion": "LK",
+    "phoneCode": 94
+  },
+  {
+    "phoneRegion": "KN",
+    "phoneCode": 1869
+  },
+  {
+    "phoneRegion": "SL",
+    "phoneCode": 1758
+  },
+  {
+    "phoneRegion": "VG",
+    "phoneCode": 1784
+  },
+  {
+    "phoneRegion": "SD",
+    "phoneCode": 249
+  },
+  {
+    "phoneRegion": "SR",
+    "phoneCode": 597
+  },
+  {
+    "phoneRegion": "SZ",
+    "phoneCode": 268
+  },
+  {
+    "phoneRegion": "SE",
+    "phoneCode": 46
+  },
+  {
+    "phoneRegion": "CH",
+    "phoneCode": 41
+  },
+  {
+    "phoneRegion": "SY",
+    "phoneCode": 963
+  },
+  {
+    "phoneRegion": "TW",
+    "phoneCode": 886,
+    "symbol": "NT$",
+    "currency_code": "TWD"
+  },
+  {
+    "phoneRegion": "TJ",
+    "phoneCode": 992
+  },
+  {
+    "phoneRegion": "TZ",
+    "phoneCode": 255
+  },
+  {
+    "phoneRegion": "TH",
+    "phoneCode": 66
+  },
+  {
+    "phoneRegion": "TL",
+    "phoneCode": 670
+  },
+  {
+    "phoneRegion": "TO",
+    "phoneCode": 676
+  },
+  {
+    "phoneRegion": "TT",
+    "phoneCode": 1868
+  },
+  {
+    "phoneRegion": "TN",
+    "phoneCode": 216
+  },
+  {
+    "phoneRegion": "TR",
+    "phoneCode": 90
+  },
+  {
+    "phoneRegion": "TM",
+    "phoneCode": 993
+  },
+  {
+    "phoneRegion": "TC",
+    "phoneCode": 1649
+  },
+  {
+    "phoneRegion": "UA",
+    "phoneCode": 380
+  },
+  {
+    "phoneRegion": "AE",
+    "phoneCode": 971
+  },
+  {
+    "phoneRegion": "GB",
+    "phoneCode": 44
+  },
+  {
+    "phoneRegion": "US",
+    "phoneCode": 1,
+    "symbol": "$",
+    "currency_code": "USD"
+  },
+  {
+    "phoneRegion": "UY",
+    "phoneCode": 598
+  },
+  {
+    "phoneRegion": "UZ",
+    "phoneCode": 998
+  },
+  {
+    "phoneRegion": "VU",
+    "phoneCode": 678
+  },
+  {
+    "phoneRegion": "VE",
+    "phoneCode": 58
+  },
+  {
+    "phoneRegion": "VN",
+    "phoneCode": 84
+  },
+  {
+    "phoneRegion": "VG",
+    "phoneCode": 1284
+  },
+  {
+    "phoneRegion": "VI",
+    "phoneCode": 1340
+  },
+  {
+    "phoneRegion": "YE",
+    "phoneCode": 967
+  },
+  {
+    "phoneRegion": "ZM",
+    "phoneCode": 260
+  },
+  {
+    "phoneRegion": "ZW",
+    "phoneCode": 263
+  },
+  {
+    "phoneRegion": "NP",
+    "phoneCode": 977
+  },
+  {
+    "phoneRegion": "MM",
+    "phoneCode": 95
+  }
+]
