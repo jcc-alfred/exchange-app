@@ -22,6 +22,10 @@ import I18n from "./I18n";
 import Keys from "./configs/Keys";
 import OrderHistoryPage from "./pages/order/OrderHistoryPage";
 import QuotesPage from "./pages/quotes/QuotesPage";
+
+
+
+
 import TradePage from "./pages/trade/TradePage";
 import UserEmailVerifyPage from "./pages/user/UserEmailVerifyPage";
 import UserGoogleAuthPage from "./pages/user/UserGoogleAuthPage";
@@ -131,6 +135,9 @@ const MineStack = createStackNavigator( { Home: { screen: MinePage, } }, stackNa
 
 const QuotesStack = createStackNavigator( { Home: { screen: QuotesPage, } }, stackNavigatorConfiguration );
 
+const TradeStatc =  createStackNavigator( { Home: { screen: TradePage, } }, stackNavigatorConfiguration );
+
+
 
 HomeStack.navigationOptions = {
     tabBarLabel: I18n.t( Keys.home ),
@@ -157,7 +164,11 @@ const MainTabContainer = createBottomTabNavigator(
     {
         HomeStack: HomeStack,
         QuotesStackL: QuotesStack,
+        TradePageStack:TradeStatc,
+
         MineStack: MineStack,
+
+
     },
     TabNavigatorConfig
 );
@@ -191,6 +202,26 @@ const LanguageUpdate = {
                 />
             ),
         };
+
+        // TradeStatc
+
+        TradeStatc.navigationOptions = {
+            tabBarLabel: "Trade",
+            tabBarIcon: ( { focused } ) => (
+                <TabBarIcon
+                    focused={focused}
+                    name={
+                        Platform.OS === 'ios'
+                            ? 'ios-home'
+                            : 'md-home'
+                    }
+                />
+            ),
+        };
+
+
+
+
 
         MineStack.navigationOptions = {
             tabBarLabel: I18n.t( Keys.me ),

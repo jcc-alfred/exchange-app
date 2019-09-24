@@ -168,6 +168,7 @@ class HomePageView extends React.Component {
             <TouchableHighlight
                 underlayColor='#ddd'
                 onPress={() => {
+                    Toast.show("111111")
                 }}>
 
                 <View style={{ alignItems: 'center', flexDirection: 'row', height: 50, marginStart: 40 }}>
