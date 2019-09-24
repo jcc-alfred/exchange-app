@@ -94,12 +94,17 @@ class MinePageView extends React.Component {
                             }}
                         />
 
-                        <ListItem
-                            title={"Assets"}
-                            onPress={() => {
-                                this.props.navigation.navigate( "AssetsPage" )
-                            }}
-                        />
+                        {
+                            this.props.isLoggedIn ?
+                                <ListItem
+                                    title={"Assets"}
+                                    onPress={() => {
+                                        this.props.navigation.navigate( "AssetsPage" )
+                                    }}
+                                />
+                                :
+                                null
+                        }
 
 
                     </ScrollView>
