@@ -10,11 +10,25 @@ authRequest( request );
 header( request );
 apiDomainParse( request );
 
-//error
-export function netUserSendCode( callback ) {
+/**
+ *
+ * @param query
+ *          {
+ *             "type": "phone",
+ *             "areaCode":"65",
+ *             "phoneNumber":"87140718"
+ *           }
+ *              or
+ *           {
+ *          	"type":"email",
+ *          	"email":"jie.xiao@gtdollar.com"
+ *           }
+ * @param callback
+ */
+export function netUserSendCode( query, callback ) {
     request
         .post( '/user/sendcode' )
-        .send( {} )
+        .send( query )
         .use( superagent_prefix( env.apiDomain ) )
         .use( logger )
         .authRequest()

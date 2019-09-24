@@ -14,7 +14,7 @@ apiDomainParse( request );
 export function netExchangeGetMarketList( callback ) {
     request
         .post( '/exchange/getMarketList' )
-        .query( {} )
+        .send( {} )
         .use( superagent_prefix( env.apiDomain ) )
         .use( logger )
         .authRequest()
@@ -27,7 +27,7 @@ export function netExchangeGetMarketList( callback ) {
 export function netExchangeGetCoinExchangeList( callback ) {
     request
         .post( '/exchange/getCoinExchangeList' )
-        .query( {} )
+        .send( {} )
         .use( superagent_prefix( env.apiDomain ) )
         .use( logger )
         .authRequest()
@@ -39,7 +39,44 @@ export function netExchangeGetCoinExchangeList( callback ) {
 export function netExchangeGetCoinExchangeAreaList( callback ) {
     request
         .post( '/exchange/getCoinExchangeAreaList' )
-        .query( {} )
+        .send( {} )
+        .use( superagent_prefix( env.apiDomain ) )
+        .use( logger )
+        .authRequest()
+        .headerRequest()
+        .apiDomainParse()
+        .end( callback );
+}
+
+export function netExchangeLastPrice( coin_name, callback ) {
+    request
+        .post( '/exchange/lastprice' )
+        .send( { coin_name: coin_name } )
+        .use( superagent_prefix( env.apiDomain ) )
+        .use( logger )
+        .authRequest()
+        .headerRequest()
+        .apiDomainParse()
+        .end( callback );
+}
+
+/**
+ *
+ * @param query
+ *              [
+ *                  {
+ *                      "entrustId":1,
+ *                      "coinExchangeId": 1,
+ *                      "entrustTypeId": 1
+ *                  }
+ *              ]
+ *
+ * @param callback
+ */
+export function netExchangeDoBatchCancelEntrust( query, callback ) {
+    request
+        .post( '/exchange/doBatchCancelEntrust' )
+        .send( query )
         .use( superagent_prefix( env.apiDomain ) )
         .use( logger )
         .authRequest()

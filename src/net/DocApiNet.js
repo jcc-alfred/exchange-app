@@ -14,7 +14,7 @@ apiDomainParse( request );
 export function netDocGetHomeNewsList( callback ) {
     request
         .post( '/doc/getHomeNewsList' )
-        .query( {} )
+        .send( {} )
         .use( superagent_prefix( env.apiDomain ) )
         .use( logger )
         .authRequest()
