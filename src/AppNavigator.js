@@ -10,7 +10,6 @@ import { createReactNavigationReduxMiddleware, createReduxContainer, } from 'rea
 import TabBarIcon from "./components/TabBarIcon";
 import HomePage from "./pages/home/HomePage";
 import MinePage from "./pages/mine/MinePage";
-import AuthLoginPage from "./pages/auth/AuthLoginPage";
 import AuthRegisterPage from "./pages/auth/AuthRegisterPage";
 import AboutPage from "./pages/setting/AboutPage";
 import SettingLanguagePage from "./pages/setting/SettingLanguagePage";
@@ -208,9 +207,6 @@ const routeConfiguration = {
             header: null,
             headerBackTitle: null
         }
-    },
-    AuthLoginPage: {
-        screen: AuthLoginPage
     },
     AuthRegisterPage: {
         screen: AuthRegisterPage

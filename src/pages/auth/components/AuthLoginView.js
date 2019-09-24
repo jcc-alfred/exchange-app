@@ -1,15 +1,19 @@
 import React from 'react';
 import { InteractionManager, PixelRatio, SafeAreaView, StyleSheet, View, } from 'react-native';
-import { Button, Input,Image } from "react-native-elements";
-import commonStyles from "../../styles/commonStyles";
+import { Button, Image, Input } from "react-native-elements";
+import commonStyles from "../../../styles/commonStyles";
 import Toast from "react-native-root-toast";
 import { NavigationActions, StackActions } from "react-navigation";
 import Spinner from "react-native-loading-spinner-overlay";
-import I18n from "../../I18n";
-import Keys from "../../configs/Keys";
-import * as env from "../../env";
+import I18n from "../../../I18n";
+import Keys from "../../../configs/Keys";
+import * as env from "../../../env";
+import { connect } from "react-redux";
+import { authLogin } from "../../../actions/AuthAction";
+import { BorderlessButton } from "react-native-gesture-handler";
+import { Ionicons } from '@expo/vector-icons';
 
-class AuthLoginPageView extends React.Component {
+class AuthLoginView extends React.Component {
 
     constructor( props ) {
         super( props );
@@ -30,6 +34,19 @@ class AuthLoginPageView extends React.Component {
         return {
             title: I18n.t( Keys.login ),
             headerBackTitle: null,
+            headerRight: (
+                <View style={[ { flexDirection: 'row' } ]}>
+                    <BorderlessButton
+                        onPress={() => navigation.navigate( 'SettingsPage' )}
+                        style={{ marginRight: 15 }}>
+                        <Ionicons
+                            name="md-search"
+                            size={Platform.OS === 'ios' ? 22 : 25}
+                            color={'white'}
+                        />
+                    </BorderlessButton>
+                </View>
+            )
         };
     };
 
@@ -98,7 +115,7 @@ class AuthLoginPageView extends React.Component {
                     <View style={[ commonStyles.paddingCommon ]}>
 
                         <Image
-                            style={{width: 200, height: 200, margin:20}}
+                            style={{ width: 200, height: 200, margin: 20 }}
                             // source={require('@expo/snack-static/react-native-logo.png')}
                         />
 
@@ -229,5 +246,18 @@ const styles = StyleSheet.create( {
     }
 } );
 
-export default AuthLoginPageView;
+
+function select( store ) {
+    return {}
+}
+
+const mapDispatchToProps = ( dispatch, ownProps ) => ( {
+    onAuthLogin: ( account, password, imageCode, callback ) => {
+        dispatch( authLogin( account, password, imageCode, ( err, res ) => {
+            callback && callback( err, res )
+        } ) );
+    },
+} );
+export default connect( select, mapDispatchToProps )( AuthLoginView )
+
 
