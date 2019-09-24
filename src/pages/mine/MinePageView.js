@@ -87,13 +87,6 @@ class MinePageView extends React.Component {
                             this.renderUserInfo()
                         }
 
-                        <ListItem
-                            title={I18n.t( Keys.settings )}
-                            onPress={() => {
-                                this.props.navigation.navigate( "SettingsPage" )
-                            }}
-                        />
-
                         {
                             this.props.isLoggedIn ?
                                 <ListItem
@@ -106,7 +99,12 @@ class MinePageView extends React.Component {
                                 null
                         }
 
-
+                        <ListItem
+                            title={I18n.t( Keys.settings )}
+                            onPress={() => {
+                                this.props.navigation.navigate( "SettingsPage" )
+                            }}
+                        />
                     </ScrollView>
                 </SafeAreaView>
             </View>
