@@ -11,7 +11,7 @@ header( request );
 apiDomainParse( request );
 
 
-export function netAuthSignUp( account, password, callback ) {
+export function netAuthSignUp( account, password, imgCode, callback ) {
     let query = {
         loginPass: password,
         imgCode: imgCode
@@ -26,7 +26,7 @@ export function netAuthSignUp( account, password, callback ) {
 
     request
         .post( '/User/signUp' )
-        .query(query )
+        .send( query )
         .use( superagent_prefix( env.apiDomain ) )
         .use( logger )
         .authRequest()

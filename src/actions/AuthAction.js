@@ -1,5 +1,6 @@
 import { netAuthLogin } from "../net/AuthApiNet1";
 import userActionTypes from "../reducers/user/userActionTypes";
+import { netAuthSignUp } from "../net/AuthApiNet";
 
 export function authLogin( account, password, imageCode, callback ) {
     return ( dispatch ) => {
@@ -31,6 +32,35 @@ export function authLogin( account, password, imageCode, callback ) {
     };
 }
 
+export function authSignUp( account, password, imageCode, callback ) {
+    return ( dispatch ) => {
+        netAuthSignUp( account, password, imageCode, ( err, res ) => {
+            if ( !err ) {
+                dispatch( {
+                    type: userActionTypes.LOGIN,
+                    data: {
+                        account: account,
+                        password: password
+                    }
+                } );
+
+                dispatch( {
+                    'type': userActionTypes.RECORD_LOGIN_HISTORY,
+                    data: {
+                        account: account,
+                        password: password
+                    }
+                } );
+
+                dispatch( {
+                    type: userActionTypes.UPDATE_USER_INFO,
+                    data: res.data.userInfo,
+                } );
+            }
+            callback && callback( err, res )
+        } );
+    };
+}
 
 export function authLogout( callback ) {
     return ( dispatch ) => {

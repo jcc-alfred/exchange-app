@@ -10,39 +10,25 @@ authRequest( request );
 header( request );
 apiDomainParse( request );
 
-/**
- *
- * @param query
- *          {
- *             "type": "phone",
- *             "areaCode":"65",
- *             "phoneNumber":"87140718"
- *           }
- *              or
- *           {
- *          	"type":"email",
- *          	"email":"jie.xiao@gtdollar.com"
- *           }
- * @param callback
- */
-export function netUserSendCode( query, callback ) {
-    request
-        .post( '/user/sendcode' )
-        .send( query )
+
+export function netPhotoUpload( path, callback ) {
+    const photo = {
+        uri: path,
+        type: 'image/jpeg',
+        name: path.substr( path.lastIndexOf( "/" ) + 1 ),
+    };
+
+    let currentRequest = request
+        .post( '/photo/upload' )
+        .type( 'multipart/form-data' );
+
+
+    currentRequest.attach( 'file', photo )
         .use( superagent_prefix( env.apiDomain ) )
         .use( logger )
         .authRequest()
         .headerRequest()
         .apiDomainParse()
         .end( callback );
+
 }
-
-
-
-
-
-
-
-
-
-

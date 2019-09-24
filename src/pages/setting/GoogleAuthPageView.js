@@ -3,7 +3,7 @@ import { SafeAreaView, StyleSheet, View } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import { Text } from "react-native-elements";
 
-class TokenWithdrawHistoryPageView extends React.Component {
+class GoogleAuthPageView extends React.Component {
 
     constructor( props ) {
         super( props );
@@ -19,7 +19,7 @@ class TokenWithdrawHistoryPageView extends React.Component {
         const { params } = state;
 
         return {
-            title: "TokenWithdrawHistoryPageView",
+            title: "GoogleAuthPageView",
             headerBackTitle: null,
         };
     };
@@ -45,7 +45,7 @@ class TokenWithdrawHistoryPageView extends React.Component {
             <View style={[ commonStyles.wrapper, ]}>
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
                     <Text>
-                        {"TokenWithdrawHistoryPageView"}
+                        {"GoogleAuthPageView"}
                     </Text>
                 </SafeAreaView>
             </View>
@@ -55,5 +55,5 @@ class TokenWithdrawHistoryPageView extends React.Component {
 
 const styles = StyleSheet.create( {} );
 
-export default TokenWithdrawHistoryPageView;
+export default GoogleAuthPageView;
 

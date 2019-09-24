@@ -1,18 +1,16 @@
 import React from 'react';
 import { connect } from "react-redux";
-import TokenWithdrawPageView from "./TokenWithdrawPageView";
+import FundPasswordResetPageView from "./FundPasswordResetPageView";
 
 const mapStoreToProps = ( store, ownProps ) => {
-    return {
-
-    }
+    return {}
 };
 
 const mapDispatchToProps = ( dispatch, ownProps ) => ( {} );
 
-const TokenWithdrawPage = connect(
+const FundPasswordResetPage = connect(
     mapStoreToProps,
     mapDispatchToProps
-)( TokenWithdrawPageView );
+)( FundPasswordResetPageView );
 
-export default TokenWithdrawPage;
+export default FundPasswordResetPage;

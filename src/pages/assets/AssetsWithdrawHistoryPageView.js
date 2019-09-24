@@ -3,7 +3,7 @@ import { SafeAreaView, StyleSheet, View } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import { Text } from "react-native-elements";
 
-class TokenDepositPageView extends React.Component {
+class AssetsWithdrawHistoryPageView extends React.Component {
 
     constructor( props ) {
         super( props );
@@ -19,7 +19,7 @@ class TokenDepositPageView extends React.Component {
         const { params } = state;
 
         return {
-            title: "TokenDepositPageView",
+            title: "TokenWithdrawHistoryPageView",
             headerBackTitle: null,
         };
     };
@@ -45,7 +45,7 @@ class TokenDepositPageView extends React.Component {
             <View style={[ commonStyles.wrapper, ]}>
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
                     <Text>
-                        {"TokenDepositPageView"}
+                        {"TokenWithdrawHistoryPageView"}
                     </Text>
                 </SafeAreaView>
             </View>
@@ -55,5 +55,5 @@ class TokenDepositPageView extends React.Component {
 
 const styles = StyleSheet.create( {} );
 
-export default TokenDepositPageView;
+export default AssetsWithdrawHistoryPageView;
 

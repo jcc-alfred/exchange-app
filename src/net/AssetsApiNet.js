@@ -10,24 +10,21 @@ authRequest( request );
 header( request );
 apiDomainParse( request );
 
-/**
- *
- * @param query
- *          {
- *             "type": "phone",
- *             "areaCode":"65",
- *             "phoneNumber":"87140718"
- *           }
- *              or
- *           {
- *          	"type":"email",
- *          	"email":"jie.xiao@gtdollar.com"
- *           }
- * @param callback
- */
-export function netUserSendCode( query, callback ) {
+export function netAssetsGetUserAssets( callback ) {
     request
-        .post( '/user/sendcode' )
+        .post( '/assets/getUserAssets' )
+        .send( {} )
+        .use( superagent_prefix( env.apiDomain ) )
+        .use( logger )
+        .authRequest()
+        .headerRequest()
+        .apiDomainParse()
+        .end( callback );
+}
+
+export function netAssetsDoUserWithdraw( query, callback ) {
+    request
+        .post( '/assets/doUserWithdraw' )
         .send( query )
         .use( superagent_prefix( env.apiDomain ) )
         .use( logger )

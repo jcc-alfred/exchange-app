@@ -76,7 +76,7 @@ function recordLoginHistory( state, data ) {
     const loginHistoryForDebug = state.loginHistoryForDebug.slice();
 
     for ( let index = 0; index < loginHistoryForDebug.length; index++ ) {
-        if ( data.account === loginHistoryForDebug[ index ].account) {
+        if ( data.account === loginHistoryForDebug[ index ].account ) {
             loginHistoryForDebug.splice( index, 1 );
             break;
         }

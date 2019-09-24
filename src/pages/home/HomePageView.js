@@ -1,5 +1,13 @@
 import React from 'react';
-import { FlatList, RefreshControl, SafeAreaView, StyleSheet, TouchableHighlight, View } from 'react-native';
+import {
+    FlatList,
+    InteractionManager,
+    RefreshControl,
+    SafeAreaView,
+    StyleSheet,
+    TouchableHighlight,
+    View
+} from 'react-native';
 import Spinner from "react-native-loading-spinner-overlay";
 import { Updates } from 'expo';
 import { ConfirmDialog } from "react-native-simple-dialogs";
@@ -98,22 +106,24 @@ class HomePageView extends React.Component {
             } );
         }
 
-        fetch( "https://www.asiaedx.com:3000/exchange/getMarketList", { method: "POST" } )
-            .then( ( response ) => response.json() )
-            .then( ( responseData ) => {
-                this.setState(
-                    {
+        InteractionManager.runAfterInteractions( () => {
+            this.props.onExchangeGetMarketList( ( error, resBody ) => {
+                if ( error ) {
+                    this.setState( {
+                        isRequesting: false,
+                        refreshing: false
+                    } );
+
+                    Toast.show( error.message );
+                } else {
+                    this.setState( {
                         isRequesting: false,
                         refreshing: false,
-                        dataSources: responseData.data,
-                    },
-                    function () {
-                    }
-                );
-            } ).catch( error => {
-            console.error( error );
-        } ).done();
-
+                        dataSources: resBody.data
+                    } );
+                }
+            } );
+        } );
     }
 
 

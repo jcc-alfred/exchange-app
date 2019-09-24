@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import AuthForgetPasswordPageView from "./AuthForgetPasswordPageView";
+import AssetsDepositHistoryPageView from "./AssetsDepositHistoryPageView";
 
 const mapStoreToProps = ( store, ownProps ) => {
     return {}
@@ -8,9 +8,9 @@ const mapStoreToProps = ( store, ownProps ) => {
 
 const mapDispatchToProps = ( dispatch, ownProps ) => ( {} );
 
-const AuthForgetPasswordPage = connect(
+const AssetsDepositHistoryPage = connect(
     mapStoreToProps,
     mapDispatchToProps
-)( AuthForgetPasswordPageView );
+)( AssetsDepositHistoryPageView );
 
-export default AuthForgetPasswordPage;
+export default AssetsDepositHistoryPage;

@@ -1,18 +1,16 @@
 import React from 'react';
 import { connect } from "react-redux";
-import TokenDepositHistoryPageView from "./TokenDepositHistoryPageView";
+import PasswordResetPageView from "./PasswordResetPageView";
 
 const mapStoreToProps = ( store, ownProps ) => {
-    return {
-
-    }
+    return {}
 };
 
 const mapDispatchToProps = ( dispatch, ownProps ) => ( {} );
 
-const TokenDepositHistoryPage = connect(
+const PasswordResetPage = connect(
     mapStoreToProps,
     mapDispatchToProps
-)( TokenDepositHistoryPageView );
+)( PasswordResetPageView );
 
-export default TokenDepositHistoryPage;
+export default PasswordResetPage;

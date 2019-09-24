@@ -10,25 +10,11 @@ authRequest( request );
 header( request );
 apiDomainParse( request );
 
-/**
- *
- * @param query
- *          {
- *             "type": "phone",
- *             "areaCode":"65",
- *             "phoneNumber":"87140718"
- *           }
- *              or
- *           {
- *          	"type":"email",
- *          	"email":"jie.xiao@gtdollar.com"
- *           }
- * @param callback
- */
-export function netUserSendCode( query, callback ) {
+
+export function netDocGetHomeNewsList( callback ) {
     request
-        .post( '/user/sendcode' )
-        .send( query )
+        .post( '/doc/getHomeNewsList' )
+        .send( {} )
         .use( superagent_prefix( env.apiDomain ) )
         .use( logger )
         .authRequest()
@@ -36,13 +22,3 @@ export function netUserSendCode( query, callback ) {
         .apiDomainParse()
         .end( callback );
 }
-
-
-
-
-
-
-
-
-
-

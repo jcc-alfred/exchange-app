@@ -10,7 +10,6 @@ import { createReactNavigationReduxMiddleware, createReduxContainer, } from 'rea
 import TabBarIcon from "./components/TabBarIcon";
 import HomePage from "./pages/home/HomePage";
 import MinePage from "./pages/mine/MinePage";
-import AuthLoginPage from "./pages/auth/AuthLoginPage";
 import AuthRegisterPage from "./pages/auth/AuthRegisterPage";
 import AboutPage from "./pages/setting/AboutPage";
 import SettingLanguagePage from "./pages/setting/SettingLanguagePage";
@@ -33,13 +32,14 @@ import UserGoogleAuthPage from "./pages/user/UserGoogleAuthPage";
 import UserKYCPage from "./pages/user/UserKYCPage";
 import UserPasswordResetPage from "./pages/user/UserPasswordResetPage";
 import UserPhoneVerifyPage from "./pages/user/UserPhoneVerifyPage";
-import AssetsPage from "./pages/wallet/AssetsPage";
-import FundPasswordResetPage from "./pages/wallet/FundPasswordResetPage";
-import TokenDepositHistoryPage from "./pages/wallet/TokenDepositHistoryPage";
-import TokenDepositPage from "./pages/wallet/TokenDepositPage";
-import TokenWithdrawHistoryPage from "./pages/wallet/TokenWithdrawHistoryPage";
-import TokenWithdrawPage from "./pages/wallet/TokenWithdrawPage";
+import FundPasswordResetPage from "./pages/setting/FundPasswordResetPage";
+import AssetsDepositHistoryPage from "./pages/assets/AssetsDepositHistoryPage";
+import AssetsDepositPage from "./pages/assets/AssetsDepositPage";
+import AssetsWithdrawHistoryPage from "./pages/assets/AssetsWithdrawHistoryPage";
+import AssetsWithdrawPage from "./pages/assets/AssetsWithdrawPage";
 import AuthForgetPasswordPage from "./pages/auth/AuthForgetPasswordPage";
+import PasswordResetPage from "./pages/setting/PasswordResetPage";
+import GoogleAuthPage from "./pages/setting/GoogleAuthPage";
 
 process.env.REACT_NAV_LOGGING = ( global.__DEV__ );
 
@@ -240,9 +240,6 @@ const routeConfiguration = {
             headerBackTitle: null
         }
     },
-    AuthLoginPage: {
-        screen: AuthLoginPage
-    },
     AuthRegisterPage: {
         screen: AuthRegisterPage
     },
@@ -288,26 +285,29 @@ const routeConfiguration = {
     UserPhoneVerifyPage: {
         screen: UserPhoneVerifyPage
     },
-    AssetsPage: {
-        screen: AssetsPage
-    },
     FundPasswordResetPage: {
         screen: FundPasswordResetPage
     },
-    TokenDepositHistoryPage: {
-        screen: TokenDepositHistoryPage
+    AssetsDepositHistoryPage: {
+        screen: AssetsDepositHistoryPage
     },
-    TokenDepositPage: {
-        screen: TokenDepositPage
+    AssetsDepositPage: {
+        screen: AssetsDepositPage
     },
-    TokenWithdrawHistoryPage: {
-        screen: TokenWithdrawHistoryPage
+    AssetsWithdrawHistoryPage: {
+        screen: AssetsWithdrawHistoryPage
     },
-    TokenWithdrawPage: {
-        screen: TokenWithdrawPage
+    AssetsWithdrawPage: {
+        screen: AssetsWithdrawPage
     },
     AuthForgetPasswordPage: {
         screen: AuthForgetPasswordPage
+    },
+    PasswordResetPage: {
+        screen: PasswordResetPage
+    },
+    GoogleAuthPage: {
+        screen: GoogleAuthPage
     },
 };
 

@@ -1,18 +1,16 @@
 import React from 'react';
 import { connect } from "react-redux";
-import FundPasswordResetPageView from "./FundPasswordResetPageView";
+import AssetsWithdrawHistoryPageView from "./AssetsWithdrawHistoryPageView";
 
 const mapStoreToProps = ( store, ownProps ) => {
-    return {
-
-    }
+    return {}
 };
 
 const mapDispatchToProps = ( dispatch, ownProps ) => ( {} );
 
-const FundPasswordResetPage = connect(
+const AssetsWithdrawHistoryPage = connect(
     mapStoreToProps,
     mapDispatchToProps
-)( FundPasswordResetPageView );
+)( AssetsWithdrawHistoryPageView );
 
-export default FundPasswordResetPage;
+export default AssetsWithdrawHistoryPage;
