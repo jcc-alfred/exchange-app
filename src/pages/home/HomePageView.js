@@ -16,6 +16,7 @@ import Keys from "../../configs/Keys";
 import { Text } from "react-native-elements";
 import commonStyles from "../../styles/commonStyles";
 import Toast from "react-native-root-toast";
+import { DrawerActions } from 'react-navigation-drawer';
 
 class HomePageView extends React.Component {
     constructor( props ) {
@@ -169,6 +170,7 @@ class HomePageView extends React.Component {
                 underlayColor='#ddd'
                 onPress={() => {
                     Toast.show("111111")
+                    this.props.navigation.dispatch( DrawerActions.toggleDrawer() )
                 }}>
 
                 <View style={{ alignItems: 'center', flexDirection: 'row', height: 50, marginStart: 40 }}>

@@ -1,5 +1,10 @@
 import React from 'react';
-import { createBottomTabNavigator, createStackNavigator, StackViewTransitionConfigs, } from 'react-navigation';
+import {
+    createBottomTabNavigator,
+    createDrawerNavigator,
+    createStackNavigator,
+    StackViewTransitionConfigs,
+} from 'react-navigation';
 import { Platform } from "react-native";
 import { connect } from "react-redux";
 import constStyles from "./styles/constStyles";
@@ -24,8 +29,6 @@ import OrderHistoryPage from "./pages/order/OrderHistoryPage";
 import QuotesPage from "./pages/quotes/QuotesPage";
 
 
-
-
 import TradePage from "./pages/trade/TradePage";
 import UserEmailVerifyPage from "./pages/user/UserEmailVerifyPage";
 import UserGoogleAuthPage from "./pages/user/UserGoogleAuthPage";
@@ -41,6 +44,7 @@ import AuthForgetPasswordPage from "./pages/auth/AuthForgetPasswordPage";
 import PasswordResetPage from "./pages/setting/PasswordResetPage";
 import GoogleAuthPage from "./pages/setting/GoogleAuthPage";
 import AssetsDetailPage from "./pages/assets/AssetsDetailPage";
+import MainSideMenu from "./pages/home/components/MainSideMenu";
 
 process.env.REACT_NAV_LOGGING = ( global.__DEV__ );
 
@@ -127,9 +131,24 @@ const HomeSearchStack = createStackNavigator(
     }
 );
 
-const HomeStack = createStackNavigator( {
-    HomeSearchStack: HomeSearchStack,
-}, stackNavigatorConfiguration );
+
+const MainWalletExistDrawerNavigator = createDrawerNavigator( {
+    HomeSearchStack: {
+        screen: HomeSearchStack,
+    },
+}, {
+    drawerPosition: 'left',
+    navigationOptions: {
+        header: null, headerBackTitle: null,
+        drawerLockMode: 'unlocked',
+    },
+    contentComponent: MainSideMenu,
+    initialRoute: "HomeSearchStack"
+} );
+
+
+
+const HomeStack = createStackNavigator( { HomeSearchStack: MainWalletExistDrawerNavigator, }, stackNavigatorConfiguration );
 
 const MineStack = createStackNavigator( { Home: { screen: MinePage, } }, stackNavigatorConfiguration );
 
