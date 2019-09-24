@@ -6,189 +6,205 @@ import {
     SafeAreaView,
     StyleSheet,
     TouchableHighlight,
-    View
+    View,
+    Dimensions
 } from 'react-native';
 import Spinner from "react-native-loading-spinner-overlay";
-import { Updates } from 'expo';
-import { ConfirmDialog } from "react-native-simple-dialogs";
+import {Updates} from 'expo';
+import {ConfirmDialog} from "react-native-simple-dialogs";
 import I18n from "../../I18n";
 import Keys from "../../configs/Keys";
-import { Text } from "react-native-elements";
+import {Text} from "react-native-elements";
 import commonStyles from "../../styles/commonStyles";
 import Toast from "react-native-root-toast";
+import {SceneMap, TabBar, TabView} from 'react-native-tab-view';
+
+import ExchangePairList from '../../components/ExchangePairList';
+
 
 class HomePageView extends React.Component {
-    constructor( props ) {
-        super( props );
+    constructor(props) {
+        super(props);
 
 
         this.state = {
             isRequesting: false,
             dataSources: [],
+            coinExchangeArea: [],
+            navigation_state: {
+                index: 0,
+                routes: [
+                    { key: 'first', title: 'First' },
+                    { key: 'second', title: 'Second' },
+                ],
+            },
             updateDialogVisible: false
         }
 
     }
 
-    static navigationOptions = ( props ) => {
-        const { navigation } = props;
-        const { state, setParams } = navigation;
-        const { params } = state;
+    static navigationOptions = (props) => {
+        const {navigation} = props;
+        const {state, setParams} = navigation;
+        const {params} = state;
 
         return {
-            title: I18n.t( Keys.home ),
+            title: I18n.t(Keys.home),
             headerBackTitle: null,
         };
     };
 
     componentDidMount() {
         this.checkForUpdate();
-        this.loadData( true );
+        this.loadData(true);
     }
 
     componentWillUnmount() {
-        this.setState = ( state, callback ) => {
+        this.setState = (state, callback) => {
 
         };
     }
 
-    componentWillReceiveProps( nextProps ) {
+    componentWillReceiveProps(nextProps) {
     }
 
-    shouldComponentUpdate( nextProps, nextState ) {
+    shouldComponentUpdate(nextProps, nextState) {
         return true;
     }
 
 
     checkForUpdate() {
         Updates.checkForUpdateAsync()
-            .then( ( update ) => {
-                if ( update.isAvailable ) {
-                    this.setState( {
+            .then((update) => {
+                if (update.isAvailable) {
+                    this.setState({
                         updateDialogVisible: true
-                    } );
+                    });
                 }
-            } )
-            .catch( err => {
+            })
+            .catch(err => {
 
-            } )
+            })
     }
 
     doUpdate() {
         Updates.fetchUpdateAsync()
-            .then( ( update ) => {
+            .then((update) => {
                 Updates.reload()
-                    .then( () => {
+                    .then(() => {
 
-                    } )
-                    .catch( err => {
+                    })
+                    .catch(err => {
 
-                    } );
-            } )
-            .catch( err => {
+                    });
+            })
+            .catch(err => {
 
-            } );
+            });
     }
 
 
-    loadData( isInit ) {
-        if ( isInit ) {
-            this.setState( {
+    loadData(isInit) {
+        if (isInit) {
+            this.setState({
                 isRequesting: true
-            } );
+            });
         } else {
-            if ( this.state.refreshing ) {
+            if (this.state.refreshing) {
                 return;
             }
 
-            this.setState( {
+            this.setState({
                 refreshing: true,
-            } );
+            });
         }
 
-        InteractionManager.runAfterInteractions( () => {
-            this.props.onExchangeGetMarketList( ( error, resBody ) => {
-                if ( error ) {
-                    this.setState( {
+        InteractionManager.runAfterInteractions(() => {
+            this.props.onExchangeGetMarketList((error, resBody) => {
+                if (error) {
+                    this.setState({
                         isRequesting: false,
                         refreshing: false
-                    } );
+                    });
 
-                    Toast.show( error.message );
+                    Toast.show(error.message);
                 } else {
-                    this.setState( {
+                    this.setState({
                         isRequesting: false,
                         refreshing: false,
                         dataSources: resBody.data
-                    } );
+                    });
                 }
-            } );
-        } );
+            });
+            this.props.onExchangeGetCoinExchangeArea((error, resBody) => {
+                if (error) {
+                    this.setState({
+                        isRequesting: false,
+                        refreshing: false
+                    });
+                    Toast.show(error.message);
+                } else {
+                    this.setState({
+                        isRequesting: false,
+                        refreshing: false,
+                        coinExchangeArea: resBody.data,
+                        navigation_state: {
+                            index: 0,
+                            routes: resBody.data.map(i => {
+                                return ({key: i.coin_exchange_area_id, title: i.coin_exchange_area_name})
+                            })
+                        }
+                    })
+                }
+            });
+            console.log(this.state)
+        });
     }
 
 
     _onRefresh = () => {
-        this.loadData( false );
+        this.loadData(false);
     };
 
 
-    header() {
-        if ( this.state.isLoading ) {
-            return <View><Text>Loading...</Text></View>
-        }
+    setTabIndex(index) {
+        this.setState({activeTabIndex: index})
+    }
 
-        return (
-            <View
-                style={{
-                    flexDirection: 'row',
-                    height: 20,
-                    alignItems: 'center'
-                }}>
+    FirstRoute = () => (
+        <View style={[styles.scene, { backgroundColor: '#ff4081' }]} />
+    );
 
-                <View style={{ flex: 1, alignItems: 'center' }}>
-                    <Text>名称</Text>
+    SecondRoute = () => (
+        <View style={[styles.scene, { backgroundColor: '#673ab7' }]} />
+    );
 
-                </View>
-
-                <View style={{ flex: 1, alignItems: 'center' }}>
-                    <Text>最新价</Text>
-                </View>
-
-                <View style={{ flex: 1, alignItems: 'center' }}>
-                    <Text>涨跌幅</Text>
-                </View>
-
+    _renderLazyPlaceholder(route){
+        return(
+            <View>
+                <Text> Loading</Text>
             </View>
         )
     }
+    _handleIndexChange = index => this.setState({ index });
 
-
-    renderItem( viewHeight, item, index ) {
-        return (
-            <TouchableHighlight
-                underlayColor='#ddd'
-                onPress={() => {
-                }}>
-
-                <View style={{ alignItems: 'center', flexDirection: 'row', height: 50, marginStart: 40 }}>
-
-                    <Text style={{ flex: 1 }}>
-                        {item.coinEx.coin_name}/{item.coinEx.exchange_coin_name}
-                    </Text>
-
-                    <Text style={{ flex: 1 }}>
-                        {item.market.last_price}
-                    </Text>
-
-                    <View style={{ flex: 1, alignItems: 'center' }}>
-                        <Text style={{ color: item.market.change_rate > 0 ? 'green' : 'red' }}>
-                            {( item.market.change_rate * 100 ).toFixed( 2 )}%
-                        </Text>
-                    </View>
-                </View>
-            </TouchableHighlight>
-        );
-
+    exchangeAreaTabs() {
+        if (this.state.navigation_state) {
+            return (
+                <TabView
+                    lazy
+                    navigationState={this.state.navigation_state}
+                    renderScene={SceneMap({
+                        first: this.FirstRoute,
+                        second: this.SecondRoute,
+                    })}
+                    renderLazyPlaceholder={this._renderLazyPlaceholder}
+                    onIndexChange={this._handleIndexChange}
+                    initialLayout={{ width: Dimensions.get('window').width }}
+                    style={styles.container}
+                />
+            )
+        }
     }
 
     render() {
@@ -198,56 +214,30 @@ class HomePageView extends React.Component {
 
         return (
             <View style={commonStyles.wrapper}>
-                <SafeAreaView style={[ commonStyles.wrapper ]}>
-                    <FlatList
-                        refreshControl={
-                            <RefreshControl
-                                refreshing={this.state.refreshing}
-                                onRefresh={this._onRefresh}
-                            />
-                        }
-                        data={this.state.dataSources}
-                        keyExtractor={( item, index ) => {
-                            return 'item ' + index;
-                        }}
-                        renderItem={( { item, index } ) => {
-                            return this.renderItem( viewHeight, item, index );
-                        }}
-                        // renderItem={({ item }) => <Item title={item.title} />}
-                        ListHeaderComponent={() => {
-                            return this.header();
-                        }}
-                        ItemSeparatorComponent={() => {
-                            return <View
-                                style={[ commonStyles.commonIntervalStyle, { height: separatorHeight } ]}/>;
-                        }}
-                        getItemLayout={( data, index ) => (
-                            { length: viewHeight, offset: ( viewHeight + separatorHeight ) * index, index }
-                        )}
-                        onScroll={() => {
-                        }}
-                    />
+                <SafeAreaView style={[commonStyles.wrapper]}>
+                    {this.exchangeAreaTabs()}
+                    {/*<ExchangePairList data={this.state.dataSources}/>*/}
 
                     <ConfirmDialog
-                        title={I18n.t( Keys.notification )}
-                        message={I18n.t( Keys.update_now )}
+                        title={I18n.t(Keys.notification)}
+                        message={I18n.t(Keys.update_now)}
                         visible={this.state.updateDialogVisible}
-                        onTouchOutside={() => this.setState( { updateDialogVisible: false } )}
+                        onTouchOutside={() => this.setState({updateDialogVisible: false})}
                         positiveButton={{
-                            title: I18n.t( Keys.yes ),
+                            title: I18n.t(Keys.yes),
                             onPress: () => {
-                                this.setState( {
+                                this.setState({
                                     updateDialogVisible: false
-                                } );
+                                });
                                 this.doUpdate();
                             }
                         }}
                         negativeButton={{
-                            title: I18n.t( Keys.no ),
+                            title: I18n.t(Keys.no),
                             onPress: () => {
-                                this.setState( {
+                                this.setState({
                                     updateDialogVisible: false
-                                } );
+                                });
                             }
                         }}
                     />
@@ -260,11 +250,11 @@ class HomePageView extends React.Component {
 }
 
 
-const styles = StyleSheet.create( {
+const styles = StyleSheet.create({
     scene: {
         flex: 1,
     },
-} );
+});
 
 export default HomePageView;
 

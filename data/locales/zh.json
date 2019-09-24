@@ -10,5 +10,8 @@
   "login_history": "登录历史",
   "logout": "登出",
   "me": "我",
-  "settings": "设置"
+  "name": "名称",
+  "settings": "设置",
+  "latest_price": "最新价",
+  "changerate": "涨幅"
 }

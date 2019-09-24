@@ -10,5 +10,9 @@
   "login_history": "Login History",
   "logout": "Logout",
   "me": "Me",
-  "settings": "Settings"
+  "settings": "Settings",
+  "latest_price": "Latest Price",
+  "name": "name",
+  "changerate": "Change Rate"
+
 }
