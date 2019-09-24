@@ -34,6 +34,8 @@ import TokenDepositPage from "./pages/assets/TokenDepositPage";
 import TokenWithdrawHistoryPage from "./pages/assets/TokenWithdrawHistoryPage";
 import TokenWithdrawPage from "./pages/assets/TokenWithdrawPage";
 import AuthForgetPasswordPage from "./pages/auth/AuthForgetPasswordPage";
+import PasswordResetPage from "./pages/setting/PasswordResetPage";
+import GoogleAuthPage from "./pages/setting/GoogleAuthPage";
 
 process.env.REACT_NAV_LOGGING = ( global.__DEV__ );
 
@@ -269,6 +271,12 @@ const routeConfiguration = {
     },
     AuthForgetPasswordPage: {
         screen: AuthForgetPasswordPage
+    },
+    PasswordResetPage: {
+        screen: PasswordResetPage
+    },
+    GoogleAuthPage: {
+        screen: GoogleAuthPage
     },
 };
 
