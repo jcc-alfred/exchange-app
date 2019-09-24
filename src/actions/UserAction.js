@@ -1,12 +1,9 @@
-import { netUserGetAssets } from "../net/UserApiNet";
+import { netUserSendCode } from "../net/UserApiNet";
 
-export function userGetAssets( callback ) {
+export function userSendCode( callback ) {
     return ( dispatch ) => {
-        netUserGetAssets( ( err, res ) => {
+        netUserSendCode( ( err, res ) => {
             callback && callback( err, res )
         } );
     };
 }
-
-
-

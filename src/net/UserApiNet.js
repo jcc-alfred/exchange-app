@@ -10,9 +10,10 @@ authRequest( request );
 header( request );
 apiDomainParse( request );
 
-export function netUserGetAssets( callback ) {
+//error
+export function netUserSendCode( callback ) {
     request
-        .post( '/assets/getUserAssets' )
+        .post( '/user/sendcode' )
         .send( {} )
         .use( superagent_prefix( env.apiDomain ) )
         .use( logger )

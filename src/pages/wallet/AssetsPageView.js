@@ -51,7 +51,7 @@ class AssetsPageView extends React.Component {
         } );
 
         InteractionManager.runAfterInteractions( () => {
-            this.props.onUserGetAssets( ( error, resBody ) => {
+            this.props.onAssetsGetUserAssets( ( error, resBody ) => {
                 if ( error ) {
                     this.setState( {
                         isRequesting: false

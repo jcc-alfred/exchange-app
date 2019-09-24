@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import AssetsPageView from "./AssetsPageView";
-import { userGetAssets } from "../../actions/UserAction";
+import { assetsGetUserAssets } from "../../actions/AssetsAction";
 
 const mapStoreToProps = ( store, ownProps ) => {
     return {}
@@ -9,8 +9,8 @@ const mapStoreToProps = ( store, ownProps ) => {
 
 const mapDispatchToProps = ( dispatch, ownProps ) => ( {
 
-    onUserGetAssets: ( callback ) => {
-        dispatch( userGetAssets( ( err, res ) => {
+    onAssetsGetUserAssets: ( callback ) => {
+        dispatch( assetsGetUserAssets( ( err, res ) => {
             callback && callback( err, res )
         } ) );
     },

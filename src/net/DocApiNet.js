@@ -11,22 +11,10 @@ header( request );
 apiDomainParse( request );
 
 
-export function netAuthSignUp( account, password, imgCode, callback ) {
-    let query = {
-        loginPass: password,
-        imgCode: imgCode
-    };
-
-    let accountType = "phone";
-    if ( accountType.indexOf( "@" ) ) {
-        query = { ...query, accountType: "email", email: account }
-    } else {
-        query = { ...query, accountType: "phone", phone: account }
-    }
-
+export function netDocGetHomeNewsList( callback ) {
     request
-        .post( '/User/signUp' )
-        .query( query )
+        .post( '/doc/getHomeNewsList' )
+        .query( {} )
         .use( superagent_prefix( env.apiDomain ) )
         .use( logger )
         .authRequest()

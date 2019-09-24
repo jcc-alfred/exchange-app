@@ -10,23 +10,10 @@ authRequest( request );
 header( request );
 apiDomainParse( request );
 
-
-export function netAuthSignUp( account, password, imgCode, callback ) {
-    let query = {
-        loginPass: password,
-        imgCode: imgCode
-    };
-
-    let accountType = "phone";
-    if ( accountType.indexOf( "@" ) ) {
-        query = { ...query, accountType: "email", email: account }
-    } else {
-        query = { ...query, accountType: "phone", phone: account }
-    }
-
+export function netAssetsGetUserAssets( callback ) {
     request
-        .post( '/User/signUp' )
-        .query( query )
+        .post( '/assets/getUserAssets' )
+        .send( {} )
         .use( superagent_prefix( env.apiDomain ) )
         .use( logger )
         .authRequest()
@@ -34,3 +21,13 @@ export function netAuthSignUp( account, password, imgCode, callback ) {
         .apiDomainParse()
         .end( callback );
 }
+
+
+
+
+
+
+
+
+
+
