@@ -7,6 +7,7 @@ import I18n from "../../I18n";
 import Keys from "../../configs/Keys";
 import { Text } from "react-native-elements";
 import commonStyles from "../../styles/commonStyles";
+import Toast from "react-native-root-toast";
 
 class HomePageView extends React.Component {
     constructor( props ) {
@@ -157,6 +158,7 @@ class HomePageView extends React.Component {
             <TouchableHighlight
                 underlayColor='#ddd'
                 onPress={() => {
+                    Toast.show("111111")
                 }}>
 
                 <View style={{ alignItems: 'center', flexDirection: 'row', height: 50, marginStart: 40 }}>

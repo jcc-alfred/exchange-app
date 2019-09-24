@@ -97,10 +97,15 @@ class AuthLoginPageView extends React.Component {
 
                     <View style={[ commonStyles.paddingCommon ]}>
 
-                        <Image
+
+                        <View style={[ commonStyles.paddingCommon , {alignItems: 'center'}]}>
+                            <Image
                             style={{width: 200, height: 200, margin:20}}
-                            // source={require('@expo/snack-static/react-native-logo.png')}
-                        />
+
+                            />
+                        </View>
+
+
 
                         <Input
                             style={[ commonStyles.wrapper ]}
