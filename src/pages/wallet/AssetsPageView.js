@@ -52,19 +52,19 @@ class AssetsPageView extends React.Component {
 
         InteractionManager.runAfterInteractions( () => {
             this.props.onUserGetAssets( ( error, resBody ) => {
-                    if ( error ) {
-                        this.setState( {
-                            isRequesting: false
-                        } );
+                if ( error ) {
+                    this.setState( {
+                        isRequesting: false
+                    } );
 
-                        Toast.show( error.message );
-                    } else {
-                        this.setState( {
-                            isRequesting: false,
-                            result: JSON.stringify(resBody)
-                        } );
-                    }
-                } );
+                    Toast.show( error.message );
+                } else {
+                    this.setState( {
+                        isRequesting: false,
+                        result: JSON.stringify( resBody )
+                    } );
+                }
+            } );
         } );
     }
 
