@@ -1,11 +1,14 @@
 import React from 'react';
 import { InteractionManager, SafeAreaView, StyleSheet, View } from 'react-native';
-import commonStyles from "../../styles/commonStyles";
+import commonStyles from "../../../styles/commonStyles";
 import { Text } from "react-native-elements";
 import Toast from "react-native-root-toast";
 import Spinner from "react-native-loading-spinner-overlay";
+import { authLogin } from "../../../actions/AuthAction";
+import { connect } from "react-redux";
+import { assetsGetUserAssets } from "../../../actions/AssetsAction";
 
-class AssetsPageView extends React.Component {
+class AssetsView extends React.Component {
 
     constructor( props ) {
         super( props );
@@ -85,5 +88,16 @@ class AssetsPageView extends React.Component {
 
 const styles = StyleSheet.create( {} );
 
-export default AssetsPageView;
+function select( store ) {
+    return {}
+}
+
+const mapDispatchToProps = ( dispatch, ownProps ) => ( {
+    onAssetsGetUserAssets: ( callback ) => {
+        dispatch( assetsGetUserAssets( ( err, res ) => {
+            callback && callback( err, res )
+        } ) );
+    },
+} );
+export default connect( select, mapDispatchToProps )( AssetsView )
 

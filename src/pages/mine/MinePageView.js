@@ -1,7 +1,6 @@
 import React from 'react';
-import { InteractionManager, SafeAreaView, StyleSheet, View , Platform} from 'react-native';
+import { InteractionManager, Platform, SafeAreaView, StyleSheet, View } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
-import { ListItem, Text } from "react-native-elements";
 import I18n from "../../I18n";
 import Keys from "../../configs/Keys";
 import Toast from "react-native-root-toast";
@@ -9,6 +8,7 @@ import AuthLoginView from "../auth/components/AuthLoginView";
 import Spinner from "react-native-loading-spinner-overlay";
 import { BorderlessButton } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
+import AssetsView from "../assets/components/AssetsView";
 
 class MinePageView extends React.Component {
 
@@ -99,20 +99,8 @@ class MinePageView extends React.Component {
 
     renderUser() {
         return (
-            <View style={[ { height: 100, justifyContent: 'center' } ]}>
-                <ListItem
-                    containerStyle={[ { height: 100 } ]}
-                    title={
-                        <Text h4>
-                            {
-                                this.props.userInfo.account
-                            }
-                        </Text>
-                    }
-                    onPress={() => {
-                        this.props.navigation.navigate( "UserInfoEditPage" )
-                    }}
-                />
+            <View style={[ commonStyles.wrapper ]}>
+                <AssetsView  navigation={this.props.navigation}/>
             </View>
         );
     }

@@ -28,12 +28,11 @@ import UserGoogleAuthPage from "./pages/user/UserGoogleAuthPage";
 import UserKYCPage from "./pages/user/UserKYCPage";
 import UserPasswordResetPage from "./pages/user/UserPasswordResetPage";
 import UserPhoneVerifyPage from "./pages/user/UserPhoneVerifyPage";
-import AssetsPage from "./pages/wallet/AssetsPage";
-import FundPasswordResetPage from "./pages/wallet/FundPasswordResetPage";
-import TokenDepositHistoryPage from "./pages/wallet/TokenDepositHistoryPage";
-import TokenDepositPage from "./pages/wallet/TokenDepositPage";
-import TokenWithdrawHistoryPage from "./pages/wallet/TokenWithdrawHistoryPage";
-import TokenWithdrawPage from "./pages/wallet/TokenWithdrawPage";
+import FundPasswordResetPage from "./pages/setting/FundPasswordResetPage";
+import TokenDepositHistoryPage from "./pages/assets/TokenDepositHistoryPage";
+import TokenDepositPage from "./pages/assets/TokenDepositPage";
+import TokenWithdrawHistoryPage from "./pages/assets/TokenWithdrawHistoryPage";
+import TokenWithdrawPage from "./pages/assets/TokenWithdrawPage";
 import AuthForgetPasswordPage from "./pages/auth/AuthForgetPasswordPage";
 
 process.env.REACT_NAV_LOGGING = ( global.__DEV__ );
@@ -252,9 +251,6 @@ const routeConfiguration = {
     },
     UserPhoneVerifyPage: {
         screen: UserPhoneVerifyPage
-    },
-    AssetsPage: {
-        screen: AssetsPage
     },
     FundPasswordResetPage: {
         screen: FundPasswordResetPage
