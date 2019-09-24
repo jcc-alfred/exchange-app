@@ -22,6 +22,18 @@ export function netAssetsGetUserAssets( callback ) {
         .end( callback );
 }
 
+export function netAssetsDoUserWithdraw( query, callback ) {
+    request
+        .post( '/assets/doUserWithdraw' )
+        .send( query )
+        .use( superagent_prefix( env.apiDomain ) )
+        .use( logger )
+        .authRequest()
+        .headerRequest()
+        .apiDomainParse()
+        .end( callback );
+}
+
 
 
 
