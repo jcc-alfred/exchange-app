@@ -29,10 +29,10 @@ import UserKYCPage from "./pages/user/UserKYCPage";
 import UserPasswordResetPage from "./pages/user/UserPasswordResetPage";
 import UserPhoneVerifyPage from "./pages/user/UserPhoneVerifyPage";
 import FundPasswordResetPage from "./pages/setting/FundPasswordResetPage";
-import TokenDepositHistoryPage from "./pages/assets/TokenDepositHistoryPage";
-import TokenDepositPage from "./pages/assets/TokenDepositPage";
-import TokenWithdrawHistoryPage from "./pages/assets/TokenWithdrawHistoryPage";
-import TokenWithdrawPage from "./pages/assets/TokenWithdrawPage";
+import AssetsDepositHistoryPage from "./pages/assets/AssetsDepositHistoryPage";
+import AssetsDepositPage from "./pages/assets/AssetsDepositPage";
+import AssetsWithdrawHistoryPage from "./pages/assets/AssetsWithdrawHistoryPage";
+import AssetsWithdrawPage from "./pages/assets/AssetsWithdrawPage";
 import AuthForgetPasswordPage from "./pages/auth/AuthForgetPasswordPage";
 import PasswordResetPage from "./pages/setting/PasswordResetPage";
 import GoogleAuthPage from "./pages/setting/GoogleAuthPage";
@@ -257,17 +257,17 @@ const routeConfiguration = {
     FundPasswordResetPage: {
         screen: FundPasswordResetPage
     },
-    TokenDepositHistoryPage: {
-        screen: TokenDepositHistoryPage
+    AssetsDepositHistoryPage: {
+        screen: AssetsDepositHistoryPage
     },
-    TokenDepositPage: {
-        screen: TokenDepositPage
+    AssetsDepositPage: {
+        screen: AssetsDepositPage
     },
-    TokenWithdrawHistoryPage: {
-        screen: TokenWithdrawHistoryPage
+    AssetsWithdrawHistoryPage: {
+        screen: AssetsWithdrawHistoryPage
     },
-    TokenWithdrawPage: {
-        screen: TokenWithdrawPage
+    AssetsWithdrawPage: {
+        screen: AssetsWithdrawPage
     },
     AuthForgetPasswordPage: {
         screen: AuthForgetPasswordPage

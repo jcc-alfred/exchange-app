@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import TokenDepositHistoryPageView from "./TokenDepositHistoryPageView";
+import AssetsWithdrawPageView from "./TokenWithdrawPageView";
 
 const mapStoreToProps = ( store, ownProps ) => {
     return {}
@@ -8,9 +8,9 @@ const mapStoreToProps = ( store, ownProps ) => {
 
 const mapDispatchToProps = ( dispatch, ownProps ) => ( {} );
 
-const TokenDepositHistoryPage = connect(
+const AssetsWithdrawPage = connect(
     mapStoreToProps,
     mapDispatchToProps
-)( TokenDepositHistoryPageView );
+)( AssetsWithdrawPageView );
 
-export default TokenDepositHistoryPage;
+export default AssetsWithdrawPage;
