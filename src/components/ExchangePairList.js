@@ -49,7 +49,7 @@ class ExchangePairList extends React.Component {
         return (
             <TouchableHighlight
                 underlayColor='#ddd'
-                onPress={this.props.onPressItem}>
+                onPress={this.props.onPressItem(item.coin_exchange_id)}>
 
                 <View style={{alignItems: 'center', flexDirection: 'row', height: 50, marginStart: 40}}>
 

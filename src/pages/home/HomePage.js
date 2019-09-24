@@ -11,6 +11,7 @@ const mapStoreToProps = ( store, ownProps ) => {
         isLoggedIn: store.userStore.isLoggedIn,
         regionDisplay: store.settingStore.regionDisplay,
         deviceEnv: store.settingStore.deviceEnv,
+        coin_exchange_area: store.metaStore.coin_exchange_area
     }
 };
 
