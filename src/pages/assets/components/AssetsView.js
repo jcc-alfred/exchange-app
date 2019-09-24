@@ -1,10 +1,17 @@
 import React from 'react';
-import { InteractionManager, SafeAreaView, StyleSheet, View } from 'react-native';
+import {
+    FlatList,
+    InteractionManager,
+    RefreshControl,
+    SafeAreaView,
+    StyleSheet,
+    TouchableHighlight,
+    View
+} from 'react-native';
 import commonStyles from "../../../styles/commonStyles";
 import { Text } from "react-native-elements";
 import Toast from "react-native-root-toast";
 import Spinner from "react-native-loading-spinner-overlay";
-import { authLogin } from "../../../actions/AuthAction";
 import { connect } from "react-redux";
 import { assetsGetUserAssets } from "../../../actions/AssetsAction";
 
@@ -14,24 +21,14 @@ class AssetsView extends React.Component {
         super( props );
 
         this.state = {
+            refreshing:false,
             isRequesting: false,
-            result: ''
+            data: []
         }
     }
 
-    static navigationOptions = ( props ) => {
-        const { navigation } = props;
-        const { state, setParams } = navigation;
-        const { params } = state;
-
-        return {
-            title: "AssetsPageView",
-            headerBackTitle: null,
-        };
-    };
-
     componentDidMount() {
-        this.loadData()
+        this.loadData(true)
     }
 
     componentWillUnmount() {
@@ -47,37 +44,109 @@ class AssetsView extends React.Component {
         return true;
     }
 
-    loadData() {
+    loadData(isInit) {
 
-        this.setState( {
-            isRequesting: true
-        } );
+        if ( isInit ) {
+            this.setState( {
+                isRequesting: true
+            } );
+        } else {
+            if ( this.state.refreshing ) {
+                return;
+            }
+
+            this.setState( {
+                refreshing: true,
+            } );
+        }
 
         InteractionManager.runAfterInteractions( () => {
             this.props.onAssetsGetUserAssets( ( error, resBody ) => {
                 if ( error ) {
                     this.setState( {
-                        isRequesting: false
+                        isRequesting: false,
+                        refreshing: false
                     } );
 
                     Toast.show( error.message );
                 } else {
                     this.setState( {
                         isRequesting: false,
-                        result: JSON.stringify( resBody )
+                        refreshing: false,
+                        data: resBody.data
                     } );
                 }
             } );
         } );
     }
 
+    _onRefresh = () => {
+        this.loadData( false );
+    };
+
+
+
+    renderItem( viewHeight, item, index ) {
+        return (
+            <TouchableHighlight
+                underlayColor='#ddd'
+                onPress={() => {
+                }}>
+                <View style={[ { height: viewHeight } ]}>
+                    <Text>
+                        {
+                            JSON.stringify( item )
+                        }
+                    </Text>
+                </View>
+            </TouchableHighlight>
+        );
+
+    }
+
+
+    header()
+    {
+        return null;
+    }
+
+
     render() {
+        const viewHeight = 110;
+        const separatorHeight = 1;
+
         return (
             <View style={[ commonStyles.wrapper, ]}>
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
-                    <Text>
-                        {this.state.result}
-                    </Text>
+                    <FlatList
+                        refreshControl={
+                            <RefreshControl
+                                refreshing={this.state.refreshing}
+                                onRefresh={this._onRefresh}
+                            />
+                        }
+                        data={this.state.data}
+                        keyExtractor={( item, index ) => {
+                            return 'item ' + index;
+                        }}
+                        renderItem={( { item, index } ) => {
+                            return this.renderItem( viewHeight, item, index );
+                        }}
+                        // renderItem={({ item }) => <Item title={item.title} />}
+                        ListHeaderComponent={() => {
+                            return this.header();
+                        }}
+                        ItemSeparatorComponent={() => {
+                            return <View
+                                style={[ commonStyles.commonIntervalStyle, { height: separatorHeight } ]}/>;
+                        }}
+                        getItemLayout={( data, index ) => (
+                            { length: viewHeight, offset: ( viewHeight + separatorHeight ) * index, index }
+                        )}
+                        onScroll={() => {
+                        }}
+                    />
+
 
                     <Spinner visible={this.state.isRequesting} cancelable={true}/>
                 </SafeAreaView>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import AssetsDepositPageView from "./TokenDepositPageView";
+import AssetsDepositPageView from "./AssetsDepositPageView";
 
 const mapStoreToProps = ( store, ownProps ) => {
     return {}

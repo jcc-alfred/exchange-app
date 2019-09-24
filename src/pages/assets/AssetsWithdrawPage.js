@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import AssetsWithdrawPageView from "./TokenWithdrawPageView";
+import AssetsWithdrawPageView from "./AssetsWithdrawPageView";
 
 const mapStoreToProps = ( store, ownProps ) => {
     return {}
