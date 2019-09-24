@@ -36,6 +36,7 @@ import AssetsWithdrawPage from "./pages/assets/AssetsWithdrawPage";
 import AuthForgetPasswordPage from "./pages/auth/AuthForgetPasswordPage";
 import PasswordResetPage from "./pages/setting/PasswordResetPage";
 import GoogleAuthPage from "./pages/setting/GoogleAuthPage";
+import AssetsDetailPage from "./pages/assets/AssetsDetailPage";
 
 process.env.REACT_NAV_LOGGING = ( global.__DEV__ );
 
@@ -277,6 +278,9 @@ const routeConfiguration = {
     },
     GoogleAuthPage: {
         screen: GoogleAuthPage
+    },
+    AssetsDetailPage: {
+        screen: AssetsDetailPage
     },
 };
 

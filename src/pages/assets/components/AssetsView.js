@@ -91,6 +91,9 @@ class AssetsView extends React.Component {
             <TouchableHighlight
                 underlayColor='#ddd'
                 onPress={() => {
+                    this.props.navigation.navigate( "AssetsDetailPage", {
+                        assets:item
+                    } )
                 }}>
                 <View style={[ { height: viewHeight } ]}>
                     <Text>
