@@ -3,8 +3,6 @@ import { connect } from "react-redux";
 import AuthRegisterPageView from "./AuthRegisterPageView";
 
 const mapStoreToProps = ( store, ownProps ) => {
-    const { params } = ownProps.navigation.state;
-
     return {}
 };
 

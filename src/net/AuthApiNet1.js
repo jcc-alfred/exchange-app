@@ -9,15 +9,22 @@ import apiDomainParse from "./parse/apiDomainParse";
 header( request );
 apiDomainParse( request );
 
-export function netAuthLoginPhonePassword( phoneRegion, phone, password, callback ) {
+export function netAuthLogin( account, password, imgCode, callback ) {
+    let query = {
+        loginPass: password,
+        imgCode: imgCode
+    };
+
+    let accountType = "phone";
+    if ( accountType.indexOf( "@" ) ) {
+        query = { ...query, accountType: "email", email: account }
+    } else {
+        query = { ...query, accountType: "phone", phone: account }
+    }
+
     request
-        .post( '/auth/login' )
-        .query( {
-            phoneRegion: phoneRegion,
-            phone: phone ? phone.replace( /\s+/g, "" ) : '',
-            password: password,
-            "remember-me": 1
-        } )
+        .post( '/User/login' )
+        .send( query )
         .use( superagent_prefix( env.apiDomain ) )
         .use( logger )
         .headerRequest()

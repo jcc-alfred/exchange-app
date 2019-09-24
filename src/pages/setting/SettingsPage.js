@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import SettingsPageView from "./SettingsPageView";
+import { authLogout } from "../../actions/AuthAction";
 
 const mapStoreToProps = ( store, ownProps ) => {
     const { params } = ownProps.navigation.state;
@@ -11,7 +12,14 @@ const mapStoreToProps = ( store, ownProps ) => {
     }
 };
 
-const mapDispatchToProps = ( dispatch, ownProps ) => ( {} );
+const mapDispatchToProps = ( dispatch, ownProps ) => ( {
+    onAuthLogout: ( callback ) => {
+        dispatch( authLogout( ( err, res ) => {
+            callback && callback( err, res )
+        } ) );
+    },
+
+} );
 
 const SettingsPage = connect(
     mapStoreToProps,

@@ -1,18 +1,16 @@
 import React from 'react';
 import { connect } from "react-redux";
-import AuthRegisterNextPageView from "./AuthRegisterNextPageView";
+import PasswordResetPageView from "./PasswordResetPageView";
 
 const mapStoreToProps = ( store, ownProps ) => {
-    const { params } = ownProps.navigation.state;
-
     return {}
 };
 
 const mapDispatchToProps = ( dispatch, ownProps ) => ( {} );
 
-const AuthRegisterNextPage = connect(
+const PasswordResetPage = connect(
     mapStoreToProps,
     mapDispatchToProps
-)( AuthRegisterNextPageView );
+)( PasswordResetPageView );
 
-export default AuthRegisterNextPage;
+export default PasswordResetPage;

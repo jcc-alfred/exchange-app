@@ -1,3 +1,14 @@
 {
-
+  "about": "About",
+  "home": "Home",
+  "language": {
+    "chinese": "Chinese",
+    "english": "English"
+  },
+  "languages": "Languages",
+  "login": "Login",
+  "login_history": "Login History",
+  "logout": "Logout",
+  "me": "Me",
+  "settings": "Settings"
 }

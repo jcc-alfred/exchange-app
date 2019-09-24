@@ -5,8 +5,7 @@ import PubSubConstant from "../../pubSub/PubSubConstant";
 const initialState = {
         isLoggedIn: false,
         account: {
-            phoneRegion: null,
-            phone: null,
+            account: null,
             password: null
         },
         requestCookie: {
@@ -15,14 +14,8 @@ const initialState = {
         userInfo: {},
         loginHistoryForDebug: [
             {
-                phoneRegion: 'SG',
-                phone: '712345678',
-                password: '12345678'
-            },
-            {
-                phoneRegion: 'SG',
-                phone: '77777777',
-                password: '12345678'
+                account: 'jie.xiao@gtdollar.com',
+                password: '123456'
             }
         ]
     }
@@ -83,7 +76,7 @@ function recordLoginHistory( state, data ) {
     const loginHistoryForDebug = state.loginHistoryForDebug.slice();
 
     for ( let index = 0; index < loginHistoryForDebug.length; index++ ) {
-        if ( data.phone === loginHistoryForDebug[ index ].phone && data.phoneRegion === loginHistoryForDebug[ index ].phoneRegion ) {
+        if ( data.account === loginHistoryForDebug[ index ].account ) {
             loginHistoryForDebug.splice( index, 1 );
             break;
         }

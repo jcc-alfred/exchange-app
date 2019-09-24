@@ -6,7 +6,7 @@ import { NavigationActions, StackActions } from "react-navigation";
 import Spinner from "react-native-loading-spinner-overlay";
 import I18n from "../../I18n";
 import Keys from "../../configs/Keys";
-import Toast from "react-native-root-toast";
+import GoogleAuthPage from "./GoogleAuthPage";
 
 class SettingsPageView extends React.Component {
 
@@ -74,6 +74,45 @@ class SettingsPageView extends React.Component {
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
                     <ScrollView>
                         <View style={[ commonStyles.pdt_normal, commonStyles.pdb_normal ]}>
+                            {
+                                this.props.isLoggedIn ?
+                                    <ListItem
+                                        title={"Password"}
+                                        onPress={() => {
+                                            this.props.navigation.navigate( "PasswordResetPage" )
+                                        }}
+                                        bottomDivider={true}
+                                    />
+                                    :
+                                    null
+                            }
+
+                            {
+                                this.props.isLoggedIn ?
+                                    <ListItem
+                                        title={"Fund Password"}
+                                        onPress={() => {
+                                            this.props.navigation.navigate( "FundPasswordResetPage" )
+                                        }}
+                                        bottomDivider={true}
+                                    />
+                                    :
+                                    null
+                            }
+
+                            {
+                                this.props.isLoggedIn ?
+                                    <ListItem
+                                        title={"Google Auth"}
+                                        onPress={() => {
+                                            this.props.navigation.navigate( "GoogleAuthPage" )
+                                        }}
+                                        bottomDivider={true}
+                                    />
+                                    :
+                                    null
+                            }
+
                             <ListItem
                                 title={I18n.t( Keys.languages )}
                                 onPress={() => {
@@ -81,23 +120,6 @@ class SettingsPageView extends React.Component {
                                 }}
                                 bottomDivider={true}
                             />
-
-                            {
-                                this.props.isSupportedLocalAuthentication ?
-                                    <ListItem
-                                        title={I18n.t( Keys.local_authentication )}
-                                        onPress={() => {
-                                            if ( this.props.isSetLocalAuthentication ) {
-                                                this.props.navigation.navigate( "SettingLockScreenPage" )
-                                            } else {
-                                                Toast.show( I18n.t( Keys.local_authentication_not_set_tip ) )
-                                            }
-                                        }}
-                                        bottomDivider={true}
-                                    />
-                                    :
-                                    null
-                            }
 
                             <ListItem
                                 title={I18n.t( Keys.about )}

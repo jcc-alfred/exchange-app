@@ -1,21 +1,20 @@
 import React from 'react';
 import { connect } from "react-redux";
-import AuthPasswordSetPageView from "./AuthPasswordSetPageView";
-
+import AssetsDetailPageView from "./AssetsDetailPageView";
 
 const mapStoreToProps = ( store, ownProps ) => {
     const { params } = ownProps.navigation.state;
 
     return {
-        account: store.userStore.account,
+        assets: params ? params.assets : null
     }
 };
 
 const mapDispatchToProps = ( dispatch, ownProps ) => ( {} );
 
-const AuthPasswordSetPage = connect(
+const AssetsDetailPage = connect(
     mapStoreToProps,
     mapDispatchToProps
-)( AuthPasswordSetPageView );
+)( AssetsDetailPageView );
 
-export default AuthPasswordSetPage;
+export default AssetsDetailPage;

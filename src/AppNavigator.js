@@ -10,19 +10,37 @@ import { createReactNavigationReduxMiddleware, createReduxContainer, } from 'rea
 import TabBarIcon from "./components/TabBarIcon";
 import HomePage from "./pages/home/HomePage";
 import MinePage from "./pages/mine/MinePage";
-import AuthLoginPage from "./pages/auth/AuthLoginPage";
-import AuthPasswordSetPage from "./pages/auth/AuthPasswordSetPage";
 import AuthRegisterPage from "./pages/auth/AuthRegisterPage";
 import AboutPage from "./pages/setting/AboutPage";
 import SettingLanguagePage from "./pages/setting/SettingLanguagePage";
 import SettingsPage from "./pages/setting/SettingsPage";
 import WebViewPage from "./pages/WebViewPage";
-import AuthRegisterNextPage from "./pages/auth/AuthRegisterNextPage";
 import AuthLoginHistoryPage from "./pages/auth/AuthLoginHistoryPage";
 import CountrySelectPage from "./pages/countrySelect/CountrySelectPage";
 import CountrySearchPage from "./pages/countrySelect/CountrySearchPage";
 import I18n from "./I18n";
 import Keys from "./configs/Keys";
+import OrderHistoryPage from "./pages/order/OrderHistoryPage";
+import QuotesPage from "./pages/quotes/QuotesPage";
+
+
+
+
+import TradePage from "./pages/trade/TradePage";
+import UserEmailVerifyPage from "./pages/user/UserEmailVerifyPage";
+import UserGoogleAuthPage from "./pages/user/UserGoogleAuthPage";
+import UserKYCPage from "./pages/user/UserKYCPage";
+import UserPasswordResetPage from "./pages/user/UserPasswordResetPage";
+import UserPhoneVerifyPage from "./pages/user/UserPhoneVerifyPage";
+import FundPasswordResetPage from "./pages/setting/FundPasswordResetPage";
+import AssetsDepositHistoryPage from "./pages/assets/AssetsDepositHistoryPage";
+import AssetsDepositPage from "./pages/assets/AssetsDepositPage";
+import AssetsWithdrawHistoryPage from "./pages/assets/AssetsWithdrawHistoryPage";
+import AssetsWithdrawPage from "./pages/assets/AssetsWithdrawPage";
+import AuthForgetPasswordPage from "./pages/auth/AuthForgetPasswordPage";
+import PasswordResetPage from "./pages/setting/PasswordResetPage";
+import GoogleAuthPage from "./pages/setting/GoogleAuthPage";
+import AssetsDetailPage from "./pages/assets/AssetsDetailPage";
 
 process.env.REACT_NAV_LOGGING = ( global.__DEV__ );
 
@@ -115,6 +133,12 @@ const HomeStack = createStackNavigator( {
 
 const MineStack = createStackNavigator( { Home: { screen: MinePage, } }, stackNavigatorConfiguration );
 
+const QuotesStack = createStackNavigator( { Home: { screen: QuotesPage, } }, stackNavigatorConfiguration );
+
+const TradeStatc =  createStackNavigator( { Home: { screen: TradePage, } }, stackNavigatorConfiguration );
+
+
+
 HomeStack.navigationOptions = {
     tabBarLabel: I18n.t( Keys.home ),
     tabBarIcon: ( { focused } ) => (
@@ -139,7 +163,12 @@ MineStack.navigationOptions = {
 const MainTabContainer = createBottomTabNavigator(
     {
         HomeStack: HomeStack,
+        QuotesStackL: QuotesStack,
+        TradePageStack:TradeStatc,
+
         MineStack: MineStack,
+
+
     },
     TabNavigatorConfig
 );
@@ -160,6 +189,40 @@ const LanguageUpdate = {
             ),
         };
 
+        QuotesStack.navigationOptions = {
+            tabBarLabel: "Quotes",
+            tabBarIcon: ( { focused } ) => (
+                <TabBarIcon
+                    focused={focused}
+                    name={
+                        Platform.OS === 'ios'
+                            ? 'ios-home'
+                            : 'md-home'
+                    }
+                />
+            ),
+        };
+
+        // TradeStatc
+
+        TradeStatc.navigationOptions = {
+            tabBarLabel: "Trade",
+            tabBarIcon: ( { focused } ) => (
+                <TabBarIcon
+                    focused={focused}
+                    name={
+                        Platform.OS === 'ios'
+                            ? 'ios-home'
+                            : 'md-home'
+                    }
+                />
+            ),
+        };
+
+
+
+
+
         MineStack.navigationOptions = {
             tabBarLabel: I18n.t( Keys.me ),
             tabBarIcon: ( { focused } ) => (
@@ -178,17 +241,8 @@ const routeConfiguration = {
             headerBackTitle: null
         }
     },
-    AuthLoginPage: {
-        screen: AuthLoginPage
-    },
-    AuthPasswordSetPage: {
-        screen: AuthPasswordSetPage
-    },
     AuthRegisterPage: {
         screen: AuthRegisterPage
-    },
-    AuthRegisterNextPage: {
-        screen: AuthRegisterNextPage
     },
     AboutPage: {
         screen: AboutPage
@@ -210,6 +264,54 @@ const routeConfiguration = {
     },
     CountrySearchPage: {
         screen: CountrySearchPage
+    },
+    OrderHistoryPage: {
+        screen: OrderHistoryPage
+    },
+    TradePage: {
+        screen: TradePage
+    },
+    UserEmailVerifyPage: {
+        screen: UserEmailVerifyPage
+    },
+    UserGoogleAuthPage: {
+        screen: UserGoogleAuthPage
+    },
+    UserKYCPage: {
+        screen: UserKYCPage
+    },
+    UserPasswordResetPage: {
+        screen: UserPasswordResetPage
+    },
+    UserPhoneVerifyPage: {
+        screen: UserPhoneVerifyPage
+    },
+    FundPasswordResetPage: {
+        screen: FundPasswordResetPage
+    },
+    AssetsDepositHistoryPage: {
+        screen: AssetsDepositHistoryPage
+    },
+    AssetsDepositPage: {
+        screen: AssetsDepositPage
+    },
+    AssetsWithdrawHistoryPage: {
+        screen: AssetsWithdrawHistoryPage
+    },
+    AssetsWithdrawPage: {
+        screen: AssetsWithdrawPage
+    },
+    AuthForgetPasswordPage: {
+        screen: AuthForgetPasswordPage
+    },
+    PasswordResetPage: {
+        screen: PasswordResetPage
+    },
+    GoogleAuthPage: {
+        screen: GoogleAuthPage
+    },
+    AssetsDetailPage: {
+        screen: AssetsDetailPage
     },
 };
 
