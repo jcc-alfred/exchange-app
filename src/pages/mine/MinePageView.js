@@ -1,9 +1,14 @@
 import React from 'react';
-import { SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
+import { InteractionManager, Platform, SafeAreaView, StyleSheet, View } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
-import { Button, ListItem, Text } from "react-native-elements";
 import I18n from "../../I18n";
 import Keys from "../../configs/Keys";
+import Toast from "react-native-root-toast";
+import AuthLoginView from "../auth/components/AuthLoginView";
+import Spinner from "react-native-loading-spinner-overlay";
+import { BorderlessButton } from "react-native-gesture-handler";
+import { Ionicons } from "@expo/vector-icons";
+import AssetsView from "../assets/components/AssetsView";
 
 class MinePageView extends React.Component {
 
@@ -24,10 +29,24 @@ class MinePageView extends React.Component {
         return {
             title: I18n.t( Keys.me ),
             headerBackTitle: null,
+            headerRight: (
+                <View style={[ { flexDirection: 'row' } ]}>
+                    <BorderlessButton
+                        onPress={() => navigation.navigate( 'SettingsPage' )}
+                        style={{ marginRight: 15 }}>
+                        <Ionicons
+                            name="md-settings"
+                            size={Platform.OS === 'ios' ? 22 : 25}
+                            color={'white'}
+                        />
+                    </BorderlessButton>
+                </View>
+            )
         };
     };
 
     componentDidMount() {
+        this.loadData()
     }
 
     componentWillUnmount() {
@@ -43,37 +62,45 @@ class MinePageView extends React.Component {
         return true;
     }
 
+    loadData() {
+        if ( !this.props.isLoggedIn ) {
+            return;
+        }
 
-    renderUserInfo() {
+        this.setState( {
+            isRequesting: true
+        } );
+
+        InteractionManager.runAfterInteractions( () => {
+            this.props.onAssetsGetUserAssets( ( error, resBody ) => {
+                if ( error ) {
+                    this.setState( {
+                        isRequesting: false
+                    } );
+
+                    Toast.show( error.message );
+                } else {
+                    this.setState( {
+                        isRequesting: false,
+                        result: JSON.stringify( resBody )
+                    } );
+                }
+            } );
+        } );
+    }
+
+    renderLogin() {
         return (
-            <View style={[ { height: 100, justifyContent: 'center' } ]}>
-                {
-                    !this.props.isLoggedIn ?
-                        <View style={[ commonStyles.wrapper, commonStyles.justAlignCenter ]}>
-                            <Button
-                                title={I18n.t( Keys.login )}
-                                type="outline"
-                                buttonStyle={[ { width: 100 } ]}
-                                onPress={() => {
-                                    this.props.navigation.navigate( "AuthLoginPage" )
-                                }
-                                }
-                            />
-                        </View>
-                        :
-                        <ListItem
-                            containerStyle={[ { height: 100 } ]}
-                            title={
-                                <Text h4>
-                                    {
-                                        this.props.userInfo.account
-                                    }
-                                </Text>
-                            }
-                            onPress={() => {
-                                this.props.navigation.navigate( "UserInfoEditPage" )
-                            }}
-                        />}
+            <View style={[ commonStyles.wrapper ]}>
+                <AuthLoginView navigation={this.props.navigation}/>
+            </View>
+        );
+    }
+
+    renderUser() {
+        return (
+            <View style={[ commonStyles.wrapper ]}>
+                <AssetsView  navigation={this.props.navigation}/>
             </View>
         );
     }
@@ -82,32 +109,13 @@ class MinePageView extends React.Component {
         return (
             <View style={[ commonStyles.wrapper, ]}>
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
-                    <ScrollView>
-                        {
-                            this.renderUserInfo()
-                        }
-
-                        <ListItem
-                            title={I18n.t( Keys.settings )}
-                            onPress={() => {
-                                this.props.navigation.navigate( "SettingsPage" )
-                            }}
-                        />
-
-                        {
-                            this.props.isLoggedIn ?
-                                <ListItem
-                                    title={"Assets"}
-                                    onPress={() => {
-                                        this.props.navigation.navigate( "AssetsPage" )
-                                    }}
-                                />
-                                :
-                                null
-                        }
-
-
-                    </ScrollView>
+                    {
+                        this.props.isLoggedIn ?
+                            this.renderUser()
+                            :
+                            this.renderLogin()
+                    }
+                    <Spinner visible={this.state.isRequesting} cancelable={true}/>
                 </SafeAreaView>
             </View>
         );

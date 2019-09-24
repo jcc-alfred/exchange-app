@@ -1,5 +1,10 @@
 import React from 'react';
-import { createBottomTabNavigator, createStackNavigator, StackViewTransitionConfigs, } from 'react-navigation';
+import {
+    createBottomTabNavigator,
+    createDrawerNavigator,
+    createStackNavigator,
+    StackViewTransitionConfigs,
+} from 'react-navigation';
 import { Platform } from "react-native";
 import { connect } from "react-redux";
 import constStyles from "./styles/constStyles";
@@ -10,7 +15,6 @@ import { createReactNavigationReduxMiddleware, createReduxContainer, } from 'rea
 import TabBarIcon from "./components/TabBarIcon";
 import HomePage from "./pages/home/HomePage";
 import MinePage from "./pages/mine/MinePage";
-import AuthLoginPage from "./pages/auth/AuthLoginPage";
 import AuthRegisterPage from "./pages/auth/AuthRegisterPage";
 import AboutPage from "./pages/setting/AboutPage";
 import SettingLanguagePage from "./pages/setting/SettingLanguagePage";
@@ -23,19 +27,24 @@ import I18n from "./I18n";
 import Keys from "./configs/Keys";
 import OrderHistoryPage from "./pages/order/OrderHistoryPage";
 import QuotesPage from "./pages/quotes/QuotesPage";
+
+
 import TradePage from "./pages/trade/TradePage";
 import UserEmailVerifyPage from "./pages/user/UserEmailVerifyPage";
 import UserGoogleAuthPage from "./pages/user/UserGoogleAuthPage";
 import UserKYCPage from "./pages/user/UserKYCPage";
 import UserPasswordResetPage from "./pages/user/UserPasswordResetPage";
 import UserPhoneVerifyPage from "./pages/user/UserPhoneVerifyPage";
-import AssetsPage from "./pages/wallet/AssetsPage";
-import FundPasswordResetPage from "./pages/wallet/FundPasswordResetPage";
-import TokenDepositHistoryPage from "./pages/wallet/TokenDepositHistoryPage";
-import TokenDepositPage from "./pages/wallet/TokenDepositPage";
-import TokenWithdrawHistoryPage from "./pages/wallet/TokenWithdrawHistoryPage";
-import TokenWithdrawPage from "./pages/wallet/TokenWithdrawPage";
+import FundPasswordResetPage from "./pages/setting/FundPasswordResetPage";
+import AssetsDepositHistoryPage from "./pages/assets/AssetsDepositHistoryPage";
+import AssetsDepositPage from "./pages/assets/AssetsDepositPage";
+import AssetsWithdrawHistoryPage from "./pages/assets/AssetsWithdrawHistoryPage";
+import AssetsWithdrawPage from "./pages/assets/AssetsWithdrawPage";
 import AuthForgetPasswordPage from "./pages/auth/AuthForgetPasswordPage";
+import PasswordResetPage from "./pages/setting/PasswordResetPage";
+import GoogleAuthPage from "./pages/setting/GoogleAuthPage";
+import AssetsDetailPage from "./pages/assets/AssetsDetailPage";
+import MainSideMenu from "./pages/home/components/MainSideMenu";
 
 process.env.REACT_NAV_LOGGING = ( global.__DEV__ );
 
@@ -122,13 +131,31 @@ const HomeSearchStack = createStackNavigator(
     }
 );
 
-const HomeStack = createStackNavigator( {
-    HomeSearchStack: HomeSearchStack,
-}, stackNavigatorConfiguration );
+
+const MainWalletExistDrawerNavigator = createDrawerNavigator( {
+    HomeSearchStack: {
+        screen: HomeSearchStack,
+    },
+}, {
+    drawerPosition: 'left',
+    navigationOptions: {
+        header: null, headerBackTitle: null,
+        drawerLockMode: 'unlocked',
+    },
+    contentComponent: MainSideMenu,
+    initialRoute: "HomeSearchStack"
+} );
+
+
+
+const HomeStack = createStackNavigator( { HomeSearchStack: MainWalletExistDrawerNavigator, }, stackNavigatorConfiguration );
 
 const MineStack = createStackNavigator( { Home: { screen: MinePage, } }, stackNavigatorConfiguration );
 
 const QuotesStack = createStackNavigator( { Home: { screen: QuotesPage, } }, stackNavigatorConfiguration );
+
+const TradeStatc =  createStackNavigator( { Home: { screen: TradePage, } }, stackNavigatorConfiguration );
+
 
 
 HomeStack.navigationOptions = {
@@ -156,7 +183,11 @@ const MainTabContainer = createBottomTabNavigator(
     {
         HomeStack: HomeStack,
         QuotesStackL: QuotesStack,
+        TradePageStack:TradeStatc,
+
         MineStack: MineStack,
+
+
     },
     TabNavigatorConfig
 );
@@ -191,6 +222,26 @@ const LanguageUpdate = {
             ),
         };
 
+        // TradeStatc
+
+        TradeStatc.navigationOptions = {
+            tabBarLabel: "Trade",
+            tabBarIcon: ( { focused } ) => (
+                <TabBarIcon
+                    focused={focused}
+                    name={
+                        Platform.OS === 'ios'
+                            ? 'ios-home'
+                            : 'md-home'
+                    }
+                />
+            ),
+        };
+
+
+
+
+
         MineStack.navigationOptions = {
             tabBarLabel: I18n.t( Keys.me ),
             tabBarIcon: ( { focused } ) => (
@@ -208,9 +259,6 @@ const routeConfiguration = {
             header: null,
             headerBackTitle: null
         }
-    },
-    AuthLoginPage: {
-        screen: AuthLoginPage
     },
     AuthRegisterPage: {
         screen: AuthRegisterPage
@@ -257,26 +305,32 @@ const routeConfiguration = {
     UserPhoneVerifyPage: {
         screen: UserPhoneVerifyPage
     },
-    AssetsPage: {
-        screen: AssetsPage
-    },
     FundPasswordResetPage: {
         screen: FundPasswordResetPage
     },
-    TokenDepositHistoryPage: {
-        screen: TokenDepositHistoryPage
+    AssetsDepositHistoryPage: {
+        screen: AssetsDepositHistoryPage
     },
-    TokenDepositPage: {
-        screen: TokenDepositPage
+    AssetsDepositPage: {
+        screen: AssetsDepositPage
     },
-    TokenWithdrawHistoryPage: {
-        screen: TokenWithdrawHistoryPage
+    AssetsWithdrawHistoryPage: {
+        screen: AssetsWithdrawHistoryPage
     },
-    TokenWithdrawPage: {
-        screen: TokenWithdrawPage
+    AssetsWithdrawPage: {
+        screen: AssetsWithdrawPage
     },
     AuthForgetPasswordPage: {
         screen: AuthForgetPasswordPage
+    },
+    PasswordResetPage: {
+        screen: PasswordResetPage
+    },
+    GoogleAuthPage: {
+        screen: GoogleAuthPage
+    },
+    AssetsDetailPage: {
+        screen: AssetsDetailPage
     },
 };
 

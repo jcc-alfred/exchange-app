@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import TokenWithdrawPageView from "./TokenWithdrawPageView";
+import GoogleAuthPageView from "./GoogleAuthPageView";
 
 const mapStoreToProps = ( store, ownProps ) => {
     return {}
@@ -8,9 +8,9 @@ const mapStoreToProps = ( store, ownProps ) => {
 
 const mapDispatchToProps = ( dispatch, ownProps ) => ( {} );
 
-const TokenWithdrawPage = connect(
+const GoogleAuthPage = connect(
     mapStoreToProps,
     mapDispatchToProps
-)( TokenWithdrawPageView );
+)( GoogleAuthPageView );
 
-export default TokenWithdrawPage;
+export default GoogleAuthPage;

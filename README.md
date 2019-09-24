@@ -26,3 +26,18 @@
 # icon resource
 
     https://ionicons.com/
+    
+# Websocket
+    
+    https://www.asiaedx.com:5000
+    
+    'init' => {user_id:1,coin_exchange_id:1}
+    <=  'orderList'    orderList
+    <= 'entrustList'  entrustList
+    <= 'userEntrustList' userEntrustList
+    <= 'marketList' marketList
+    <= 'kline'  kline
+    =>  'userEntrustList' {user_id,coin_exchange_id}
+    => 'historyEntrustList' {user_id,coin_exchange_id}}
+    =>'add_kline_client' {user_id,coin_exchange_id}}}
+    =>'remove_kline_client' {user_id,coin_exchange_id}

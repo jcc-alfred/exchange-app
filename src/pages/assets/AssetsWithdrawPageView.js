@@ -1,9 +1,11 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { Platform, SafeAreaView, StyleSheet, View } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import { Text } from "react-native-elements";
+import { BorderlessButton } from "react-native-gesture-handler";
+import { Ionicons } from "@expo/vector-icons";
 
-class TokenWithdrawHistoryPageView extends React.Component {
+class AssetsWithdrawPageView extends React.Component {
 
     constructor( props ) {
         super( props );
@@ -19,8 +21,21 @@ class TokenWithdrawHistoryPageView extends React.Component {
         const { params } = state;
 
         return {
-            title: "TokenWithdrawHistoryPageView",
+            title: "TokenWithdrawPageView",
             headerBackTitle: null,
+            headerRight: (
+                <View style={[ { flexDirection: 'row' } ]}>
+                    <BorderlessButton
+                        onPress={() => navigation.navigate( 'AssetsWithdrawHistoryPage' )}
+                        style={{ marginRight: 15 }}>
+                        <Ionicons
+                            name="md-time"
+                            size={Platform.OS === 'ios' ? 22 : 25}
+                            color={'white'}
+                        />
+                    </BorderlessButton>
+                </View>
+            )
         };
     };
 
@@ -45,7 +60,7 @@ class TokenWithdrawHistoryPageView extends React.Component {
             <View style={[ commonStyles.wrapper, ]}>
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
                     <Text>
-                        {"TokenWithdrawHistoryPageView"}
+                        {"TokenWithdrawPageView"}
                     </Text>
                 </SafeAreaView>
             </View>
@@ -55,5 +70,5 @@ class TokenWithdrawHistoryPageView extends React.Component {
 
 const styles = StyleSheet.create( {} );
 
-export default TokenWithdrawHistoryPageView;
+export default AssetsWithdrawPageView;
 

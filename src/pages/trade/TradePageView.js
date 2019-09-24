@@ -1,7 +1,9 @@
 import React from 'react';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
-import { Text } from "react-native-elements";
+import {Button, Text} from "react-native-elements";
+import I18n from "../../I18n";
+import Keys from "../../configs/Keys";
 
 class TradePageView extends React.Component {
 
@@ -44,9 +46,50 @@ class TradePageView extends React.Component {
         return (
             <View style={[ commonStyles.wrapper, ]}>
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
-                    <Text>
-                        {"TradePageView"}
-                    </Text>
+                    <View style={[{flexDirection:'row'}]}>
+                        <Button
+                            // title={I18n.t( Keys.login )}
+                            type="solid"
+                            onPress={() => {
+                                // this.login();
+                            }
+                            }
+
+
+                        />
+
+                        <Text >
+                            {"EOS/USDT"}
+                        </Text>
+                        <Text>
+                            123123
+                        </Text>
+                        <Button
+                            type="outline"
+                            onPress={() => {
+                                // this.login();
+                            }
+                            }
+                        />
+                        <Button
+                            type="outline"
+                            onPress={() => {
+                                // this.login();
+                            }
+                            }
+                        />
+                        <Button
+                            // title={I18n.t( Keys.login )}
+                            type="outline"
+                            onPress={() => {
+                                // this.login();
+                            }
+                            }
+                        />
+
+
+                    </View>
+
                 </SafeAreaView>
             </View>
         );
