@@ -85,3 +85,133 @@ export function netExchangeDoBatchCancelEntrust( query, callback ) {
         .end( callback );
 }
 
+/**
+ *
+ * @param query
+ *              {
+ *                   "entrust_sns": [
+ *                                      {
+ *                                          "entrustId": 1,
+ *                                          "coinExchangeId": 1,
+ *                                          "entrustTypeId": 1
+ *                                       },
+ *                                       {
+ *                                           "entrustId": 2,
+ *                                           "coinExchangeId": 2,
+ *                                           "entrustTypeId": 0
+ *                                       }
+ *                                  ]
+ *               }
+ * @param callback
+ */
+export function netExchangeGetUserDepositListByCoinId( query, callback ) {
+    request
+        .post( '/exchange/getUserDepositListByCoinId' )
+        .send( query )
+        .use( superagent_prefix( env.apiDomain ) )
+        .use( logger )
+        .authRequest()
+        .headerRequest()
+        .apiDomainParse()
+        .end( callback );
+}
+
+
+
+export function netExchangeGetCoinList( callback ) {
+    request
+        .post( '/exchange/getCoinList' )
+        .send( {} )
+        .use( superagent_prefix( env.apiDomain ) )
+        .use( logger )
+        .authRequest()
+        .headerRequest()
+        .apiDomainParse()
+        .end( callback );
+}
+
+
+
+export function netExchangeGetEntrustList(coinExchangeId, callback ) {
+    request
+        .post( '/exchange/getEntrustList' )
+        .send( {coinExchangeId: coinExchangeId} )
+        .use( superagent_prefix( env.apiDomain ) )
+        .use( logger )
+        .authRequest()
+        .headerRequest()
+        .apiDomainParse()
+        .end( callback );
+}
+
+
+export function netExchangeEntrustlist(coinExchangeId, callback ) {
+    request
+        .post( '/exchange/entrustlist' )
+        .send( {coinExchangeId: coinExchangeId} )
+        .use( superagent_prefix( env.apiDomain ) )
+        .use( logger )
+        .authRequest()
+        .headerRequest()
+        .apiDomainParse()
+        .end( callback );
+}
+
+
+
+export function netExchangeGetIsExchangeSafe(coinExchangeId, callback ) {
+    request
+        .post( '/exchange/getIsExchangeSafe' )
+        .send( {coinExchangeId: coinExchangeId} )
+        .use( superagent_prefix( env.apiDomain ) )
+        .use( logger )
+        .authRequest()
+        .headerRequest()
+        .apiDomainParse()
+        .end( callback );
+}
+
+
+
+export function netExchangeDoEntrust(query, callback ) {
+    request
+        .post( '/exchange/doEntrust' )
+        .send(query)
+        .use( superagent_prefix( env.apiDomain ) )
+        .use( logger )
+        .authRequest()
+        .headerRequest()
+        .apiDomainParse()
+        .end( callback );
+}
+
+
+
+
+export function netExchangeDoCancelEntrust(query, callback ) {
+    request
+        .post( '/exchange/doCancelEntrust' )
+        .send(query)
+        .use( superagent_prefix( env.apiDomain ) )
+        .use( logger )
+        .authRequest()
+        .headerRequest()
+        .apiDomainParse()
+        .end( callback );
+}
+
+
+
+
+export function netExchangeDoBatchEntrust(query, callback ) {
+    request
+        .post( '/exchange/doBatchEntrust' )
+        .send(query)
+        .use( superagent_prefix( env.apiDomain ) )
+        .use( logger )
+        .authRequest()
+        .headerRequest()
+        .apiDomainParse()
+        .end( callback );
+}
+

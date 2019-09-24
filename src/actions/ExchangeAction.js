@@ -2,7 +2,7 @@ import {
     netExchangeDoBatchCancelEntrust,
     netExchangeGetCoinExchangeAreaList,
     netExchangeGetCoinExchangeList,
-    netExchangeGetMarketList,
+    netExchangeGetMarketList, netExchangeGetUserDepositListByCoinId,
     netExchangeLastPrice
 } from "../net/ExchangeApiNet";
 
@@ -45,6 +45,14 @@ export function exchangeLastPrice( coin_name, callback ) {
 export function exchangeDoBatchCancelEntrust( query, callback ) {
     return ( dispatch ) => {
         netExchangeDoBatchCancelEntrust( query, ( err, res ) => {
+            callback && callback( err, res )
+        } );
+    };
+}
+
+export function exchangeGetUserDepositListByCoinId( query, callback ) {
+    return ( dispatch ) => {
+        netExchangeGetUserDepositListByCoinId( query, ( err, res ) => {
             callback && callback( err, res )
         } );
     };
