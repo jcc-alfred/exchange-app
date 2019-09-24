@@ -4,6 +4,7 @@ import commonStyles from "../../styles/commonStyles";
 import { Text } from "react-native-elements";
 import { BorderlessButton } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
+import QRCode from 'react-qr-code';
 
 class AssetsDepositPageView extends React.Component {
 
@@ -62,6 +63,8 @@ class AssetsDepositPageView extends React.Component {
                     <Text>
                         {"TokenDepositPageView"}
                     </Text>
+
+                    <QRCode value="Hello, World!"/>
                 </SafeAreaView>
             </View>
         );
