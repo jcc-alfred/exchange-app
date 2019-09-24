@@ -3,9 +3,7 @@ import { connect } from "react-redux";
 import UserGoogleAuthPageView from "./UserGoogleAuthPageView";
 
 const mapStoreToProps = ( store, ownProps ) => {
-    return {
-
-    }
+    return {}
 };
 
 const mapDispatchToProps = ( dispatch, ownProps ) => ( {} );

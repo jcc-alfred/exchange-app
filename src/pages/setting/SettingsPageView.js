@@ -6,7 +6,6 @@ import { NavigationActions, StackActions } from "react-navigation";
 import Spinner from "react-native-loading-spinner-overlay";
 import I18n from "../../I18n";
 import Keys from "../../configs/Keys";
-import Toast from "react-native-root-toast";
 
 class SettingsPageView extends React.Component {
 

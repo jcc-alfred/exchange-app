@@ -3,9 +3,7 @@ import { connect } from "react-redux";
 import TokenWithdrawPageView from "./TokenWithdrawPageView";
 
 const mapStoreToProps = ( store, ownProps ) => {
-    return {
-
-    }
+    return {}
 };
 
 const mapDispatchToProps = ( dispatch, ownProps ) => ( {} );

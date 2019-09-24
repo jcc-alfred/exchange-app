@@ -3,9 +3,7 @@ import { connect } from "react-redux";
 import AuthForgetPasswordPageView from "./AuthForgetPasswordPageView";
 
 const mapStoreToProps = ( store, ownProps ) => {
-    return {
-
-    }
+    return {}
 };
 
 const mapDispatchToProps = ( dispatch, ownProps ) => ( {} );

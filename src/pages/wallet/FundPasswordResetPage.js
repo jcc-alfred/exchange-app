@@ -3,9 +3,7 @@ import { connect } from "react-redux";
 import FundPasswordResetPageView from "./FundPasswordResetPageView";
 
 const mapStoreToProps = ( store, ownProps ) => {
-    return {
-
-    }
+    return {}
 };
 
 const mapDispatchToProps = ( dispatch, ownProps ) => ( {} );

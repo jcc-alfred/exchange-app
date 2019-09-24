@@ -26,7 +26,7 @@ export function netAuthSignUp( account, password, callback ) {
 
     request
         .post( '/User/signUp' )
-        .query(query )
+        .query( query )
         .use( superagent_prefix( env.apiDomain ) )
         .use( logger )
         .authRequest()

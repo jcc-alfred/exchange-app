@@ -3,9 +3,7 @@ import { connect } from "react-redux";
 import QuotesPageView from "./QuotesPageView";
 
 const mapStoreToProps = ( store, ownProps ) => {
-    return {
-
-    }
+    return {}
 };
 
 const mapDispatchToProps = ( dispatch, ownProps ) => ( {} );

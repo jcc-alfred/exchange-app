@@ -1,8 +1,7 @@
 import React from 'react';
-import { SafeAreaView, ScrollView, StyleSheet, TouchableHighlight, View } from 'react-native';
+import { SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
-import { Button, Image, ListItem, Text } from "react-native-elements";
-import * as env from "../../env";
+import { Button, ListItem, Text } from "react-native-elements";
 import I18n from "../../I18n";
 import Keys from "../../configs/Keys";
 
