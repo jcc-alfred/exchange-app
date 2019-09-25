@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-    FlatList,
-    InteractionManager,
-    RefreshControl,
-    SafeAreaView,
-    StyleSheet,
-    TouchableHighlight,
-    View
-} from 'react-native';
+import { Dimensions, InteractionManager, SafeAreaView, StyleSheet, View } from 'react-native';
 import Spinner from "react-native-loading-spinner-overlay";
 import { Updates } from 'expo';
 import { ConfirmDialog } from "react-native-simple-dialogs";
@@ -17,14 +9,26 @@ import { Text } from "react-native-elements";
 import commonStyles from "../../styles/commonStyles";
 import Toast from "react-native-root-toast";
 
+import { SceneMap, TabBar, TabView } from 'react-native-tab-view';
+
+import { DrawerActions } from 'react-navigation-drawer';
+
 class HomePageView extends React.Component {
     constructor( props ) {
         super( props );
 
 
+        const coinExchangeArea = [];
+
+        const { index, routes, scenes } = this.initTabData( coinExchangeArea );
+
         this.state = {
             isRequesting: false,
-            dataSources: [],
+            coinExchangeArea: coinExchangeArea,
+            marketList: [],
+            index: index,
+            routes: routes,
+            scenes: scenes,
             updateDialogVisible: false
         }
 
@@ -91,35 +95,38 @@ class HomePageView extends React.Component {
     }
 
 
-    loadData( isInit ) {
-        if ( isInit ) {
-            this.setState( {
-                isRequesting: true
-            } );
-        } else {
-            if ( this.state.refreshing ) {
-                return;
-            }
-
-            this.setState( {
-                refreshing: true,
-            } );
-        }
+    loadData() {
+        this.setState( {
+            isRequesting: true
+        } );
 
         InteractionManager.runAfterInteractions( () => {
-            this.props.onExchangeGetMarketList( ( error, resBody ) => {
+            this.props.onExchangeGetCoinExchangeArea( ( error, resBody ) => {
                 if ( error ) {
                     this.setState( {
                         isRequesting: false,
-                        refreshing: false
                     } );
-
                     Toast.show( error.message );
                 } else {
-                    this.setState( {
-                        isRequesting: false,
-                        refreshing: false,
-                        dataSources: resBody.data
+                    this.props.onExchangeGetMarketList( ( error1, resBody1 ) => {
+                        if ( error1 ) {
+                            this.setState( {
+                                isRequesting: false,
+                            } );
+
+                            Toast.show( error1.message );
+                        } else {
+                            const { index, routes, scenes } = this.initTabData( resBody.data );
+
+                            this.setState( {
+                                isRequesting: false,
+                                marketList: resBody1.data,
+                                coinExchangeArea: resBody.data,
+                                index: index,
+                                routes: routes,
+                                scenes: scenes,
+                            } );
+                        }
                     } );
                 }
             } );
@@ -127,107 +134,63 @@ class HomePageView extends React.Component {
     }
 
 
-    _onRefresh = () => {
-        this.loadData( false );
-    };
-
-
-    header() {
-        if ( this.state.isLoading ) {
-            return <View><Text>Loading...</Text></View>
+    initTabData( tabData ) {
+        const routes = [];
+        const scenes = [];
+        if ( tabData ) {
+            for ( let index = 0; index < tabData.length; index++ ) {
+                routes.push( {
+                    key: '' + index,
+                    title: "aaaaa" + index
+                } );
+                scenes [ '' + index ] = () => {
+                    return (
+                        <Text>11111</Text>
+                    );
+                };
+            }
         }
 
-        return (
-            <View
-                style={{
-                    flexDirection: 'row',
-                    height: 20,
-                    alignItems: 'center'
-                }}>
-
-                <View style={{ flex: 1, alignItems: 'center' }}>
-                    <Text>名称</Text>
-
-                </View>
-
-                <View style={{ flex: 1, alignItems: 'center' }}>
-                    <Text>最新价</Text>
-                </View>
-
-                <View style={{ flex: 1, alignItems: 'center' }}>
-                    <Text>涨跌幅</Text>
-                </View>
-
-            </View>
-        )
+        return {
+            index: 0,
+            routes: routes,
+            scenes: scenes
+        }
     }
 
 
-    renderItem( viewHeight, item, index ) {
-        return (
-            <TouchableHighlight
-                underlayColor='#ddd'
-                onPress={() => {
-                    Toast.show("111111")
-                }}>
-
-                <View style={{ alignItems: 'center', flexDirection: 'row', height: 50, marginStart: 40 }}>
-
-                    <Text style={{ flex: 1 }}>
-                        {item.coinEx.coin_name}/{item.coinEx.exchange_coin_name}
-                    </Text>
-
-                    <Text style={{ flex: 1 }}>
-                        {item.market.last_price}
-                    </Text>
-
-                    <View style={{ flex: 1, alignItems: 'center' }}>
-                        <Text style={{ color: item.market.change_rate > 0 ? 'green' : 'red' }}>
-                            {( item.market.change_rate * 100 ).toFixed( 2 )}%
-                        </Text>
-                    </View>
-                </View>
-            </TouchableHighlight>
-        );
-
+    exchangeAreaTabs() {
+        if ( this.state.coinExchangeArea && this.state.coinExchangeArea.length > 0 ) {
+            return (
+                <TabView
+                    navigationState={this.state}
+                    renderScene={SceneMap( this.state.scenes )}
+                    onIndexChange={index => this.setState( { index } )}
+                    initialLayout={{ width: Dimensions.get( 'window' ).width }}
+                    // renderTabBar={this.renderTabBar}
+                    renderTabBar={props =>
+                        <TabBar
+                            {...props}
+                            indicatorStyle={{ backgroundColor: 'white' }}
+                            style={{ backgroundColor: 'pink' }}
+                            tabStyle={{ width: 'auto' }}
+                            scrollEnabled={true}
+                        />
+                    }
+                    lazy={true}
+                />
+            );
+        } else {
+            return null;
+        }
     }
+
 
     render() {
-        const viewHeight = 110;
-        const separatorHeight = 1;
-
-
         return (
             <View style={commonStyles.wrapper}>
                 <SafeAreaView style={[ commonStyles.wrapper ]}>
-                    <FlatList
-                        refreshControl={
-                            <RefreshControl
-                                refreshing={this.state.refreshing}
-                                onRefresh={this._onRefresh}
-                            />
-                        }
-                        data={this.state.dataSources}
-                        keyExtractor={( item, index ) => {
-                            return 'item ' + index;
-                        }}
-                        renderItem={( { item, index } ) => {
-                            return this.renderItem( viewHeight, item, index );
-                        }}
-                        // renderItem={({ item }) => <Item title={item.title} />}
-                        ListHeaderComponent={() => {
-                            return this.header();
-                        }}
-                        ItemSeparatorComponent={() => {
-                            return <View
-                                style={[ commonStyles.commonIntervalStyle, { height: separatorHeight } ]}/>;
-                        }}
-                        getItemLayout={( data, index ) => (
-                            { length: viewHeight, offset: ( viewHeight + separatorHeight ) * index, index }
-                        )}
-                        onScroll={() => {
-                        }}
-                    />
+                    {this.exchangeAreaTabs()}
 
                     <ConfirmDialog
                         title={I18n.t( Keys.notification )}

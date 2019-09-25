@@ -1,7 +1,10 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { Platform, SafeAreaView, StyleSheet, View } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import { Text } from "react-native-elements";
+import { BorderlessButton } from "react-native-gesture-handler";
+import { Ionicons } from "@expo/vector-icons";
+import QRCode from 'react-qr-code';
 
 class AssetsDepositPageView extends React.Component {
 
@@ -21,6 +24,19 @@ class AssetsDepositPageView extends React.Component {
         return {
             title: "TokenDepositPageView",
             headerBackTitle: null,
+            headerRight: (
+                <View style={[ { flexDirection: 'row' } ]}>
+                    <BorderlessButton
+                        onPress={() => navigation.navigate( 'AssetsDepositHistoryPage' )}
+                        style={{ marginRight: 15 }}>
+                        <Ionicons
+                            name="md-time"
+                            size={Platform.OS === 'ios' ? 22 : 25}
+                            color={'white'}
+                        />
+                    </BorderlessButton>
+                </View>
+            )
         };
     };
 
@@ -47,6 +63,8 @@ class AssetsDepositPageView extends React.Component {
                     <Text>
                         {"TokenDepositPageView"}
                     </Text>
+
+                    <QRCode value="Hello, World!"/>
                 </SafeAreaView>
             </View>
         );

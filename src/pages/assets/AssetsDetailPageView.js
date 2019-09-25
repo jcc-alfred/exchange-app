@@ -1,11 +1,9 @@
 import React from 'react';
-import { Platform, SafeAreaView, StyleSheet, View } from 'react-native';
+import { SafeAreaView, StyleSheet, View } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
-import { Text } from "react-native-elements";
-import { BorderlessButton } from "react-native-gesture-handler";
-import { Ionicons } from "@expo/vector-icons";
+import { Button, Text } from "react-native-elements";
 
-class AssetsWithdrawPageView extends React.Component {
+class AssetsDetailPageView extends React.Component {
 
     constructor( props ) {
         super( props );
@@ -21,21 +19,8 @@ class AssetsWithdrawPageView extends React.Component {
         const { params } = state;
 
         return {
-            title: "TokenWithdrawPageView",
+            title: "TokenWithdrawHistoryPageView",
             headerBackTitle: null,
-            headerRight: (
-                <View style={[ { flexDirection: 'row' } ]}>
-                    <BorderlessButton
-                        onPress={() => navigation.navigate( 'AssetsWithdrawHistoryPage' )}
-                        style={{ marginRight: 15 }}>
-                        <Ionicons
-                            name="md-time"
-                            size={Platform.OS === 'ios' ? 22 : 25}
-                            color={'white'}
-                        />
-                    </BorderlessButton>
-                </View>
-            )
         };
     };
 
@@ -60,8 +45,29 @@ class AssetsWithdrawPageView extends React.Component {
             <View style={[ commonStyles.wrapper, ]}>
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
                     <Text>
-                        {"TokenWithdrawPageView"}
+                        {JSON.stringify( this.props.assets )}
                     </Text>
+
+
+                    <Button
+                        title={"Deposit"}
+                        type="outline"
+                        onPress={() => {
+                            this.props.navigation.navigate( 'AssetsDepositPage' )
+                        }
+                        }
+                        containerStyle={[]}
+                    />
+
+                    <Button
+                        title={"Withdraw"}
+                        type="outline"
+                        onPress={() => {
+                            this.props.navigation.navigate( 'AssetsWithdrawPage' )
+                        }
+                        }
+                        containerStyle={[]}
+                    />
                 </SafeAreaView>
             </View>
         );
@@ -70,5 +76,5 @@ class AssetsWithdrawPageView extends React.Component {
 
 const styles = StyleSheet.create( {} );
 
-export default AssetsWithdrawPageView;
+export default AssetsDetailPageView;
 

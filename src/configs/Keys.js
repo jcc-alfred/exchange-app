@@ -10,5 +10,8 @@ const Keys = {
     "logout": "logout",
     "me": "me",
     "settings": "settings",
+    "changerate":"changerate",
+    "name":"name",
+    "latest_price":"latest_price"
 };
 export default Keys;
