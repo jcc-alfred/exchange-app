@@ -17,14 +17,10 @@ import ExchangePairList from "../../components/ExchangePairList";
 class HomePageView extends React.Component {
     constructor(props) {
         super(props);
-
-
-        // const coinExchangeArea = [];
-
         const {index, routes, scenes} = this.initTabData(this.props.coin_exchange_area);
-
         this.state = {
             isRequesting: false,
+            refreshing: false,
             marketList: [],
             index: index,
             routes: routes,
@@ -60,15 +56,16 @@ class HomePageView extends React.Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        if (this.props.coin_exchange_area !== nextProps.coin_exchange_area) {
+        if (this.props.coin_exchange_area !== nextProps.coin_exchange_area || nextState.marketList !== this.state.marketList) {
             const {index, routes, scenes} = this.initTabData(nextProps.coin_exchange_area);
 
             this.setState({
-                index: index,
+                // index: index,
                 routes: routes,
                 scenes: scenes
             })
         }
+
         return true;
     }
 
@@ -141,12 +138,32 @@ class HomePageView extends React.Component {
         console.log('aaa', coin_exchange_id)
     }
 
+    RefreshMarketList() {
+        this.setState({
+            refreshing: true
+        });
+        InteractionManager.runAfterInteractions(() => {
+            this.props.onExchangeGetMarketList((error1, resBody1) => {
+                if (error1) {
+                    this.setState({
+                        refreshing: false,
+                    });
+
+                    Toast.show(error1.message);
+                } else {
+                    this.setState({
+                        refreshing: false,
+                        marketList: resBody1.data,
+                    });
+                }
+            });
+        });
+    }
 
     initTabData(tabData) {
         const routes = [];
         const scenes = [];
         if (tabData) {
-            // console.log(this.state.marketList.filter(i => i.coinEx.coin_exchange_area_id === tabData[index].coin_exchange_area_id));
             for (let index = 0; index < tabData.length; index++) {
                 routes.push({
                     key: '' + index,
@@ -155,7 +172,12 @@ class HomePageView extends React.Component {
                 scenes ['' + index] = () => {
                     return (
                         <ExchangePairList
-                            data={this.state.marketList.filter(i => i.coinEx.coin_exchange_area_id === tabData[index].coin_exchange_area_id)}
+                            refreshing={this.state.refreshing}
+                            onRefresh={this.RefreshMarketList.bind(this)}
+                            data={{
+                                marketList: this.state.marketList,
+                                coin_exchange_area_id: tabData[index].coin_exchange_area_id
+                            }}
                             onPressItem={this.onPressItem.bind(this)}/>
                     );
                 };

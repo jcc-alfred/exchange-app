@@ -2,7 +2,7 @@ import React from "react";
 
 import {FlatList, RefreshControl, StyleSheet, TouchableHighlight, View, ViewPropTypes} from "react-native";
 import PropTypes from 'prop-types';
-import { Divider, Text } from "react-native-elements";
+import {Divider, Text} from "react-native-elements";
 import commonStyles from "../styles/commonStyles";
 import constStyles from "../styles/constStyles";
 import I18n from "../I18n";
@@ -11,12 +11,18 @@ import Keys from "../configs/Keys";
 class ExchangePairList extends React.Component {
     static propTypes = {
         containerStyle: ViewPropTypes.style,
-        data: PropTypes.array.isRequired,
+        data: PropTypes.object.isRequired,
         errorMessage: PropTypes.string,
     };
 
-    constructor( props ) {
-        super( props );
+    constructor(props) {
+        super(props);
+    }
+
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        if( nextProps.data !== this.props.data){
+            return true
+        }
     }
 
     header() {
@@ -49,7 +55,7 @@ class ExchangePairList extends React.Component {
         return (
             <TouchableHighlight
                 underlayColor='#ddd'
-                onPress={this.props.onPressItem(item.coin_exchange_id)}>
+                onPress={()=>this.props.onPressItem(item.coin_exchange_id)}>
 
                 <View style={{alignItems: 'center', flexDirection: 'row', height: 50, marginStart: 40}}>
 
@@ -75,15 +81,16 @@ class ExchangePairList extends React.Component {
     render() {
         const separatorHeight = 1;
         const viewHeight = 110;
-        return(
+        return (
             <FlatList
-                // refreshControl={
-                //     <RefreshControl
-                //         refreshing={this.state.refreshing}
-                //         onRefresh={this.onRefresh.bind(this)}
-                //     />
-                // }
-                data={this.props.data}
+                refreshControl={
+                    <RefreshControl
+                        refreshing={this.props.refreshing}
+                        onRefresh={()=>this.props.onRefresh()}
+                    />
+                }
+                data={this.props.data && this.props.data.marketList ?
+                    this.props.data.marketList.filter(i => i.coinEx.coin_exchange_area_id === this.props.data.coin_exchange_area_id) : []}
                 keyExtractor={(item, index) => {
                     return 'item ' + index;
                 }}
