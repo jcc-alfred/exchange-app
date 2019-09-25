@@ -2,6 +2,7 @@ const Keys = {
     "about": "about",
     "home": "home",
     "language": "language",
+    "volume":"volume",
     "language_chinese": "language.chinese",
     "language_english": "language.english",
     "languages": "languages",

@@ -7,6 +7,7 @@ import commonStyles from "../styles/commonStyles";
 import constStyles from "../styles/constStyles";
 import I18n from "../I18n";
 import Keys from "../configs/Keys";
+import Util from "../util/Util";
 
 class ExchangePairList extends React.Component {
     static propTypes = {
@@ -20,7 +21,7 @@ class ExchangePairList extends React.Component {
     }
 
     shouldComponentUpdate(nextProps, nextState, nextContext) {
-        if( nextProps.data !== this.props.data){
+        if (nextProps.data !== this.props.data) {
             return true
         }
     }
@@ -30,8 +31,9 @@ class ExchangePairList extends React.Component {
             <View
                 style={{
                     flexDirection: 'row',
-                    height: 20,
-                    alignItems: 'center'
+                    height: 25,
+                    alignItems: 'center',
+                    lineHeight: 20
                 }}>
 
                 <View style={{flex: 1, alignItems: 'center'}}>
@@ -55,22 +57,39 @@ class ExchangePairList extends React.Component {
         return (
             <TouchableHighlight
                 underlayColor='#ddd'
-                onPress={()=>this.props.onPressItem(item.coin_exchange_id)}>
+                onPress={() => this.props.onPressItem(item.coin_exchange_id)}>
 
                 <View style={{alignItems: 'center', flexDirection: 'row', height: 50, marginStart: 40}}>
+                    <View style={{flex:1}}>
+                        <Text>
+                            {item.coinEx.coin_name}/{item.coinEx.exchange_coin_name}
+                        </Text>
+                        <Text style={{fontSize:8}}>
+                            24{I18n.t(Keys.volume)} {Util.toMoneyDisplay(item.market.total_volume)}
+                        </Text>
+                    </View>
 
-                    <Text style={{flex: 1}}>
-                        {item.coinEx.coin_name}/{item.coinEx.exchange_coin_name}
-                    </Text>
+                    <View style={{flex:1}}>
+                        <Text >
+                            {item.market.last_price}
+                        </Text>
+                        <Text style={{fontSize:8}}>
+                            ${Util.toMoneyDisplay(item.price_usd)}
+                        </Text>
+                    </View>
 
-                    <Text style={{flex: 1}}>
-                        {item.market.last_price}
-                    </Text>
 
                     <View style={{flex: 1, alignItems: 'center'}}>
-                        <Text style={{color: item.market.change_rate > 0 ? 'green' : 'red'}}>
-                            {(item.market.change_rate * 100).toFixed(2)}%
-                        </Text>
+                        <View style={{
+                            backgroundColor: item.market.change_rate > 0 ? 'green' : 'red',
+                            width: '60%',
+                            alignItems: 'center',
+                        }}>
+                            <Text style={{color: 'white'}}>
+                                {(item.market.change_rate * 100).toFixed(2)}%
+                            </Text>
+                        </View>
+
                     </View>
                 </View>
             </TouchableHighlight>
@@ -86,7 +105,7 @@ class ExchangePairList extends React.Component {
                 refreshControl={
                     <RefreshControl
                         refreshing={this.props.refreshing}
-                        onRefresh={()=>this.props.onRefresh()}
+                        onRefresh={() => this.props.onRefresh()}
                     />
                 }
                 data={this.props.data && this.props.data.marketList ?

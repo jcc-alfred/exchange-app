@@ -200,12 +200,11 @@ class HomePageView extends React.Component {
                     renderScene={SceneMap(this.state.scenes)}
                     onIndexChange={index => this.setState({index})}
                     initialLayout={{width: Dimensions.get('window').width}}
-                    // renderTabBar={this.renderTabBar}
                     renderTabBar={props =>
                         <TabBar
                             {...props}
                             indicatorStyle={{backgroundColor: 'white'}}
-                            style={{backgroundColor: 'pink'}}
+                            // style={{backgroundColor: 'white',color:'blue'}}
                             tabStyle={{width: 'auto'}}
                             scrollEnabled={true}
                         />

@@ -5,6 +5,7 @@
     "chinese": "Chinese",
     "english": "English"
   },
+  "volume": "volume",
   "languages": "Languages",
   "login": "Login",
   "login_history": "Login History",
@@ -12,7 +13,7 @@
   "me": "Me",
   "settings": "Settings",
   "latest_price": "Latest Price",
-  "name": "name",
+  "name": "Name",
   "changerate": "Change Rate"
 
 }
