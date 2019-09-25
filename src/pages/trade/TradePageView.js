@@ -47,7 +47,7 @@ class TradePageView extends React.Component {
             <View style={[ commonStyles.wrapper, ]}>
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
                     {this.renderTopBar()}
-
+                    {this.renderPriceBar()}
                 </SafeAreaView>
             </View>
         );
@@ -107,6 +107,31 @@ class TradePageView extends React.Component {
         )
 
     }
+
+
+    renderPriceBar (){
+
+        return (
+
+            <View style={[commonStyles.customerRow]}>
+                <View style={[commonStyles.customerRow]}>
+                    <Text style={[styles.bigFontPrice]}>2.32</Text>
+                    <Text style={[styles.smallGrayFont]}>=3.12 CNY</Text>
+                </View>
+                <View style={[commonStyles.customerRow]}>
+
+                </View>
+            </View>
+
+
+        )
+
+    }
+
+
+
+
+
 }
 
 
@@ -128,9 +153,26 @@ const styles = StyleSheet.create( {
     },
 
     smallGrayFont: {
-        backgroundColor: '#ddd',
+
         color: '#aaa',
+        paddingLeft: 5,
+        paddingRight: 10,
+        paddingTop: 12,
+        paddingBottom: 8,
+        fontSize: 12,
+
+
     },
+
+    bigFontPrice: {
+        color: '#009d7a',
+        fontSize: 20,
+        paddingLeft: 20,
+        paddingRight: 5,
+        paddingTop: 6,
+        paddingBottom: 6
+    },
+
 
     smallIconButton:{
 
