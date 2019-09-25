@@ -1,7 +1,7 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
+import {PixelRatio, SafeAreaView, StyleSheet, View} from 'react-native';
 import commonStyles from "../../styles/commonStyles";
-import {Button, Text} from "react-native-elements";
+import {Button, Text, Icon} from "react-native-elements";
 import I18n from "../../I18n";
 import Keys from "../../configs/Keys";
 
@@ -46,57 +46,108 @@ class TradePageView extends React.Component {
         return (
             <View style={[ commonStyles.wrapper, ]}>
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
-                    <View style={[{flexDirection:'row'}]}>
-                        <Button
-                            // title={I18n.t( Keys.login )}
-                            type="solid"
-                            onPress={() => {
-                                // this.login();
-                            }
-                            }
-
-
-                        />
-
-                        <Text >
-                            {"EOS/USDT"}
-                        </Text>
-                        <Text>
-                            123123
-                        </Text>
-                        <Button
-                            type="outline"
-                            onPress={() => {
-                                // this.login();
-                            }
-                            }
-                        />
-                        <Button
-                            type="outline"
-                            onPress={() => {
-                                // this.login();
-                            }
-                            }
-                        />
-                        <Button
-                            // title={I18n.t( Keys.login )}
-                            type="outline"
-                            onPress={() => {
-                                // this.login();
-                            }
-                            }
-                        />
-
-
-                    </View>
+                    {this.renderTopBar()}
 
                 </SafeAreaView>
             </View>
         );
     }
+
+
+    renderTopBar (){
+        return(
+            <View style={[{flexDirection:'row'}]}>
+
+                <Button
+                    icon={{
+                        name: "arrow-right",
+                        size: 15,
+                        color: "blue"
+                    }}
+                    type= 'clear'
+
+                />
+                <Text style={[ commonStyles.commonInputTextStyle ]}>
+                    {"EOS/USDT"}
+                </Text>
+                <Text style={[styles.smallRedFont]}>
+                    -3.20%
+                </Text>
+
+                <Button
+                    icon={{
+                        name: "arrow-right",
+                        size: 15,
+                        color: "blue"
+                    }}
+                    type="clear"
+                />
+                <Button
+                    icon={{
+                        name: "arrow-right",
+                        size: 15,
+                        color: "blue"
+                    }}
+
+                    type="clear"
+
+                />
+
+                <Button
+                    icon={{
+                        name: "arrow-right",
+                        size: 15,
+                        color: "blue"
+                    }}
+                    type="clear"
+                />
+            </View>
+
+
+        )
+
+    }
 }
 
-const styles = StyleSheet.create( {} );
+
+
+
+
+
+
+
+const styles = StyleSheet.create( {
+
+    smallRedFont: {
+        color: '#e7234c',
+        fontSize: 12,
+        paddingLeft: 10,
+        paddingRight: 10,
+        paddingTop: 10,
+        paddingBottom: 8
+    },
+
+    smallGrayFont: {
+        backgroundColor: '#ddd',
+        color: '#aaa',
+    },
+
+    smallIconButton:{
+
+        // backgroundColor: '#ddd',
+    },
+
+
+
+    data: {
+        padding: 15,
+        marginTop: 10,
+        backgroundColor: '#ddd',
+        borderColor: '#888',
+        borderWidth: 1 / PixelRatio.get(),
+        color: '#777'
+    }
+} );
 
 export default TradePageView;
 

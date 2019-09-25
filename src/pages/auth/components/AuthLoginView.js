@@ -122,7 +122,7 @@ class AuthLoginView extends React.Component {
                             />
                         </View>
 
-                        
+
 
                         <Input
                             style={[ commonStyles.wrapper ]}
