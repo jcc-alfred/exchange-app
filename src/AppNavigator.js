@@ -45,6 +45,7 @@ import PasswordResetPage from "./pages/setting/PasswordResetPage";
 import GoogleAuthPage from "./pages/setting/GoogleAuthPage";
 import AssetsDetailPage from "./pages/assets/AssetsDetailPage";
 import MainSideMenu from "./pages/home/components/MainSideMenu";
+import KlinePage from "./pages/kline/KlinePage";
 
 process.env.REACT_NAV_LOGGING = ( global.__DEV__ );
 
@@ -271,6 +272,9 @@ const routeConfiguration = {
     },
     SettingsPage: {
         screen: SettingsPage
+    },
+    KlinePage:{
+        screen:KlinePage
     },
     WebViewPage: {
         screen: WebViewPage

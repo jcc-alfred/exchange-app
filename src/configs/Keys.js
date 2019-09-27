@@ -12,7 +12,14 @@ const Keys = {
     "me": "me",
     "settings": "settings",
     "changerate":"changerate",
+    "Kline":"Kline",
     "name":"name",
-    "latest_price":"latest_price"
+    "latest_price":"latest_price",
+    "Fixed Entrust":"Fixed Entrust",
+    "Amount":"Amount",
+    "Buy":"Buy",
+    "Sell":"Sell",
+    "Volume":"Volume",
+    "Price":"Price"
 };
 export default Keys;

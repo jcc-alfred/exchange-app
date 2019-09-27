@@ -34,6 +34,7 @@
     "android": {
       "package": "com.asiaedx.client",
       "versionCode": 4
-    }
+    },
+    "description": ""
   }
 }

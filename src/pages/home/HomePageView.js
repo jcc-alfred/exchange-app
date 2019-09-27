@@ -18,13 +18,14 @@ class HomePageView extends React.Component {
     constructor(props) {
         super(props);
         const {index, routes, scenes} = this.initTabData(this.props.coin_exchange_area);
+        const {navigation} = props;
         this.state = {
             isRequesting: false,
             refreshing: false,
             marketList: [],
-            index: index,
-            routes: routes,
-            scenes: scenes,
+            index: index?index:0,
+            routes: routes?routes:[],
+            scenes: scenes?scenes:[],
             updateDialogVisible: false
         }
 
@@ -58,7 +59,6 @@ class HomePageView extends React.Component {
     shouldComponentUpdate(nextProps, nextState) {
         if (this.props.coin_exchange_area !== nextProps.coin_exchange_area || nextState.marketList !== this.state.marketList) {
             const {index, routes, scenes} = this.initTabData(nextProps.coin_exchange_area);
-
             this.setState({
                 // index: index,
                 routes: routes,
@@ -119,13 +119,13 @@ class HomePageView extends React.Component {
                             this.setState({
                                 isRequesting: false,
                             });
-
                             Toast.show(error1.message);
                         } else {
                             this.setState({
                                 isRequesting: false,
                                 marketList: resBody1.data,
                             });
+                            this.props.changeTradePageCoinExchange(resBody1.data[0])
                         }
                     });
                 }
@@ -134,9 +134,10 @@ class HomePageView extends React.Component {
     }
 
 
-    onPressItem(coin_exchange_id) {
-        console.log('aaa', coin_exchange_id)
+    onPressItem(coin_exchange) {
+        this.props.navigation.navigate('KlinePage', {coin_exchange: coin_exchange})
     }
+
 
     RefreshMarketList() {
         this.setState({
@@ -182,7 +183,11 @@ class HomePageView extends React.Component {
                     );
                 };
             }
+        } else {
+            routes.push({key: 0, title: "loading"});
+            scenes.push(<View/>)
         }
+
 
         return {
             index: 0,

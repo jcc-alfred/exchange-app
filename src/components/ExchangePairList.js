@@ -57,7 +57,7 @@ class ExchangePairList extends React.Component {
         return (
             <TouchableHighlight
                 underlayColor='#ddd'
-                onPress={() => this.props.onPressItem(item.coin_exchange_id)}>
+                onPress={() => this.props.onPressItem(item)}>
 
                 <View style={{alignItems: 'center', flexDirection: 'row', height: 50, marginStart: 40}}>
                     <View style={{flex:1}}>
@@ -86,7 +86,7 @@ class ExchangePairList extends React.Component {
                             alignItems: 'center',
                         }}>
                             <Text style={{color: 'white'}}>
-                                {(item.market.change_rate * 100).toFixed(2)}%
+                                {Util.numtoPercentage(item.market.change_rate)}
                             </Text>
                         </View>
 

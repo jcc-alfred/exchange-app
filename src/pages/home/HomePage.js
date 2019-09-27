@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from "react-redux";
 import HomePageView from "./HomePageView";
-import { assetsGetUserAssets } from "../../actions/AssetsAction";
 import {exchangeGetCoinExchangeAreaList, exchangeGetMarketList} from "../../actions/ExchangeAction";
+import userActionTypes from "../../reducers/user/userActionTypes";
 
 const mapStoreToProps = ( store, ownProps ) => {
     const { params } = ownProps.navigation.state;
@@ -20,6 +20,14 @@ const mapDispatchToProps = ( dispatch, ownProps ) => ( {
         dispatch( exchangeGetMarketList( ( err, res ) => {
             callback && callback( err, res )
         } ) );
+    },
+    changeTradePageCoinExchange:(coinEx)=>{
+        dispatch(
+            {
+                type:userActionTypes.CHANGE_TRADE_EX,
+                data: coinEx
+            }
+        )
     },
     onExchangeGetCoinExchangeArea: ( callback ) => {
         dispatch(exchangeGetCoinExchangeAreaList( ( err, res ) => {
