@@ -157,6 +157,7 @@ class AuthLoginPageView extends React.Component {
                                 }
                                 }
                             />
+                            <View style={[ commonStyles.wrapper ]}/>
 
                             <Button
                                 title={"Sign Up"}
