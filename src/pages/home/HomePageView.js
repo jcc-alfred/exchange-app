@@ -4,6 +4,7 @@ import commonStyles from "../../styles/commonStyles";
 import { Text } from "react-native-elements";
 import { BorderlessButton } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
+import { DrawerActions } from 'react-navigation-drawer';
 
 class HomePageView extends React.Component {
 

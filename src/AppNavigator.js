@@ -47,6 +47,7 @@ import AssetsListPage from "./pages/assets/AssetsListPage";
 import AuthLoginPage from "./pages/auth/AuthLoginPage";
 import HomePage from "./pages/home/HomePage";
 import QuotesPage from "./pages/quotes/QuotesPage";
+import { getStore } from "./setup";
 
 process.env.REACT_NAV_LOGGING = ( global.__DEV__ );
 
@@ -159,42 +160,6 @@ const TradeStack = createStackNavigator( { TradePage: { screen: TradePage, } }, 
 
 const AssetsDetailStack = createStackNavigator( { AssetsListPage: { screen: AssetsListPage, } }, stackNavigatorConfiguration );
 
-
-HomeStack.navigationOptions = {
-    tabBarLabel: I18n.t( Keys.home ),
-    tabBarIcon: ( { focused } ) => (
-        <TabBarIcon
-            focused={focused}
-            name={
-                Platform.OS === 'ios'
-                    ? 'ios-home'
-                    : 'md-home'
-            }
-        />
-    ),
-};
-
-QuotesStack.navigationOptions = {
-    tabBarLabel: "Quotes",
-    tabBarIcon: ( { focused } ) => (
-        <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-trending-up' : 'md-trending-up'}/>
-    ),
-};
-
-TradeStack.navigationOptions = {
-    tabBarLabel: "Trade",
-    tabBarIcon: ( { focused } ) => (
-        <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-pulse' : 'md-pulse'}/>
-    ),
-};
-
-AssetsDetailStack.navigationOptions = {
-    tabBarLabel: I18n.t( Keys.assets ),
-    tabBarIcon: ( { focused } ) => (
-        <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-wallet' : 'md-wallet'}/>
-    ),
-};
-
 const MainTabContainer = createBottomTabNavigator(
     {
         HomeStack: HomeStack,
@@ -257,9 +222,24 @@ const LanguageUpdate = {
             tabBarIcon: ( { focused } ) => (
                 <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-wallet' : 'md-wallet'}/>
             ),
+            tabBarOnPress: ( { navigation, defaultHandler } ) => {
+                // perform your logic here
+                // this is mandatory to perform the actual switch
+                // don't call this if you want to prevent focus
+
+                const store = getStore();
+
+                if ( store.getState().userStore.isLoggedIn ) {
+                    defaultHandler();
+                } else {
+                    navigation.navigate( "AuthLoginPage" );
+                }
+            }
         };
     },
 };
+
+LanguageUpdate.update();
 
 
 const routeConfiguration = {
