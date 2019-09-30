@@ -13,7 +13,6 @@ import constStyles from "./styles/constStyles";
 import { createReactNavigationReduxMiddleware, createReduxContainer, } from 'react-navigation-redux-helpers';
 
 import TabBarIcon from "./components/TabBarIcon";
-import HomePage from "./pages/home/HomePage";
 import AuthRegisterPage from "./pages/auth/AuthRegisterPage";
 import AboutPage from "./pages/setting/AboutPage";
 import SettingLanguagePage from "./pages/setting/SettingLanguagePage";
@@ -25,7 +24,6 @@ import CountrySearchPage from "./pages/countrySelect/CountrySearchPage";
 import I18n from "./I18n";
 import Keys from "./configs/Keys";
 import OrderHistoryPage from "./pages/order/OrderHistoryPage";
-import QuotesPage from "./pages/quotes/QuotesPage";
 
 
 import TradePage from "./pages/trade/TradePage";
@@ -47,6 +45,8 @@ import MainSideMenu from "./pages/home/components/MainSideMenu";
 import KlinePage from "./pages/kline/KlinePage";
 import AssetsListPage from "./pages/assets/AssetsListPage";
 import AuthLoginPage from "./pages/auth/AuthLoginPage";
+import HomePage from "./pages/home/HomePage";
+import QuotesPage from "./pages/quotes/QuotesPage";
 
 process.env.REACT_NAV_LOGGING = ( global.__DEV__ );
 
