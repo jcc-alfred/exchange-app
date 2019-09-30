@@ -144,6 +144,21 @@ class TradePageView extends React.Component {
                         {this.renderdoEntrustView('buy')}
                         {this.renderdoEntrustView('sell')}
                     </View>
+
+                    <View style={{flexDirection:'row'}}>
+                        <View style={{flex:1}}>
+                            <Text style={{margin:5, marginLeft:10}}>交易额</Text>
+                            <Button style={{margin:10}}
+                                title="买入EOS"
+                            />
+                        </View>
+                        <View style={{flex:1}}>
+                            <Text style={{margin:5, marginLeft:10}}>交易额</Text>
+                            <Button style={{margin:10}}
+                                title="卖出EOS"
+                            />
+                        </View>
+                    </View>
                 </SafeAreaView>
             </View>
         );
