@@ -212,7 +212,7 @@ class HomePageView extends React.Component {
 
 
     exchangeAreaTabs() {
-        if ( this.props.coin_exchange_area && this.props.coin_exchange_area.length > 0 ) {
+        if ( this.state.scenes && this.state.scenes.length > 0 ) {
             return (
                 <TabView
                     navigationState={this.state}
