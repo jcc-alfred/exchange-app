@@ -14,7 +14,6 @@ import { createReactNavigationReduxMiddleware, createReduxContainer, } from 'rea
 
 import TabBarIcon from "./components/TabBarIcon";
 import HomePage from "./pages/home/HomePage";
-import MinePage from "./pages/mine/MinePage";
 import AuthRegisterPage from "./pages/auth/AuthRegisterPage";
 import AboutPage from "./pages/setting/AboutPage";
 import SettingLanguagePage from "./pages/setting/SettingLanguagePage";
@@ -46,6 +45,8 @@ import GoogleAuthPage from "./pages/setting/GoogleAuthPage";
 import AssetsDetailPage from "./pages/assets/AssetsDetailPage";
 import MainSideMenu from "./pages/home/components/MainSideMenu";
 import KlinePage from "./pages/kline/KlinePage";
+import AssetsListPage from "./pages/assets/AssetsListPage";
+import AuthLoginPage from "./pages/auth/AuthLoginPage";
 
 process.env.REACT_NAV_LOGGING = ( global.__DEV__ );
 
@@ -133,30 +134,30 @@ const HomeSearchStack = createStackNavigator(
 );
 
 
-const MainWalletExistDrawerNavigator = createDrawerNavigator( {
-    HomeSearchStack: {
-        screen: HomeSearchStack,
+const HomeDrawerNavigator = createDrawerNavigator(
+    {
+        HomeSearchStack: {
+            screen: HomeSearchStack,
+        },
     },
-}, {
-    drawerPosition: 'left',
-    navigationOptions: {
-        header: null, headerBackTitle: null,
-        drawerLockMode: 'unlocked',
-    },
-    contentComponent: MainSideMenu,
-    initialRoute: "HomeSearchStack"
-} );
+    {
+        drawerPosition: 'left',
+        navigationOptions: {
+            header: null, headerBackTitle: null,
+            drawerLockMode: 'unlocked',
+        },
+        contentComponent: MainSideMenu,
+        initialRoute: "HomeSearchStack"
+    } );
 
 
+const HomeStack = createStackNavigator( { HomeDrawer: HomeDrawerNavigator, }, stackNavigatorConfiguration );
 
-const HomeStack = createStackNavigator( { HomeSearchStack: MainWalletExistDrawerNavigator, }, stackNavigatorConfiguration );
+const QuotesStack = createStackNavigator( { QuotesPage: { screen: QuotesPage, } }, stackNavigatorConfiguration );
 
-const MineStack = createStackNavigator( { Home: { screen: MinePage, } }, stackNavigatorConfiguration );
+const TradeStack = createStackNavigator( { TradePage: { screen: TradePage, } }, stackNavigatorConfiguration );
 
-const QuotesStack = createStackNavigator( { Home: { screen: QuotesPage, } }, stackNavigatorConfiguration );
-
-const TradeStatc =  createStackNavigator( { Home: { screen: TradePage, } }, stackNavigatorConfiguration );
-
+const AssetsDetailStack = createStackNavigator( { AssetsListPage: { screen: AssetsListPage, } }, stackNavigatorConfiguration );
 
 
 HomeStack.navigationOptions = {
@@ -173,22 +174,33 @@ HomeStack.navigationOptions = {
     ),
 };
 
-MineStack.navigationOptions = {
-    tabBarLabel: I18n.t( Keys.me ),
+QuotesStack.navigationOptions = {
+    tabBarLabel: "Quotes",
     tabBarIcon: ( { focused } ) => (
-        <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-person' : 'md-person'}/>
+        <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-trending-up' : 'md-trending-up'}/>
+    ),
+};
+
+TradeStack.navigationOptions = {
+    tabBarLabel: "Trade",
+    tabBarIcon: ( { focused } ) => (
+        <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-pulse' : 'md-pulse'}/>
+    ),
+};
+
+AssetsDetailStack.navigationOptions = {
+    tabBarLabel: I18n.t( Keys.assets ),
+    tabBarIcon: ( { focused } ) => (
+        <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-wallet' : 'md-wallet'}/>
     ),
 };
 
 const MainTabContainer = createBottomTabNavigator(
     {
         HomeStack: HomeStack,
-        QuotesStackL: QuotesStack,
-        TradePageStack:TradeStatc,
-
-        MineStack: MineStack,
-
-
+        QuotesStack: QuotesStack,
+        TradePageStack: TradeStack,
+        AssetsDetailStack: AssetsDetailStack,
     },
     TabNavigatorConfig
 );
@@ -216,37 +228,34 @@ const LanguageUpdate = {
                     focused={focused}
                     name={
                         Platform.OS === 'ios'
-                            ? 'ios-home'
-                            : 'md-home'
+                            ? 'ios-trending-up'
+                            : 'md-trending-up'
                     }
                 />
             ),
         };
 
-        // TradeStatc
+        // TradeStack
 
-        TradeStatc.navigationOptions = {
+        TradeStack.navigationOptions = {
             tabBarLabel: "Trade",
             tabBarIcon: ( { focused } ) => (
                 <TabBarIcon
                     focused={focused}
                     name={
                         Platform.OS === 'ios'
-                            ? 'ios-home'
-                            : 'md-home'
+                            ? 'ios-pulse'
+                            : 'md-pulse'
                     }
                 />
             ),
         };
 
 
-
-
-
-        MineStack.navigationOptions = {
-            tabBarLabel: I18n.t( Keys.me ),
+        AssetsDetailStack.navigationOptions = {
+            tabBarLabel: I18n.t( Keys.assets ),
             tabBarIcon: ( { focused } ) => (
-                <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-person' : 'md-person'}/>
+                <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-wallet' : 'md-wallet'}/>
             ),
         };
     },
@@ -273,8 +282,8 @@ const routeConfiguration = {
     SettingsPage: {
         screen: SettingsPage
     },
-    KlinePage:{
-        screen:KlinePage
+    KlinePage: {
+        screen: KlinePage
     },
     WebViewPage: {
         screen: WebViewPage
@@ -335,6 +344,9 @@ const routeConfiguration = {
     },
     AssetsDetailPage: {
         screen: AssetsDetailPage
+    },
+    AuthLoginPage: {
+        screen: AuthLoginPage
     },
 };
 

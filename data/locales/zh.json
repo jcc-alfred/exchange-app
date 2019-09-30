@@ -1,25 +1,26 @@
 {
+  "Amount": "数量",
+  "Buy": "买",
+  "Fixed Entrust": "限价委托",
+  "Kline": "K线",
+  "Price": "价格",
+  "Sell": "卖",
+  "Volume": "数量",
   "about": "关于",
-  "home": "家",
+  "assets": "资产",
+  "changerate": "涨幅",
+  "home": "主页",
   "language": {
     "chinese": "中文",
     "english": "英语"
   },
-  "volume": "量",
   "languages": "语言",
-  "Amount": "数量",
+  "latest_price": "最新价",
   "login": "登录",
   "login_history": "登录历史",
   "logout": "登出",
   "me": "我",
   "name": "名称",
   "settings": "设置",
-  "latest_price": "最新价",
-  "changerate": "涨幅",
-  "Kline": "K线",
-  "Buy": "买",
-  "Sell": "卖",
-  "Volume": "数量",
-  "Price": "价格",
-  "Fixed Entrust": "限价委托"
+  "volume": "量"
 }

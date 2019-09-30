@@ -1,26 +1,26 @@
 {
+  "Amount": "Amount",
+  "Buy": "Buy",
+  "Fixed Entrust": "Fixed Entrust",
+  "Kline": "Kline",
+  "Price": "Price",
+  "Sell": "Sell",
+  "Volume": "Volume",
   "about": "About",
+  "assets": "assets",
+  "changerate": "Change Rate",
   "home": "Home",
   "language": {
     "chinese": "Chinese",
     "english": "English"
   },
-  "volume": "volume",
   "languages": "Languages",
+  "latest_price": "Latest Price",
   "login": "Login",
   "login_history": "Login History",
   "logout": "Logout",
   "me": "Me",
-  "settings": "Settings",
-  "latest_price": "Latest Price",
   "name": "Name",
-  "changerate": "Change Rate",
-  "Kline": "Kline",
-  "Price": "Price",
-  "Volume": "Volume",
-  "Buy": "Buy",
-  "Sell": "Sell",
-  "Fixed Entrust": "Fixed Entrust",
-  "Amount": "Amount"
-
+  "settings": "Settings",
+  "volume": "volume"
 }

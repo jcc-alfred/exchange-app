@@ -26,17 +26,47 @@ class MainSideMenu extends React.Component {
     }
 
 
-    render() {
+    renderLogin() {
         return (
-            <View style={[ { paddingTop: getStatusBarHeight() } ]}>
+            <View>
                 <Button
-                    // title={I18n.t( Keys.login )}
+                    title={"Login"}
                     type="outline"
                     onPress={() => {
                         this.props.navigation.dispatch( DrawerActions.closeDrawer() )
+                        this.props.navigation.navigate( "AuthLoginPage" )
                     }
                     }
                 />
+            </View>
+        );
+    }
+
+    renderUser() {
+        return (
+            <View>
+                <Button
+                    title={"User Info"}
+                    type="outline"
+                    onPress={() => {
+                        this.props.navigation.dispatch( DrawerActions.closeDrawer() )
+                        this.props.navigation.navigate( "SettingsPage" )
+                    }
+                    }
+                />
+            </View>
+        );
+    }
+
+    render() {
+        return (
+            <View style={[ { paddingTop: getStatusBarHeight() } ]}>
+                {
+                    this.props.isLoggedIn ?
+                        this.renderUser()
+                        :
+                        this.renderLogin()
+                }
             </View>
         );
     }
