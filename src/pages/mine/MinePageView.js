@@ -22,7 +22,7 @@ class MinePageView extends React.Component {
         const { params } = state;
 
         return {
-            title: I18n.t( Keys.me ),
+            title: "个人中心",
             headerBackTitle: null,
         };
     };

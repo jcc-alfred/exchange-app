@@ -50,6 +50,7 @@ import QuotesPage from "./pages/quotes/QuotesPage";
 import OTCTradePage from "./pages/OTCTrade/OTCTradePage";
 import { getStore } from "./setup";
 import MinePage from "./pages/mine/MinePage";
+import AccountInfoPage from "./pages/account/AccountInfoPage";
 
 process.env.REACT_NAV_LOGGING = ( global.__DEV__ );
 
@@ -349,6 +350,9 @@ const routeConfiguration = {
     },
     MinePage: {
         screen: MinePage
+    },
+    AccountInfoPage: {
+        screen: AccountInfoPage
     },
 };
 
