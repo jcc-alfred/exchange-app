@@ -47,6 +47,7 @@ import AssetsListPage from "./pages/assets/AssetsListPage";
 import AuthLoginPage from "./pages/auth/AuthLoginPage";
 import HomePage from "./pages/home/HomePage";
 import QuotesPage from "./pages/quotes/QuotesPage";
+import OTCTradePage from "./pages/OTCTrade/OTCTradePage";
 import { getStore } from "./setup";
 import MinePage from "./pages/mine/MinePage";
 
@@ -155,6 +156,9 @@ const HomeDrawerNavigator = createDrawerNavigator(
 
 const HomeStack = createStackNavigator( { HomeDrawer: HomeDrawerNavigator, }, stackNavigatorConfiguration );
 
+const OTCTradeStack = createStackNavigator( { OTCTradePage: {screen:OTCTradePage}, }, stackNavigatorConfiguration );
+
+
 const QuotesStack = createStackNavigator( { QuotesPage: { screen: QuotesPage, } }, stackNavigatorConfiguration );
 
 const TradeStack = createStackNavigator( { TradePage: { screen: TradePage, } }, stackNavigatorConfiguration );
@@ -166,6 +170,7 @@ const MainTabContainer = createBottomTabNavigator(
         HomeStack: HomeStack,
         QuotesStack: QuotesStack,
         TradePageStack: TradeStack,
+        OTCTradeStack:OTCTradeStack,
         AssetsDetailStack: AssetsDetailStack,
     },
     TabNavigatorConfig
@@ -175,6 +180,19 @@ const LanguageUpdate = {
     update: function () {
         HomeStack.navigationOptions = {
             tabBarLabel: I18n.t( Keys.home ),
+            tabBarIcon: ( { focused } ) => (
+                <TabBarIcon
+                    focused={focused}
+                    name={
+                        Platform.OS === 'ios'
+                            ? 'ios-home'
+                            : 'md-home'
+                    }
+                />
+            ),
+        };
+        OTCTradeStack.navigationOptions = {
+            tabBarLabel: I18n.t( Keys.OTC ),
             tabBarIcon: ( { focused } ) => (
                 <TabBarIcon
                     focused={focused}

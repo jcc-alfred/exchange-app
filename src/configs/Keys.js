@@ -21,6 +21,8 @@ const Keys = {
     "me": "me",
     "name": "name",
     "settings": "settings",
+    "ExchangeAmount":"Exchange Amount",
+    "OTC":"OTC",
     "volume": "volume",
 };
 export default Keys;

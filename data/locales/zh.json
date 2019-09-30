@@ -16,6 +16,8 @@
   },
   "languages": "语言",
   "latest_price": "最新价",
+  "OTC": "场外交易",
+  "Exchange Amount": "交易额",
   "login": "登录",
   "login_history": "登录历史",
   "logout": "登出",
