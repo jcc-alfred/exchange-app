@@ -74,57 +74,11 @@ class SettingsPageView extends React.Component {
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
                     <ScrollView>
                         <View style={[ commonStyles.pdt_normal, commonStyles.pdb_normal ]}>
-                            {
-                                this.props.isLoggedIn ?
-                                    <ListItem
-                                        title={"Password"}
-                                        onPress={() => {
-                                            this.props.navigation.navigate( "PasswordResetPage" )
-                                        }}
-                                        bottomDivider={true}
-                                    />
-                                    :
-                                    null
-                            }
-
-                            {
-                                this.props.isLoggedIn ?
-                                    <ListItem
-                                        title={"Fund Password"}
-                                        onPress={() => {
-                                            this.props.navigation.navigate( "FundPasswordResetPage" )
-                                        }}
-                                        bottomDivider={true}
-                                    />
-                                    :
-                                    null
-                            }
-
-                            {
-                                this.props.isLoggedIn ?
-                                    <ListItem
-                                        title={"Google Auth"}
-                                        onPress={() => {
-                                            this.props.navigation.navigate( "GoogleAuthPage" )
-                                        }}
-                                        bottomDivider={true}
-                                    />
-                                    :
-                                    null
-                            }
 
                             <ListItem
                                 title={I18n.t( Keys.languages )}
                                 onPress={() => {
                                     this.props.navigation.navigate( "SettingLanguagePage" )
-                                }}
-                                bottomDivider={true}
-                            />
-
-                            <ListItem
-                                title={I18n.t( Keys.about )}
-                                onPress={() => {
-                                    this.props.navigation.navigate( "AboutPage" )
                                 }}
                                 bottomDivider={true}
                             />

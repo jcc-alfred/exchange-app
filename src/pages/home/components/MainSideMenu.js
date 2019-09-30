@@ -50,10 +50,63 @@ class MainSideMenu extends React.Component {
                     type="outline"
                     onPress={() => {
                         this.props.navigation.dispatch( DrawerActions.closeDrawer() )
+                        this.props.navigation.navigate( "MinePage" )
+                    }
+                    }
+                />
+
+                <View style={[{flexDirection:'row'}]}>
+                    <Button
+                        title={"Deposit"}
+                        type="outline"
+                        onPress={() => {
+                            this.props.navigation.dispatch( DrawerActions.closeDrawer() )
+                            this.props.navigation.navigate( "AssetsDepositPage" )
+                        }
+                        }
+                    />
+
+                    <Button
+                        title={"Withdraw"}
+                        type="outline"
+                        onPress={() => {
+                            this.props.navigation.dispatch( DrawerActions.closeDrawer() )
+                            this.props.navigation.navigate( "AssetsWithdrawPage" )
+                        }
+                        }
+                    />
+                </View>
+
+                <Button
+                    title={"Account"}
+                    type="outline"
+                    onPress={() => {
+                        this.props.navigation.dispatch( DrawerActions.closeDrawer() )
+                        this.props.navigation.navigate( "AccountInfoPage" )
+                    }
+                    }
+                />
+
+                <Button
+                    title={"About"}
+                    type="outline"
+                    onPress={() => {
+                        this.props.navigation.dispatch( DrawerActions.closeDrawer() )
+                        this.props.navigation.navigate( "AboutPage" )
+                    }
+                    }
+                />
+
+                <Button
+                    title={"Settings"}
+                    type="outline"
+                    onPress={() => {
+                        this.props.navigation.dispatch( DrawerActions.closeDrawer() )
                         this.props.navigation.navigate( "SettingsPage" )
                     }
                     }
                 />
+
             </View>
         );
     }
