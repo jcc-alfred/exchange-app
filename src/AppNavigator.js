@@ -48,6 +48,7 @@ import AuthLoginPage from "./pages/auth/AuthLoginPage";
 import HomePage from "./pages/home/HomePage";
 import QuotesPage from "./pages/quotes/QuotesPage";
 import { getStore } from "./setup";
+import MinePage from "./pages/mine/MinePage";
 
 process.env.REACT_NAV_LOGGING = ( global.__DEV__ );
 
@@ -327,6 +328,9 @@ const routeConfiguration = {
     },
     AuthLoginPage: {
         screen: AuthLoginPage
+    },
+    MinePage: {
+        screen: MinePage
     },
 };
 
