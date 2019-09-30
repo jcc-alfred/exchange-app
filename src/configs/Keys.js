@@ -24,5 +24,8 @@ const Keys = {
     "ExchangeAmount":"Exchange Amount",
     "OTC":"OTC",
     "volume": "volume",
+    "delete": "delete",
+    "Transaction":"Transaction",
+    "Current_Commission":"Current Commission",
 };
 export default Keys;
