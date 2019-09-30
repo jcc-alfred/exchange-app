@@ -1,7 +1,8 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { SafeAreaView, StyleSheet, View , Platform} from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import { Button, Text } from "react-native-elements";
+import { Ionicons } from "@expo/vector-icons";
 
 class AssetsDetailPageView extends React.Component {
 
@@ -48,26 +49,40 @@ class AssetsDetailPageView extends React.Component {
                         {JSON.stringify( this.props.assets )}
                     </Text>
 
+                    <View style={[ { flexDirection: 'row' }, commonStyles.paddingCommon ]}>
+                        <Button
+                            icon={
+                                <Ionicons
+                                    name="md-wallet"
+                                    size={Platform.OS === 'ios' ? 22 : 25}
+                                    color={'white'}
+                                />
+                            }
+                            title="Deposit"
+                            onPress={() => {
+                                this.props.navigation.navigate( "AssetsDepositPage" )
+                            }
+                            }
+                        />
 
-                    <Button
-                        title={"Deposit"}
-                        type="outline"
-                        onPress={() => {
-                            this.props.navigation.navigate( 'AssetsDepositPage' )
-                        }
-                        }
-                        containerStyle={[]}
-                    />
+                        <View style={[ commonStyles.wrapper ]}/>
 
-                    <Button
-                        title={"Withdraw"}
-                        type="outline"
-                        onPress={() => {
-                            this.props.navigation.navigate( 'AssetsWithdrawPage' )
-                        }
-                        }
-                        containerStyle={[]}
-                    />
+                        <Button
+                            icon={
+                                <Ionicons
+                                    name="md-card"
+                                    size={Platform.OS === 'ios' ? 22 : 25}
+                                    color={'white'}
+                                />
+                            }
+                            title="Withdraw"
+                            onPress={() => {
+                                this.props.navigation.navigate( "AssetsWithdrawPage" )
+                            }
+                            }
+                        />
+
+                    </View>
                 </SafeAreaView>
             </View>
         );
