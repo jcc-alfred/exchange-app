@@ -1,7 +1,13 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { InteractionManager, SafeAreaView, StyleSheet, View } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
-import { Text } from "react-native-elements";
+import { Button, Input } from "react-native-elements";
+import CountryUtil from "../countrySelect/util/CountryUtil";
+import constStyles from "../../styles/constStyles";
+import I18n from "../../I18n";
+import Keys from "../../configs/Keys";
+import CountDown from 'react-native-countdown-component';
+import Toast from "react-native-root-toast";
 
 class AuthRegisterPageView extends React.Component {
 
@@ -9,6 +15,13 @@ class AuthRegisterPageView extends React.Component {
         super( props );
 
         this.state = {
+            type: 'email',
+            currentCountry: CountryUtil.calcCountry( null ),
+            phone: '',
+            email: '',
+            code: '',
+            password: '',
+            isCountingDown: false,
             isRequesting: false,
         }
     }
@@ -19,7 +32,7 @@ class AuthRegisterPageView extends React.Component {
         const { params } = state;
 
         return {
-            title: "AuthRegisterPageView",
+            title: "Register",
             headerBackTitle: null,
         };
     };
@@ -40,13 +53,199 @@ class AuthRegisterPageView extends React.Component {
         return true;
     }
 
+    signUp() {
+
+    }
+
+    verificationCodeGet() {
+        this.setState( {
+            isRequesting: true
+        } );
+
+        let query;
+        if ( this.state.type === 'email' ) {
+            query = {
+                type: this.state.type,
+                email: this.state.email
+            }
+        } else {
+            query = {
+                type: this.state.type,
+                areaCode: '' + this.state.currentCountry.phoneCode,
+                phoneNumber: phone
+            }
+        }
+
+        InteractionManager.runAfterInteractions( () => {
+            this.props.onUserSendCode(
+                query,
+                ( error, resBody ) => {
+                    this.setState( {
+                        isRequesting: false
+                    } );
+
+                    if ( error ) {
+                        Toast.show( error.message );
+                    } else {
+                        this.setState( {
+                            isCountingDown: true,
+                            code: '',
+                        } );
+                    }
+                } );
+        } );
+    }
+
     render() {
         return (
             <View style={[ commonStyles.wrapper, ]}>
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
-                    <Text>
-                        {"AuthRegisterPageView"}
-                    </Text>
+                    {
+                        this.state.type === 'phone' ?
+                            <Input
+                                style={[ commonStyles.wrapper ]}
+                                leftIcon={
+                                    <Button
+                                        title={this.state.currentCountry ? ( '+' + this.state.currentCountry.phoneCode ) : ''}
+                                        type="outline"
+                                        buttonStyle={[ { height: 30, paddingTop: 7, paddingBottom: 7 } ]}
+                                        titleStyle={[ { fontSize: 14, } ]}
+                                        onPress={() => {
+                                            this.props.navigation.navigate( "CountrySelectPage", {
+                                                callback: ( country ) => {
+                                                    this.setState( {
+                                                        currentCountry: country
+                                                    } );
+                                                }
+                                            } );
+                                        }
+                                        }
+                                    />
+                                }
+                                leftIconContainerStyle={[ commonStyles.pdr_normal, { paddingLeft: 0, marginLeft: 0 } ]}
+                                value={this.state.phone}
+                                onChangeText={( text ) => this.setState( { phone: text } )}
+                                keyboardType={'phone-pad'}
+                                label={"Phone"}
+                                errorStyle={{ color: 'red' }}
+                                errorMessage={
+                                    this.state.showError && ( !this.state.phone || this.state.phone.length <= 0 ) ?
+                                        "Please Input phone"
+                                        :
+                                        null
+                                }
+                                returnKeyType={'next'}
+                                onSubmitEditing={() => {
+                                    this.verifyCodeInput.focus()
+                                }}
+                            />
+                            :
+                            <Input
+                                style={[ commonStyles.wrapper ]}
+                                leftIconContainerStyle={[ commonStyles.pdr_normal, { paddingLeft: 0, marginLeft: 0 } ]}
+                                value={this.state.email}
+                                onChangeText={( text ) => this.setState( { phone: text } )}
+                                keyboardType={'email-address '}
+                                label={"Phone"}
+                                errorStyle={{ color: 'red' }}
+                                errorMessage={
+                                    this.state.showError && ( !this.state.phone || this.state.phone.length <= 0 ) ?
+                                        "Please Input phone"
+                                        :
+                                        null
+                                }
+                                returnKeyType={'next'}
+                                onSubmitEditing={() => {
+                                    this.verifyCodeInput.focus()
+                                }}
+                            />
+                    }
+
+                    <Input
+                        ref={( input ) => {
+                            this.verifyCodeInput = input;
+                        }}
+                        label={I18n.t( Keys.verify_code )}
+                        style={[ commonStyles.wrapper ]}
+                        maxLength={4}
+                        rightIcon={
+                            this.state.isCountingDown ?
+                                <CountDown
+                                    style={[ { height: 20 } ]}
+                                    until={__DEV__ ? 10 : 60}
+                                    size={12}
+                                    onFinish={() => {
+                                        this.setState( {
+                                            isCountingDown: false
+                                        } )
+                                    }}
+                                    digitStyle={{ backgroundColor: constStyles.THEME_COLOR }}
+                                    digitTxtStyle={{ color: 'white' }}
+                                    timeToShow={[ 'S' ]}
+                                    timeLabels={{}}
+                                    running={this.state.isCountingDown}
+                                />
+                                :
+                                <Button
+                                    title={I18n.t( Keys.resend )}
+                                    type="outline"
+                                    buttonStyle={[ { height: 30, paddingTop: 7, paddingBottom: 7 } ]}
+                                    titleStyle={[ { fontSize: 14, } ]}
+                                    onPress={() => {
+                                        this.verificationCodeGet()
+                                    }
+                                    }
+                                />
+                        }
+                        leftIconContainerStyle={[ commonStyles.pdr_normal ]}
+                        value={this.props.code}
+                        onChangeText={( text ) => this.props.onCodeChange && this.props.onCodeChange( text )}
+                        keyboardType={'phone-pad'}
+                        errorStyle={{ color: 'red' }}
+                        errorMessage={
+                            this.props.showError && ( !this.props.code || this.props.code.length <= 0 ) ?
+                                I18n.t( Keys.please_input_verify_code )
+                                :
+                                null
+                        }
+                        returnKeyType={'next'}
+                        onSubmitEditing={() => {
+                            this.passwordInput.focus()
+                        }}
+                    />
+
+
+                    <Input
+                        ref={( input ) => {
+                            this.passwordInput = input;
+                        }}
+                        label={I18n.t( Keys.password )}
+                        value={this.state.password}
+                        onChangeText={( text ) => this.setState( { password: text } )}
+                        secureTextEntry={true}
+                        errorStyle={{ color: 'red' }}
+                        errorMessage={
+                            this.state.showError && ( !this.state.password || this.state.password.length <= 0 ) ?
+                                I18n.t( Keys.please_input_password )
+                                :
+                                null
+                        }
+                        returnKeyType={'send'}
+                        onSubmitEditing={() => {
+                            this.signUp()
+                        }}
+                    />
+
+                    <Button
+                        title={I18n.t( Keys.sign_up )}
+                        type="outline"
+                        onPress={() => {
+                            this.signUp()
+                        }
+                        }
+                        containerStyle={[ commonStyles.mgt_normal ]}
+                    />
+
                 </SafeAreaView>
             </View>
         );
