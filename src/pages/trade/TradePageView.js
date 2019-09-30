@@ -193,10 +193,41 @@ class TradePageView extends React.Component {
                         {this.renderdoEntrustView('buy')}
                         {this.renderdoEntrustView('sell')}
                     </View>
+
+                    {this.renderCommission()}
+
+                    {this.renderCommissionCell()}
                 </SafeAreaView>
             </View>
         );
     }
+
+
+
+    renderCommission(){
+        return (
+            <View>
+                <Text style={[commonStyles.commonInputTextStyle]}>{I18n.t(Keys.Current_Commission)}</Text>
+            </View>
+        )
+    }
+
+
+    renderCommissionCell(){
+        return (
+            <View>
+                <View style={{flexDirection:'row'}}>
+                    <Text style={[{flex:'1'},styles.bigFontPrice]}>{I18n.t(Keys.Buy)}</Text>
+                    <Text style={[{flex:'3'},styles.smallGrayFont]}>14:33 09/30</Text>
+                    <Button type={'outline'} titleStyle={{fontSize: 10}} title={I18n.t(Keys.delete)} ></Button>
+                </View>
+                <View style={{flexDirection:'row'}}><Text style={[styles.smallGrayFont,{flex:'1'}]}>{I18n.t(Keys.Price)}(USDT)</Text><Text style={[styles.smallGrayFont,{flex:'1'}]}>{I18n.t(Keys.Volume)}</Text><Text style={[styles.smallGrayFont,{flex:'1'}]}>{I18n.t(Keys.Transaction)}</Text></View>
+                <View style={{flexDirection:'row'}}><Text style={[styles.smallCommission,{flex:'1'}]}>2.000</Text><Text style={[styles.smallCommission,{flex:'1'}]}>2.000</Text><Text style={[styles.smallCommission,{flex:'1'}]}>0</Text></View>
+            </View>
+        )
+    }
+
+
 
 
     renderTopBar() {
@@ -364,6 +395,24 @@ const styles = StyleSheet.create({
         paddingTop: 6,
         paddingBottom: 6
     },
+
+
+
+
+    smallCommission: {
+        color: '#aaa',
+        fontSize: 12,
+        paddingLeft: 10,
+        paddingRight: 10,
+        paddingTop: 10,
+        paddingBottom: 8
+    },
+
+
+
+
+
+
 
 
     smallIconButton: {

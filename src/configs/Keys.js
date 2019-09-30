@@ -690,5 +690,8 @@ const Keys = {
     "sign_up": "sign_up",
     "verify_code": "verify_code",
     "volume": "volume",
+    "delete": "delete",
+    "Transaction":"Transaction",
+    "Current_Commission":"Current Commission",
 };
 export default Keys;
