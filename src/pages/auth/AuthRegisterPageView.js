@@ -146,11 +146,11 @@ class AuthRegisterPageView extends React.Component {
                                 value={this.state.email}
                                 onChangeText={( text ) => this.setState( { phone: text } )}
                                 keyboardType={'email-address '}
-                                label={"Phone"}
+                                label={"Email"}
                                 errorStyle={{ color: 'red' }}
                                 errorMessage={
                                     this.state.showError && ( !this.state.phone || this.state.phone.length <= 0 ) ?
-                                        "Please Input phone"
+                                        "Please Input Email"
                                         :
                                         null
                                 }
