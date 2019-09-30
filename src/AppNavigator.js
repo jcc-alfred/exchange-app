@@ -133,20 +133,21 @@ const HomeSearchStack = createStackNavigator(
 );
 
 
-const MainWalletExistDrawerNavigator = createDrawerNavigator( {
-    HomeSearchStack: {
-        screen: HomeSearchStack,
+const MainWalletExistDrawerNavigator = createDrawerNavigator(
+    {
+        HomeSearchStack: {
+            screen: HomeSearchStack,
+        },
     },
-}, {
-    drawerPosition: 'left',
-    navigationOptions: {
-        header: null, headerBackTitle: null,
-        drawerLockMode: 'unlocked',
-    },
-    contentComponent: MainSideMenu,
-    initialRoute: "HomeSearchStack"
-} );
-
+    {
+        drawerPosition: 'left',
+        navigationOptions: {
+            header: null, headerBackTitle: null,
+            drawerLockMode: 'unlocked',
+        },
+        contentComponent: MainSideMenu,
+        initialRoute: "HomeSearchStack"
+    } );
 
 
 const HomeStack = createStackNavigator( { HomeSearchStack: MainWalletExistDrawerNavigator, }, stackNavigatorConfiguration );
@@ -155,8 +156,7 @@ const MineStack = createStackNavigator( { Home: { screen: MinePage, } }, stackNa
 
 const QuotesStack = createStackNavigator( { Home: { screen: QuotesPage, } }, stackNavigatorConfiguration );
 
-const TradeStatc =  createStackNavigator( { Home: { screen: TradePage, } }, stackNavigatorConfiguration );
-
+const TradeStatc = createStackNavigator( { Home: { screen: TradePage, } }, stackNavigatorConfiguration );
 
 
 HomeStack.navigationOptions = {
@@ -184,7 +184,7 @@ const MainTabContainer = createBottomTabNavigator(
     {
         HomeStack: HomeStack,
         QuotesStackL: QuotesStack,
-        TradePageStack:TradeStatc,
+        TradePageStack: TradeStatc,
 
         MineStack: MineStack,
 
@@ -240,9 +240,6 @@ const LanguageUpdate = {
         };
 
 
-
-
-
         MineStack.navigationOptions = {
             tabBarLabel: I18n.t( Keys.me ),
             tabBarIcon: ( { focused } ) => (
@@ -273,8 +270,8 @@ const routeConfiguration = {
     SettingsPage: {
         screen: SettingsPage
     },
-    KlinePage:{
-        screen:KlinePage
+    KlinePage: {
+        screen: KlinePage
     },
     WebViewPage: {
         screen: WebViewPage
