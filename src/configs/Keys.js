@@ -691,5 +691,10 @@ const Keys = {
     "sign_up": "sign_up",
     "verify_code": "verify_code",
     "volume": "volume",
+    "Total_account_assets":"Total account assets",
+    "Punching":"Punching",
+    "WithDraw":"WithDraw",
+    "transfer":"Transfer"
+
 };
 export default Keys;
