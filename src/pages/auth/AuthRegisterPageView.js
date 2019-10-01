@@ -54,6 +54,25 @@ class AuthRegisterPageView extends React.Component {
     }
 
     signUp() {
+        this.setState( {
+            isRequesting: true
+        } );
+    InteractionManager.runAfterInteractions(() =>{
+        // this.props.onUs
+        this.props.onUserSignUp(this.state.account,this.props.code,this.state.imgCode,(error,resBody) =>{
+            this.setState( {
+                isRequesting: false
+            } );
+
+
+
+
+        });
+    })
+
+
+
+
 
     }
 
@@ -175,7 +194,7 @@ class AuthRegisterPageView extends React.Component {
                             }}
                             label={I18n.t( Keys.verify_code )}
                             style={[ commonStyles.wrapper ]}
-                            maxLength={4}
+                            maxLength={6}
                             rightIcon={
                                 this.state.isCountingDown ?
                                     <CountDown
