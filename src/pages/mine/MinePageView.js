@@ -3,6 +3,7 @@ import { SafeAreaView, StyleSheet, View } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import Spinner from "react-native-loading-spinner-overlay";
 import BasicUserInfoVerifyResultView from "./components/BasicUserInfoVerifyResultView";
+import UserInfoVerifyView from "./components/UserInfoVerifyView";
 
 class MinePageView extends React.Component {
 
@@ -48,6 +49,8 @@ class MinePageView extends React.Component {
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
 
                     <BasicUserInfoVerifyResultView/>
+
+                    <UserInfoVerifyView navigation={this.props.navigation}/>
 
                     <Spinner visible={this.state.isRequesting} cancelable={true}/>
                 </SafeAreaView>

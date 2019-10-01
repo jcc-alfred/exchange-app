@@ -51,6 +51,7 @@ import { getStore } from "./setup";
 import MinePage from "./pages/mine/MinePage";
 import AccountInfoPage from "./pages/account/AccountInfoPage";
 import BasicUserInfoVerifyPage from "./pages/mine/BasicUserInfoVerifyPage";
+import UserInfoVerifyPage from "./pages/mine/UserInfoVerifyPage";
 
 process.env.REACT_NAV_LOGGING = ( global.__DEV__ );
 
@@ -353,6 +354,9 @@ const routeConfiguration = {
     },
     BasicUserInfoVerifyPage: {
         screen: BasicUserInfoVerifyPage
+    },
+    UserInfoVerifyPage: {
+        screen: UserInfoVerifyPage
     }
 };
 
