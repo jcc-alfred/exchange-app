@@ -100,151 +100,179 @@ class AuthRegisterPageView extends React.Component {
         return (
             <View style={[ commonStyles.wrapper, ]}>
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
-                    {
-                        this.state.type === 'phone' ?
-                            <Input
-                                style={[ commonStyles.wrapper ]}
-                                leftIcon={
+                    <View style={[ commonStyles.paddingCommon ]}>
+
+                        {
+                            this.state.type === 'phone' ?
+                                <Input
+                                    style={[ commonStyles.wrapper ]}
+                                    leftIcon={
+                                        <Button
+                                            title={this.state.currentCountry ? ( '+' + this.state.currentCountry.phoneCode ) : ''}
+                                            type="outline"
+                                            buttonStyle={[ { height: 30, paddingTop: 7, paddingBottom: 7 } ]}
+                                            titleStyle={[ { fontSize: 14, } ]}
+                                            onPress={() => {
+                                                this.props.navigation.navigate( "CountrySelectPage", {
+                                                    callback: ( country ) => {
+                                                        this.setState( {
+                                                            currentCountry: country
+                                                        } );
+                                                    }
+                                                } );
+                                            }
+                                            }
+                                        />
+                                    }
+                                    leftIconContainerStyle={[ commonStyles.pdr_normal, {
+                                        paddingLeft: 0,
+                                        marginLeft: 0
+                                    } ]}
+                                    value={this.state.phone}
+                                    onChangeText={( text ) => this.setState( { phone: text } )}
+                                    keyboardType={'phone-pad'}
+                                    label={"Phone"}
+                                    errorStyle={{ color: 'red' }}
+                                    errorMessage={
+                                        this.state.showError && ( !this.state.phone || this.state.phone.length <= 0 ) ?
+                                            "Please Input phone"
+                                            :
+                                            null
+                                    }
+                                    returnKeyType={'next'}
+                                    onSubmitEditing={() => {
+                                        this.verifyCodeInput.focus()
+                                    }}
+                                />
+                                :
+                                <Input
+                                    style={[ commonStyles.wrapper ]}
+                                    leftIconContainerStyle={[ commonStyles.pdr_normal, {
+                                        paddingLeft: 0,
+                                        marginLeft: 0
+                                    } ]}
+                                    value={this.state.email}
+                                    onChangeText={( text ) => this.setState( { email: text } )}
+                                    keyboardType={'email-address'}
+                                    label={"Email"}
+                                    errorStyle={{ color: 'red' }}
+                                    errorMessage={
+                                        this.state.showError && ( !this.state.email || this.state.email.length <= 0 ) ?
+                                            "Please Input Email"
+                                            :
+                                            null
+                                    }
+                                    returnKeyType={'next'}
+                                    onSubmitEditing={() => {
+                                        this.verifyCodeInput.focus()
+                                    }}
+                                />
+                        }
+
+                        <Input
+                            ref={( input ) => {
+                                this.verifyCodeInput = input;
+                            }}
+                            label={I18n.t( Keys.verify_code )}
+                            style={[ commonStyles.wrapper ]}
+                            maxLength={4}
+                            rightIcon={
+                                this.state.isCountingDown ?
+                                    <CountDown
+                                        style={[ { height: 20 } ]}
+                                        until={__DEV__ ? 10 : 60}
+                                        size={12}
+                                        onFinish={() => {
+                                            this.setState( {
+                                                isCountingDown: false
+                                            } )
+                                        }}
+                                        digitStyle={{ backgroundColor: constStyles.THEME_COLOR }}
+                                        digitTxtStyle={{ color: 'white' }}
+                                        timeToShow={[ 'S' ]}
+                                        timeLabels={{}}
+                                        running={this.state.isCountingDown}
+                                    />
+                                    :
                                     <Button
-                                        title={this.state.currentCountry ? ( '+' + this.state.currentCountry.phoneCode ) : ''}
+                                        title={I18n.t( Keys.resend )}
                                         type="outline"
                                         buttonStyle={[ { height: 30, paddingTop: 7, paddingBottom: 7 } ]}
                                         titleStyle={[ { fontSize: 14, } ]}
                                         onPress={() => {
-                                            this.props.navigation.navigate( "CountrySelectPage", {
-                                                callback: ( country ) => {
-                                                    this.setState( {
-                                                        currentCountry: country
-                                                    } );
-                                                }
-                                            } );
+                                            this.verificationCodeGet()
                                         }
                                         }
                                     />
+                            }
+                            leftIconContainerStyle={[ commonStyles.pdr_normal ]}
+                            value={this.props.code}
+                            onChangeText={( text ) => this.props.onCodeChange && this.props.onCodeChange( text )}
+                            keyboardType={'phone-pad'}
+                            errorStyle={{ color: 'red' }}
+                            errorMessage={
+                                this.props.showError && ( !this.props.code || this.props.code.length <= 0 ) ?
+                                    I18n.t( Keys.please_input_verify_code )
+                                    :
+                                    null
+                            }
+                            returnKeyType={'next'}
+                            onSubmitEditing={() => {
+                                this.passwordInput.focus()
+                            }}
+                        />
+
+
+                        <Input
+                            ref={( input ) => {
+                                this.passwordInput = input;
+                            }}
+                            label={I18n.t( Keys.password )}
+                            value={this.state.password}
+                            onChangeText={( text ) => this.setState( { password: text } )}
+                            secureTextEntry={true}
+                            errorStyle={{ color: 'red' }}
+                            errorMessage={
+                                this.state.showError && ( !this.state.password || this.state.password.length <= 0 ) ?
+                                    I18n.t( Keys.please_input_password )
+                                    :
+                                    null
+                            }
+                            returnKeyType={'send'}
+                            onSubmitEditing={() => {
+                                this.signUp()
+                            }}
+                        />
+
+                        <Button
+                            title={I18n.t( Keys.sign_up )}
+                            type="solid"
+                            onPress={() => {
+                                this.signUp()
+                            }
+                            }
+                            containerStyle={[ commonStyles.mgt_normal ]}
+                        />
+
+                        <Button
+                            title={this.state.type === 'email' ? "Sign up by phone" : "Sign up by email"}
+                            type="outline"
+                            onPress={() => {
+                                if ( this.state.type === 'email' ) {
+                                    this.setState( {
+                                        type: 'phone'
+                                    } )
+                                } else {
+                                    this.setState( {
+                                        type: 'email'
+                                    } )
                                 }
-                                leftIconContainerStyle={[ commonStyles.pdr_normal, { paddingLeft: 0, marginLeft: 0 } ]}
-                                value={this.state.phone}
-                                onChangeText={( text ) => this.setState( { phone: text } )}
-                                keyboardType={'phone-pad'}
-                                label={"Phone"}
-                                errorStyle={{ color: 'red' }}
-                                errorMessage={
-                                    this.state.showError && ( !this.state.phone || this.state.phone.length <= 0 ) ?
-                                        "Please Input phone"
-                                        :
-                                        null
-                                }
-                                returnKeyType={'next'}
-                                onSubmitEditing={() => {
-                                    this.verifyCodeInput.focus()
-                                }}
-                            />
-                            :
-                            <Input
-                                style={[ commonStyles.wrapper ]}
-                                leftIconContainerStyle={[ commonStyles.pdr_normal, { paddingLeft: 0, marginLeft: 0 } ]}
-                                value={this.state.email}
-                                onChangeText={( text ) => this.setState( { phone: text } )}
-                                keyboardType={'email-address '}
-                                label={"Email"}
-                                errorStyle={{ color: 'red' }}
-                                errorMessage={
-                                    this.state.showError && ( !this.state.phone || this.state.phone.length <= 0 ) ?
-                                        "Please Input Email"
-                                        :
-                                        null
-                                }
-                                returnKeyType={'next'}
-                                onSubmitEditing={() => {
-                                    this.verifyCodeInput.focus()
-                                }}
-                            />
-                    }
+                            }
+                            }
+                            containerStyle={[ commonStyles.mgt_normal ]}
+                        />
 
-                    <Input
-                        ref={( input ) => {
-                            this.verifyCodeInput = input;
-                        }}
-                        label={I18n.t( Keys.verify_code )}
-                        style={[ commonStyles.wrapper ]}
-                        maxLength={4}
-                        rightIcon={
-                            this.state.isCountingDown ?
-                                <CountDown
-                                    style={[ { height: 20 } ]}
-                                    until={__DEV__ ? 10 : 60}
-                                    size={12}
-                                    onFinish={() => {
-                                        this.setState( {
-                                            isCountingDown: false
-                                        } )
-                                    }}
-                                    digitStyle={{ backgroundColor: constStyles.THEME_COLOR }}
-                                    digitTxtStyle={{ color: 'white' }}
-                                    timeToShow={[ 'S' ]}
-                                    timeLabels={{}}
-                                    running={this.state.isCountingDown}
-                                />
-                                :
-                                <Button
-                                    title={I18n.t( Keys.resend )}
-                                    type="outline"
-                                    buttonStyle={[ { height: 30, paddingTop: 7, paddingBottom: 7 } ]}
-                                    titleStyle={[ { fontSize: 14, } ]}
-                                    onPress={() => {
-                                        this.verificationCodeGet()
-                                    }
-                                    }
-                                />
-                        }
-                        leftIconContainerStyle={[ commonStyles.pdr_normal ]}
-                        value={this.props.code}
-                        onChangeText={( text ) => this.props.onCodeChange && this.props.onCodeChange( text )}
-                        keyboardType={'phone-pad'}
-                        errorStyle={{ color: 'red' }}
-                        errorMessage={
-                            this.props.showError && ( !this.props.code || this.props.code.length <= 0 ) ?
-                                I18n.t( Keys.please_input_verify_code )
-                                :
-                                null
-                        }
-                        returnKeyType={'next'}
-                        onSubmitEditing={() => {
-                            this.passwordInput.focus()
-                        }}
-                    />
-
-
-                    <Input
-                        ref={( input ) => {
-                            this.passwordInput = input;
-                        }}
-                        label={I18n.t( Keys.password )}
-                        value={this.state.password}
-                        onChangeText={( text ) => this.setState( { password: text } )}
-                        secureTextEntry={true}
-                        errorStyle={{ color: 'red' }}
-                        errorMessage={
-                            this.state.showError && ( !this.state.password || this.state.password.length <= 0 ) ?
-                                I18n.t( Keys.please_input_password )
-                                :
-                                null
-                        }
-                        returnKeyType={'send'}
-                        onSubmitEditing={() => {
-                            this.signUp()
-                        }}
-                    />
-
-                    <Button
-                        title={I18n.t( Keys.sign_up )}
-                        type="outline"
-                        onPress={() => {
-                            this.signUp()
-                        }
-                        }
-                        containerStyle={[ commonStyles.mgt_normal ]}
-                    />
+                    </View>
 
                 </SafeAreaView>
             </View>

@@ -686,12 +686,10 @@ const Keys = {
     "please_input_password": "please_input_password",
     "please_input_verify_code": "please_input_verify_code",
     "resend": "resend",
+    "select_country": "select_country",
     "settings": "settings",
     "sign_up": "sign_up",
     "verify_code": "verify_code",
     "volume": "volume",
-    "delete": "delete",
-    "Transaction":"Transaction",
-    "Current_Commission":"Current Commission",
 };
 export default Keys;
