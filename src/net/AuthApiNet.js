@@ -27,3 +27,21 @@ export function netAuthSignUp( query, callback ) {
         .apiDomainParse()
         .end( callback );
 }
+
+export function netAuthForgotLoginPassword( query, callback ) {
+    let query1 = {
+        ...query,
+        imgCode: env.adminImageCode
+    };
+
+    request
+        .post( '/user/forgotLoginPass' )
+        .send( query1 )
+        .use( superagent_prefix( env.apiDomain ) )
+        .use( logger )
+        .authRequest()
+        .headerRequest()
+        .apiDomainParse()
+        .end( callback );
+}
+

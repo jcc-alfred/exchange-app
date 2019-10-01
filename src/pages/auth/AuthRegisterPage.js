@@ -2,10 +2,14 @@ import React from 'react';
 import { connect } from "react-redux";
 import AuthRegisterPageView from "./AuthRegisterPageView";
 import { userSendCode } from "../../actions/UserAction";
-import { authSignUp } from "../../actions/AuthAction";
+import { authForgotLoginPassword, authSignUp } from "../../actions/AuthAction";
 
 const mapStoreToProps = ( store, ownProps ) => {
-    return {}
+    const { params } = ownProps.navigation.state;
+
+    return {
+        isResetPassword: params.isResetPassword
+    }
 };
 
 const mapDispatchToProps = ( dispatch, ownProps ) => ( {
@@ -20,6 +24,12 @@ const mapDispatchToProps = ( dispatch, ownProps ) => ( {
             callback && callback( err, res )
         } ) );
     },
+
+    onAuthForgotLoginPassword: ( query, callback ) => {
+        dispatch( authForgotLoginPassword( query, ( err, res ) => {
+            callback && callback( err, res )
+        } ) );
+    }
 } );
 
 const AuthRegisterPage = connect(

@@ -32,7 +32,7 @@ class AuthRegisterPageView extends React.Component {
         const { params } = state;
 
         return {
-            title: "Register",
+            title: params.isResetPassword ? "Reset Password" : "Register",
             headerBackTitle: null,
         };
     };
@@ -52,7 +52,6 @@ class AuthRegisterPageView extends React.Component {
     shouldComponentUpdate( nextProps, nextState ) {
         return true;
     }
-
 
     verificationCodeGet() {
         this.setState( {
@@ -116,24 +115,43 @@ class AuthRegisterPageView extends React.Component {
             }
         }
 
-        InteractionManager.runAfterInteractions( () => {
-            this.props.onAuthSignUp(
-                query,
-                ( error, resBody ) => {
-                    this.setState( {
-                        isRequesting: false
-                    } );
-
-                    if ( error ) {
-                        Toast.show( error.message );
-                    } else {
+        if ( this.props.isResetPassword ) {
+            InteractionManager.runAfterInteractions( () => {
+                this.props.onAuthForgotLoginPassword(
+                    query,
+                    ( error, resBody ) => {
                         this.setState( {
-                            isCountingDown: true,
-                            code: '',
+                            isRequesting: false
                         } );
-                    }
-                } );
-        } );
+
+                        if ( error ) {
+                            Toast.show( error.message );
+                        } else {
+                            this.setState( {
+                                code: '',
+                            } );
+                        }
+                    } );
+            } );
+        } else {
+            InteractionManager.runAfterInteractions( () => {
+                this.props.onAuthSignUp(
+                    query,
+                    ( error, resBody ) => {
+                        this.setState( {
+                            isRequesting: false
+                        } );
+
+                        if ( error ) {
+                            Toast.show( error.message );
+                        } else {
+                            this.setState( {
+                                code: '',
+                            } );
+                        }
+                    } );
+            } );
+        }
     }
 
     render() {
@@ -247,9 +265,9 @@ class AuthRegisterPageView extends React.Component {
                             }
                             leftIconContainerStyle={[ commonStyles.pdr_normal ]}
                             value={this.state.code}
-                            onChangeText={( text ) => this.setState({
+                            onChangeText={( text ) => this.setState( {
                                 code: text
-                            })}
+                            } )}
                             keyboardType={'phone-pad'}
                             errorStyle={{ color: 'red' }}
                             errorMessage={
@@ -287,7 +305,7 @@ class AuthRegisterPageView extends React.Component {
                         />
 
                         <Button
-                            title={I18n.t( Keys.sign_up )}
+                            title={this.props.isResetPassword ? "Send" : I18n.t( Keys.sign_up )}
                             type="solid"
                             onPress={() => {
                                 this.signUp()
@@ -297,7 +315,11 @@ class AuthRegisterPageView extends React.Component {
                         />
 
                         <Button
-                            title={this.state.type === 'email' ? "Sign up by phone" : "Sign up by email"}
+                            title={
+                                this.props.isResetPassword ?
+                                    ( this.state.type === 'email' ? "Reset by phone" : "Reset by email" )
+                                    :
+                                    ( this.state.type === 'email' ? "Sign up by phone" : "Sign up by email" )}
                             type="outline"
                             onPress={() => {
                                 if ( this.state.type === 'email' ) {

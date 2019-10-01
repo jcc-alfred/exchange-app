@@ -153,7 +153,9 @@ class AuthLoginPageView extends React.Component {
                                 title={"Forgot Password"}
                                 type="outline"
                                 onPress={() => {
-                                    this.props.navigation.navigate( "AuthForgetPasswordPage" )
+                                    this.props.navigation.navigate( "AuthRegisterPage", {
+                                        isResetPassword: true
+                                    } )
                                 }
                                 }
                             />
@@ -163,7 +165,9 @@ class AuthLoginPageView extends React.Component {
                                 title={"Sign Up"}
                                 type="outline"
                                 onPress={() => {
-                                    this.props.navigation.navigate( "AuthRegisterPage" )
+                                    this.props.navigation.navigate( "AuthRegisterPage", {
+                                        isResetPassword: false
+                                    } )
                                 }
                                 }
                             />

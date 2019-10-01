@@ -37,7 +37,6 @@ import AssetsDepositHistoryPage from "./pages/assets/AssetsDepositHistoryPage";
 import AssetsDepositPage from "./pages/assets/AssetsDepositPage";
 import AssetsWithdrawHistoryPage from "./pages/assets/AssetsWithdrawHistoryPage";
 import AssetsWithdrawPage from "./pages/assets/AssetsWithdrawPage";
-import AuthForgetPasswordPage from "./pages/auth/AuthForgetPasswordPage";
 import PasswordResetPage from "./pages/setting/PasswordResetPage";
 import GoogleAuthPage from "./pages/setting/GoogleAuthPage";
 import AssetsDetailPage from "./pages/assets/AssetsDetailPage";
@@ -157,7 +156,7 @@ const HomeDrawerNavigator = createDrawerNavigator(
 
 const HomeStack = createStackNavigator( { HomeDrawer: HomeDrawerNavigator, }, stackNavigatorConfiguration );
 
-const OTCTradeStack = createStackNavigator( { OTCTradePage: {screen:OTCTradePage}, }, stackNavigatorConfiguration );
+const OTCTradeStack = createStackNavigator( { OTCTradePage: { screen: OTCTradePage }, }, stackNavigatorConfiguration );
 
 
 const QuotesStack = createStackNavigator( { QuotesPage: { screen: QuotesPage, } }, stackNavigatorConfiguration );
@@ -171,7 +170,7 @@ const MainTabContainer = createBottomTabNavigator(
         HomeStack: HomeStack,
         QuotesStack: QuotesStack,
         TradePageStack: TradeStack,
-        OTCTradeStack:OTCTradeStack,
+        OTCTradeStack: OTCTradeStack,
         AssetsDetailStack: AssetsDetailStack,
     },
     TabNavigatorConfig
@@ -332,9 +331,6 @@ const routeConfiguration = {
     },
     AssetsWithdrawPage: {
         screen: AssetsWithdrawPage
-    },
-    AuthForgetPasswordPage: {
-        screen: AuthForgetPasswordPage
     },
     PasswordResetPage: {
         screen: PasswordResetPage
