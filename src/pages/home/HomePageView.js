@@ -9,8 +9,7 @@ import {
     ScrollView,
     FlatList,
     RefreshControl,
-    Image,
-    ImageBackground, ImageBackgroundComponent
+    ImageBackground
 } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import {Text} from "react-native-elements";
