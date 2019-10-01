@@ -8,6 +8,7 @@ import Keys from "../../configs/Keys";
 import io from 'socket.io-client';
 import * as env from "../../env";
 import Util from "../../util/Util";
+import Toast from "react-native-root-toast";
 
 class TradePageView extends React.Component {
 
@@ -77,6 +78,44 @@ class TradePageView extends React.Component {
         this.setState(param)
     }
 
+
+    doEntrust(entrustTypeId, coin_exchange_id, safePass, entrustPrice, entrustVolume) {
+        if (!this.props.isLoggedIn) {
+            this.props.navigation.navigate("AuthLoginPage");
+            return
+        }
+        InteractionManager.runAfterInteractions(() => {
+            this.props.CheckExchangeSafe(coin_exchange_id, (err, res) => {
+                if (!err) {
+                    if (res.isExchangeSafe) {
+                        this.props.DoEntrust({
+                            "coin_exchange_id": coin_exchange_id,
+                            "entrustTypeId": entrustTypeId,
+                            "isExchangeSafe": res.isExchangeSafe,
+                            "safePass": this.props.safePass,
+                            "entrustPrice": entrustPrice,
+                            "entrustVolume": entrustVolume
+                        }, (err1, res1) => {
+                            if (!err1) {
+                                Toast.show("下单成功");
+                            } else {
+                                Toast.show(err1.message);
+                            }
+                        })
+                    } else {
+                        //prompt safepass input modal
+                    }
+
+                } else {
+                    Toast.show(err.message);
+                }
+            });
+
+        })
+
+
+    }
+
     componentWillUnmount() {
         this.setState = (state, callback) => {
 
@@ -104,25 +143,35 @@ class TradePageView extends React.Component {
                         <Icon style={{backgroundColor: '#cccccc'}} name={"caret-down"} size={20} color={"grey"}/>
                     </View>
                 </View>
-                <View style={[styles.PriceInput, {flexDirection: 'row',height:40,marginTop: 5}]}>
+                <View style={[styles.PriceInput, {flexDirection: 'row', height: 40, marginTop: 5}]}>
                     <TextInput value={type === 'buy' ? this.state.buyAmount : this.state.sellAmount}
                                onChange={value => this.changeState(value, type === 'buy' ? 'buyAmount' : 'sellAmount')}
                                placeholder={(type === "buy" ? I18n.t(Keys.Buy) : I18n.t(Keys.Sell)) + ' ' + I18n.t(Keys.Price)}
                                style={[{flex: 9}]} keyboardType={'numeric'}/>
-                    <Text style={{flex:2,lineHeight:40}}>{this.props.TradePageCoinEx.coinEx.coin_name}</Text>
+                    <Text style={{
+                        flex: 2,
+                        lineHeight: 40
+                    }}>{this.props.TradePageCoinEx && this.props.TradePageCoinEx.coinEx.coin_name}</Text>
                 </View>
-                <View style={{flexDirection:'row'}}>
+                <View style={{flexDirection: 'row'}}>
 
                     {
-                        [25,50,75,100].map(i=>{
-                            return(
-                                <View style={{flex:1}}>
-                                    <Button titleStyle={{fontSize:8}} title={i+'%'} type={'outline'}></Button>
+                        [25, 50, 75, 100].map(i => {
+                            return (
+                                <View style={{flex: 1}}>
+                                    <Button titleStyle={{fontSize: 8}} title={i + '%'} type={'outline'}></Button>
                                 </View>
 
                             )
                         })
                     }
+                </View>
+                <View>
+                    <Text style={{margin: 5, marginLeft: 10}}>{I18n.t(Keys.ExchangeAmount)}</Text>
+                    <Button style={{margin: 10}}
+                            title={(type === 'buy' ? I18n.t(Keys.Buy) : I18n.t(Keys.Sell)) + ' ' +
+                            (this.props.TradePageCoinEx ? this.props.TradePageCoinEx.coinEx.coin_name : '')}
+                    />
                 </View>
             </View>
         )
@@ -145,24 +194,40 @@ class TradePageView extends React.Component {
                         {this.renderdoEntrustView('sell')}
                     </View>
 
-                    <View style={{flexDirection:'row'}}>
-                        <View style={{flex:1}}>
-                            <Text style={{margin:5, marginLeft:10}}>交易额</Text>
-                            <Button style={{margin:10}}
-                                title="买入EOS"
-                            />
-                        </View>
-                        <View style={{flex:1}}>
-                            <Text style={{margin:5, marginLeft:10}}>交易额</Text>
-                            <Button style={{margin:10}}
-                                title="卖出EOS"
-                            />
-                        </View>
-                    </View>
+                    {this.renderCommission()}
+
+                    {this.renderCommissionCell()}
                 </SafeAreaView>
             </View>
         );
     }
+
+
+
+    renderCommission(){
+        return (
+            <View>
+                <Text style={[commonStyles.commonInputTextStyle]}>{I18n.t(Keys.Current_Commission)}</Text>
+            </View>
+        )
+    }
+
+
+    renderCommissionCell(){
+        return (
+            <View>
+                <View style={{flexDirection:'row'}}>
+                    <Text style={[{flex:'1'},styles.bigFontPrice]}>{I18n.t(Keys.Buy)}</Text>
+                    <Text style={[{flex:'3'},styles.smallGrayFont]}>14:33 09/30</Text>
+                    <Button type={'outline'} titleStyle={{fontSize: 10}} title={I18n.t(Keys.delete)} ></Button>
+                </View>
+                <View style={{flexDirection:'row'}}><Text style={[styles.smallGrayFont,{flex:'1'}]}>{I18n.t(Keys.Price)}(USDT)</Text><Text style={[styles.smallGrayFont,{flex:'1'}]}>{I18n.t(Keys.Volume)}</Text><Text style={[styles.smallGrayFont,{flex:'1'}]}>{I18n.t(Keys.Transaction)}</Text></View>
+                <View style={{flexDirection:'row'}}><Text style={[styles.smallCommission,{flex:'1'}]}>2.000</Text><Text style={[styles.smallCommission,{flex:'1'}]}>2.000</Text><Text style={[styles.smallCommission,{flex:'1'}]}>0</Text></View>
+            </View>
+        )
+    }
+
+
 
 
     renderTopBar() {
@@ -330,6 +395,24 @@ const styles = StyleSheet.create({
         paddingTop: 6,
         paddingBottom: 6
     },
+
+
+
+
+    smallCommission: {
+        color: '#aaa',
+        fontSize: 12,
+        paddingLeft: 10,
+        paddingRight: 10,
+        paddingTop: 10,
+        paddingBottom: 8
+    },
+
+
+
+
+
+
 
 
     smallIconButton: {

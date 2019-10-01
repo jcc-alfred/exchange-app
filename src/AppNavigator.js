@@ -37,7 +37,6 @@ import AssetsDepositHistoryPage from "./pages/assets/AssetsDepositHistoryPage";
 import AssetsDepositPage from "./pages/assets/AssetsDepositPage";
 import AssetsWithdrawHistoryPage from "./pages/assets/AssetsWithdrawHistoryPage";
 import AssetsWithdrawPage from "./pages/assets/AssetsWithdrawPage";
-import AuthForgetPasswordPage from "./pages/auth/AuthForgetPasswordPage";
 import PasswordResetPage from "./pages/setting/PasswordResetPage";
 import GoogleAuthPage from "./pages/setting/GoogleAuthPage";
 import AssetsDetailPage from "./pages/assets/AssetsDetailPage";
@@ -47,6 +46,10 @@ import AssetsListPage from "./pages/assets/AssetsListPage";
 import AuthLoginPage from "./pages/auth/AuthLoginPage";
 import HomePage from "./pages/home/HomePage";
 import QuotesPage from "./pages/quotes/QuotesPage";
+import OTCTradePage from "./pages/OTCTrade/OTCTradePage";
+import { getStore } from "./setup";
+import MinePage from "./pages/mine/MinePage";
+import AccountInfoPage from "./pages/account/AccountInfoPage";
 
 process.env.REACT_NAV_LOGGING = ( global.__DEV__ );
 
@@ -153,53 +156,21 @@ const HomeDrawerNavigator = createDrawerNavigator(
 
 const HomeStack = createStackNavigator( { HomeDrawer: HomeDrawerNavigator, }, stackNavigatorConfiguration );
 
+const OTCTradeStack = createStackNavigator( { OTCTradePage: { screen: OTCTradePage }, }, stackNavigatorConfiguration );
+
+
 const QuotesStack = createStackNavigator( { QuotesPage: { screen: QuotesPage, } }, stackNavigatorConfiguration );
 
 const TradeStack = createStackNavigator( { TradePage: { screen: TradePage, } }, stackNavigatorConfiguration );
 
 const AssetsDetailStack = createStackNavigator( { AssetsListPage: { screen: AssetsListPage, } }, stackNavigatorConfiguration );
 
-
-HomeStack.navigationOptions = {
-    tabBarLabel: I18n.t( Keys.home ),
-    tabBarIcon: ( { focused } ) => (
-        <TabBarIcon
-            focused={focused}
-            name={
-                Platform.OS === 'ios'
-                    ? 'ios-home'
-                    : 'md-home'
-            }
-        />
-    ),
-};
-
-QuotesStack.navigationOptions = {
-    tabBarLabel: "Quotes",
-    tabBarIcon: ( { focused } ) => (
-        <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-trending-up' : 'md-trending-up'}/>
-    ),
-};
-
-TradeStack.navigationOptions = {
-    tabBarLabel: "Trade",
-    tabBarIcon: ( { focused } ) => (
-        <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-pulse' : 'md-pulse'}/>
-    ),
-};
-
-AssetsDetailStack.navigationOptions = {
-    tabBarLabel: I18n.t( Keys.assets ),
-    tabBarIcon: ( { focused } ) => (
-        <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-wallet' : 'md-wallet'}/>
-    ),
-};
-
 const MainTabContainer = createBottomTabNavigator(
     {
         HomeStack: HomeStack,
         QuotesStack: QuotesStack,
         TradePageStack: TradeStack,
+        OTCTradeStack: OTCTradeStack,
         AssetsDetailStack: AssetsDetailStack,
     },
     TabNavigatorConfig
@@ -209,6 +180,19 @@ const LanguageUpdate = {
     update: function () {
         HomeStack.navigationOptions = {
             tabBarLabel: I18n.t( Keys.home ),
+            tabBarIcon: ( { focused } ) => (
+                <TabBarIcon
+                    focused={focused}
+                    name={
+                        Platform.OS === 'ios'
+                            ? 'ios-home'
+                            : 'md-home'
+                    }
+                />
+            ),
+        };
+        OTCTradeStack.navigationOptions = {
+            tabBarLabel: I18n.t( Keys.OTC ),
             tabBarIcon: ( { focused } ) => (
                 <TabBarIcon
                     focused={focused}
@@ -257,9 +241,24 @@ const LanguageUpdate = {
             tabBarIcon: ( { focused } ) => (
                 <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-wallet' : 'md-wallet'}/>
             ),
+            tabBarOnPress: ( { navigation, defaultHandler } ) => {
+                // perform your logic here
+                // this is mandatory to perform the actual switch
+                // don't call this if you want to prevent focus
+
+                const store = getStore();
+
+                if ( store.getState().userStore.isLoggedIn ) {
+                    defaultHandler();
+                } else {
+                    navigation.navigate( "AuthLoginPage" );
+                }
+            }
         };
     },
 };
+
+LanguageUpdate.update();
 
 
 const routeConfiguration = {
@@ -333,9 +332,6 @@ const routeConfiguration = {
     AssetsWithdrawPage: {
         screen: AssetsWithdrawPage
     },
-    AuthForgetPasswordPage: {
-        screen: AuthForgetPasswordPage
-    },
     PasswordResetPage: {
         screen: PasswordResetPage
     },
@@ -347,6 +343,12 @@ const routeConfiguration = {
     },
     AuthLoginPage: {
         screen: AuthLoginPage
+    },
+    MinePage: {
+        screen: MinePage
+    },
+    AccountInfoPage: {
+        screen: AccountInfoPage
     },
 };
 

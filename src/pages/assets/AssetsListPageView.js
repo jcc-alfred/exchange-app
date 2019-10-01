@@ -2,7 +2,6 @@ import React from 'react';
 import {
     FlatList,
     InteractionManager,
-    Platform,
     RefreshControl,
     SafeAreaView,
     StyleSheet,
@@ -10,14 +9,8 @@ import {
     View
 } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
-import I18n from "../../I18n";
-import Keys from "../../configs/Keys";
 import Toast from "react-native-root-toast";
-import AuthLoginView from "../auth/components/AuthLoginView";
 import Spinner from "react-native-loading-spinner-overlay";
-import { BorderlessButton } from "react-native-gesture-handler";
-import { Ionicons } from "@expo/vector-icons";
-import AssetsView from "../assets/components/AssetsView";
 import { Text } from "react-native-elements";
 
 class AssetsListPageView extends React.Component {
@@ -26,7 +19,7 @@ class AssetsListPageView extends React.Component {
         super( props );
 
         this.state = {
-            refreshing:false,
+            refreshing: false,
             isRequesting: false,
             data: []
         }
@@ -60,7 +53,7 @@ class AssetsListPageView extends React.Component {
         return true;
     }
 
-    loadData(isInit) {
+    loadData( isInit ) {
 
         if ( isInit ) {
             this.setState( {
@@ -101,14 +94,13 @@ class AssetsListPageView extends React.Component {
     };
 
 
-
     renderItem( viewHeight, item, index ) {
         return (
             <TouchableHighlight
                 underlayColor='#ddd'
                 onPress={() => {
                     this.props.navigation.navigate( "AssetsDetailPage", {
-                        assets:item
+                        assets: item
                     } )
                 }}>
                 <View style={[ { height: viewHeight } ]}>
@@ -124,8 +116,7 @@ class AssetsListPageView extends React.Component {
     }
 
 
-    header()
-    {
+    header() {
         return null;
     }
 

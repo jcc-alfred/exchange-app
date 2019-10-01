@@ -12,10 +12,11 @@ import {
     ImageBackground
 } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
-import {Text} from "react-native-elements";
-import {BorderlessButton} from "react-native-gesture-handler";
-import {Ionicons} from "@expo/vector-icons";
 import Toast from "react-native-root-toast";
+import { Text } from "react-native-elements";
+import { BorderlessButton } from "react-native-gesture-handler";
+import { Ionicons } from "@expo/vector-icons";
+import { DrawerActions } from 'react-navigation-drawer';
 
 class HomePageView extends React.Component {
 
@@ -37,12 +38,12 @@ class HomePageView extends React.Component {
         const {params} = state;
 
         return {
-            title: "home",
+            title: "Home",
             headerBackTitle: null,
             headerLeft: (
                 <BorderlessButton
                     onPress={() => {
-                        navigation.dispatch(DrawerActions.toggleDrawer());
+                        navigation.dispatch( DrawerActions.openDrawer() );
                     }}
                     style={{marginLeft: 15}}>
                     <Ionicons

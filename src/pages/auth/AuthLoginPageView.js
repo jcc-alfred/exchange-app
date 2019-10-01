@@ -1,15 +1,11 @@
 import React from 'react';
-import { InteractionManager, Platform, SafeAreaView, StyleSheet, View } from 'react-native';
+import { InteractionManager, SafeAreaView, StyleSheet, View } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import I18n from "../../I18n";
 import Keys from "../../configs/Keys";
 import Toast from "react-native-root-toast";
-import AuthLoginView from "../auth/components/AuthLoginView";
 import Spinner from "react-native-loading-spinner-overlay";
-import { BorderlessButton } from "react-native-gesture-handler";
-import { Ionicons } from "@expo/vector-icons";
-import AssetsView from "../assets/components/AssetsView";
-import { Button, Image, Input } from "react-native-elements";
+import { Button, Input } from "react-native-elements";
 import * as env from "../../env";
 import { NavigationActions, StackActions } from "react-navigation";
 
@@ -157,16 +153,21 @@ class AuthLoginPageView extends React.Component {
                                 title={"Forgot Password"}
                                 type="outline"
                                 onPress={() => {
-                                    this.props.navigation.navigate( "AuthForgetPasswordPage" )
+                                    this.props.navigation.navigate( "AuthRegisterPage", {
+                                        isResetPassword: true
+                                    } )
                                 }
                                 }
                             />
+                            <View style={[ commonStyles.wrapper ]}/>
 
                             <Button
                                 title={"Sign Up"}
                                 type="outline"
                                 onPress={() => {
-                                    this.props.navigation.navigate( "AuthRegisterPage" )
+                                    this.props.navigation.navigate( "AuthRegisterPage", {
+                                        isResetPassword: false
+                                    } )
                                 }
                                 }
                             />

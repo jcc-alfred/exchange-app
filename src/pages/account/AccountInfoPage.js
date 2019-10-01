@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import MinePageView from "./MinePageView";
+import AccountInfoPageView from "./AccountInfoPageView";
 
 const mapStoreToProps = ( store, ownProps ) => {
     const { params } = ownProps.navigation.state;
@@ -13,9 +13,9 @@ const mapStoreToProps = ( store, ownProps ) => {
 
 const mapDispatchToProps = ( dispatch, ownProps ) => ( {} );
 
-const MinePage = connect(
+const AccountInfoPage = connect(
     mapStoreToProps,
     mapDispatchToProps
-)( MinePageView );
+)( AccountInfoPageView );
 
-export default MinePage;
+export default AccountInfoPage;

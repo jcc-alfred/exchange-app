@@ -1,14 +1,895 @@
 {
   "Amount": "Amount",
   "Buy": "Buy",
+  "Exchange Amount": "Exchange Amount",
   "Fixed Entrust": "Fixed Entrust",
   "Kline": "Kline",
+  "OTC": "OTC",
   "Price": "Price",
   "Sell": "Sell",
   "Volume": "Volume",
   "about": "About",
   "assets": "assets",
   "changerate": "Change Rate",
+  "country": {
+    "AD": {
+      "sort": "",
+      "value": "Andorra"
+    },
+    "AE": {
+      "sort": "",
+      "value": "United Arab Emirates"
+    },
+    "AF": {
+      "sort": "",
+      "value": "Afghanistan"
+    },
+    "AG": {
+      "sort": "",
+      "value": "Antigua and Barbuda"
+    },
+    "AI": {
+      "sort": "",
+      "value": "Anguilla"
+    },
+    "AL": {
+      "sort": "",
+      "value": "Albania"
+    },
+    "AM": {
+      "sort": "",
+      "value": "Armenia"
+    },
+    "AN": {
+      "sort": "",
+      "value": "Netherlands Antilles"
+    },
+    "AO": {
+      "sort": "",
+      "value": "Angola"
+    },
+    "AR": {
+      "sort": "",
+      "value": "Argentina"
+    },
+    "AT": {
+      "sort": "",
+      "value": "Austria"
+    },
+    "AU": {
+      "sort": "",
+      "value": "Australia"
+    },
+    "AW": {
+      "sort": "",
+      "value": "Aruba"
+    },
+    "AZ": {
+      "sort": "",
+      "value": "Azerbaijan"
+    },
+    "BA": {
+      "sort": "",
+      "value": "Bosnia Herzegovina"
+    },
+    "BB": {
+      "sort": "",
+      "value": "Barbados"
+    },
+    "BD": {
+      "sort": "",
+      "value": "Bangladesh"
+    },
+    "BE": {
+      "sort": "",
+      "value": "Belgium"
+    },
+    "BF": {
+      "sort": "",
+      "value": "Burkina Faso"
+    },
+    "BG": {
+      "sort": "",
+      "value": "Bulgaria"
+    },
+    "BH": {
+      "sort": "",
+      "value": "Bahrain"
+    },
+    "BI": {
+      "sort": "",
+      "value": "Burundi"
+    },
+    "BJ": {
+      "sort": "",
+      "value": "Benin"
+    },
+    "BM": {
+      "sort": "",
+      "value": "Bermuda"
+    },
+    "BN": {
+      "sort": "",
+      "value": "Brunei Darussalam"
+    },
+    "BO": {
+      "sort": "",
+      "value": "Bolivia"
+    },
+    "BR": {
+      "sort": "",
+      "value": "Brazil"
+    },
+    "BS": {
+      "sort": "",
+      "value": "Bahamas"
+    },
+    "BT": {
+      "sort": "",
+      "value": "Bhutan"
+    },
+    "BW": {
+      "sort": "",
+      "value": "Botswana"
+    },
+    "BY": {
+      "sort": "",
+      "value": "Belarus"
+    },
+    "BZ": {
+      "sort": "",
+      "value": "Belize"
+    },
+    "CA": {
+      "sort": "",
+      "value": "Canada"
+    },
+    "CD": {
+      "sort": "",
+      "value": "Congo (Democratic Republic)"
+    },
+    "CF": {
+      "sort": "",
+      "value": "Central African Republic"
+    },
+    "CG": {
+      "sort": "",
+      "value": "Congo (Republic of)"
+    },
+    "CH": {
+      "sort": "",
+      "value": "Switzerland"
+    },
+    "CK": {
+      "sort": "",
+      "value": "Cook Islands"
+    },
+    "CL": {
+      "sort": "",
+      "value": "Chile"
+    },
+    "CM": {
+      "sort": "",
+      "value": "Cameroon"
+    },
+    "CN": {
+      "currency_name": "Chinese Yuan",
+      "sort": "",
+      "value": "China"
+    },
+    "CO": {
+      "sort": "",
+      "value": "Colombia"
+    },
+    "CR": {
+      "sort": "",
+      "value": "Costa Rica"
+    },
+    "CU": {
+      "sort": "",
+      "value": "Cuba"
+    },
+    "CV": {
+      "sort": "",
+      "value": "Cabo Verde"
+    },
+    "CY": {
+      "sort": "",
+      "value": "Cyprus"
+    },
+    "CZ": {
+      "sort": "",
+      "value": "Czech Republic"
+    },
+    "DE": {
+      "sort": "",
+      "value": "Germany"
+    },
+    "DJ": {
+      "sort": "",
+      "value": "Djibouti"
+    },
+    "DK": {
+      "sort": "",
+      "value": "Denmark"
+    },
+    "DM": {
+      "sort": "",
+      "value": "Dominica"
+    },
+    "DO": {
+      "sort": "",
+      "value": "Dominican Republic"
+    },
+    "DZ": {
+      "sort": "",
+      "value": "Algeria"
+    },
+    "EC": {
+      "sort": "",
+      "value": "Ecuador"
+    },
+    "EE": {
+      "sort": "",
+      "value": "Estonia"
+    },
+    "EG": {
+      "sort": "",
+      "value": "Egypt"
+    },
+    "ES": {
+      "sort": "",
+      "value": "Spain"
+    },
+    "ET": {
+      "sort": "",
+      "value": "Ethiopia"
+    },
+    "FI": {
+      "sort": "",
+      "value": "Finland"
+    },
+    "FJ": {
+      "sort": "",
+      "value": "Fiji"
+    },
+    "FM": {
+      "sort": "",
+      "value": "Micronesia"
+    },
+    "FO": {
+      "sort": "",
+      "value": "Faroe Islands"
+    },
+    "FR": {
+      "sort": "",
+      "value": "France"
+    },
+    "GA": {
+      "sort": "",
+      "value": "Gabon"
+    },
+    "GB": {
+      "sort": "",
+      "value": "United Kingdom"
+    },
+    "GD": {
+      "sort": "",
+      "value": "Grenada"
+    },
+    "GE": {
+      "sort": "",
+      "value": "Georgia"
+    },
+    "GF": {
+      "sort": "",
+      "value": "French Guiana"
+    },
+    "GG": {
+      "sort": "",
+      "value": "Guernsey"
+    },
+    "GH": {
+      "sort": "",
+      "value": "Ghana"
+    },
+    "GI": {
+      "sort": "",
+      "value": "Gibraltar"
+    },
+    "GL": {
+      "sort": "",
+      "value": "Greenland"
+    },
+    "GM": {
+      "sort": "",
+      "value": "Gambia"
+    },
+    "GN": {
+      "sort": "",
+      "value": "Guinea"
+    },
+    "GP": {
+      "sort": "",
+      "value": "Guadeloupe"
+    },
+    "GQ": {
+      "sort": "",
+      "value": "Equatorial Guinea"
+    },
+    "GR": {
+      "sort": "",
+      "value": "Greece"
+    },
+    "GT": {
+      "sort": "",
+      "value": "Guatemala"
+    },
+    "GU": {
+      "sort": "",
+      "value": "Guam"
+    },
+    "GW": {
+      "sort": "",
+      "value": "Guinea-Bissau"
+    },
+    "GY": {
+      "sort": "",
+      "value": "Guyana"
+    },
+    "HK": {
+      "sort": "",
+      "value": "Hong Kong"
+    },
+    "HN": {
+      "sort": "",
+      "value": "Honduras"
+    },
+    "HR": {
+      "sort": "",
+      "value": "Croatia"
+    },
+    "HT": {
+      "sort": "",
+      "value": "Haiti"
+    },
+    "HU": {
+      "sort": "",
+      "value": "Hungary"
+    },
+    "ID": {
+      "sort": "",
+      "value": "Indonesia"
+    },
+    "IE": {
+      "sort": "",
+      "value": "Ireland (Republic of)"
+    },
+    "IL": {
+      "sort": "",
+      "value": "Israel"
+    },
+    "IM": {
+      "sort": "",
+      "value": "Isle of Man"
+    },
+    "IN": {
+      "sort": "",
+      "value": "India"
+    },
+    "IQ": {
+      "sort": "",
+      "value": "Iraq"
+    },
+    "IR": {
+      "sort": "",
+      "value": "Iran"
+    },
+    "IS": {
+      "sort": "",
+      "value": "Iceland"
+    },
+    "IT": {
+      "sort": "",
+      "value": "Italy"
+    },
+    "JE": {
+      "sort": "",
+      "value": "Jersey"
+    },
+    "JM": {
+      "sort": "",
+      "value": "Jamaica"
+    },
+    "JO": {
+      "sort": "",
+      "value": "Jordan"
+    },
+    "JP": {
+      "sort": "",
+      "value": "Japan"
+    },
+    "KE": {
+      "sort": "",
+      "value": "Kenya"
+    },
+    "KG": {
+      "sort": "",
+      "value": "Kyrgyzstan"
+    },
+    "KH": {
+      "sort": "",
+      "value": "Cambodia"
+    },
+    "KI": {
+      "sort": "",
+      "value": "Kiribati"
+    },
+    "KM": {
+      "sort": "",
+      "value": "Comoros"
+    },
+    "KN": {
+      "sort": "",
+      "value": "Saint Kitts and Nevis"
+    },
+    "KP": {
+      "sort": "",
+      "value": "North Korea"
+    },
+    "KR": {
+      "sort": "",
+      "value": "South Korea"
+    },
+    "KW": {
+      "sort": "",
+      "value": "Kuwait"
+    },
+    "KY": {
+      "sort": "",
+      "value": "Cayman Islands"
+    },
+    "KZ": {
+      "sort": "",
+      "value": "Kazakhstan"
+    },
+    "LA": {
+      "sort": "",
+      "value": "Laos"
+    },
+    "LB": {
+      "sort": "",
+      "value": "Lebanon"
+    },
+    "LC": {
+      "sort": "",
+      "value": "Saint Lucia"
+    },
+    "LI": {
+      "sort": "",
+      "value": "Liechtenstein"
+    },
+    "LK": {
+      "sort": "",
+      "value": "Sri Lanka"
+    },
+    "LR": {
+      "sort": "",
+      "value": "Liberia"
+    },
+    "LS": {
+      "sort": "",
+      "value": "Lesotho"
+    },
+    "LT": {
+      "sort": "",
+      "value": "Lithuania"
+    },
+    "LU": {
+      "sort": "",
+      "value": "Luxembourg"
+    },
+    "LV": {
+      "sort": "",
+      "value": "Latvia"
+    },
+    "LY": {
+      "sort": "",
+      "value": "Libya"
+    },
+    "MA": {
+      "sort": "",
+      "value": "Morocco"
+    },
+    "MC": {
+      "sort": "",
+      "value": "Monaco"
+    },
+    "MD": {
+      "sort": "",
+      "value": "Moldova"
+    },
+    "ME": {
+      "sort": "",
+      "value": "Montenegro"
+    },
+    "MF": {
+      "sort": "",
+      "value": "Saint Martin (French part)"
+    },
+    "MG": {
+      "sort": "",
+      "value": "Madagascar"
+    },
+    "MK": {
+      "sort": "",
+      "value": "Macedonia"
+    },
+    "ML": {
+      "sort": "",
+      "value": "Mali"
+    },
+    "MM": {
+      "sort": "",
+      "value": "Myanmar"
+    },
+    "MN": {
+      "sort": "",
+      "value": "Mongolia"
+    },
+    "MO": {
+      "sort": "",
+      "value": "Macau"
+    },
+    "MP": {
+      "sort": "",
+      "value": "Northern Mariana Islands"
+    },
+    "MQ": {
+      "sort": "",
+      "value": "Martinique"
+    },
+    "MR": {
+      "sort": "",
+      "value": "Mauritania"
+    },
+    "MS": {
+      "sort": "",
+      "value": "Montserrat"
+    },
+    "MT": {
+      "sort": "",
+      "value": "Malta"
+    },
+    "MU": {
+      "sort": "",
+      "value": "Mauritius"
+    },
+    "MV": {
+      "sort": "",
+      "value": "Maldives"
+    },
+    "MW": {
+      "sort": "",
+      "value": "Malawi"
+    },
+    "MX": {
+      "sort": "",
+      "value": "Mexico"
+    },
+    "MY": {
+      "currency_name": "Malaysia Ringgit",
+      "sort": "",
+      "value": "Malaysia"
+    },
+    "MZ": {
+      "sort": "",
+      "value": "Mozambique"
+    },
+    "NA": {
+      "sort": "",
+      "value": "Namibia"
+    },
+    "NC": {
+      "sort": "",
+      "value": "New Caledonia"
+    },
+    "NE": {
+      "sort": "",
+      "value": "Niger"
+    },
+    "NF": {
+      "sort": "",
+      "value": "Norfolk Island"
+    },
+    "NG": {
+      "sort": "",
+      "value": "Nigeria"
+    },
+    "NI": {
+      "sort": "",
+      "value": "Nicaragua"
+    },
+    "NL": {
+      "sort": "",
+      "value": "Netherlands"
+    },
+    "NO": {
+      "sort": "",
+      "value": "Norway"
+    },
+    "NP": {
+      "sort": "",
+      "value": "Nepal"
+    },
+    "NR": {
+      "sort": "",
+      "value": "Nauru"
+    },
+    "NZ": {
+      "sort": "",
+      "value": "New Zealand"
+    },
+    "OM": {
+      "sort": "",
+      "value": "Oman"
+    },
+    "PA": {
+      "sort": "",
+      "value": "Panama"
+    },
+    "PE": {
+      "sort": "",
+      "value": "Peru"
+    },
+    "PF": {
+      "sort": "",
+      "value": "French Polynesia"
+    },
+    "PG": {
+      "sort": "",
+      "value": "Papua New Guinea"
+    },
+    "PH": {
+      "sort": "",
+      "value": "Philippines"
+    },
+    "PK": {
+      "sort": "",
+      "value": "Pakistan"
+    },
+    "PL": {
+      "sort": "",
+      "value": "Poland"
+    },
+    "PR": {
+      "sort": "",
+      "value": "Puerto Rico"
+    },
+    "PS": {
+      "sort": "",
+      "value": "Palestine, State of"
+    },
+    "PT": {
+      "sort": "",
+      "value": "Portugal"
+    },
+    "PW": {
+      "sort": "",
+      "value": "Palau"
+    },
+    "PY": {
+      "sort": "",
+      "value": "Paraguay"
+    },
+    "QA": {
+      "sort": "",
+      "value": "Qatar"
+    },
+    "RE": {
+      "sort": "",
+      "value": "Reunion"
+    },
+    "RO": {
+      "sort": "",
+      "value": "Romania"
+    },
+    "RS": {
+      "sort": "",
+      "value": "Serbia"
+    },
+    "RU": {
+      "sort": "",
+      "value": "Russia"
+    },
+    "RW": {
+      "sort": "",
+      "value": "Rwanda"
+    },
+    "SA": {
+      "sort": "",
+      "value": "Saudi Arabia"
+    },
+    "SC": {
+      "sort": "",
+      "value": "Seychelles"
+    },
+    "SD": {
+      "sort": "",
+      "value": "Sudan"
+    },
+    "SE": {
+      "sort": "",
+      "value": "Sweden"
+    },
+    "SG": {
+      "currency_name": "Singapore Dollar",
+      "sort": "",
+      "value": "Singapore"
+    },
+    "SH": {
+      "sort": "",
+      "value": "Saint Helena, Ascension and Tristan da Cunha"
+    },
+    "SI": {
+      "sort": "",
+      "value": "Slovenia"
+    },
+    "SK": {
+      "sort": "",
+      "value": "Slovakia"
+    },
+    "SL": {
+      "sort": "",
+      "value": "Sierra Leone"
+    },
+    "SM": {
+      "sort": "",
+      "value": "San Marino (Republic of)"
+    },
+    "SN": {
+      "sort": "",
+      "value": "Senegal"
+    },
+    "SR": {
+      "sort": "",
+      "value": "Suriname"
+    },
+    "SV": {
+      "sort": "",
+      "value": "El Salvador"
+    },
+    "SY": {
+      "sort": "",
+      "value": "Syria"
+    },
+    "SZ": {
+      "sort": "",
+      "value": "Swaziland"
+    },
+    "TC": {
+      "sort": "",
+      "value": "Turks and Caicos Islands"
+    },
+    "TD": {
+      "sort": "",
+      "value": "Chad"
+    },
+    "TG": {
+      "sort": "",
+      "value": "Togo"
+    },
+    "TH": {
+      "sort": "",
+      "value": "Thailand"
+    },
+    "TJ": {
+      "sort": "",
+      "value": "Tajikistan"
+    },
+    "TL": {
+      "sort": "",
+      "value": "Timor-Leste"
+    },
+    "TM": {
+      "sort": "",
+      "value": "Turkmenistan"
+    },
+    "TN": {
+      "sort": "",
+      "value": "Tunisia"
+    },
+    "TO": {
+      "sort": "",
+      "value": "Tonga"
+    },
+    "TR": {
+      "sort": "",
+      "value": "Turkey"
+    },
+    "TT": {
+      "sort": "",
+      "value": "Trinidad & Tobago"
+    },
+    "TW": {
+      "currency_name": "New Taiwan Dollar",
+      "sort": "",
+      "value": "Taiwan"
+    },
+    "TZ": {
+      "sort": "",
+      "value": "Tanzania"
+    },
+    "UA": {
+      "sort": "",
+      "value": "Ukraine"
+    },
+    "UG": {
+      "sort": "",
+      "value": "Uganda"
+    },
+    "US": {
+      "currency_name": "US Dollar",
+      "sort": "",
+      "value": "United States"
+    },
+    "UY": {
+      "sort": "",
+      "value": "Uruguay"
+    },
+    "UZ": {
+      "sort": "",
+      "value": "Uzbekistan"
+    },
+    "VC": {
+      "sort": "",
+      "value": "Saint Vincent and the Grenadines"
+    },
+    "VE": {
+      "sort": "",
+      "value": "Venezuela"
+    },
+    "VG": {
+      "sort": "",
+      "value": "British Virgin Islands"
+    },
+    "VI": {
+      "sort": "",
+      "value": "Virgin Islands (USA)"
+    },
+    "VN": {
+      "sort": "",
+      "value": "Vietnam"
+    },
+    "VU": {
+      "sort": "",
+      "value": "Vanuatu"
+    },
+    "WS": {
+      "sort": "",
+      "value": "Samoa"
+    },
+    "YE": {
+      "sort": "",
+      "value": "Yemen Republic"
+    },
+    "YT": {
+      "sort": "",
+      "value": "Mayotte"
+    },
+    "ZA": {
+      "sort": "",
+      "value": "South Africa"
+    },
+    "ZM": {
+      "sort": "",
+      "value": "Zambia"
+    },
+    "ZW": {
+      "sort": "",
+      "value": "Zimbabwe"
+    }
+  },
   "home": "Home",
   "language": {
     "chinese": "Chinese",
@@ -21,6 +902,13 @@
   "logout": "Logout",
   "me": "Me",
   "name": "Name",
+  "password": "password",
+  "please_input_password": "Please enter your password",
+  "please_input_verify_code": "please enter verification code",
+  "resend": "Resend",
+  "select_country": "select country",
   "settings": "Settings",
+  "sign_up": " registered",
+  "verify_code": "Verification code",
   "volume": "volume"
 }
