@@ -32,9 +32,9 @@ export function authLogin( account, password, imageCode, callback ) {
     };
 }
 
-export function authSignUp( account, password, imageCode, callback ) {
+export function authSignUp( query, callback ) {
     return ( dispatch ) => {
-        netAuthSignUp( account, password, imageCode, ( err, res ) => {
+        netAuthSignUp( query, ( err, res ) => {
             if ( !err ) {
                 dispatch( {
                     type: userActionTypes.LOGIN,

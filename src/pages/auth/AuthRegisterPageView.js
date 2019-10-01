@@ -53,9 +53,6 @@ class AuthRegisterPageView extends React.Component {
         return true;
     }
 
-    signUp() {
-
-    }
 
     verificationCodeGet() {
         this.setState( {
@@ -72,12 +69,55 @@ class AuthRegisterPageView extends React.Component {
             query = {
                 type: this.state.type,
                 areaCode: '' + this.state.currentCountry.phoneCode,
-                phoneNumber: phone
+                phoneNumber: this.state.phone
             }
         }
 
         InteractionManager.runAfterInteractions( () => {
             this.props.onUserSendCode(
+                query,
+                ( error, resBody ) => {
+                    this.setState( {
+                        isRequesting: false
+                    } );
+
+                    if ( error ) {
+                        Toast.show( error.message );
+                    } else {
+                        this.setState( {
+                            isCountingDown: true,
+                            code: '',
+                        } );
+                    }
+                } );
+        } );
+    }
+
+    signUp() {
+        this.setState( {
+            isRequesting: true
+        } );
+
+        let query;
+        if ( this.state.type === 'email' ) {
+            query = {
+                accountType: this.state.type,
+                email: this.state.email,
+                emailCode: this.state.code,
+                loginPass: this.state.password
+            }
+        } else {
+            query = {
+                accountType: this.state.type,
+                areaCode: '' + this.state.currentCountry.phoneCode,
+                phoneNumber: this.state.phone,
+                phoneCode: this.state.code,
+                loginPass: this.state.password
+            }
+        }
+
+        InteractionManager.runAfterInteractions( () => {
+            this.props.onAuthSignUp(
                 query,
                 ( error, resBody ) => {
                     this.setState( {
@@ -175,7 +215,7 @@ class AuthRegisterPageView extends React.Component {
                             }}
                             label={I18n.t( Keys.verify_code )}
                             style={[ commonStyles.wrapper ]}
-                            maxLength={4}
+                            maxLength={6}
                             rightIcon={
                                 this.state.isCountingDown ?
                                     <CountDown
@@ -206,12 +246,14 @@ class AuthRegisterPageView extends React.Component {
                                     />
                             }
                             leftIconContainerStyle={[ commonStyles.pdr_normal ]}
-                            value={this.props.code}
-                            onChangeText={( text ) => this.props.onCodeChange && this.props.onCodeChange( text )}
+                            value={this.state.code}
+                            onChangeText={( text ) => this.setState({
+                                code: text
+                            })}
                             keyboardType={'phone-pad'}
                             errorStyle={{ color: 'red' }}
                             errorMessage={
-                                this.props.showError && ( !this.props.code || this.props.code.length <= 0 ) ?
+                                this.state.showError && ( !this.state.code || this.state.code.length <= 0 ) ?
                                     I18n.t( Keys.please_input_verify_code )
                                     :
                                     null

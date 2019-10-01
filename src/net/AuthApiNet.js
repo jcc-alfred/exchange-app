@@ -11,22 +11,15 @@ header( request );
 apiDomainParse( request );
 
 
-export function netAuthSignUp( account, password, imgCode, callback ) {
-    let query = {
-        loginPass: password,
-        imgCode: imgCode
+export function netAuthSignUp( query, callback ) {
+    let query1 = {
+        ...query,
+        imgCode: env.adminImageCode
     };
-
-    let accountType = "phone";
-    if ( accountType.indexOf( "@" ) ) {
-        query = { ...query, accountType: "email", email: account }
-    } else {
-        query = { ...query, accountType: "phone", phone: account }
-    }
 
     request
         .post( '/User/signUp' )
-        .send( query )
+        .send( query1 )
         .use( superagent_prefix( env.apiDomain ) )
         .use( logger )
         .authRequest()
