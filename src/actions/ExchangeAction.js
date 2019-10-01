@@ -15,6 +15,7 @@ import {
 } from "../net/ExchangeApiNet";
 import userActionTypes from "../reducers/user/userActionTypes";
 import metaActionTypes from "../reducers/meta/metaActionTypes";
+import {netDocGetHomeNewsList} from "../net/DocApiNet";
 
 
 export function exchangeGetMarketList(callback) {
@@ -135,4 +136,11 @@ export function exchangeDoBatchEntrust(query, callback) {
     };
 }
 
+export function docGetHomeNewsList(query, callback) {
+    return (dispatch) => {
+        netDocGetHomeNewsList(query, (err, res) => {
+            callback && callback(err, res)
+        });
+    };
+}
 
