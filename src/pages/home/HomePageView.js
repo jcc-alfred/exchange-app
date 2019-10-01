@@ -307,28 +307,6 @@ class HomePageView extends React.Component {
 
                     </View>
 
-                    {/*<View style={styles.getStartedContainer}>*/}
-                    {/*<DevelopmentModeNotice/>*/}
-
-                    {/*<Text style={styles.getStartedText}>Get started by opening</Text>*/}
-
-                    {/*<View*/}
-                    {/*style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>*/}
-                    {/*<MonoText>screens/HomeScreen.js</MonoText>*/}
-                    {/*</View>*/}
-
-                    {/*<Text style={styles.getStartedText}>*/}
-                    {/*Change this text and your app will automatically reload.*/}
-                    {/*</Text>*/}
-                    {/*</View>*/}
-
-                    {/*<View style={styles.helpContainer}>*/}
-                    {/*<TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>*/}
-                    {/*<Text style={styles.helpLinkText}>*/}
-                    {/*Help, it didn’t automatically reload!*/}
-                    {/*</Text>*/}
-                    {/*</TouchableOpacity>*/}
-                    {/*</View>*/}
                 </ScrollView>
 
             </View>
@@ -352,13 +330,6 @@ class HomePageView extends React.Component {
                     <Text style={{marginTop: 5}}>
                         {item.update_time}
                     </Text>
-
-                    {/*<View style={{flex: 1, alignItems: 'center'}}>*/}
-                    {/*<Text style={{color: item.market.change_rate > 0 ? 'green' : 'red'}}>*/}
-                    {/*{(item.market.change_rate * 100).toFixed(2)}%*/}
-                    {/*</Text>*/}
-                    {/*</View>*/}
-
                 </View>
             </TouchableHighlight>
         );
