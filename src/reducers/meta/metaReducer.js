@@ -1,11 +1,10 @@
-import userActionTypes from "../user/userActionTypes";
-import {getEventEmitter} from "../../EventEmitter";
-import PubSubConstant from "../../pubSub/PubSubConstant";
 import metaActionTypes from "./metaActionTypes";
 
 const initialState = {
     coin_exchange_area: [],
-    entrustList: []
+    entrustList: [],
+    marketList: [],
+    TradePageCoinEx: null
 };
 
 export default function metaReducer(state = initialState, action) {
@@ -14,6 +13,28 @@ export default function metaReducer(state = initialState, action) {
             return {
                 ...state,
                 coin_exchange_area: action.data,
+            }
+        }
+        case metaActionTypes.MARKET_LIST: {
+            let isExist = false;
+            if (state.TradePageCoinEx) {
+                for (let index = 0; index < action.data.length; index++) {
+                    if (action.data[index].coin_exchange_id === state.TradePageCoinEx.coin_exchange_id) {
+                        isExist = true;
+                        break;
+                    }
+                }
+            }
+            return {
+                ...state,
+                marketList: action.data,
+                TradePageCoinEx: isExist ? state.TradePageCoinEx : action.data[0]
+            }
+        }
+        case metaActionTypes.CHANGE_TRADE_EX: {
+            return {
+                ...state,
+                TradePageCoinEx: action.data
             }
         }
         default:

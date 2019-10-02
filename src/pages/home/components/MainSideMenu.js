@@ -39,7 +39,7 @@ class MainSideMenu extends React.Component {
                             subtitle={"aaa"}
                             onPress={() => {
                                 this.props.navigation.dispatch( DrawerActions.closeDrawer() )
-                                this.props.navigation.navigate( "MinePage" )
+                                this.props.navigation.navigate( "BasicUserInfoVerifyPage" )
                             }}
                             topDivider={false}
                             bottomDivider={false}

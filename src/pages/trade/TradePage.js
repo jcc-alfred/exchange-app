@@ -2,7 +2,12 @@ import React from 'react';
 import {connect} from "react-redux";
 import TradePageView from "./TradePageView";
 import userActionTypes from "../../reducers/user/userActionTypes";
-import {exchangeGetMarketList, exchangeGetIsExchangeSafe, exchangeDoEntrust} from "../../actions/ExchangeAction";
+import {
+    exchangeGetMarketList,
+    exchangeGetIsExchangeSafe,
+    exchangeDoEntrust,
+    changeTradePageCoinExchange
+} from "../../actions/ExchangeAction";
 
 const mapStoreToProps = (store, ownProps) => {
     const {params} = ownProps.navigation.state;
@@ -11,20 +16,18 @@ const mapStoreToProps = (store, ownProps) => {
         isLoggedIn: store.userStore.isLoggedIn,
         userInfo: store.userStore.userInfo,
         entrustList: store.metaStore.entrustList,
-        TradePageCoinEx: store.userStore.TradePageCoinEx,
+        TradePageCoinEx: store.metaStore.TradePageCoinEx,
         safePass:store.userStore.safePass
     }
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    changeTradePageCoinExchange: (coinEx) => {
-        dispatch(
-            {
-                type: userActionTypes.CHANGE_TRADE_EX,
-                data: coinEx
-            }
-        )
+
+    onChangeTradePageCoinExchange: (coinEx) => {
+        dispatch(changeTradePageCoinExchange(coinEx));
     },
+
+
     onExchangeGetMarketList: (callback) => {
         dispatch(exchangeGetMarketList((err, res) => {
             callback && callback(err, res)
@@ -39,6 +42,12 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
         dispatch(exchangeGetIsExchangeSafe(coinExchangeId, (err, res) => {
             callback && callback(err, res)
         }))
+    },
+    changeSafePass:(password) =>{
+        dispatch({
+            type:userActionTypes.SAVE_SAFE_PASS,
+            data: password
+        })
     }
 });
 

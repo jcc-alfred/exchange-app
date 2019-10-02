@@ -4,12 +4,12 @@ const Keys = {
     "Exchange Amount": "Exchange Amount",
     "Fixed Entrust": "Fixed Entrust",
     "Kline": "Kline",
-    "OTC": "OTC",
     "Price": "Price",
     "Sell": "Sell",
     "Volume": "Volume",
     "about": "about",
     "assets": "assets",
+    "Confirm":"Confirm",
     "changerate": "changerate",
     "country": "country",
     "country_AD": "country.AD",
@@ -688,11 +688,22 @@ const Keys = {
     "resend": "resend",
     "select_country": "select_country",
     "settings": "settings",
+    "ExchangeAmount":"Exchange Amount",
+    "safePassTitle":"safePassTitle",
+    "OTC":"OTC",
+    "delete":"delete",
+    "Cancel":"Cancel",
+    "Current_Commission":"Current_Commission",
+    "Transaction":"Transaction",
     "sign_up": "sign_up",
     "verify_code": "verify_code",
     "volume": "volume",
     "news": "news",
-    "announcement": "accouncement"
+    "announcement": "accouncement",
+    "Total_account_assets":"Total account assets",
+    "Punching":"Punching",
+    "WithDraw":"WithDraw",
+    "transfer":"Transfer"
 
 };
 export default Keys;
