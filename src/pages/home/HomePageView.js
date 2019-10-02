@@ -9,14 +9,17 @@ import {
     ScrollView,
     FlatList,
     RefreshControl,
-    ImageBackground
+    ImageBackground, Image
 } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import Toast from "react-native-root-toast";
-import { Text } from "react-native-elements";
-import { BorderlessButton } from "react-native-gesture-handler";
-import { Ionicons } from "@expo/vector-icons";
-import { DrawerActions } from 'react-navigation-drawer';
+import {Text} from "react-native-elements";
+import {BorderlessButton} from "react-native-gesture-handler";
+import {Ionicons} from "@expo/vector-icons";
+import {DrawerActions} from 'react-navigation-drawer';
+import I18n from "../../I18n";
+import Keys from "../../configs/Keys";
+
 
 class HomePageView extends React.Component {
 
@@ -38,20 +41,27 @@ class HomePageView extends React.Component {
         const {params} = state;
 
         return {
-            title: "Home",
+            title: null,
             headerBackTitle: null,
+            headerButtonImage: (<Image source={require('../../../assets/images/asiaedx_logo.png')}></Image>),
             headerLeft: (
                 <BorderlessButton
                     onPress={() => {
-                        navigation.dispatch( DrawerActions.openDrawer() );
+                        navigation.dispatch(DrawerActions.openDrawer());
                     }}
                     style={{marginLeft: 15}}>
-                    <Ionicons
-                        name="md-menu"
-                        size={Platform.OS === 'ios' ? 22 : 25}
-                        color={'white'}
-                    />
+
+                    <View style={{flexDirection: 'row'}}>
+                        <Ionicons
+                            name="md-menu"
+                            size={Platform.OS === 'ios' ? 22 : 25}
+                            color={'white'}
+                        />
+                        <Image style={{ width: 80, height: 20, marginStart: 20,  alignItems: 'center', alignContent: 'center', resizeMode: 'stretch'}}
+                               source={require('../../../assets/images/asiaedx_logo.png')}></Image>
+                    </View>
                 </BorderlessButton>
+
             )
         };
     };
@@ -213,8 +223,13 @@ class HomePageView extends React.Component {
                             <View style={{flex: 1, alignItems: 'center'}}>
                                 <Text>ETH/BTC</Text>
 
-                                <Text style={{fontSize: 16, fontWeight: 'bold', color: this.state.dataSources[0].market.change_rate < 0 ? 'red' : 'green'}}>{this.state.dataSources.length == 0 ? '' : this.state.dataSources[0].market.last_price}</Text>
-                                <Text style={{color: this.state.dataSources[0].market.change_rate < 0 ? 'red' : 'green'}}>{this.state.dataSources.length == 0 ? '' : (this.state.dataSources[0].market.change_rate * 100).toFixed(2)}%</Text>
+                                <Text style={{
+                                    fontSize: 16,
+                                    fontWeight: 'bold',
+                                    color: this.state.dataSources[0].market.change_rate < 0 ? 'red' : 'green'
+                                }}>{this.state.dataSources.length == 0 ? '' : this.state.dataSources[0].market.last_price}</Text>
+                                <Text
+                                    style={{color: this.state.dataSources[0].market.change_rate < 0 ? 'red' : 'green'}}>{this.state.dataSources.length == 0 ? '' : (this.state.dataSources[0].market.change_rate * 100).toFixed(2)}%</Text>
                                 <Text> ≈{this.state.dataSources.length == 0 ? '' : this.state.dataSources[0].price_usd.toFixed(2)} USD</Text>
 
 
@@ -222,16 +237,26 @@ class HomePageView extends React.Component {
 
                             <View style={{flex: 1, alignItems: 'center'}}>
                                 <Text>GTB/BTC</Text>
-                                <Text style={{fontSize: 16, fontWeight: 'bold', color: this.state.dataSources[0].market.change_rate < 0 ? 'red' : 'green'}}>{this.state.dataSources.length == 0 ? '' : this.state.dataSources[1].market.last_price}</Text>
-                                <Text style={{color: this.state.dataSources[0].market.change_rate < 0 ? 'red' : 'green'}}>{this.state.dataSources.length == 0 ? '' : (this.state.dataSources[1].market.change_rate * 100).toFixed(2)}%</Text>
+                                <Text style={{
+                                    fontSize: 16,
+                                    fontWeight: 'bold',
+                                    color: this.state.dataSources[0].market.change_rate < 0 ? 'red' : 'green'
+                                }}>{this.state.dataSources.length == 0 ? '' : this.state.dataSources[1].market.last_price}</Text>
+                                <Text
+                                    style={{color: this.state.dataSources[0].market.change_rate < 0 ? 'red' : 'green'}}>{this.state.dataSources.length == 0 ? '' : (this.state.dataSources[1].market.change_rate * 100).toFixed(2)}%</Text>
                                 <Text> ≈{this.state.dataSources.length == 0 ? '' : this.state.dataSources[1].price_usd.toFixed(2)} USD</Text>
 
                             </View>
 
                             <View style={{flex: 1, alignItems: 'center'}}>
                                 <Text>GTB/ETH</Text>
-                                <Text style={{fontSize: 16, fontWeight: 'bold', color: this.state.dataSources[0].market.change_rate < 0 ? 'red' : 'green'}}>{this.state.dataSources.length == 0 ? '' : this.state.dataSources[2].market.last_price}</Text>
-                                <Text style={{color: this.state.dataSources[0].market.change_rate < 0 ? 'red' : 'green'}}>{this.state.dataSources.length == 0 ? '' : (this.state.dataSources[2].market.change_rate * 100).toFixed(2)}%</Text>
+                                <Text style={{
+                                    fontSize: 16,
+                                    fontWeight: 'bold',
+                                    color: this.state.dataSources[0].market.change_rate < 0 ? 'red' : 'green'
+                                }}>{this.state.dataSources.length == 0 ? '' : this.state.dataSources[2].market.last_price}</Text>
+                                <Text
+                                    style={{color: this.state.dataSources[0].market.change_rate < 0 ? 'red' : 'green'}}>{this.state.dataSources.length == 0 ? '' : (this.state.dataSources[2].market.change_rate * 100).toFixed(2)}%</Text>
                                 <Text> ≈{this.state.dataSources.length == 0 ? '' : this.state.dataSources[2].price_usd.toFixed(2)} USD</Text>
                             </View>
 
@@ -243,7 +268,7 @@ class HomePageView extends React.Component {
 
                     <View>
 
-                        <Text style={{padding: 16, fontSize: 16}}>News</Text>
+                        <Text style={{padding: 16, fontSize: 16}}>{I18n.t( Keys.news )}</Text>
 
                         <FlatList
                             // refreshControl={
@@ -275,7 +300,7 @@ class HomePageView extends React.Component {
 
                         <View style={{height: 1, backgroundColor: '#efefef'}}/>
 
-                        <Text style={{padding: 16, fontSize: 16}}>Announcement</Text>
+                        <Text style={{padding: 16, fontSize: 16}}>{I18n.t( Keys.announcement )}</Text>
 
                         <FlatList
                             // refreshControl={
@@ -319,6 +344,7 @@ class HomePageView extends React.Component {
                 underlayColor='#ddd'
                 style={index % 2 == 1 ? {backgroundColor: '#efefef'} : {backgroundColor: 'white'}}
                 onPress={() => {
+                    this.props.navigation.navigate( 'NewsDetailPage', { news: item } )
                 }}>
 
                 <View style={{alignItems: 'flex-start', height: 60, marginStart: 20, marginEnd: 20, marginTop: 10}}>

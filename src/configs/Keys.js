@@ -691,5 +691,8 @@ const Keys = {
     "sign_up": "sign_up",
     "verify_code": "verify_code",
     "volume": "volume",
+    "news": "news",
+    "announcement": "accouncement"
+
 };
 export default Keys;

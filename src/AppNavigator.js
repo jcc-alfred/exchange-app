@@ -50,6 +50,7 @@ import OTCTradePage from "./pages/OTCTrade/OTCTradePage";
 import { getStore } from "./setup";
 import MinePage from "./pages/mine/MinePage";
 import AccountInfoPage from "./pages/account/AccountInfoPage";
+import NewsDetailPage from "./pages/home/NewsDetailPage";
 
 process.env.REACT_NAV_LOGGING = ( global.__DEV__ );
 
@@ -350,6 +351,9 @@ const routeConfiguration = {
     AccountInfoPage: {
         screen: AccountInfoPage
     },
+    NewsDetailPage: {
+        screen: NewsDetailPage
+    }
 };
 
 const navMiddleware = createReactNavigationReduxMiddleware(

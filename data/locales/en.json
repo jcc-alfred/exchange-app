@@ -910,5 +910,7 @@
   "settings": "Settings",
   "sign_up": " registered",
   "verify_code": "Verification code",
-  "volume": "volume"
+  "volume": "volume",
+  "news": "News",
+  "accouncement": "Announcement"
 }
