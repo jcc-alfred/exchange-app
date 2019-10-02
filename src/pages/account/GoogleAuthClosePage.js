@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import PasswordResetPageView from "./PasswordResetPageView";
+import GoogleAuthClosePageView from "./GoogleAuthClosePageView";
 
 const mapStoreToProps = ( store, ownProps ) => {
     return {}
@@ -8,9 +8,9 @@ const mapStoreToProps = ( store, ownProps ) => {
 
 const mapDispatchToProps = ( dispatch, ownProps ) => ( {} );
 
-const PasswordResetPage = connect(
+const GoogleAuthClosePage = connect(
     mapStoreToProps,
     mapDispatchToProps
-)( PasswordResetPageView );
+)( GoogleAuthClosePageView );
 
-export default PasswordResetPage;
+export default GoogleAuthClosePage;

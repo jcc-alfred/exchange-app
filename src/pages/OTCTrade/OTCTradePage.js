@@ -16,14 +16,6 @@ const mapStoreToProps = ( store, ownProps ) => {
 };
 
 const mapDispatchToProps = ( dispatch, ownProps ) => ( {
-    changeTradePageCoinExchange:(coinEx)=>{
-        dispatch(
-            {
-                type:userActionTypes.CHANGE_TRADE_EX,
-                data: coinEx
-            }
-        )
-    },
     onExchangeGetMarketList: ( callback ) => {
         dispatch( exchangeGetMarketList( ( err, res ) => {
             callback && callback( err, res )

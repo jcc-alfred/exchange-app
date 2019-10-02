@@ -11,7 +11,7 @@ const initialState = {
         requestCookie: {
             token: '',
         },
-        safePass: null,
+        safePass: '',
         userInfo: {},
         loginHistoryForDebug: [
             {
@@ -19,7 +19,6 @@ const initialState = {
                 password: '123456'
             }
         ],
-        TradePageCoinEx: null
     }
 ;
 
@@ -72,12 +71,6 @@ export default function userReducer(state = initialState, action) {
             return {
                 ...state,
                 loginHistoryForDebug: recordLoginHistory(state, action.data)
-            }
-        }
-        case userActionTypes.CHANGE_TRADE_EX: {
-            return {
-                ...state,
-                TradePageCoinEx: action.data
             }
         }
         default:

@@ -14,7 +14,7 @@ import { createReactNavigationReduxMiddleware, createReduxContainer, } from 'rea
 
 import TabBarIcon from "./components/TabBarIcon";
 import AuthRegisterPage from "./pages/auth/AuthRegisterPage";
-import AboutPage from "./pages/setting/AboutPage";
+import AboutPage from "./pages/AboutPage";
 import SettingLanguagePage from "./pages/setting/SettingLanguagePage";
 import SettingsPage from "./pages/setting/SettingsPage";
 import WebViewPage from "./pages/WebViewPage";
@@ -24,21 +24,20 @@ import CountrySearchPage from "./pages/countrySelect/CountrySearchPage";
 import I18n from "./I18n";
 import Keys from "./configs/Keys";
 import OrderHistoryPage from "./pages/order/OrderHistoryPage";
-
-
+import TradeExMenu from "./pages/trade/components/TradeExMenu";
 import TradePage from "./pages/trade/TradePage";
 import UserEmailVerifyPage from "./pages/user/UserEmailVerifyPage";
 import UserGoogleAuthPage from "./pages/user/UserGoogleAuthPage";
 import UserKYCPage from "./pages/user/UserKYCPage";
 import UserPasswordResetPage from "./pages/user/UserPasswordResetPage";
 import UserPhoneVerifyPage from "./pages/user/UserPhoneVerifyPage";
-import FundPasswordResetPage from "./pages/setting/FundPasswordResetPage";
+import FundPasswordChangePage from "./pages/account/FundPasswordChangePage";
 import AssetsDepositHistoryPage from "./pages/assets/AssetsDepositHistoryPage";
 import AssetsDepositPage from "./pages/assets/AssetsDepositPage";
 import AssetsWithdrawHistoryPage from "./pages/assets/AssetsWithdrawHistoryPage";
 import AssetsWithdrawPage from "./pages/assets/AssetsWithdrawPage";
-import PasswordResetPage from "./pages/setting/PasswordResetPage";
-import GoogleAuthPage from "./pages/setting/GoogleAuthPage";
+import PasswordChangePage from "./pages/account/PasswordChangePage";
+import GoogleAuthOpenPage from "./pages/account/GoogleAuthOpenPage";
 import AssetsDetailPage from "./pages/assets/AssetsDetailPage";
 import MainSideMenu from "./pages/home/components/MainSideMenu";
 import KlinePage from "./pages/kline/KlinePage";
@@ -50,8 +49,10 @@ import OTCTradePage from "./pages/OTCTrade/OTCTradePage";
 import { getStore } from "./setup";
 import MinePage from "./pages/mine/MinePage";
 import AccountInfoPage from "./pages/account/AccountInfoPage";
+import NewsDetailPage from "./pages/home/NewsDetailPage";
 import BasicUserInfoVerifyPage from "./pages/mine/BasicUserInfoVerifyPage";
 import UserInfoVerifyPage from "./pages/mine/UserInfoVerifyPage";
+import GoogleAuthClosePage from "./pages/account/GoogleAuthClosePage";
 
 process.env.REACT_NAV_LOGGING = ( global.__DEV__ );
 
@@ -139,6 +140,24 @@ const HomeSearchStack = createStackNavigator(
 );
 
 
+const TradeExchangeStack = createStackNavigator(
+    {
+        TradePage: TradePage,
+    },
+    {
+        ...stackNavigatorConfiguration,
+        transitionConfig: () => StackViewTransitionConfigs.NoAnimation,
+        navigationOptions: {
+            ...stackNavigatorConfiguration.navigationOptions,
+            header: null,
+        },
+        defaultNavigationOptions: {
+            ...stackNavigatorConfiguration.defaultNavigationOptions,
+            gesturesEnabled: false,
+        },
+    }
+);
+
 const HomeDrawerNavigator = createDrawerNavigator(
     {
         HomeSearchStack: {
@@ -155,6 +174,21 @@ const HomeDrawerNavigator = createDrawerNavigator(
         initialRoute: "HomeSearchStack"
     } );
 
+const TradeDrawerNavigator = createDrawerNavigator(
+    {
+        HomeSearchStack: {
+            screen: TradeExchangeStack,
+        },
+    },
+    {
+        drawerPosition: 'left',
+        navigationOptions: {
+            header: null, headerBackTitle: null,
+            drawerLockMode: 'unlocked',
+        },
+        contentComponent: TradeExMenu,
+        initialRoute: "HomeSearchStack"
+    } );
 
 const HomeStack = createStackNavigator( { HomeDrawer: HomeDrawerNavigator, }, stackNavigatorConfiguration );
 
@@ -163,7 +197,7 @@ const OTCTradeStack = createStackNavigator( { OTCTradePage: { screen: OTCTradePa
 
 const QuotesStack = createStackNavigator( { QuotesPage: { screen: QuotesPage, } }, stackNavigatorConfiguration );
 
-const TradeStack = createStackNavigator( { TradePage: { screen: TradePage, } }, stackNavigatorConfiguration );
+const TradeStack = createStackNavigator( { TradeDrawer: TradeDrawerNavigator, }, stackNavigatorConfiguration );
 
 const AssetsDetailStack = createStackNavigator( { AssetsListPage: { screen: AssetsListPage, } }, stackNavigatorConfiguration );
 
@@ -319,8 +353,8 @@ const routeConfiguration = {
     UserPhoneVerifyPage: {
         screen: UserPhoneVerifyPage
     },
-    FundPasswordResetPage: {
-        screen: FundPasswordResetPage
+    FundPasswordChangePage: {
+        screen: FundPasswordChangePage
     },
     AssetsDepositHistoryPage: {
         screen: AssetsDepositHistoryPage
@@ -334,11 +368,11 @@ const routeConfiguration = {
     AssetsWithdrawPage: {
         screen: AssetsWithdrawPage
     },
-    PasswordResetPage: {
-        screen: PasswordResetPage
+    PasswordChangePage: {
+        screen: PasswordChangePage
     },
-    GoogleAuthPage: {
-        screen: GoogleAuthPage
+    GoogleAuthOpenPage: {
+        screen: GoogleAuthOpenPage
     },
     AssetsDetailPage: {
         screen: AssetsDetailPage
@@ -352,12 +386,18 @@ const routeConfiguration = {
     AccountInfoPage: {
         screen: AccountInfoPage
     },
+    NewsDetailPage: {
+        screen: NewsDetailPage
+    },
     BasicUserInfoVerifyPage: {
         screen: BasicUserInfoVerifyPage
     },
     UserInfoVerifyPage: {
         screen: UserInfoVerifyPage
-    }
+    },
+    GoogleAuthClosePage: {
+        screen: GoogleAuthClosePage
+    },
 };
 
 const navMiddleware = createReactNavigationReduxMiddleware(

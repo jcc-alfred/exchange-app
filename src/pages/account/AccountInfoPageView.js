@@ -51,7 +51,7 @@ class AccountInfoPageView extends React.Component {
                             <ListItem
                                 title={"Password"}
                                 onPress={() => {
-                                    this.props.navigation.navigate( "PasswordResetPage" )
+                                    this.props.navigation.navigate( "PasswordChangePage" )
                                 }}
                                 bottomDivider={true}
                             />
@@ -64,7 +64,9 @@ class AccountInfoPageView extends React.Component {
                             <ListItem
                                 title={"Fund Password"}
                                 onPress={() => {
-                                    this.props.navigation.navigate( "FundPasswordResetPage" )
+                                    this.props.navigation.navigate( "FundPasswordChangePage", {
+                                        isReset: false
+                                    } )
                                 }}
                                 bottomDivider={true}
                             />
@@ -77,7 +79,7 @@ class AccountInfoPageView extends React.Component {
                             <ListItem
                                 title={"Google Auth"}
                                 onPress={() => {
-                                    this.props.navigation.navigate( "GoogleAuthPage" )
+                                    this.props.navigation.navigate( "GoogleAuthOpenPage" )
                                 }}
                                 bottomDivider={true}
                             />

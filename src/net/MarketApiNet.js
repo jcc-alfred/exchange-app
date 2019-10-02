@@ -14,5 +14,3 @@ export function netMarketTradeKline( coinExchangeId, range, callback ) {
         .apiDomainParse()
         .end( callback );
 }
-
-
