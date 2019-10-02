@@ -48,6 +48,7 @@ async function loadResourcesAsync() {
             require( '../assets/images/robot-prod.png' ),
             require( '../assets/images/vip.png' ),
             require( '../assets/images/qr_code.png' ),
+            require( '../assets/images/klineIcon.png' ),
         ] ),
         Font.loadAsync( {
             // This is the font that we are using for our tab bar

@@ -8,6 +8,7 @@ import {
     exchangeDoEntrust,
     changeTradePageCoinExchange
 } from "../../actions/ExchangeAction";
+import {assetsGetUserAssets} from "../../actions/AssetsAction";
 
 const mapStoreToProps = (store, ownProps) => {
     const {params} = ownProps.navigation.state;
@@ -17,7 +18,7 @@ const mapStoreToProps = (store, ownProps) => {
         userInfo: store.userStore.userInfo,
         entrustList: store.metaStore.entrustList,
         TradePageCoinEx: store.metaStore.TradePageCoinEx,
-        safePass:store.userStore.safePass
+        safePass: store.userStore.safePass
     }
 };
 
@@ -27,6 +28,11 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
         dispatch(changeTradePageCoinExchange(coinEx));
     },
 
+    onAssetsGetUserAssets: (callback) => {
+        dispatch(assetsGetUserAssets((err, res) => {
+            callback && callback(err, res)
+        }));
+    },
 
     onExchangeGetMarketList: (callback) => {
         dispatch(exchangeGetMarketList((err, res) => {
@@ -43,9 +49,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
             callback && callback(err, res)
         }))
     },
-    changeSafePass:(password) =>{
+    changeSafePass: (password) => {
         dispatch({
-            type:userActionTypes.SAVE_SAFE_PASS,
+            type: userActionTypes.SAVE_SAFE_PASS,
             data: password
         })
     }

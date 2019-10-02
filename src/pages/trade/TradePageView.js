@@ -1,7 +1,7 @@
 import React from 'react';
 import {InteractionManager, PixelRatio, Platform, SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
 import commonStyles from "../../styles/commonStyles";
-import {Button, Input, Text} from "react-native-elements";
+import {Button, Image, Input, Text} from "react-native-elements";
 import Icon from 'react-native-vector-icons/FontAwesome'
 import I18n from "../../I18n";
 import Keys from "../../configs/Keys";
@@ -10,7 +10,7 @@ import * as env from "../../env";
 import Util from "../../util/Util";
 import Toast from "react-native-root-toast";
 import {ConfirmDialog} from 'react-native-simple-dialogs'
-import { DrawerActions } from 'react-navigation-drawer';
+import {DrawerActions} from 'react-navigation-drawer';
 import {BorderlessButton} from "react-native-gesture-handler";
 import {Ionicons} from "@expo/vector-icons";
 
@@ -22,7 +22,8 @@ class TradePageView extends React.Component {
         this.state = {
             isRequesting: false,
             isSafePassModalShow: false,
-            userEntrustList: []
+            userEntrustList: [],
+            buttonClick: null
         }
     }
 
@@ -49,6 +50,14 @@ class TradePageView extends React.Component {
         InteractionManager.runAfterInteractions(() => {
             if (!this.props.TradePageCoinEx) {
                 this.props.onExchangeGetMarketList(null)
+            }
+            if (this.props.isLoggedIn) {
+                this.props.onAssetsGetUserAssets((err, res) => {
+                    this.setState({
+                        refreshing: false,
+                        userAssets: res.data
+                    })
+                })
             }
 
             this.socket = io(env.webSocket);
@@ -88,11 +97,11 @@ class TradePageView extends React.Component {
             this.props.navigation.navigate("AuthLoginPage");
             return
         }
-        if(!entrustPrice || entrustPrice ===''){
+        if (!entrustPrice || entrustPrice === '') {
             Toast.show("Price Needed");
             return
         }
-        if(!entrustVolume || entrustVolume ===''){
+        if (!entrustVolume || entrustVolume === '') {
             Toast.show("Price Needed");
             return
         }
@@ -138,7 +147,10 @@ class TradePageView extends React.Component {
                                 }
                             })
                         } else {
-                            this.setState({isSafePassModalShow: true})
+                            this.setState({
+                                isSafePassModalShow: true,
+                                entrustTypeIdClicked: entrustTypeId
+                            })
                             //prompt safepass input modal
                         }
 
@@ -167,7 +179,16 @@ class TradePageView extends React.Component {
     }
 
     renderdoEntrustView(type = 'buy') {
-        console.log(this.state.buyPrice ,this.state.sellPrice);
+        let Asset = '--';
+        if (this.state.userAssets) {
+            if (type === 'buy') {
+                Asset = this.state.userAssets.find(i => i.coin_id === this.props.TradePageCoinEx.coinEx.exchange_coin_id) ?
+                    this.state.userAssets.find(i => i.coin_id === this.props.TradePageCoinEx.coinEx.exchange_coin_id).available : ''
+            } else {
+                Asset = this.state.userAssets.find(i => i.coin_id === this.props.TradePageCoinEx.coinEx.coin_id) ?
+                    this.state.userAssets.find(i => i.coin_id === this.props.TradePageCoinEx.coinEx.coin_id).available : ''
+            }
+        }
         return (
             <View style={{padding: 2, flex: 1}}>
                 <Text>{type === 'buy' ? I18n.t(Keys.Buy) : I18n.t(Keys.Sell)}</Text>
@@ -203,6 +224,14 @@ class TradePageView extends React.Component {
                             )
                         })
                     }
+
+                </View>
+                <View style={{flexDirection: 'row'}}>
+                    <Text
+                        style={[commonStyles.commonSmallSubTextStyle]}>
+                        {I18n.t(Keys.CanUse) + ' ' + JSON.stringify(Asset) + ' ' +
+                        (type === 'buy' ? this.props.TradePageCoinEx.coinEx.exchange_coin_name : this.props.TradePageCoinEx.coinEx.coin_name)}
+                    </Text>
                 </View>
                 <View>
                     <Text style={{margin: 5, marginLeft: 10}}>{I18n.t(Keys.ExchangeAmount)}</Text>
@@ -214,7 +243,6 @@ class TradePageView extends React.Component {
                                     this.doEntrust(1, this.state.buyPrice, this.state.buyVolume, false)
                                 } else {
                                     this.doEntrust(0, this.state.sellPrice, this.state.sellVolume, false)
-
                                 }
                             }
                             }
@@ -222,52 +250,62 @@ class TradePageView extends React.Component {
                 </View>
             </View>
         )
-
     }
 
     render() {
         return (
             <View style={[commonStyles.wrapper,]}>
                 <ScrollView>
-                <SafeAreaView style={[commonStyles.wrapper,]}>
+                    <SafeAreaView style={[commonStyles.wrapper,]}>
 
-                    {this.renderTopBar()}
-                    {this.renderPriceBar()}
-                    {this.renderEntrustView()}
-                    <View>
-                        <Text
-                            style={{borderBottomColor: 'black', borderBottomWidth: 2}}>{I18n.t("Fixed Entrust")}</Text>
-                    </View>
-                    <View style={{flexDirection: 'row'}}>
-                        {this.renderdoEntrustView('buy')}
-                        {this.renderdoEntrustView('sell')}
-                    </View>
-                    <View
-                        style={[commonStyles.commonIntervalStyle, {height: 10}]}/>
-                    {this.renderCommission()}
-                    {
-                        this.state.userEntrustList.map(entrust => {
-                            return this.renderCommissionCell(entrust)
-                        })
-                    }
-
-
-                    <ConfirmDialog
-                        visible={this.state.isSafePassModalShow}
-                        title={I18n.t(Keys.safePassTitle)}
-                        titleStyle={{fontSize: '16px'}}
-                        onTouchOutside={() => this.setState({isSafePassModalShow: false})}
-                        positiveButton={{title: I18n.t(Keys.Confirm), onPress: () => this.doEntrust(1, 1, 1, true)}}
-                        negativeButton={{
-                            title: I18n.t(Keys.Cancel),
-                            onPress: () => this.setState({isSafePassModalShow: false})
-                        }}>
+                        {this.renderTopBar()}
+                        {this.renderPriceBar()}
+                        {this.renderEntrustView()}
                         <View>
-                            <Input value={this.props.safePass}
-                                   onChangeText={(password) => this.props.changeSafePass(password)}/>
+                            <Text
+                                style={{
+                                    borderBottomColor: 'black',
+                                    borderBottomWidth: 2
+                                }}>{I18n.t("Fixed Entrust")}</Text>
                         </View>
-                    </ConfirmDialog>
-                </SafeAreaView>
+                        <View style={{flexDirection: 'row'}}>
+                            {this.renderdoEntrustView('buy')}
+                            {this.renderdoEntrustView('sell')}
+                        </View>
+                        <View
+                            style={[commonStyles.commonIntervalStyle, {height: 10}]}/>
+                        {this.renderCommission()}
+                        {
+                            this.state.userEntrustList.map(entrust => {
+                                return this.renderCommissionCell(entrust)
+                            })
+                        }
+
+
+                        <ConfirmDialog
+                            visible={this.state.isSafePassModalShow}
+                            title={I18n.t(Keys.safePassTitle)}
+                            titleStyle={{fontSize: 16}}
+                            onTouchOutside={() => this.setState({isSafePassModalShow: false})}
+                            positiveButton={{
+                                title: I18n.t(Keys.Confirm), onPress: () => {
+                                    if (this.state.entrustTypeIdClicked === 1) {
+                                        this.doEntrust(1, this.state.buyPrice, this.state.buyVolume, true)
+                                    } else if (this.state.entrustTypeIdClicked === 0) {
+                                        this.doEntrust(0, this.state.sellPrice, this.state.sellVolume, true)
+                                    }
+                                }
+                            }}
+                            negativeButton={{
+                                title: I18n.t(Keys.Cancel),
+                                onPress: () => this.setState({isSafePassModalShow: false})
+                            }}>
+                            <View>
+                                <Input value={this.props.safePass}
+                                       onChangeText={(password) => this.props.changeSafePass(password)}/>
+                            </View>
+                        </ConfirmDialog>
+                    </SafeAreaView>
                 </ScrollView>
             </View>
         );
@@ -276,8 +314,9 @@ class TradePageView extends React.Component {
 
     renderCommission() {
         return (
-            <View style={{borderBottomColor:'#e8e8e8',borderBottomWidth:1}}>
-                <Text style={[commonStyles.commonInputTextStyle,{fontSize:'20px'}]}>{I18n.t(Keys.Current_Commission)}</Text>
+            <View style={{borderBottomColor: '#e8e8e8', borderBottomWidth: 1}}>
+                <Text
+                    style={[commonStyles.commonInputTextStyle, {fontSize: 20}]}>{I18n.t(Keys.Current_Commission)}</Text>
             </View>
         )
     }
@@ -312,9 +351,9 @@ class TradePageView extends React.Component {
                 <View style={[{flexDirection: 'row', flex: 2}]}>
                     <BorderlessButton
                         onPress={() => {
-                            this.props.navigation.dispatch( DrawerActions.openDrawer() );
+                            this.props.navigation.dispatch(DrawerActions.openDrawer());
                         }}
-                        style={{ marginLeft: 15, paddingTop: 8}}>
+                        style={{marginLeft: 15, paddingTop: 8}}>
                         <Ionicons
                             name="md-menu"
                             size={Platform.OS === 'ios' ? 22 : 25}
@@ -329,34 +368,9 @@ class TradePageView extends React.Component {
                     </Text>
                 </View>
                 <View style={[{flexDirection: 'row', flex: 1}]}>
-                    <Button
-                        icon={{
-                            name: "arrow-right",
-                            size: 15,
-                            color: "blue"
-                        }}
-                        type="clear"
+                    <Image source={require('../../../assets/images/klineIcon.png')}
+                           containerStyle={[{width: 25, height: 25}]}
                     />
-                    <Button
-                        icon={{
-                            name: "arrow-right",
-                            size: 15,
-                            color: "blue"
-                        }}
-
-                        type="clear"
-
-                    />
-
-                    <Button
-                        icon={{
-                            name: "arrow-right",
-                            size: 15,
-                            color: "blue"
-                        }}
-                        type="clear"
-                    />
-
                 </View>
             </View>
         )
@@ -365,9 +379,7 @@ class TradePageView extends React.Component {
 
 
     renderPriceBar() {
-
         return (
-
             <View style={[{flexDirection: 'row'}]}>
                 <View style={[commonStyles.customerRow]}>
                     <Text

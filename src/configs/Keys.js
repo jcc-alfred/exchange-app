@@ -706,7 +706,8 @@ const Keys = {
     "Total_account_assets":"Total account assets",
     "Punching":"Punching",
     "WithDraw":"WithDraw",
-    "transfer":"Transfer"
+    "transfer":"Transfer",
+    "CanUse":"CanUse"
 
 };
 export default Keys;
