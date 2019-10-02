@@ -711,8 +711,7 @@ const Keys = {
     "frozen":"frozen",
     "balance":"balance",
     "Coin_address":"Coin address",
-    "chooseCoinType": "chooseCoinType"
+    "chooseCoinType": "chooseCoinType",
     "CanUse":"CanUse"
-
 };
 export default Keys;
