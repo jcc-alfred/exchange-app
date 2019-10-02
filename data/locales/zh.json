@@ -10,7 +10,9 @@
   "Volume": "数量",
   "about": "关于",
   "assets": "资产",
+  "cancel": "取消",
   "changerate": "涨幅",
+  "choose_photo": "相册",
   "country": {
     "AD": {
       "sort": "AN DAO ER",
@@ -909,6 +911,7 @@
   "select_country": "选择国家",
   "settings": "设置",
   "sign_up": " 注册",
+  "take_photo": "拍照",
   "verify_code": "验证码",
   "volume": "量"
 }

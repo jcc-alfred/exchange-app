@@ -9,7 +9,7 @@ import { Ionicons } from '@expo/vector-icons';
 import PropTypes from 'prop-types';
 import Spinner from "react-native-loading-spinner-overlay";
 import { connect } from "react-redux";
-import { fileUploadImage, fileUploadVideo } from "../actions/FileAction";
+import { fileUploadImage, fileUploadVideo, photoUpload } from "../actions/FileAction";
 import Toast from "react-native-root-toast";
 import * as ImagePicker from "expo-image-picker";
 import ModalPicker from "./ModalPicker";
@@ -171,9 +171,15 @@ class MediaMultipleComponent extends React.Component {
                     } else {
                         const items = this.state.items.slice();
                         if ( this.state.itemOperation ) {
-                            items[ items.indexOf( this.state.itemOperation ) ] = resBody.data;
+                            items[ items.indexOf( this.state.itemOperation ) ] = {
+                                url: resBody.data,
+                                mediaType: 'Photo'
+                            };
                         } else {
-                            items.push( resBody.data );
+                            items.push( {
+                                url: resBody.data,
+                                mediaType: 'Photo'
+                            } );
                         }
 
                         this.props.onItemsChange && this.props.onItemsChange( items );
@@ -225,7 +231,7 @@ class MediaMultipleComponent extends React.Component {
 
                             <View style={[ commonStyles.wrapper, { height: 50 } ]}>
                                 <Image
-                                    source={{ uri: item.content.thumbnailUrl }}
+                                    source={{ uri: item.content.url }}
                                     style={{ height: 50 }}
                                 />
 
@@ -421,13 +427,11 @@ function select( store ) {
 const mapDispatchToProps = ( dispatch, ownProps ) => ( {
     onFileUpload: ( path, mediaType, callback ) => {
         if ( mediaType === 'Photo' ) {
-            dispatch( fileUploadImage( null, "JustUpdate", path, ( err, res ) => {
+            dispatch( photoUpload( path, ( err, res ) => {
                 callback && callback( err, res )
             } ) );
         } else if ( mediaType === 'Video' ) {
-            dispatch( fileUploadVideo( null, "JustUpdate", path, ( err, res ) => {
-                callback && callback( err, res )
-            } ) );
+
         }
     },
 } );

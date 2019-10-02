@@ -10,7 +10,9 @@ const Keys = {
     "Volume": "Volume",
     "about": "about",
     "assets": "assets",
+    "cancel": "cancel",
     "changerate": "changerate",
+    "choose_photo": "choose_photo",
     "country": "country",
     "country_AD": "country.AD",
     "country_AD_sort": "country.AD.sort",
@@ -689,6 +691,7 @@ const Keys = {
     "select_country": "select_country",
     "settings": "settings",
     "sign_up": "sign_up",
+    "take_photo": "take_photo",
     "verify_code": "verify_code",
     "volume": "volume",
 };

@@ -61,7 +61,10 @@ class BasicUserInfoVerifyResultView extends React.Component {
 
 
 function select( store ) {
-    return {}
+    return {
+        isLoggedIn: store.userStore.isLoggedIn,
+        userInfo: store.userStore.userInfo,
+    }
 }
 
 const mapDispatchToProps = ( dispatch, ownProps ) => ( {} );

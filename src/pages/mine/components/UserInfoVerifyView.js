@@ -21,6 +21,61 @@ class UserInfoVerifyView extends React.Component {
         return true;
     }
 
+    renderState() {
+        if ( this.props.userInfo.identity_status === 1 ) {
+            return (
+                <Button
+                    type="clear"
+                    icon={
+                        <Ionicons
+                            name="md-information-circle"
+                            size={Platform.OS === 'ios' ? 22 : 25}
+                            color={constStyles.THEME_COLOR}
+                        />
+                    }
+                    title="去认证"
+                    onPress={() => {
+                        this.props.navigation.navigate( "UserInfoVerifyPage" )
+                    }}
+                />
+            );
+        } else if ( this.props.userInfo.identity_status === 2 ) {
+            return (
+                <Text>
+                    {
+                        "审核中"
+                    }
+                </Text>
+            );
+        } else if ( this.props.userInfo.identity_status === 3 ) {
+            return (
+                <Text>
+                    {
+                        "审核通过"
+                    }
+                </Text>
+            );
+        } else if ( this.props.userInfo.identity_status === 4 ) {
+            return (
+                <Button
+                    type="clear"
+                    icon={
+                        <Ionicons
+                            name="md-information-circle"
+                            size={Platform.OS === 'ios' ? 22 : 25}
+                            color={constStyles.THEME_COLOR}
+                        />
+                    }
+                    title="认证失败"
+                    onPress={() => {
+                        this.props.navigation.navigate( "UserInfoVerifyPage" )
+                    }}
+                />
+            );
+        } else {
+            return null;
+        }
+    }
 
     render() {
         return (
@@ -29,20 +84,9 @@ class UserInfoVerifyView extends React.Component {
                     title={
                         <View style={[ { flexDirection: 'row', justifyContent: 'center' } ]}>
                             <Text style={[ commonStyles.wrapper ]}>{'身份认证'}</Text>
-                            <Button
-                                type="clear"
-                                icon={
-                                    <Ionicons
-                                        name="md-information-circle"
-                                        size={Platform.OS === 'ios' ? 22 : 25}
-                                        color={constStyles.THEME_COLOR}
-                                    />
-                                }
-                                title="去认证"
-                                onPress={()=>{
-                                    this.props.navigation.navigate( "UserInfoVerifyPage" )
-                                }}
-                            />
+                            {
+                                this.renderState()
+                            }
                         </View>
                     }
                     subtitle={
@@ -67,7 +111,10 @@ class UserInfoVerifyView extends React.Component {
 
 
 function select( store ) {
-    return {}
+    return {
+        isLoggedIn: store.userStore.isLoggedIn,
+        userInfo: store.userStore.userInfo,
+    }
 }
 
 const mapDispatchToProps = ( dispatch, ownProps ) => ( {} );

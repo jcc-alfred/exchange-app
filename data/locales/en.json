@@ -10,7 +10,9 @@
   "Volume": "Volume",
   "about": "About",
   "assets": "assets",
+  "cancel": "cancel",
   "changerate": "Change Rate",
+  "choose_photo": "Album",
   "country": {
     "AD": {
       "sort": "",
@@ -909,6 +911,7 @@
   "select_country": "select country",
   "settings": "Settings",
   "sign_up": " registered",
+  "take_photo": "Take a photo",
   "verify_code": "Verification code",
   "volume": "volume"
 }

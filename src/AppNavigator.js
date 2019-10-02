@@ -32,12 +32,12 @@ import UserGoogleAuthPage from "./pages/user/UserGoogleAuthPage";
 import UserKYCPage from "./pages/user/UserKYCPage";
 import UserPasswordResetPage from "./pages/user/UserPasswordResetPage";
 import UserPhoneVerifyPage from "./pages/user/UserPhoneVerifyPage";
-import FundPasswordResetPage from "./pages/setting/FundPasswordResetPage";
+import FundPasswordChangePage from "./pages/setting/FundPasswordChangePage";
 import AssetsDepositHistoryPage from "./pages/assets/AssetsDepositHistoryPage";
 import AssetsDepositPage from "./pages/assets/AssetsDepositPage";
 import AssetsWithdrawHistoryPage from "./pages/assets/AssetsWithdrawHistoryPage";
 import AssetsWithdrawPage from "./pages/assets/AssetsWithdrawPage";
-import PasswordResetPage from "./pages/setting/PasswordResetPage";
+import PasswordChangePage from "./pages/setting/PasswordChangePage";
 import GoogleAuthPage from "./pages/setting/GoogleAuthPage";
 import AssetsDetailPage from "./pages/assets/AssetsDetailPage";
 import MainSideMenu from "./pages/home/components/MainSideMenu";
@@ -319,8 +319,8 @@ const routeConfiguration = {
     UserPhoneVerifyPage: {
         screen: UserPhoneVerifyPage
     },
-    FundPasswordResetPage: {
-        screen: FundPasswordResetPage
+    FundPasswordChangePage: {
+        screen: FundPasswordChangePage
     },
     AssetsDepositHistoryPage: {
         screen: AssetsDepositHistoryPage
@@ -334,8 +334,8 @@ const routeConfiguration = {
     AssetsWithdrawPage: {
         screen: AssetsWithdrawPage
     },
-    PasswordResetPage: {
-        screen: PasswordResetPage
+    PasswordChangePage: {
+        screen: PasswordChangePage
     },
     GoogleAuthPage: {
         screen: GoogleAuthPage
