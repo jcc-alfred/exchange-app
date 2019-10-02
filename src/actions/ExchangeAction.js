@@ -20,11 +20,30 @@ import metaActionTypes from "../reducers/meta/metaActionTypes";
 export function exchangeGetMarketList(callback) {
     return (dispatch) => {
         netExchangeGetMarketList((err, res) => {
+            if(!err){
+                dispatch(
+                    {
+                        type: metaActionTypes.MARKET_LIST,
+                        data: res.data
+                    }
+                )
+            }
             callback && callback(err, res)
         });
     };
 }
 
+
+export function changeTradePageCoinExchange(coinEx) {
+    return (dispatch) => {
+        dispatch(
+            {
+                type: metaActionTypes.CHANGE_TRADE_EX,
+                data: coinEx
+            }
+        )
+    };
+}
 
 export function exchangeGetCoinExchangeList(callback) {
     return (dispatch) => {

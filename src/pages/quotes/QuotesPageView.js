@@ -23,7 +23,6 @@ class QuotesPageView extends React.Component {
         this.state = {
             isRequesting: false,
             refreshing: false,
-            marketList: [],
             index: index ? index : 0,
             routes: routes ? routes : [],
             scenes: scenes ? scenes : [],
@@ -58,7 +57,7 @@ class QuotesPageView extends React.Component {
     }
 
     shouldComponentUpdate( nextProps, nextState ) {
-        if ( this.props.coin_exchange_area !== nextProps.coin_exchange_area || nextState.marketList !== this.state.marketList ) {
+        if ( this.props.coin_exchange_area !== nextProps.coin_exchange_area || nextProps.marketList !== this.props.marketList ) {
             const { index, routes, scenes } = this.initTabData( nextProps.coin_exchange_area );
             this.setState( {
                 // index: index,
@@ -124,9 +123,7 @@ class QuotesPageView extends React.Component {
                         } else {
                             this.setState( {
                                 isRequesting: false,
-                                marketList: resBody1.data,
                             } );
-                            this.props.changeTradePageCoinExchange( resBody1.data[ 0 ] )
                         }
                     } );
                 }
@@ -155,7 +152,6 @@ class QuotesPageView extends React.Component {
                 } else {
                     this.setState( {
                         refreshing: false,
-                        marketList: resBody1.data,
                     } );
                 }
             } );
@@ -177,7 +173,7 @@ class QuotesPageView extends React.Component {
                             refreshing={this.state.refreshing}
                             onRefresh={this.RefreshMarketList.bind( this )}
                             data={{
-                                marketList: this.state.marketList,
+                                marketList: this.props.marketList,
                                 coin_exchange_area_id: tabData[ index ].coin_exchange_area_id
                             }}
                             onPressItem={this.onPressItem.bind( this )}/>

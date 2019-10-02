@@ -10,6 +10,7 @@ import { NavigationActions, StackActions } from "react-navigation";
 import { getEventEmitter } from "./EventEmitter";
 import I18n from "./I18n";
 import PubSubConstant from "./pubSub/PubSubConstant";
+import {exchangeGetMarketList} from "./actions/ExchangeAction";
 
 class Main extends React.Component {
     constructor( props ) {
@@ -28,6 +29,8 @@ class Main extends React.Component {
         this._handleMemoryWarning = this.handleMemoryWarning.bind( this );
         this._onBack = this.onBack.bind( this );
         this._onLoginSuccess = this.onLoginSuccess.bind( this );
+
+        this.props.dispatch( exchangeGetMarketList(null) );
 
         I18n.locale = this.props.language;
         LanguageUpdate.update();
@@ -85,6 +88,8 @@ class Main extends React.Component {
                 if ( this.props.isLoggedIn ) {
                     getEventEmitter().emit( PubSubConstant.PUB_SUB_LOGIN_SUCCESS, '' );
                 }
+
+                this.props.dispatch( exchangeGetMarketList(null) );
             } else {
                 this.setState( {
                     isShowLockView: true

@@ -37,6 +37,7 @@ import AssetsDepositHistoryPage from "./pages/assets/AssetsDepositHistoryPage";
 import AssetsDepositPage from "./pages/assets/AssetsDepositPage";
 import AssetsWithdrawHistoryPage from "./pages/assets/AssetsWithdrawHistoryPage";
 import AssetsWithdrawPage from "./pages/assets/AssetsWithdrawPage";
+import AuthForgetPasswordPage from "./pages/auth/AuthForgetPasswordPage";
 import PasswordResetPage from "./pages/setting/PasswordResetPage";
 import GoogleAuthPage from "./pages/setting/GoogleAuthPage";
 import AssetsDetailPage from "./pages/assets/AssetsDetailPage";
@@ -139,6 +140,24 @@ const HomeSearchStack = createStackNavigator(
 );
 
 
+const TradeExchangeStack = createStackNavigator(
+    {
+        TradePage: TradePage,
+    },
+    {
+        ...stackNavigatorConfiguration,
+        transitionConfig: () => StackViewTransitionConfigs.NoAnimation,
+        navigationOptions: {
+            ...stackNavigatorConfiguration.navigationOptions,
+            header: null,
+        },
+        defaultNavigationOptions: {
+            ...stackNavigatorConfiguration.defaultNavigationOptions,
+            gesturesEnabled: false,
+        },
+    }
+);
+
 const HomeDrawerNavigator = createDrawerNavigator(
     {
         HomeSearchStack: {
@@ -155,6 +174,21 @@ const HomeDrawerNavigator = createDrawerNavigator(
         initialRoute: "HomeSearchStack"
     } );
 
+const TradeDrawerNavigator = createDrawerNavigator(
+    {
+        HomeSearchStack: {
+            screen: TradeExchangeStack,
+        },
+    },
+    {
+        drawerPosition: 'left',
+        navigationOptions: {
+            header: null, headerBackTitle: null,
+            drawerLockMode: 'unlocked',
+        },
+        contentComponent: TradeExMenu,
+        initialRoute: "HomeSearchStack"
+    } );
 
 const HomeStack = createStackNavigator( { HomeDrawer: HomeDrawerNavigator, }, stackNavigatorConfiguration );
 
@@ -163,7 +197,7 @@ const OTCTradeStack = createStackNavigator( { OTCTradePage: { screen: OTCTradePa
 
 const QuotesStack = createStackNavigator( { QuotesPage: { screen: QuotesPage, } }, stackNavigatorConfiguration );
 
-const TradeStack = createStackNavigator( { TradePage: { screen: TradePage, } }, stackNavigatorConfiguration );
+const TradeStack = createStackNavigator( { TradeDrawer: TradeDrawerNavigator, }, stackNavigatorConfiguration );
 
 const AssetsDetailStack = createStackNavigator( { AssetsListPage: { screen: AssetsListPage, } }, stackNavigatorConfiguration );
 

@@ -891,10 +891,16 @@
     }
   },
   "home": "主页",
+  "safePassTitle": "请先输入交易密码",
+  "Confirm": "确认",
   "language": {
     "chinese": "中文",
     "english": "英语"
   },
+  "Current_Commission": "当前委托",
+  "Cancel": "取消",
+  "delete": "删除",
+  "Transaction": "交易记录",
   "languages": "语言",
   "latest_price": "最新价",
   "login": "登录",
