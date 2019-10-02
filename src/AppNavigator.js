@@ -14,7 +14,7 @@ import { createReactNavigationReduxMiddleware, createReduxContainer, } from 'rea
 
 import TabBarIcon from "./components/TabBarIcon";
 import AuthRegisterPage from "./pages/auth/AuthRegisterPage";
-import AboutPage from "./pages/setting/AboutPage";
+import AboutPage from "./pages/AboutPage";
 import SettingLanguagePage from "./pages/setting/SettingLanguagePage";
 import SettingsPage from "./pages/setting/SettingsPage";
 import WebViewPage from "./pages/WebViewPage";
@@ -31,13 +31,13 @@ import UserGoogleAuthPage from "./pages/user/UserGoogleAuthPage";
 import UserKYCPage from "./pages/user/UserKYCPage";
 import UserPasswordResetPage from "./pages/user/UserPasswordResetPage";
 import UserPhoneVerifyPage from "./pages/user/UserPhoneVerifyPage";
-import FundPasswordChangePage from "./pages/setting/FundPasswordChangePage";
+import FundPasswordChangePage from "./pages/account/FundPasswordChangePage";
 import AssetsDepositHistoryPage from "./pages/assets/AssetsDepositHistoryPage";
 import AssetsDepositPage from "./pages/assets/AssetsDepositPage";
 import AssetsWithdrawHistoryPage from "./pages/assets/AssetsWithdrawHistoryPage";
 import AssetsWithdrawPage from "./pages/assets/AssetsWithdrawPage";
-import PasswordChangePage from "./pages/setting/PasswordChangePage";
-import GoogleAuthPage from "./pages/setting/GoogleAuthPage";
+import PasswordChangePage from "./pages/account/PasswordChangePage";
+import GoogleAuthOpenPage from "./pages/account/GoogleAuthOpenPage";
 import AssetsDetailPage from "./pages/assets/AssetsDetailPage";
 import MainSideMenu from "./pages/home/components/MainSideMenu";
 import KlinePage from "./pages/kline/KlinePage";
@@ -52,6 +52,7 @@ import AccountInfoPage from "./pages/account/AccountInfoPage";
 import NewsDetailPage from "./pages/home/NewsDetailPage";
 import BasicUserInfoVerifyPage from "./pages/mine/BasicUserInfoVerifyPage";
 import UserInfoVerifyPage from "./pages/mine/UserInfoVerifyPage";
+import GoogleAuthClosePage from "./pages/account/GoogleAuthClosePage";
 
 process.env.REACT_NAV_LOGGING = ( global.__DEV__ );
 
@@ -370,8 +371,8 @@ const routeConfiguration = {
     PasswordChangePage: {
         screen: PasswordChangePage
     },
-    GoogleAuthPage: {
-        screen: GoogleAuthPage
+    GoogleAuthOpenPage: {
+        screen: GoogleAuthOpenPage
     },
     AssetsDetailPage: {
         screen: AssetsDetailPage
@@ -393,7 +394,10 @@ const routeConfiguration = {
     },
     UserInfoVerifyPage: {
         screen: UserInfoVerifyPage
-    }
+    },
+    GoogleAuthClosePage: {
+        screen: GoogleAuthClosePage
+    },
 };
 
 const navMiddleware = createReactNavigationReduxMiddleware(

@@ -79,7 +79,7 @@ class AccountInfoPageView extends React.Component {
                             <ListItem
                                 title={"Google Auth"}
                                 onPress={() => {
-                                    this.props.navigation.navigate( "GoogleAuthPage" )
+                                    this.props.navigation.navigate( "GoogleAuthOpenPage" )
                                 }}
                                 bottomDivider={true}
                             />

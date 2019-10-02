@@ -1,19 +1,23 @@
 import React from 'react';
-import { SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
+import { InteractionManager, SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import { Button, Input } from "react-native-elements";
+import Toast from "react-native-root-toast";
 import I18n from "../../I18n";
 import Keys from "../../configs/Keys";
-import CountDown from "../auth/AuthRegisterPageView";
+import CountDown from "./PasswordChangePageView";
 import constStyles from "../../styles/constStyles";
 import { NavigationActions, StackActions } from "react-navigation";
 
-class FundPasswordChangePageView extends React.Component {
+class GoogleAuthOpenPageView extends React.Component {
 
     constructor( props ) {
         super( props );
 
         this.state = {
+            googleAuthCode: "",
+            code: '',
+            isCountingDown: false,
             isRequesting: false,
         }
     }
@@ -24,7 +28,7 @@ class FundPasswordChangePageView extends React.Component {
         const { params } = state;
 
         return {
-            title: params.isReset ? "FundPassword reset" : "FundPassword Change",
+            title: "Google Auth Close",
             headerBackTitle: null,
         };
     };
@@ -45,8 +49,49 @@ class FundPasswordChangePageView extends React.Component {
         return true;
     }
 
+
+    // todo
+    verificationCodeGet() {
+        this.setState( {
+            isRequesting: true
+        } );
+
+        let query;
+        if ( this.state.type === 'email' ) {
+            query = {
+                type: this.state.type,
+                email: this.state.email
+            }
+        } else {
+            query = {
+                type: this.state.type,
+                areaCode: '' + this.state.currentCountry.phoneCode,
+                phoneNumber: this.state.phone
+            }
+        }
+
+        InteractionManager.runAfterInteractions( () => {
+            this.props.onUserSendCode(
+                query,
+                ( error, resBody ) => {
+                    this.setState( {
+                        isRequesting: false
+                    } );
+
+                    if ( error ) {
+                        Toast.show( error.message );
+                    } else {
+                        this.setState( {
+                            isCountingDown: true,
+                            code: '',
+                        } );
+                    }
+                } );
+        } );
+    }
+
     //todo
-    resetPassword() {
+    send() {
         this.props.navigation.dispatch(
             StackActions.reset(
                 {
@@ -65,47 +110,15 @@ class FundPasswordChangePageView extends React.Component {
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
                     <ScrollView style={[ commonStyles.wrapper ]}>
                         <View>
-                            {
-                                this.props.isReset ?
-                                    null
-                                    :
-                                    <Input
-                                        label={"Old password"}
-                                        value={this.state.oldPassword}
-                                        onChangeText={( text ) => this.setState( { oldPassword: text } )}
-                                        secureTextEntry={true}
-                                        errorStyle={{ color: 'red' }}
-                                        errorMessage={
-                                            this.state.showError && ( !this.state.oldPassword || this.state.oldPassword.length <= 0 ) ?
-                                                "Please input old password"
-                                                :
-                                                null
-                                        }
-                                    />
-                            }
-
                             <Input
-                                label={"Password"}
-                                value={this.state.password}
+                                value={this.state.googleAuthCode}
                                 onChangeText={( text ) => this.setState( { password: text } )}
                                 secureTextEntry={true}
+                                label={"Google Auth Code"}
                                 errorStyle={{ color: 'red' }}
                                 errorMessage={
-                                    this.state.showError && ( !this.state.password || this.state.password.length <= 0 ) ?
-                                        "Please input password"
-                                        :
-                                        null
-                                }
-                            />
-                            <Input
-                                label={"Repeat Password"}
-                                value={this.state.repeatPassword}
-                                onChangeText={( text ) => this.setState( { repeatPassword: text } )}
-                                secureTextEntry={true}
-                                errorStyle={{ color: 'red' }}
-                                errorMessage={
-                                    this.state.showError && ( !this.state.repeatPassword || this.state.repeatPassword.length <= 0 ) ?
-                                        "Please input password"
+                                    this.state.showError && ( !this.state.googleAuthCode || this.state.googleAuthCode.length <= 0 ) ?
+                                        "Please input google auth code"
                                         :
                                         null
                                 }
@@ -159,35 +172,17 @@ class FundPasswordChangePageView extends React.Component {
                                 }
                             />
 
+
                             <Button
                                 title={"Send"}
                                 type="solid"
                                 onPress={() => {
-                                    this.resetPassword()
+                                    this.send()
                                 }
                                 }
                                 containerStyle={[ commonStyles.mgt_normal, commonStyles.mgl_normal, commonStyles.mgr_normal ]}
                             />
-
-
-                            {
-                                this.props.isReset ?
-                                    null
-                                    :
-                                    <Button
-                                        title={"Reset"}
-                                        type="outline"
-                                        onPress={() => {
-                                            this.props.navigation.navigate( "FundPasswordChangePage", {
-                                                isReset: true
-                                            } )
-                                        }
-                                        }
-                                        containerStyle={[ commonStyles.mgt_normal, commonStyles.mgl_normal, commonStyles.mgr_normal ]}
-                                    />
-                            }
                         </View>
-
                     </ScrollView>
                 </SafeAreaView>
             </View>
@@ -197,5 +192,5 @@ class FundPasswordChangePageView extends React.Component {
 
 const styles = StyleSheet.create( {} );
 
-export default FundPasswordChangePageView;
+export default GoogleAuthOpenPageView;
 
