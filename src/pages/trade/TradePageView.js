@@ -1,5 +1,5 @@
 import React from 'react';
-import {InteractionManager, PixelRatio, Platform, SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
+import {FlatList, InteractionManager, PixelRatio, Platform, SafeAreaView, StyleSheet, View} from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import {Button, Image, Input, Text} from "react-native-elements";
 import Icon from 'react-native-vector-icons/FontAwesome'
@@ -252,79 +252,98 @@ class TradePageView extends React.Component {
         )
     }
 
+    header() {
+        return (
+            <View>
+                {this.renderTopBar()}
+                {this.renderPriceBar()}
+                {this.renderEntrustView()}
+                <View>
+                    <Text
+                        style={{
+                            borderBottomColor: 'black',
+                            borderBottomWidth: 2
+                        }}>{I18n.t("Fixed Entrust")}</Text>
+                </View>
+                <View style={{flexDirection: 'row'}}>
+                    {this.renderdoEntrustView('buy')}
+                    {this.renderdoEntrustView('sell')}
+                </View>
+                <View
+                    style={[commonStyles.commonIntervalStyle, {height: 10}]}/>
+
+                <View style={{borderBottomColor: '#e8e8e8', borderBottomWidth: 1}}>
+                    <Text
+                        style={[commonStyles.commonInputTextStyle, {fontSize: 20}]}>{I18n.t(Keys.Current_Commission)}</Text>
+                </View>
+
+
+            </View>
+        );
+    }
+
     render() {
+        const viewHeight = 100;
+        const separatorHeight = 1;
+
         return (
             <View style={[commonStyles.wrapper,]}>
-                <ScrollView>
-                    <SafeAreaView style={[commonStyles.wrapper,]}>
-
-                        {this.renderTopBar()}
-                        {this.renderPriceBar()}
-                        {this.renderEntrustView()}
-                        <View>
-                            <Text
-                                style={{
-                                    borderBottomColor: 'black',
-                                    borderBottomWidth: 2
-                                }}>{I18n.t("Fixed Entrust")}</Text>
-                        </View>
-                        <View style={{flexDirection: 'row'}}>
-                            {this.renderdoEntrustView('buy')}
-                            {this.renderdoEntrustView('sell')}
-                        </View>
-                        <View
-                            style={[commonStyles.commonIntervalStyle, {height: 10}]}/>
-                        {this.renderCommission()}
-                        {
-                            this.state.userEntrustList.map(entrust => {
-                                return this.renderCommissionCell(entrust)
-                            })
-                        }
+                <SafeAreaView style={[commonStyles.wrapper,]}>
+                    <FlatList
+                        data={this.state.userEntrustList}
+                        keyExtractor={(item, index) => {
+                            return 'item ' + index;
+                        }}
+                        renderItem={({item, index}) => {
+                            return this.renderCommissionCell(viewHeight, item, index);
+                        }}
+                        ListHeaderComponent={() => {
+                            return this.header();
+                        }}
+                        ItemSeparatorComponent={() => {
+                            return <View
+                                style={[commonStyles.commonIntervalStyle, {height: separatorHeight}]}/>;
+                        }}
+                        getItemLayout={(data, index) => (
+                            {length: viewHeight, offset: (viewHeight + separatorHeight) * index, index}
+                        )}
+                        onScroll={() => {
+                        }}
+                    />
 
 
-                        <ConfirmDialog
-                            visible={this.state.isSafePassModalShow}
-                            title={I18n.t(Keys.safePassTitle)}
-                            titleStyle={{fontSize: 16}}
-                            onTouchOutside={() => this.setState({isSafePassModalShow: false})}
-                            positiveButton={{
-                                title: I18n.t(Keys.Confirm), onPress: () => {
-                                    if (this.state.entrustTypeIdClicked === 1) {
-                                        this.doEntrust(1, this.state.buyPrice, this.state.buyVolume, true)
-                                    } else if (this.state.entrustTypeIdClicked === 0) {
-                                        this.doEntrust(0, this.state.sellPrice, this.state.sellVolume, true)
-                                    }
+                    <ConfirmDialog
+                        visible={this.state.isSafePassModalShow}
+                        title={I18n.t(Keys.safePassTitle)}
+                        titleStyle={{fontSize: 16}}
+                        onTouchOutside={() => this.setState({isSafePassModalShow: false})}
+                        positiveButton={{
+                            title: I18n.t(Keys.Confirm), onPress: () => {
+                                if (this.state.entrustTypeIdClicked === 1) {
+                                    this.doEntrust(1, this.state.buyPrice, this.state.buyVolume, true)
+                                } else if (this.state.entrustTypeIdClicked === 0) {
+                                    this.doEntrust(0, this.state.sellPrice, this.state.sellVolume, true)
                                 }
-                            }}
-                            negativeButton={{
-                                title: I18n.t(Keys.Cancel),
-                                onPress: () => this.setState({isSafePassModalShow: false})
-                            }}>
-                            <View>
-                                <Input value={this.props.safePass}
-                                       onChangeText={(password) => this.props.changeSafePass(password)}/>
-                            </View>
-                        </ConfirmDialog>
-                    </SafeAreaView>
-                </ScrollView>
+                            }
+                        }}
+                        negativeButton={{
+                            title: I18n.t(Keys.Cancel),
+                            onPress: () => this.setState({isSafePassModalShow: false})
+                        }}>
+                        <View>
+                            <Input value={this.props.safePass}
+                                   onChangeText={(password) => this.props.changeSafePass(password)}/>
+                        </View>
+                    </ConfirmDialog>
+                </SafeAreaView>
             </View>
         );
     }
 
 
-    renderCommission() {
+    renderCommissionCell(viewHeight, entrust, index) {
         return (
-            <View style={{borderBottomColor: '#e8e8e8', borderBottomWidth: 1}}>
-                <Text
-                    style={[commonStyles.commonInputTextStyle, {fontSize: 20}]}>{I18n.t(Keys.Current_Commission)}</Text>
-            </View>
-        )
-    }
-
-
-    renderCommissionCell(entrust) {
-        return (
-            <View>
+            <View style={{height: viewHeight}}>
                 <View style={{flexDirection: 'row'}}>
                     <Text style={[{flex: 1}, styles.bigFontPrice]}>{I18n.t(Keys.Buy)}</Text>
                     <Text style={[{flex: 4}, styles.smallGrayFont]}>14:33 09/30</Text>
