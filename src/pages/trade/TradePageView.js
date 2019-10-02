@@ -314,11 +314,11 @@ class TradePageView extends React.Component {
                         onPress={() => {
                             this.props.navigation.dispatch( DrawerActions.openDrawer() );
                         }}
-                        style={{ marginLeft: 15 }}>
+                        style={{ marginLeft: 15, paddingTop: 8}}>
                         <Ionicons
                             name="md-menu"
                             size={Platform.OS === 'ios' ? 22 : 25}
-                            color={'white'}
+                            color={'black'}
                         />
                     </BorderlessButton>
                     <Text style={[commonStyles.commonInputTextStyle]}>

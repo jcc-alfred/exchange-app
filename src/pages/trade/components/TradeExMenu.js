@@ -34,7 +34,7 @@ class MainSideMenu extends React.Component {
     render() {
         return (
             <View style={[ { paddingTop: getStatusBarHeight() + Header.HEIGHT } ]}>
-                <Text>TRADE</Text>
+                <Text>{JSON.stringify(this.props.marketList)}</Text>
             </View>
         );
     }
@@ -45,7 +45,8 @@ const styles = StyleSheet.create( {} );
 function select( store ) {
     return {
         TradePageCoinEx: store.metaStore.TradePageCoinEx,
-        marketList:store.metaStore.marketList
+        marketList:store.metaStore.marketList,
+        coin_exchange_area:store.metaStore.coin_exchange_area,
     }
 }
 
