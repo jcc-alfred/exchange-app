@@ -24,8 +24,7 @@ import CountrySearchPage from "./pages/countrySelect/CountrySearchPage";
 import I18n from "./I18n";
 import Keys from "./configs/Keys";
 import OrderHistoryPage from "./pages/order/OrderHistoryPage";
-
-
+import TradeExMenu from "./pages/trade/components/TradeExMenu";
 import TradePage from "./pages/trade/TradePage";
 import UserEmailVerifyPage from "./pages/user/UserEmailVerifyPage";
 import UserGoogleAuthPage from "./pages/user/UserGoogleAuthPage";
@@ -37,7 +36,6 @@ import AssetsDepositHistoryPage from "./pages/assets/AssetsDepositHistoryPage";
 import AssetsDepositPage from "./pages/assets/AssetsDepositPage";
 import AssetsWithdrawHistoryPage from "./pages/assets/AssetsWithdrawHistoryPage";
 import AssetsWithdrawPage from "./pages/assets/AssetsWithdrawPage";
-import AuthForgetPasswordPage from "./pages/auth/AuthForgetPasswordPage";
 import PasswordResetPage from "./pages/setting/PasswordResetPage";
 import GoogleAuthPage from "./pages/setting/GoogleAuthPage";
 import AssetsDetailPage from "./pages/assets/AssetsDetailPage";
