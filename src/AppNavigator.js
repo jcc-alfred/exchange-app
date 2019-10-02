@@ -24,8 +24,7 @@ import CountrySearchPage from "./pages/countrySelect/CountrySearchPage";
 import I18n from "./I18n";
 import Keys from "./configs/Keys";
 import OrderHistoryPage from "./pages/order/OrderHistoryPage";
-
-
+import TradeExMenu from "./pages/trade/components/TradeExMenu";
 import TradePage from "./pages/trade/TradePage";
 import UserEmailVerifyPage from "./pages/user/UserEmailVerifyPage";
 import UserGoogleAuthPage from "./pages/user/UserGoogleAuthPage";
@@ -50,6 +49,7 @@ import OTCTradePage from "./pages/OTCTrade/OTCTradePage";
 import { getStore } from "./setup";
 import MinePage from "./pages/mine/MinePage";
 import AccountInfoPage from "./pages/account/AccountInfoPage";
+import NewsDetailPage from "./pages/home/NewsDetailPage";
 import BasicUserInfoVerifyPage from "./pages/mine/BasicUserInfoVerifyPage";
 import UserInfoVerifyPage from "./pages/mine/UserInfoVerifyPage";
 
@@ -139,6 +139,24 @@ const HomeSearchStack = createStackNavigator(
 );
 
 
+const TradeExchangeStack = createStackNavigator(
+    {
+        TradePage: TradePage,
+    },
+    {
+        ...stackNavigatorConfiguration,
+        transitionConfig: () => StackViewTransitionConfigs.NoAnimation,
+        navigationOptions: {
+            ...stackNavigatorConfiguration.navigationOptions,
+            header: null,
+        },
+        defaultNavigationOptions: {
+            ...stackNavigatorConfiguration.defaultNavigationOptions,
+            gesturesEnabled: false,
+        },
+    }
+);
+
 const HomeDrawerNavigator = createDrawerNavigator(
     {
         HomeSearchStack: {
@@ -155,6 +173,21 @@ const HomeDrawerNavigator = createDrawerNavigator(
         initialRoute: "HomeSearchStack"
     } );
 
+const TradeDrawerNavigator = createDrawerNavigator(
+    {
+        HomeSearchStack: {
+            screen: TradeExchangeStack,
+        },
+    },
+    {
+        drawerPosition: 'left',
+        navigationOptions: {
+            header: null, headerBackTitle: null,
+            drawerLockMode: 'unlocked',
+        },
+        contentComponent: TradeExMenu,
+        initialRoute: "HomeSearchStack"
+    } );
 
 const HomeStack = createStackNavigator( { HomeDrawer: HomeDrawerNavigator, }, stackNavigatorConfiguration );
 
@@ -163,7 +196,7 @@ const OTCTradeStack = createStackNavigator( { OTCTradePage: { screen: OTCTradePa
 
 const QuotesStack = createStackNavigator( { QuotesPage: { screen: QuotesPage, } }, stackNavigatorConfiguration );
 
-const TradeStack = createStackNavigator( { TradePage: { screen: TradePage, } }, stackNavigatorConfiguration );
+const TradeStack = createStackNavigator( { TradeDrawer: TradeDrawerNavigator, }, stackNavigatorConfiguration );
 
 const AssetsDetailStack = createStackNavigator( { AssetsListPage: { screen: AssetsListPage, } }, stackNavigatorConfiguration );
 
@@ -351,6 +384,9 @@ const routeConfiguration = {
     },
     AccountInfoPage: {
         screen: AccountInfoPage
+    },
+    NewsDetailPage: {
+        screen: NewsDetailPage
     },
     BasicUserInfoVerifyPage: {
         screen: BasicUserInfoVerifyPage
