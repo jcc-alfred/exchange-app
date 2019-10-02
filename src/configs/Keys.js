@@ -694,7 +694,13 @@ const Keys = {
     "Total_account_assets":"Total account assets",
     "Punching":"Punching",
     "WithDraw":"WithDraw",
-    "transfer":"Transfer"
+    "transfer":"Transfer",
+    "available":"available",
+    "frozen":"frozen",
+    "balance":"balance",
+    "Coin_address":"Coin address",
+    "chooseCoinType": "chooseCoinType"
+
 
 };
 export default Keys;

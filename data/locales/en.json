@@ -910,5 +910,15 @@
   "settings": "Settings",
   "sign_up": " registered",
   "verify_code": "Verification code",
-  "volume": "volume"
+  "volume": "volume",
+  "Total account assets": "Total account assets",
+  "Punching": "Punching",
+  "WithDraw": "WithDraw",
+  "Transfer": "Transfer",
+  "available": "available",
+  "frozen": "frozen",
+  "balance": "balance",
+  "Coin address":"Coin address",
+  "chooseCoinType": "choose Coin Type"
+
 }
