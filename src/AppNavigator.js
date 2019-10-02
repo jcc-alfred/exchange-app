@@ -37,7 +37,6 @@ import AssetsDepositHistoryPage from "./pages/assets/AssetsDepositHistoryPage";
 import AssetsDepositPage from "./pages/assets/AssetsDepositPage";
 import AssetsWithdrawHistoryPage from "./pages/assets/AssetsWithdrawHistoryPage";
 import AssetsWithdrawPage from "./pages/assets/AssetsWithdrawPage";
-import AuthForgetPasswordPage from "./pages/auth/AuthForgetPasswordPage";
 import PasswordResetPage from "./pages/setting/PasswordResetPage";
 import GoogleAuthPage from "./pages/setting/GoogleAuthPage";
 import AssetsDetailPage from "./pages/assets/AssetsDetailPage";
@@ -51,6 +50,8 @@ import OTCTradePage from "./pages/OTCTrade/OTCTradePage";
 import { getStore } from "./setup";
 import MinePage from "./pages/mine/MinePage";
 import AccountInfoPage from "./pages/account/AccountInfoPage";
+import BasicUserInfoVerifyPage from "./pages/mine/BasicUserInfoVerifyPage";
+import UserInfoVerifyPage from "./pages/mine/UserInfoVerifyPage";
 
 process.env.REACT_NAV_LOGGING = ( global.__DEV__ );
 
@@ -157,7 +158,7 @@ const HomeDrawerNavigator = createDrawerNavigator(
 
 const HomeStack = createStackNavigator( { HomeDrawer: HomeDrawerNavigator, }, stackNavigatorConfiguration );
 
-const OTCTradeStack = createStackNavigator( { OTCTradePage: {screen:OTCTradePage}, }, stackNavigatorConfiguration );
+const OTCTradeStack = createStackNavigator( { OTCTradePage: { screen: OTCTradePage }, }, stackNavigatorConfiguration );
 
 
 const QuotesStack = createStackNavigator( { QuotesPage: { screen: QuotesPage, } }, stackNavigatorConfiguration );
@@ -171,7 +172,7 @@ const MainTabContainer = createBottomTabNavigator(
         HomeStack: HomeStack,
         QuotesStack: QuotesStack,
         TradePageStack: TradeStack,
-        OTCTradeStack:OTCTradeStack,
+        OTCTradeStack: OTCTradeStack,
         AssetsDetailStack: AssetsDetailStack,
     },
     TabNavigatorConfig
@@ -333,9 +334,6 @@ const routeConfiguration = {
     AssetsWithdrawPage: {
         screen: AssetsWithdrawPage
     },
-    AuthForgetPasswordPage: {
-        screen: AuthForgetPasswordPage
-    },
     PasswordResetPage: {
         screen: PasswordResetPage
     },
@@ -354,6 +352,12 @@ const routeConfiguration = {
     AccountInfoPage: {
         screen: AccountInfoPage
     },
+    BasicUserInfoVerifyPage: {
+        screen: BasicUserInfoVerifyPage
+    },
+    UserInfoVerifyPage: {
+        screen: UserInfoVerifyPage
+    }
 };
 
 const navMiddleware = createReactNavigationReduxMiddleware(

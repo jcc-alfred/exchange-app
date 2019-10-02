@@ -32,7 +32,7 @@ class AuthRegisterPageView extends React.Component {
         const { params } = state;
 
         return {
-            title: "Register",
+            title: params.isResetPassword ? "Reset Password" : "Register",
             headerBackTitle: null,
         };
     };
@@ -53,29 +53,6 @@ class AuthRegisterPageView extends React.Component {
         return true;
     }
 
-    signUp() {
-        this.setState( {
-            isRequesting: true
-        } );
-    InteractionManager.runAfterInteractions(() =>{
-        // this.props.onUs
-        this.props.onUserSignUp(this.state.account,this.props.code,this.state.imgCode,(error,resBody) =>{
-            this.setState( {
-                isRequesting: false
-            } );
-
-
-
-
-        });
-    })
-
-
-
-
-
-    }
-
     verificationCodeGet() {
         this.setState( {
             isRequesting: true
@@ -91,7 +68,7 @@ class AuthRegisterPageView extends React.Component {
             query = {
                 type: this.state.type,
                 areaCode: '' + this.state.currentCountry.phoneCode,
-                phoneNumber: phone
+                phoneNumber: this.state.phone
             }
         }
 
@@ -113,6 +90,68 @@ class AuthRegisterPageView extends React.Component {
                     }
                 } );
         } );
+    }
+
+    signUp() {
+        this.setState( {
+            isRequesting: true
+        } );
+
+        let query;
+        if ( this.state.type === 'email' ) {
+            query = {
+                accountType: this.state.type,
+                email: this.state.email,
+                emailCode: this.state.code,
+                loginPass: this.state.password
+            }
+        } else {
+            query = {
+                accountType: this.state.type,
+                areaCode: '' + this.state.currentCountry.phoneCode,
+                phoneNumber: this.state.phone,
+                phoneCode: this.state.code,
+                loginPass: this.state.password
+            }
+        }
+
+        if ( this.props.isResetPassword ) {
+            InteractionManager.runAfterInteractions( () => {
+                this.props.onAuthForgotLoginPassword(
+                    query,
+                    ( error, resBody ) => {
+                        this.setState( {
+                            isRequesting: false
+                        } );
+
+                        if ( error ) {
+                            Toast.show( error.message );
+                        } else {
+                            this.setState( {
+                                code: '',
+                            } );
+                        }
+                    } );
+            } );
+        } else {
+            InteractionManager.runAfterInteractions( () => {
+                this.props.onAuthSignUp(
+                    query,
+                    ( error, resBody ) => {
+                        this.setState( {
+                            isRequesting: false
+                        } );
+
+                        if ( error ) {
+                            Toast.show( error.message );
+                        } else {
+                            this.setState( {
+                                code: '',
+                            } );
+                        }
+                    } );
+            } );
+        }
     }
 
     render() {
@@ -225,12 +264,14 @@ class AuthRegisterPageView extends React.Component {
                                     />
                             }
                             leftIconContainerStyle={[ commonStyles.pdr_normal ]}
-                            value={this.props.code}
-                            onChangeText={( text ) => this.props.onCodeChange && this.props.onCodeChange( text )}
+                            value={this.state.code}
+                            onChangeText={( text ) => this.setState( {
+                                code: text
+                            } )}
                             keyboardType={'phone-pad'}
                             errorStyle={{ color: 'red' }}
                             errorMessage={
-                                this.props.showError && ( !this.props.code || this.props.code.length <= 0 ) ?
+                                this.state.showError && ( !this.state.code || this.state.code.length <= 0 ) ?
                                     I18n.t( Keys.please_input_verify_code )
                                     :
                                     null
@@ -264,7 +305,7 @@ class AuthRegisterPageView extends React.Component {
                         />
 
                         <Button
-                            title={I18n.t( Keys.sign_up )}
+                            title={this.props.isResetPassword ? "Send" : I18n.t( Keys.sign_up )}
                             type="solid"
                             onPress={() => {
                                 this.signUp()
@@ -274,7 +315,11 @@ class AuthRegisterPageView extends React.Component {
                         />
 
                         <Button
-                            title={this.state.type === 'email' ? "Sign up by phone" : "Sign up by email"}
+                            title={
+                                this.props.isResetPassword ?
+                                    ( this.state.type === 'email' ? "Reset by phone" : "Reset by email" )
+                                    :
+                                    ( this.state.type === 'email' ? "Sign up by phone" : "Sign up by email" )}
                             type="outline"
                             onPress={() => {
                                 if ( this.state.type === 'email' ) {

@@ -1,6 +1,6 @@
 import { netAuthLogin } from "../net/AuthApiNet1";
 import userActionTypes from "../reducers/user/userActionTypes";
-import { netAuthSignUp } from "../net/AuthApiNet";
+import { netAuthForgotLoginPassword, netAuthSignUp } from "../net/AuthApiNet";
 
 export function authLogin( account, password, imageCode, callback ) {
     return ( dispatch ) => {
@@ -32,23 +32,53 @@ export function authLogin( account, password, imageCode, callback ) {
     };
 }
 
-export function authSignUp( account, password, imageCode, callback ) {
+export function authSignUp( query, callback ) {
     return ( dispatch ) => {
-        netAuthSignUp( account, password, imageCode, ( err, res ) => {
+        netAuthSignUp( query, ( err, res ) => {
             if ( !err ) {
                 dispatch( {
                     type: userActionTypes.LOGIN,
                     data: {
-                        account: account,
-                        password: password
+                        account: query.accountType === 'email' ? query.email : query.areaCode + query.phoneNumber,
+                        password: query.loginPass
                     }
                 } );
 
                 dispatch( {
                     'type': userActionTypes.RECORD_LOGIN_HISTORY,
                     data: {
-                        account: account,
-                        password: password
+                        account: query.accountType === 'email' ? query.email : query.areaCode + query.phoneNumber,
+                        password: query.loginPass
+                    }
+                } );
+
+                dispatch( {
+                    type: userActionTypes.UPDATE_USER_INFO,
+                    data: res.data.userInfo,
+                } );
+            }
+            callback && callback( err, res )
+        } );
+    };
+}
+
+export function authForgotLoginPassword( query, callback ) {
+    return ( dispatch ) => {
+        netAuthForgotLoginPassword( query, ( err, res ) => {
+            if ( !err ) {
+                dispatch( {
+                    type: userActionTypes.LOGIN,
+                    data: {
+                        account: query.accountType === 'email' ? query.email : query.areaCode + query.phoneNumber,
+                        password: query.loginPass
+                    }
+                } );
+
+                dispatch( {
+                    'type': userActionTypes.RECORD_LOGIN_HISTORY,
+                    data: {
+                        account: query.accountType === 'email' ? query.email : query.areaCode + query.phoneNumber,
+                        password: query.loginPass
                     }
                 } );
 
