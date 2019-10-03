@@ -3,7 +3,15 @@ import { connect } from "react-redux";
 import AssetsDepositPageView from "./AssetsDepositPageView";
 
 const mapStoreToProps = ( store, ownProps ) => {
-    return {}
+    // return {}
+
+    const { params } = ownProps.navigation.state;
+
+    return {
+        assets: params ? params.assets : null
+    }
+
+
 };
 
 const mapDispatchToProps = ( dispatch, ownProps ) => ( {} );

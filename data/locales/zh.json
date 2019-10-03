@@ -933,7 +933,11 @@
   "accouncement": "公告",
   "volume": "量",
   "CanUse": "可用",
-  "save_qrCodePic":"保存二维码到相册"
+  "save_qrCodePic":"保存二维码到相册",
+  "please_choose_first": "请选择",
+  "copy_coin_address":"复制充值地址",
+  "topUp_Coin_address":"充值地址",
+  "copy_success":"复制成功"
 
 
 }

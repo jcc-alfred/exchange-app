@@ -713,6 +713,11 @@ const Keys = {
     "Coin_address":"Coin address",
     "chooseCoinType": "chooseCoinType",
     "CanUse":"CanUse",
-    "save_qrCodePic":"save_qrCodePic"
+    "save_qrCodePic":"save_qrCodePic",
+    "please_choose_first":"please_choose_first",
+    "copy_coin_address":"copy_coin_address",
+    "topUp_Coin_address":"topUp_Coin_address",
+    "copy_success":"copy_success"
+
 };
 export default Keys;

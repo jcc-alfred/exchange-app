@@ -933,5 +933,11 @@
   "accouncement": "Announcement",
   "volume": "volume",
   "CanUse": "Can Use",
-  "save_qrCodePic":"save QRCode"
+  "save_qrCodePic":"save QRCode",
+  "please_choose_first": "please choose first",
+  "copy_coin_address":"Copy coin address",
+  "topUp_Coin_address":"top up coin address",
+  "copy_success":"copy success"
+
+
 }

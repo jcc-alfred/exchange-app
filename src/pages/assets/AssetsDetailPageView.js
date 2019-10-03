@@ -60,7 +60,15 @@ class AssetsDetailPageView extends React.Component {
                             }
                             title="Deposit"
                             onPress={() => {
-                                this.props.navigation.navigate( "AssetsDepositPage" )
+                                this.props.navigation.navigate( "AssetsDepositPage",{
+                                    assets: this.props.assets
+                                } )
+
+
+
+
+
+
                             }
                             }
                         />
