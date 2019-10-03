@@ -65,7 +65,7 @@ class AssetsWithdrawPageView extends React.Component {
         return (
             <View style={[ commonStyles.wrapper, ]}>
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
-                    {this.renderIconChoose()}
+                    {this.renderCoinChoose()}
                     {this.renderCoinAddressChoose()}
                     {this.renderCoinCountInput()}
 
@@ -80,7 +80,7 @@ class AssetsWithdrawPageView extends React.Component {
 
 
 
-    renderIconChoose(){
+    renderCoinChoose(){
         return (
             <View style={{backgroundColor:'#f6f6f8',margin:15, flexDirection:'row'}}>
                 <Text style={{padding:7, fontSize:16, flex:1.5}}>ETH</Text>
@@ -91,7 +91,6 @@ class AssetsWithdrawPageView extends React.Component {
                     titleStyle={{fontSize:14}}
                 />
             </View>
-
         );
     }
 
