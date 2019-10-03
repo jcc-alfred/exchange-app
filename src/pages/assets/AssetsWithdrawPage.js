@@ -3,7 +3,13 @@ import { connect } from "react-redux";
 import AssetsWithdrawPageView from "./AssetsWithdrawPageView";
 
 const mapStoreToProps = ( store, ownProps ) => {
-    return {}
+
+    const { params } = ownProps.navigation.state;
+
+    return {
+        assets: params ? params.assets : null
+    }
+
 };
 
 const mapDispatchToProps = ( dispatch, ownProps ) => ( {} );

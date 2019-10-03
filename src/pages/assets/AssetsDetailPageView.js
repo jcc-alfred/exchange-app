@@ -85,7 +85,9 @@ class AssetsDetailPageView extends React.Component {
                             }
                             title="Withdraw"
                             onPress={() => {
-                                this.props.navigation.navigate( "AssetsWithdrawPage" )
+                                this.props.navigation.navigate( "AssetsWithdrawPage",{
+                                    assets: this.props.assets
+                                } )
                             }
                             }
                         />

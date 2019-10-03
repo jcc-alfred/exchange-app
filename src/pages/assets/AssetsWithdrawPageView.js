@@ -83,13 +83,7 @@ class AssetsWithdrawPageView extends React.Component {
     renderCoinChoose(){
         return (
             <View style={{backgroundColor:'#f6f6f8',margin:15, flexDirection:'row'}}>
-                <Text style={{padding:7, fontSize:16, flex:1.5}}>ETH</Text>
-                <Button
-                    title={I18n.t( Keys.chooseCoinType)}
-                    type="clear"
-                    containerStyle={{flex:1}}
-                    titleStyle={{fontSize:14}}
-                />
+                <Text style={{padding:7, fontSize:16, flex:1.5}}>{this.props.assets.coin_name}</Text>
             </View>
         );
     }
