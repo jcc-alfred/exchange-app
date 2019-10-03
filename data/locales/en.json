@@ -937,7 +937,11 @@
   "please_choose_first": "please choose first",
   "copy_coin_address":"Copy coin address",
   "topUp_Coin_address":"top up coin address",
-  "copy_success":"copy success"
+  "copy_success":"copy success",
+  "coin_address":"Coin address",
+  "Processing_fee":"Processing fee",
+  "email_verification_code":"Email verification code",
+  "get_email_msg": "Verification code"
 
 
 }

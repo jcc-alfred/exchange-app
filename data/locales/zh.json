@@ -937,7 +937,9 @@
   "please_choose_first": "请选择",
   "copy_coin_address":"复制充值地址",
   "topUp_Coin_address":"充值地址",
-  "copy_success":"复制成功"
+  "copy_success":"复制成功",
+  "get_email_msg":"获取验证码"
+
 
 
 }

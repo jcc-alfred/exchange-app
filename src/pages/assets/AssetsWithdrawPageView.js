@@ -68,10 +68,17 @@ class AssetsWithdrawPageView extends React.Component {
                     {this.renderCoinChoose()}
                     {this.renderCoinAddressChoose()}
                     {this.renderCoinCountInput()}
-
                     {this.renderFeeView()}
+                    {this.renderPassword()}
+                    {this.renderEmailView()}
+                    {/*{this.renderInfoView()}*/}
 
-                    {this.renderInfoView()}
+                    <Button
+                        title={I18n.t( Keys.Confirm)}
+                        titleStyle={{fontSize:12}}
+                        style={[{margin:5}]}
+                        containerStyle={{flex:1,marginLeft:40,marginRight:40,marginTop:40}}
+                    />
 
                 </SafeAreaView>
             </View>
@@ -115,6 +122,13 @@ class AssetsWithdrawPageView extends React.Component {
         );
     }
 
+    //
+    // "coin_address":"Coin address",
+    // "Processing_fee":"Processing fee",
+    // "email_verification_code":"Email verification code"
+
+
+
 
 
     renderCoinCountInput(){
@@ -152,7 +166,7 @@ class AssetsWithdrawPageView extends React.Component {
                     leftIconContainerStyle={[ commonStyles.pdr_normal, { paddingLeft: 0, marginLeft: 0 } ]}
                     value={this.state.coinAddress}
                     onChangeText={( text ) => this.setState( { coinAddress: text } )}
-                    label={'processing fee'}
+                    label={I18n.t( Keys.Processing_fee)}
                     errorStyle={{ color: 'red' }}
                     errorMessage={
                         this.state.showError && ( !this.state.coinAddress || this.state.coinAddress.length <= 0 ) ?
@@ -168,6 +182,81 @@ class AssetsWithdrawPageView extends React.Component {
             </View>
         );
     }
+
+
+    renderEmailView(){
+        return (
+            <View style={{ marginTop:10,marginLeft:5,marginRight:5, flexDirection:'row'}}>
+                <Input
+                    style={[ commonStyles.wrapper ]}
+                    leftIconContainerStyle={[ commonStyles.pdr_normal, { paddingLeft: 0, marginLeft: 0 } ]}
+                    value={this.state.coinAddress}
+                    onChangeText={( text ) => this.setState( { coinAddress: text } )}
+                    label={I18n.t( Keys.email_verification_code)}
+                    errorStyle={{ color: 'red' }}
+                    errorMessage={
+                        this.state.showError && ( !this.state.coinAddress || this.state.coinAddress.length <= 0 ) ?
+                            "Please input coin address"
+                            :
+                            null
+                    }
+                    returnKeyType={'next'}
+                    onSubmitEditing={() => {
+                        // this.passwordInput.focus()
+                    }}
+                    containerStyle={{flex:3}}
+                />
+                <Button
+                    title={I18n.t( Keys.get_email_msg)}
+                    titleStyle={{fontSize:12}}
+                    style={[{margin:5}]}
+                    containerStyle={{flex:1}}
+                    type="outline"
+                />
+            </View>
+        );
+    }
+
+
+    renderPassword(){
+        return(
+            <View style={{ marginTop:10,marginLeft:5,marginRight:5}}>
+                <Input
+                    style={[ commonStyles.wrapper ]}
+                    leftIconContainerStyle={[ commonStyles.pdr_normal, { paddingLeft: 0, marginLeft: 0 } ]}
+                    value={this.state.coinAddress}
+                    onChangeText={( text ) => this.setState( { coinAddress: text } )}
+                    label={I18n.t( Keys.password)}
+                    errorStyle={{ color: 'red' }}
+                    errorMessage={
+                        this.state.showError && ( !this.state.coinAddress || this.state.coinAddress.length <= 0 ) ?
+                            "Please input password"
+                            :
+                            null
+                    }
+                    returnKeyType={'next'}
+                    onSubmitEditing={() => {
+
+                    }}
+                />
+            </View>
+        );
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     renderInfoView(){
         return (

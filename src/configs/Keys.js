@@ -718,7 +718,11 @@ const Keys = {
     "please_choose_first":"please_choose_first",
     "copy_coin_address":"copy_coin_address",
     "topUp_Coin_address":"topUp_Coin_address",
-    "copy_success":"copy_success"
+    "copy_success":"copy_success",
+    "get_email_msg":"get_email_msg",
+    "coin_address":"coin_address",
+    "Processing_fee":"Processing_fee",
+    "email_verification_code":"email_verification_code"
 
 };
 export default Keys;
