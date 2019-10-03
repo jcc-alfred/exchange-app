@@ -1,7 +1,6 @@
 import React from 'react';
 import {
     Platform,
-    SafeAreaView,
     StyleSheet,
     View,
     TouchableHighlight,
@@ -224,7 +223,7 @@ class HomePageView extends React.Component {
                                 <Text style={{
                                     fontSize: 16,
                                     fontWeight: 'bold',
-                                    color: this.state.dataSources[0].market.change_rate < 0 ? 'red' : 'green'
+                                    color: this.state.dataSources && this.state.dataSources[0].market.change_rate < 0 ? 'red' : 'green'
                                 }}>{this.state.dataSources ?  this.state.dataSources[0].market.last_price : ''}</Text>
                                 <Text
                                     style={{color: this.state.dataSources[0].market.change_rate < 0 ? 'red' : 'green'}}>{this.state.dataSources.length == 0 ? '' : (this.state.dataSources[0].market.change_rate * 100).toFixed(2)}%</Text>
@@ -238,7 +237,7 @@ class HomePageView extends React.Component {
                                 <Text style={{
                                     fontSize: 16,
                                     fontWeight: 'bold',
-                                    color: this.state.dataSources[0].market.change_rate < 0 ? 'red' : 'green'
+                                    color: this.state.dataSources && this.state.dataSources[0].market.change_rate < 0 ? 'red' : 'green'
                                 }}>{this.state.dataSources ? this.state.dataSources[1].market.last_price : ''}</Text>
                                 <Text
                                     style={{color: this.state.dataSources[0].market.change_rate < 0 ? 'red' : 'green'}}>{this.state.dataSources.length == 0 ? '' : (this.state.dataSources[1].market.change_rate * 100).toFixed(2)}%</Text>
@@ -251,7 +250,7 @@ class HomePageView extends React.Component {
                                 <Text style={{
                                     fontSize: 16,
                                     fontWeight: 'bold',
-                                    color: this.state.dataSources[0].market.change_rate < 0 ? 'red' : 'green'
+                                    color: this.state.dataSources && this.state.dataSources[0].market.change_rate < 0 ? 'red' : 'green'
                                 }}>{this.state.dataSources ? this.state.dataSources[2].market.last_price : ''}</Text>
                                 <Text
                                     style={{color: this.state.dataSources[0].market.change_rate < 0 ? 'red' : 'green'}}>{this.state.dataSources.length == 0 ? '' : (this.state.dataSources[2].market.change_rate * 100).toFixed(2)}%</Text>
