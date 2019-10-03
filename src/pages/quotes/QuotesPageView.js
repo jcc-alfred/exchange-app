@@ -226,29 +226,29 @@ class QuotesPageView extends React.Component {
                 <SafeAreaView style={[ commonStyles.wrapper ]}>
                     {this.exchangeAreaTabs()}
 
-                    <ConfirmDialog
-                        title={I18n.t( Keys.notification )}
-                        message={I18n.t( Keys.update_now )}
-                        visible={this.state.updateDialogVisible}
-                        onTouchOutside={() => this.setState( { updateDialogVisible: false } )}
-                        positiveButton={{
-                            title: I18n.t( Keys.yes ),
-                            onPress: () => {
-                                this.setState( {
-                                    updateDialogVisible: false
-                                } );
-                                this.doUpdate();
-                            }
-                        }}
-                        negativeButton={{
-                            title: I18n.t( Keys.no ),
-                            onPress: () => {
-                                this.setState( {
-                                    updateDialogVisible: false
-                                } );
-                            }
-                        }}
-                    />
+                    {/*<ConfirmDialog*/}
+                        {/*title={I18n.t( Keys.notification )}*/}
+                        {/*message={I18n.t( Keys.update_now )}*/}
+                        {/*visible={this.state.updateDialogVisible}*/}
+                        {/*onTouchOutside={() => this.setState( { updateDialogVisible: false } )}*/}
+                        {/*positiveButton={{*/}
+                            {/*title: I18n.t( Keys.yes ),*/}
+                            {/*onPress: () => {*/}
+                                {/*this.setState( {*/}
+                                    {/*updateDialogVisible: false*/}
+                                {/*} );*/}
+                                {/*this.doUpdate();*/}
+                            {/*}*/}
+                        {/*}}*/}
+                        {/*negativeButton={{*/}
+                            {/*title: I18n.t( Keys.no ),*/}
+                            {/*onPress: () => {*/}
+                                {/*this.setState( {*/}
+                                    {/*updateDialogVisible: false*/}
+                                {/*} );*/}
+                            {/*}*/}
+                        {/*}}*/}
+                    {/*/>*/}
 
                     <Spinner visible={this.state.isRequesting} cancelable={true}/>
                 </SafeAreaView>

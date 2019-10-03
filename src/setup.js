@@ -50,6 +50,8 @@ async function loadResourcesAsync() {
             require( '../assets/images/qr_code.png' ),
             require( '../assets/images/klineIcon.png' ),
             require( '../assets/images/asiaedx_logo.png' ),
+            require( '../assets/images/baner-image.png' ),
+
         ] ),
         Font.loadAsync( {
             // This is the font that we are using for our tab bar
