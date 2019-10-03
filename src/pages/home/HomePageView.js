@@ -227,10 +227,10 @@ class HomePageView extends React.Component {
                                     fontSize: 16,
                                     fontWeight: 'bold',
                                     color: this.state.dataSources[0].market.change_rate < 0 ? 'red' : 'green'
-                                }}>{this.state.dataSources.length == 0 ? '' : this.state.dataSources[0].market.last_price}</Text>
+                                }}>{this.state.dataSources ?  this.state.dataSources[0].market.last_price : ''}</Text>
                                 <Text
                                     style={{color: this.state.dataSources[0].market.change_rate < 0 ? 'red' : 'green'}}>{this.state.dataSources.length == 0 ? '' : (this.state.dataSources[0].market.change_rate * 100).toFixed(2)}%</Text>
-                                <Text> ≈{this.state.dataSources.length == 0 ? '' : this.state.dataSources[0].price_usd.toFixed(2)} USD</Text>
+                                <Text> ≈{this.state.dataSources ? this.state.dataSources[0].price_usd.toFixed(2) : ''} USD</Text>
 
 
                             </View>
@@ -241,10 +241,10 @@ class HomePageView extends React.Component {
                                     fontSize: 16,
                                     fontWeight: 'bold',
                                     color: this.state.dataSources[0].market.change_rate < 0 ? 'red' : 'green'
-                                }}>{this.state.dataSources.length == 0 ? '' : this.state.dataSources[1].market.last_price}</Text>
+                                }}>{this.state.dataSources ? this.state.dataSources[1].market.last_price : ''}</Text>
                                 <Text
                                     style={{color: this.state.dataSources[0].market.change_rate < 0 ? 'red' : 'green'}}>{this.state.dataSources.length == 0 ? '' : (this.state.dataSources[1].market.change_rate * 100).toFixed(2)}%</Text>
-                                <Text> ≈{this.state.dataSources.length == 0 ? '' : this.state.dataSources[1].price_usd.toFixed(2)} USD</Text>
+                                <Text> ≈{this.state.dataSources ? this.state.dataSources[1].price_usd.toFixed(2) : ''} USD</Text>
 
                             </View>
 
@@ -254,10 +254,10 @@ class HomePageView extends React.Component {
                                     fontSize: 16,
                                     fontWeight: 'bold',
                                     color: this.state.dataSources[0].market.change_rate < 0 ? 'red' : 'green'
-                                }}>{this.state.dataSources.length == 0 ? '' : this.state.dataSources[2].market.last_price}</Text>
+                                }}>{this.state.dataSources ? this.state.dataSources[2].market.last_price : ''}</Text>
                                 <Text
                                     style={{color: this.state.dataSources[0].market.change_rate < 0 ? 'red' : 'green'}}>{this.state.dataSources.length == 0 ? '' : (this.state.dataSources[2].market.change_rate * 100).toFixed(2)}%</Text>
-                                <Text> ≈{this.state.dataSources.length == 0 ? '' : this.state.dataSources[2].price_usd.toFixed(2)} USD</Text>
+                                <Text> ≈{this.state.dataSources ? this.state.dataSources[2].price_usd.toFixed(2) : ''} USD</Text>
                             </View>
 
                         </View>
