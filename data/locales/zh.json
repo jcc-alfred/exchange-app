@@ -932,5 +932,8 @@
   "news": "新闻",
   "accouncement": "公告",
   "volume": "量",
-  "CanUse": "可用"
+  "CanUse": "可用",
+  "save_qrCodePic":"保存二维码到相册"
+
+
 }

@@ -1,6 +1,7 @@
 import { netAuthLogin } from "../net/AuthApiNet1";
 import userActionTypes from "../reducers/user/userActionTypes";
 import { netAuthForgotLoginPassword, netAuthSignUp } from "../net/AuthApiNet";
+import { userMe } from "./UserAction";
 
 export function authLogin( account, password, imageCode, callback ) {
     return ( dispatch ) => {
@@ -26,6 +27,8 @@ export function authLogin( account, password, imageCode, callback ) {
                     type: userActionTypes.UPDATE_USER_INFO,
                     data: res.data.userInfo,
                 } );
+
+                dispatch(userMe( null ));
             }
             callback && callback( err, res )
         } );
@@ -56,6 +59,7 @@ export function authSignUp( query, callback ) {
                     type: userActionTypes.UPDATE_USER_INFO,
                     data: res.data.userInfo,
                 } );
+                dispatch(userMe( null ));
             }
             callback && callback( err, res )
         } );
@@ -86,6 +90,8 @@ export function authForgotLoginPassword( query, callback ) {
                     type: userActionTypes.UPDATE_USER_INFO,
                     data: res.data.userInfo,
                 } );
+
+                dispatch(userMe( null ));
             }
             callback && callback( err, res )
         } );

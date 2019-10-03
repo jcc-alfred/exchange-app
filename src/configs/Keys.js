@@ -712,6 +712,7 @@ const Keys = {
     "balance":"balance",
     "Coin_address":"Coin address",
     "chooseCoinType": "chooseCoinType",
-    "CanUse":"CanUse"
+    "CanUse":"CanUse",
+    "save_qrCodePic":"save_qrCodePic"
 };
 export default Keys;
