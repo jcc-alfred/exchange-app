@@ -6,7 +6,7 @@ import {
     exchangeGetMarketList,
     exchangeGetIsExchangeSafe,
     exchangeDoEntrust,
-    changeTradePageCoinExchange
+    changeTradePageCoinExchange, exchangeDoCancelEntrust
 } from "../../actions/ExchangeAction";
 import {assetsGetUserAssets} from "../../actions/AssetsAction";
 
@@ -54,6 +54,11 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
             type: userActionTypes.SAVE_SAFE_PASS,
             data: password
         })
+    },
+    onexchangeDoCancelEntrust:(query,callback)=>{
+        dispatch(exchangeDoCancelEntrust(query,(err,res)=>{
+            callback && callback(err,res)
+        }))
     }
 });
 
