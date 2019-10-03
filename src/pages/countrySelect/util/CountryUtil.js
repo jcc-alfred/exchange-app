@@ -5,7 +5,7 @@ import { countryDataParse } from "../data/countryDataParse";
 const CountryUtil = {
 
     calcCountry( defaultCountryCode ) {
-        const { modelList, modelMap } = countryDataParse();
+        const { modelArray, modelMap, sectionArray, modelPhoneCodeMap } = countryDataParse();
 
         let defaultCountryCode1;
 
@@ -25,6 +25,12 @@ const CountryUtil = {
         }
 
         return countryData.data;
+    },
+
+    calcCountryByPhoneCode( phoneCode ) {
+        const { modelArray, modelMap, sectionArray, modelPhoneCodeMap } = countryDataParse();
+
+        return modelPhoneCodeMap[ '' + parseInt( phoneCode ) ].data;
     },
 };
 

@@ -5,6 +5,7 @@ import { ListItem, Text } from "react-native-elements";
 import commonStyles from "../../../styles/commonStyles";
 import { Ionicons } from "@expo/vector-icons";
 import constStyles from "../../../styles/constStyles";
+import CountryUtil from "../../countrySelect/util/CountryUtil";
 
 class BasicUserInfoVerifyResultView extends React.Component {
     static propTypes = {};
@@ -40,16 +41,16 @@ class BasicUserInfoVerifyResultView extends React.Component {
                         <View>
                             <ListItem
                                 title="Country"
-                                rightTitle={"china"}
+                                rightTitle={CountryUtil.calcCountryByPhoneCode( this.props.userIdentity.area_code )}
                             />
                             <ListItem
                                 title="Name"
-                                rightTitle={"aaa bbb"}
+                                rightTitle={this.props.userIdentity.full_name}
                             />
 
                             <ListItem
                                 title="id no"
-                                rightTitle={"E1212121212"}
+                                rightTitle={this.props.userIdentity.card_id}
                             />
                         </View>
                     }
@@ -64,6 +65,7 @@ function select( store ) {
     return {
         isLoggedIn: store.userStore.isLoggedIn,
         userInfo: store.userStore.userInfo,
+        userIdentity: store.userStore.userIdentity,
     }
 }
 

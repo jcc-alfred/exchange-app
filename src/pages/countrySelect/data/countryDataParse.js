@@ -5,6 +5,7 @@ import I18n from "../../../I18n";
 export function countryDataParse() {
     let modelArray = [];
     let modelMap = {};
+    let modelPhoneCodeMap = {};
 
 
     for ( let index = 0; index < countryDataJson.length; index++ ) {
@@ -24,6 +25,7 @@ export function countryDataParse() {
 
         modelArray.push( model );
         modelMap[ model.key ] = model;
+        modelPhoneCodeMap['' + countryDataJson[ index ].phoneCode] = model;
     }
 
     modelArray = modelArray.sort( function ( a, b ) {
@@ -63,5 +65,6 @@ export function countryDataParse() {
         modelArray: modelArray,
         modelMap: modelMap,
         sectionArray: sectionArray,
+        modelPhoneCodeMap: modelPhoneCodeMap
     }
 }
