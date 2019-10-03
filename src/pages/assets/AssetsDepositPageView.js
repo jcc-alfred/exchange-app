@@ -90,14 +90,12 @@ class AssetsDepositPageView extends React.Component {
 
     renderQRcodeView(){
         return (
-            <View style={{backgroundColor:'#f6f6f8',margin:15}}>
-                <View style={{flex:1}}>
-                    <QRCode value="Hello, World!"/>
-                </View>
+            <View style={{backgroundColor:'#f6f6f8',margin:15, alignContent:'center'}}>
+                <QRCode  value="Hello, World!"/>
                 <Button
-                    title={I18n.t( Keys.chooseCoinType)}
+                    title={I18n.t( Keys.save_qrCodePic)}
                     type="clear"
-                    containerStyle={{flex:1}}
+
                     titleStyle={{fontSize:14}}
                 />
             </View>
