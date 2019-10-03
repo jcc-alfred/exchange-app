@@ -12,6 +12,7 @@ const Keys = {
     "cancel": "cancel",
     "Confirm":"Confirm",
     "changerate": "changerate",
+    "rank":"rank",
     "choose_photo": "choose_photo",
     "country": "country",
     "country_AD": "country.AD",

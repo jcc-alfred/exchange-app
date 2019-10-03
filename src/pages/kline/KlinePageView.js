@@ -1,5 +1,5 @@
 import React from 'react';
-import {InteractionManager, Platform, SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
+import {InteractionManager, Platform, SafeAreaView, ScrollView, StyleSheet, View, WebView} from 'react-native';
 import {Button, ListItem, Text} from "react-native-elements";
 import commonStyles from "../../styles/commonStyles";
 import {NavigationActions, StackActions} from "react-navigation";
@@ -11,15 +11,16 @@ import {BorderlessButton} from "react-native-gesture-handler";
 import {Ionicons} from "@expo/vector-icons";
 import io from 'socket.io-client';
 
+// import {WebView} from 'react-native-webview';
+
 class KlinePageView extends React.Component {
 
     constructor(props) {
         super(props);
-        this.coinEx = this.props.navigation.getParam('coin_exchange');
         this.state = {
             isRequesting: false,
             socket: null,
-            range:864000
+            range: 864000
         }
     }
 
@@ -27,25 +28,12 @@ class KlinePageView extends React.Component {
         const {navigation} = props;
         const {state, setParams} = navigation;
         const {params} = state;
-        const coinEx = navigation.getParam('coin_exchange');
 
 
         return {
-            title: coinEx.coinEx.coin_name + '/' + coinEx.coinEx.exchange_coin_name,
+            title: params.coin_exchange.coinEx.coin_name + '/' + params.coin_exchange.coinEx.exchange_coin_name,
             headerBackTitle: null,
-            headerRight: (
-                <View style={[{flexDirection: 'row'}]}>
-                    <BorderlessButton
-                        onPress={() => navigation.navigate('SettingsPage')}
-                        style={{marginRight: 15}}>
-                        <Ionicons
-                            name="md-settings"
-                            size={Platform.OS === 'ios' ? 22 : 25}
-                            color={'white'}
-                        />
-                    </BorderlessButton>
-                </View>
-            )
+            headerRight: null
         };
     };
 
@@ -66,17 +54,17 @@ class KlinePageView extends React.Component {
             this.socket.on('connect', () => {
                 // console.log('connect:', this.socket.connected);
                 this.socket.emit('init', {
-                    user_id: this.props.userInfo.user_id ?this.props.userInfo.user_id :0,
-                    coin_exchange_id: this.coinEx.coin_exchange_id,
+                    user_id: this.props.userInfo.user_id ? this.props.userInfo.user_id : 0,
+                    coin_exchange_id: this.props.coin_exchange.coin_exchange_id,
                     range: this.state.range
                 });
             });
-            this.socket.on('entrustList',(data)=>{
+            this.socket.on('entrustList', (data) => {
                 this.setState({buyList: data.buyList});
                 this.setState({sellList: data.sellList});
-                if(!this.state.buyPrice){
-                    this.setState({buyPrice:data.sellList.length > 0 ? data.sellList[data.sellList.length -1].entrust_price : ''});
-                    this.setState({sellPrice:data.buyList.length > 0 ? data.buyList[0].entrust_price : ''});
+                if (!this.state.buyPrice) {
+                    this.setState({buyPrice: data.sellList.length > 0 ? data.sellList[data.sellList.length - 1].entrust_price : ''});
+                    this.setState({sellPrice: data.buyList.length > 0 ? data.buyList[0].entrust_price : ''});
                 }
             });
 
@@ -86,6 +74,9 @@ class KlinePageView extends React.Component {
     componentWillUnmount() {
         this.setState = (state, callback) => {
         };
+        if (this.socket && this.socket.connected) {
+            this.socket.emit("disconnect");
+        }
     }
 
     componentWillReceiveProps(nextProps) {
@@ -101,11 +92,24 @@ class KlinePageView extends React.Component {
         return (
             <View style={[commonStyles.wrapper,]}>
                 <SafeAreaView style={[commonStyles.wrapper]}>
-                    <Text>kline page {JSON.stringify(navigation.getParam('coin_exchange'))}</Text>
-                    <Text>
-                        {JSON.stringify(this.state.buyList)}
-                    </Text>
-                    <Spinner visible={this.state.isRequesting} cancelable={true}/>
+                    <View style={{height: 150, width: 150, overflow: 'hidden'}}>
+                        {/*<Text>{JSON.stringify(this.props.coin_exchange)}</Text>*/}
+
+                        {/*<WebView*/}
+                        {/*source={{uri: 'https://github.com/react-native-community/react-native-webview'}}*/}
+                        {/*originWhitelist={['*']}*/}
+                        {/*javaScriptEnabled={true}*/}
+                        {/*domStorageEnabled={true}*/}
+                        {/*startInLoadingState={true}*/}
+                        {/*allowUniversalAccessFromFileURLs={true}*/}
+                        {/*mixedContentMode={'compatibility'}*/}
+                        {/*/>*/}
+                        <WebView style={{backgroundColor: "black"}} originWhitelist={['*']}
+                                 source={{uri: 'https://github.com/facebook/react-native'}}
+                                 javaScriptEnabled={true}
+                                 domStorageEnabled={true}
+                        />
+                    </View>
                 </SafeAreaView>
             </View>
         );
