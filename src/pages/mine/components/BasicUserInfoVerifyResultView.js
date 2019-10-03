@@ -23,6 +23,12 @@ class BasicUserInfoVerifyResultView extends React.Component {
 
 
     render() {
+        if ( !this.props.userIdentity ) {
+            return <View/>
+        }
+
+        const country = CountryUtil.calcCountryByPhoneCode( this.props.userIdentity.area_code );
+
         return (
             <View>
                 <ListItem
@@ -41,7 +47,7 @@ class BasicUserInfoVerifyResultView extends React.Component {
                         <View>
                             <ListItem
                                 title="Country"
-                                rightTitle={CountryUtil.calcCountryByPhoneCode( this.props.userIdentity.area_code )}
+                                rightTitle={country ? country.name : ''}
                             />
                             <ListItem
                                 title="Name"

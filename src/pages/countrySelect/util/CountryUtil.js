@@ -30,7 +30,9 @@ const CountryUtil = {
     calcCountryByPhoneCode( phoneCode ) {
         const { modelArray, modelMap, sectionArray, modelPhoneCodeMap } = countryDataParse();
 
-        return modelPhoneCodeMap[ '' + parseInt( phoneCode ) ].data;
+        const modal = modelPhoneCodeMap[ '' + parseInt( phoneCode ) ];
+
+        return modal ? modal.data : null;
     },
 };
 

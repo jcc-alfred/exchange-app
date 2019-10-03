@@ -10,7 +10,8 @@ import { NavigationActions, StackActions } from "react-navigation";
 import { getEventEmitter } from "./EventEmitter";
 import I18n from "./I18n";
 import PubSubConstant from "./pubSub/PubSubConstant";
-import {exchangeGetMarketList} from "./actions/ExchangeAction";
+import { exchangeGetMarketList } from "./actions/ExchangeAction";
+import { userMe } from "./actions/UserAction";
 
 class Main extends React.Component {
     constructor( props ) {
@@ -64,7 +65,7 @@ class Main extends React.Component {
 
     onLoginSuccess() {
         InteractionManager.runAfterInteractions( () => {
-
+            this.props.dispatch(userMe( null ));
         } );
     }
 
