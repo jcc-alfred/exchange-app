@@ -1,16 +1,10 @@
 import React from "react";
-import {Dimensions, Platform, SafeAreaView, StyleSheet, Text, View} from "react-native";
+import {Dimensions, SafeAreaView, StyleSheet, View} from "react-native";
 import {connect} from "react-redux";
 
 import {DrawerActions} from 'react-navigation-drawer';
-import {getStatusBarHeight} from "react-native-iphone-x-helper";
-import {Button, ListItem, SearchBar} from "react-native-elements";
-import {Header} from 'react-navigation';
-import constStyles from "../../../styles/constStyles";
-import {Ionicons} from "@expo/vector-icons";
+import { SearchBar} from "react-native-elements";
 import commonStyles from "../../../styles/commonStyles";
-import OrderHistoryPage from "../../order/OrderHistoryPage";
-import TextInput from "react-native-web/dist/exports/TextInput";
 import {changeTradePageCoinExchange} from "../../../actions/ExchangeAction";
 import {SceneMap, TabBar, TabView} from "react-native-tab-view";
 import TradeMenuPairList from "../../../components/TradeMenuPairList";
@@ -26,6 +20,7 @@ class TradeExMenu extends React.Component {
             routes: routes ? routes : [],
             scenes: scenes ? scenes : [],
             search: '',
+            marketList: this.props.marketList
         }
 
     }
@@ -43,7 +38,7 @@ class TradeExMenu extends React.Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        if (this.props.coin_exchange_area !== nextProps.coin_exchange_area || nextProps.marketList !== this.props.marketList) {
+        if (this.props.coin_exchange_area !== nextProps.coin_exchange_area || nextProps.marketList !== this.props.marketList ||nextState.search !== this.state.search) {
             const {index, routes, scenes} = this.initTabData(nextProps.coin_exchange_area);
             this.setState({
                 // index: index,
@@ -55,17 +50,28 @@ class TradeExMenu extends React.Component {
         return true;
     }
 
-    updateSearch = search => {
-        this.setState({ search });
+    updateSearch = (search) => {
+        this.setState({ search : search });
+    };
+
+    filterSearch = (search,marketList) => {
+        const current_coin_exchange_area_id =this.props.coin_exchange_area[this.state.index].coin_exchange_area_id;
+        if(search!==''){
+            let res= marketList.filter(function(item) {
+                //applying filter for the inserted text in search bar
+                if( item.coinEx.coin_exchange_area_id !== current_coin_exchange_area_id  || item.coinEx.coin_name.toUpperCase().indexOf(search.toUpperCase())<0){
+                    return false
+                }
+                return true
+            });
+            return res
+        }else {return marketList}
+
+
+
     };
 
     render() {
-        // return (
-        //     <View style={[ { paddingTop: getStatusBarHeight() + Header.HEIGHT } ]}>
-        //         <Text>{JSON.stringify(this.props.marketList)}</Text>
-        //     </View>
-        // );
-
         const { search } = this.state;
 
         return (
@@ -79,30 +85,6 @@ class TradeExMenu extends React.Component {
                         value={search}
                     />
                     {this.exchangeAreaTabs()}
-
-                    {/*<ConfirmDialog*/}
-                    {/*title={I18n.t( Keys.notification )}*/}
-                    {/*message={I18n.t( Keys.update_now )}*/}
-                    {/*visible={this.state.updateDialogVisible}*/}
-                    {/*onTouchOutside={() => this.setState( { updateDialogVisible: false } )}*/}
-                    {/*positiveButton={{*/}
-                    {/*title: I18n.t( Keys.yes ),*/}
-                    {/*onPress: () => {*/}
-                    {/*this.setState( {*/}
-                    {/*updateDialogVisible: false*/}
-                    {/*} );*/}
-                    {/*this.doUpdate();*/}
-                    {/*}*/}
-                    {/*}}*/}
-                    {/*negativeButton={{*/}
-                    {/*title: I18n.t( Keys.no ),*/}
-                    {/*onPress: () => {*/}
-                    {/*this.setState( {*/}
-                    {/*updateDialogVisible: false*/}
-                    {/*} );*/}
-                    {/*}*/}
-                    {/*}}*/}
-                    {/*/>*/}
 
                     <Spinner visible={this.state.isRequesting} cancelable={true}/>
                 </SafeAreaView>
@@ -125,7 +107,7 @@ class TradeExMenu extends React.Component {
                     return (
                         <TradeMenuPairList
                             data={{
-                                marketList: this.props.marketList,
+                                marketList: this.filterSearch(this.state.search,this.props.marketList),
                                 coin_exchange_area_id: tabData[index].coin_exchange_area_id
                             }}
                             onPressItem={this.onPressItem.bind( this )}/>
@@ -172,9 +154,6 @@ class TradeExMenu extends React.Component {
     }
 
     onPressItem( coin_exchange ) {
-        // return{
-        //     this.props.TradePageCoinEx : coin_exchange;
-        // }
         this.props.onChangeTradePageCoinExchange(coin_exchange)
         this.props.navigation.dispatch( DrawerActions.closeDrawer() )
 
