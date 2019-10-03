@@ -6,8 +6,10 @@ import {LoadInitSocket} from "../../actions/SocketAction";
 
 const mapStoreToProps = (store, ownProps) => {
     const {params} = ownProps.navigation.state;
+    const coin_exchange =params.coin_exchange;
 
     return {
+        coin_exchange: params.coin_exchange,
         isLoggedIn: store.userStore.isLoggedIn,
         userInfo: store.userStore.userInfo,
         entrustList: store.metaStore.entrustList,

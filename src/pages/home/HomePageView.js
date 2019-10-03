@@ -1,7 +1,6 @@
 import React from 'react';
 import {
     Platform,
-    SafeAreaView,
     StyleSheet,
     View,
     TouchableHighlight,
@@ -28,7 +27,7 @@ class HomePageView extends React.Component {
 
         this.state = {
             isRequesting: true,
-            dataSources: [],
+            // dataSources: [],
             newsList: [],
             announcementList: [],
             refreshing: false,
@@ -43,7 +42,8 @@ class HomePageView extends React.Component {
         return {
             title: null,
             headerBackTitle: null,
-            headerTitle: (<Image style={{ width: 90, height: 20}} source={require('../../../assets/images/asiaedx_logo.png')}></Image>),
+            headerTitle: (<Image style={{width: 90, height: 20}}
+                                 source={require('../../../assets/images/asiaedx_logo.png')}></Image>),
             headerLeft: (
                 <BorderlessButton
                     onPress={() => {
@@ -110,7 +110,6 @@ class HomePageView extends React.Component {
                 } else {
                     this.setState({
                         isRequesting: false,
-                        dataSources: resBody.data,
                     });
                 }
             });
@@ -131,7 +130,6 @@ class HomePageView extends React.Component {
                         } else {
                             this.setState({
                                 isRequesting: false,
-                                dataSources: resBody.data,
                             });
                         }
                     });
@@ -224,11 +222,13 @@ class HomePageView extends React.Component {
                                 <Text style={{
                                     fontSize: 16,
                                     fontWeight: 'bold',
-                                    color: this.state.dataSources[0].market.change_rate < 0 ? 'red' : 'green'
-                                }}>{this.state.dataSources ?  this.state.dataSources[0].market.last_price : ''}</Text>
+                                    color: this.props.marketList && this.props.marketList.find(i => i.coinEx.coin_name.toUpperCase() === "ETH" && i.coinEx.exchange_coin_name === "BTC").market.change_rate < 0 ? 'red' : 'green'
+                                }}>{this.props.marketList.length > 0 ? this.props.marketList.find(i => i.coinEx.coin_name.toUpperCase() === "ETH" && i.coinEx.exchange_coin_name === "BTC").market.last_price : ''}</Text>
                                 <Text
-                                    style={{color: this.state.dataSources[0].market.change_rate < 0 ? 'red' : 'green'}}>{this.state.dataSources.length == 0 ? '' : (this.state.dataSources[0].market.change_rate * 100).toFixed(2)}%</Text>
-                                <Text> ≈{this.state.dataSources ? this.state.dataSources[0].price_usd.toFixed(2) : ''} USD</Text>
+                                    style={{color: this.props.marketList.find(i => i.coinEx.coin_name.toUpperCase() === "ETH" && i.coinEx.exchange_coin_name === "BTC").market.change_rate < 0 ? 'red' : 'green'}}>
+                                    {(this.props.marketList[0].market.change_rate * 100).toFixed(2)}%
+                                </Text>
+                                <Text> ≈{this.props.marketList ? this.props.marketList.find(i => i.coinEx.coin_name.toUpperCase() === "ETH" && i.coinEx.exchange_coin_name === "BTC").price_usd.toFixed(2) : ''} USD</Text>
 
 
                             </View>
@@ -238,11 +238,11 @@ class HomePageView extends React.Component {
                                 <Text style={{
                                     fontSize: 16,
                                     fontWeight: 'bold',
-                                    color: this.state.dataSources[0].market.change_rate < 0 ? 'red' : 'green'
-                                }}>{this.state.dataSources ? this.state.dataSources[1].market.last_price : ''}</Text>
+                                    color: this.props.marketList && this.props.marketList.find(i => i.coinEx.coin_name.toUpperCase() === "GTB" && i.coinEx.exchange_coin_name === "BTC").market.change_rate < 0 ? 'red' : 'green'
+                                }}>{this.props.marketList ? this.props.marketList.find(i => i.coinEx.coin_name.toUpperCase() === "GTB" && i.coinEx.exchange_coin_name === "BTC").market.last_price : ''}</Text>
                                 <Text
-                                    style={{color: this.state.dataSources[0].market.change_rate < 0 ? 'red' : 'green'}}>{this.state.dataSources.length == 0 ? '' : (this.state.dataSources[1].market.change_rate * 100).toFixed(2)}%</Text>
-                                <Text> ≈{this.state.dataSources ? this.state.dataSources[1].price_usd.toFixed(2) : ''} USD</Text>
+                                    style={{color: this.props.marketList.find(i => i.coinEx.coin_name.toUpperCase() === "GTB" && i.coinEx.exchange_coin_name === "BTC").market.change_rate < 0 ? 'red' : 'green'}}>{this.props.marketList.length == 0 ? '' : (this.props.marketList[1].market.change_rate * 100).toFixed(2)}%</Text>
+                                <Text> ≈{this.props.marketList ? this.props.marketList.find(i => i.coinEx.coin_name.toUpperCase() === "GTB" && i.coinEx.exchange_coin_name === "BTC").price_usd.toFixed(2) : ''} USD</Text>
 
                             </View>
 
@@ -251,11 +251,11 @@ class HomePageView extends React.Component {
                                 <Text style={{
                                     fontSize: 16,
                                     fontWeight: 'bold',
-                                    color: this.state.dataSources[0].market.change_rate < 0 ? 'red' : 'green'
-                                }}>{this.state.dataSources ? this.state.dataSources[2].market.last_price : ''}</Text>
+                                    color: this.props.marketList && this.props.marketList.find(i => i.coinEx.coin_name.toUpperCase() === "GTB" && i.coinEx.exchange_coin_name === "ETH").market.change_rate < 0 ? 'red' : 'green'
+                                }}>{this.props.marketList ? this.props.marketList.find(i => i.coinEx.coin_name.toUpperCase() === "GTB" && i.coinEx.exchange_coin_name === "ETH").market.last_price : ''}</Text>
                                 <Text
-                                    style={{color: this.state.dataSources[0].market.change_rate < 0 ? 'red' : 'green'}}>{this.state.dataSources.length == 0 ? '' : (this.state.dataSources[2].market.change_rate * 100).toFixed(2)}%</Text>
-                                <Text> ≈{this.state.dataSources ? this.state.dataSources[2].price_usd.toFixed(2) : ''} USD</Text>
+                                    style={{color: this.props.marketList.find(i => i.coinEx.coin_name.toUpperCase() === "GTB" && i.coinEx.exchange_coin_name === "ETH").market.change_rate < 0 ? 'red' : 'green'}}>{this.props.marketList.length == 0 ? '' : (this.props.marketList[2].market.change_rate * 100).toFixed(2)}%</Text>
+                                <Text> ≈{this.props.marketList ? this.props.marketList.find(i => i.coinEx.coin_name.toUpperCase() === "GTB" && i.coinEx.exchange_coin_name === "ETH").price_usd.toFixed(2) : ''} USD</Text>
                             </View>
 
                         </View>
@@ -266,7 +266,7 @@ class HomePageView extends React.Component {
 
                     <View>
 
-                        <Text style={{padding: 16, fontSize: 16}}>{I18n.t( Keys.news )}</Text>
+                        <Text style={{padding: 16, fontSize: 16}}>{I18n.t(Keys.news)}</Text>
 
                         <FlatList
                             // refreshControl={
@@ -298,7 +298,7 @@ class HomePageView extends React.Component {
 
                         <View style={{height: 1, backgroundColor: '#efefef'}}/>
 
-                        <Text style={{padding: 16, fontSize: 16}}>{I18n.t( Keys.announcement )}</Text>
+                        <Text style={{padding: 16, fontSize: 16}}>{I18n.t(Keys.announcement)}</Text>
 
                         <FlatList
                             // refreshControl={
@@ -337,12 +337,17 @@ class HomePageView extends React.Component {
     }
 
     renderItem(viewHeight, item, index) {
+        const url = "https://www.asiaedx.com/#/doc/newsDetail/"
+
         return (
             <TouchableHighlight
                 underlayColor='#ddd'
                 style={index % 2 == 1 ? {backgroundColor: '#efefef'} : {backgroundColor: 'white'}}
                 onPress={() => {
-                    this.props.navigation.navigate( 'NewsDetailPage', { news: item } )
+                    this.props.navigation.navigate('WebViewPage', {
+                        url: url + item.page_news_id,
+                        webTitle: I18n.t(Keys.news)
+                    })
                 }}>
 
                 <View style={{alignItems: 'flex-start', height: 60, marginStart: 20, marginEnd: 20, marginTop: 10}}>

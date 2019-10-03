@@ -40,13 +40,11 @@ class MainSideMenu extends React.Component {
                             onPress={() => {
                                 this.props.navigation.dispatch( DrawerActions.closeDrawer() );
 
-                                // todo
-                                this.props.navigation.navigate( "UserInfoVerifyPage" )
-                                // if ( this.props.userInfo.identity_status === 0 ) {
-                                //     this.props.navigation.navigate( "BasicUserInfoVerifyPage" )
-                                // } else {
-                                //     this.props.navigation.navigate( "MinePage" )
-                                // }
+                                if ( this.props.userInfo.identity_status === 0 ) {
+                                    this.props.navigation.navigate( "BasicUserInfoVerifyPage" )
+                                } else {
+                                    this.props.navigation.navigate( "MinePage" )
+                                }
                             }}
                             topDivider={false}
                             bottomDivider={false}

@@ -38,11 +38,14 @@ export function netUserSendCode( query, callback ) {
 }
 
 
-
-
-
-
-
-
-
-
+export function netUserMe( callback ) {
+    request
+        .get( '/user/me' )
+        .query( {} )
+        .use( superagent_prefix( env.apiDomain ) )
+        .use( logger )
+        .authRequest()
+        .headerRequest()
+        .apiDomainParse()
+        .end( callback );
+}

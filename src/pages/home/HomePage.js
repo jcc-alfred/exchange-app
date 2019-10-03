@@ -4,7 +4,9 @@ import HomePageView from "./HomePageView";
 import { exchangeGetMarketList, docGetHomeNewsList} from "../../actions/ExchangeAction";
 
 const mapStoreToProps = ( store, ownProps ) => {
-    return {}
+    return {
+        marketList: store.metaStore.marketList
+    }
 };
 
 const mapDispatchToProps = ( dispatch, ownProps ) => ( {
