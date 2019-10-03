@@ -932,5 +932,6 @@
   "news": "News",
   "accouncement": "Announcement",
   "volume": "volume",
-  "CanUse": "Can Use"
+  "CanUse": "Can Use",
+  "save_qrCodePic":"save QRCode"
 }
