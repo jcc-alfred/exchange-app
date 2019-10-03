@@ -10,7 +10,9 @@
   "Volume": "数量",
   "about": "关于",
   "assets": "资产",
+  "cancel": "取消",
   "changerate": "涨幅",
+  "choose_photo": "相册",
   "country": {
     "AD": {
       "sort": "AN DAO ER",
@@ -915,7 +917,20 @@
   "select_country": "选择国家",
   "settings": "设置",
   "sign_up": " 注册",
+  "take_photo": "拍照",
   "verify_code": "验证码",
+  "volume": "量",
+  "Total account assets": "总账户资产折合",
+  "Punching": "充值",
+  "WithDraw": "提币",
+  "Transfer": "转账",
+  "available": "可用",
+  "frozen": "冻结",
+  "balance": "折合",
+  "Coin address":"提币地址",
+  "chooseCoinType": "选择币种",
   "news": "新闻",
-  "accouncement": "公告"
+  "accouncement": "公告",
+  "volume": "量",
+  "CanUse": "可用"
 }

@@ -9,8 +9,10 @@ const Keys = {
     "Volume": "Volume",
     "about": "about",
     "assets": "assets",
+    "cancel": "cancel",
     "Confirm":"Confirm",
     "changerate": "changerate",
+    "choose_photo": "choose_photo",
     "country": "country",
     "country_AD": "country.AD",
     "country_AD_sort": "country.AD.sort",
@@ -696,6 +698,7 @@ const Keys = {
     "Current_Commission":"Current_Commission",
     "Transaction":"Transaction",
     "sign_up": "sign_up",
+    "take_photo": "take_photo",
     "verify_code": "verify_code",
     "volume": "volume",
     "news": "news",
@@ -703,7 +706,12 @@ const Keys = {
     "Total_account_assets":"Total account assets",
     "Punching":"Punching",
     "WithDraw":"WithDraw",
-    "transfer":"Transfer"
-
+    "transfer":"Transfer",
+    "available":"available",
+    "frozen":"frozen",
+    "balance":"balance",
+    "Coin_address":"Coin address",
+    "chooseCoinType": "chooseCoinType",
+    "CanUse":"CanUse"
 };
 export default Keys;

@@ -43,7 +43,7 @@ class HomePageView extends React.Component {
         return {
             title: null,
             headerBackTitle: null,
-            headerButtonImage: (<Image source={require('../../../assets/images/asiaedx_logo.png')}></Image>),
+            headerTitle: (<Image style={{ width: 90, height: 20}} source={require('../../../assets/images/asiaedx_logo.png')}></Image>),
             headerLeft: (
                 <BorderlessButton
                     onPress={() => {
@@ -57,8 +57,6 @@ class HomePageView extends React.Component {
                             size={Platform.OS === 'ios' ? 22 : 25}
                             color={'white'}
                         />
-                        <Image style={{ width: 80, height: 20, marginStart: 20,  alignItems: 'center', alignContent: 'center', resizeMode: 'stretch'}}
-                               source={require('../../../assets/images/asiaedx_logo.png')}></Image>
                     </View>
                 </BorderlessButton>
 

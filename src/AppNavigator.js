@@ -14,7 +14,7 @@ import { createReactNavigationReduxMiddleware, createReduxContainer, } from 'rea
 
 import TabBarIcon from "./components/TabBarIcon";
 import AuthRegisterPage from "./pages/auth/AuthRegisterPage";
-import AboutPage from "./pages/setting/AboutPage";
+import AboutPage from "./pages/AboutPage";
 import SettingLanguagePage from "./pages/setting/SettingLanguagePage";
 import SettingsPage from "./pages/setting/SettingsPage";
 import WebViewPage from "./pages/WebViewPage";
@@ -31,13 +31,13 @@ import UserGoogleAuthPage from "./pages/user/UserGoogleAuthPage";
 import UserKYCPage from "./pages/user/UserKYCPage";
 import UserPasswordResetPage from "./pages/user/UserPasswordResetPage";
 import UserPhoneVerifyPage from "./pages/user/UserPhoneVerifyPage";
-import FundPasswordResetPage from "./pages/setting/FundPasswordResetPage";
+import FundPasswordChangePage from "./pages/account/FundPasswordChangePage";
 import AssetsDepositHistoryPage from "./pages/assets/AssetsDepositHistoryPage";
 import AssetsDepositPage from "./pages/assets/AssetsDepositPage";
 import AssetsWithdrawHistoryPage from "./pages/assets/AssetsWithdrawHistoryPage";
 import AssetsWithdrawPage from "./pages/assets/AssetsWithdrawPage";
-import PasswordResetPage from "./pages/setting/PasswordResetPage";
-import GoogleAuthPage from "./pages/setting/GoogleAuthPage";
+import PasswordChangePage from "./pages/account/PasswordChangePage";
+import GoogleAuthOpenPage from "./pages/account/GoogleAuthOpenPage";
 import AssetsDetailPage from "./pages/assets/AssetsDetailPage";
 import MainSideMenu from "./pages/home/components/MainSideMenu";
 import KlinePage from "./pages/kline/KlinePage";
@@ -52,6 +52,7 @@ import AccountInfoPage from "./pages/account/AccountInfoPage";
 import NewsDetailPage from "./pages/home/NewsDetailPage";
 import BasicUserInfoVerifyPage from "./pages/mine/BasicUserInfoVerifyPage";
 import UserInfoVerifyPage from "./pages/mine/UserInfoVerifyPage";
+import GoogleAuthClosePage from "./pages/account/GoogleAuthClosePage";
 
 process.env.REACT_NAV_LOGGING = ( global.__DEV__ );
 
@@ -280,6 +281,7 @@ const LanguageUpdate = {
                 // perform your logic here
                 // this is mandatory to perform the actual switch
                 // don't call this if you want to prevent focus
+                // defaultHandler();
 
                 const store = getStore();
 
@@ -352,8 +354,8 @@ const routeConfiguration = {
     UserPhoneVerifyPage: {
         screen: UserPhoneVerifyPage
     },
-    FundPasswordResetPage: {
-        screen: FundPasswordResetPage
+    FundPasswordChangePage: {
+        screen: FundPasswordChangePage
     },
     AssetsDepositHistoryPage: {
         screen: AssetsDepositHistoryPage
@@ -367,11 +369,11 @@ const routeConfiguration = {
     AssetsWithdrawPage: {
         screen: AssetsWithdrawPage
     },
-    PasswordResetPage: {
-        screen: PasswordResetPage
+    PasswordChangePage: {
+        screen: PasswordChangePage
     },
-    GoogleAuthPage: {
-        screen: GoogleAuthPage
+    GoogleAuthOpenPage: {
+        screen: GoogleAuthOpenPage
     },
     AssetsDetailPage: {
         screen: AssetsDetailPage
@@ -393,7 +395,10 @@ const routeConfiguration = {
     },
     UserInfoVerifyPage: {
         screen: UserInfoVerifyPage
-    }
+    },
+    GoogleAuthClosePage: {
+        screen: GoogleAuthClosePage
+    },
 };
 
 const navMiddleware = createReactNavigationReduxMiddleware(

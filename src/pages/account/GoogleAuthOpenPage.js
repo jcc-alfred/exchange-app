@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import FundPasswordResetPageView from "./FundPasswordResetPageView";
+import GoogleAuthOpenPageView from "./GoogleAuthOpenPageView";
 
 const mapStoreToProps = ( store, ownProps ) => {
     return {}
@@ -8,9 +8,9 @@ const mapStoreToProps = ( store, ownProps ) => {
 
 const mapDispatchToProps = ( dispatch, ownProps ) => ( {} );
 
-const FundPasswordResetPage = connect(
+const GoogleAuthOpenPage = connect(
     mapStoreToProps,
     mapDispatchToProps
-)( FundPasswordResetPageView );
+)( GoogleAuthOpenPageView );
 
-export default FundPasswordResetPage;
+export default GoogleAuthOpenPage;

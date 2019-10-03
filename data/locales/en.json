@@ -10,7 +10,9 @@
   "Volume": "Volume",
   "about": "About",
   "assets": "assets",
+  "cancel": "cancel",
   "changerate": "Change Rate",
+  "choose_photo": "Album",
   "country": {
     "AD": {
       "sort": "",
@@ -915,8 +917,20 @@
   "settings": "Settings",
   "safePassTitle": "Please Input the Trade Password First",
   "sign_up": " registered",
+  "take_photo": "Take a photo",
   "verify_code": "Verification code",
   "volume": "volume",
+  "Total account assets": "Total account assets",
+  "Punching": "Punching",
+  "WithDraw": "WithDraw",
+  "Transfer": "Transfer",
+  "available": "available",
+  "frozen": "frozen",
+  "balance": "balance",
+  "Coin address":"Coin address",
+  "chooseCoinType": "choose Coin Type",
   "news": "News",
-  "accouncement": "Announcement"
+  "accouncement": "Announcement",
+  "volume": "volume",
+  "CanUse": "Can Use"
 }

@@ -1,10 +1,12 @@
 import React from 'react';
 import { Platform, SafeAreaView, StyleSheet, View } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
-import { Text } from "react-native-elements";
+import {Button, Text} from "react-native-elements";
 import { BorderlessButton } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
 import QRCode from 'react-qr-code';
+import I18n from "../../I18n";
+import Keys from "../../configs/Keys";
 
 class AssetsDepositPageView extends React.Component {
 
@@ -60,15 +62,52 @@ class AssetsDepositPageView extends React.Component {
         return (
             <View style={[ commonStyles.wrapper, ]}>
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
-                    <Text>
-                        {"TokenDepositPageView"}
-                    </Text>
 
-                    <QRCode value="Hello, World!"/>
+                    {this.renderCoinChoose()}
+                    {this.renderQRcodeView()}
+
+                    {/*<QRCode value="Hello, World!"/>*/}
                 </SafeAreaView>
             </View>
         );
     }
+
+
+    renderCoinChoose(){
+        return (
+            <View style={{backgroundColor:'#f6f6f8',margin:15, flexDirection:'row'}}>
+                <Text style={{padding:7, fontSize:16, flex:1.5}}>ETH</Text>
+                <Button
+                    title={I18n.t( Keys.chooseCoinType)}
+                    type="clear"
+                    containerStyle={{flex:1}}
+                    titleStyle={{fontSize:14}}
+                />
+            </View>
+        );
+    }
+
+
+    renderQRcodeView(){
+        return (
+            <View style={{backgroundColor:'#f6f6f8',margin:15}}>
+                <View style={{flex:1}}>
+                    <QRCode value="Hello, World!"/>
+                </View>
+                <Button
+                    title={I18n.t( Keys.chooseCoinType)}
+                    type="clear"
+                    containerStyle={{flex:1}}
+                    titleStyle={{fontSize:14}}
+                />
+            </View>
+        );
+    }
+
+
+
+
+
 }
 
 const styles = StyleSheet.create( {} );

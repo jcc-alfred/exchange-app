@@ -49,9 +49,12 @@ class MinePageView extends React.Component {
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
 
                     <BasicUserInfoVerifyResultView/>
-
-                    <UserInfoVerifyView navigation={this.props.navigation}/>
-
+                    {
+                        this.props.userInfo.identity_status !== 0 ?
+                            <UserInfoVerifyView navigation={this.props.navigation}/>
+                            :
+                            null
+                    }
                     <Spinner visible={this.state.isRequesting} cancelable={true}/>
                 </SafeAreaView>
             </View>

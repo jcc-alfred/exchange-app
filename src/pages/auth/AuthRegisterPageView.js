@@ -8,6 +8,7 @@ import I18n from "../../I18n";
 import Keys from "../../configs/Keys";
 import CountDown from 'react-native-countdown-component';
 import Toast from "react-native-root-toast";
+import Spinner from "react-native-loading-spinner-overlay";
 
 class AuthRegisterPageView extends React.Component {
 
@@ -338,6 +339,7 @@ class AuthRegisterPageView extends React.Component {
 
                     </View>
 
+                    <Spinner visible={this.state.isRequesting} cancelable={true}/>
                 </SafeAreaView>
             </View>
         );

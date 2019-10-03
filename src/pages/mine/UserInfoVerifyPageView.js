@@ -2,10 +2,13 @@ import React from 'react';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import Spinner from "react-native-loading-spinner-overlay";
-import CountryUtil from "../countrySelect/util/CountryUtil";
-import { Button, Input, ListItem } from "react-native-elements";
-import constStyles from "../../styles/constStyles";
+import { Button } from "react-native-elements";
 import { NavigationActions, StackActions } from "react-navigation";
+import MediaSingleComponent from "../../components/MediaSingleComponent";
+import Constants from "expo-constants";
+import * as Permissions from "expo-permissions";
+import I18n from "../../I18n";
+import Keys from "../../configs/Keys";
 
 class UserInfoVerifyPageView extends React.Component {
 
@@ -13,10 +16,9 @@ class UserInfoVerifyPageView extends React.Component {
         super( props );
 
         this.state = {
-            currentCountry: CountryUtil.calcCountry( null ),
-            firstName: '',
-            lastName: '',
-            idNo: '',
+            icFont: null,
+            icBack: null,
+            icHandle: null,
             isRequesting: false,
         }
     }
@@ -33,6 +35,7 @@ class UserInfoVerifyPageView extends React.Component {
     };
 
     componentDidMount() {
+        this.getPermissionAsync();
     }
 
     componentWillUnmount() {
@@ -48,6 +51,17 @@ class UserInfoVerifyPageView extends React.Component {
         return true;
     }
 
+    getPermissionAsync = async () => {
+        if ( Constants.platform.ios ) {
+            const { status } = await Permissions.askAsync( Permissions.CAMERA_ROLL, Permissions.CAMERA );
+            if ( status !== 'granted' ) {
+                alert( I18n.t( Keys.camera_roll_permission_error ) );
+            }
+        }
+    };
+
+
+    // todo
     send() {
         this.props.navigation.dispatch(
             StackActions.reset(
@@ -66,74 +80,43 @@ class UserInfoVerifyPageView extends React.Component {
             <View style={[ commonStyles.wrapper, ]}>
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
 
-                    <ListItem
-                        title={"Country"}
-                        rightTitle={this.state.currentCountry.name}
-                        bottomDivider
-                        chevron={{ color: constStyles.tipTitleColor }}
-                        onPress={() => {
-                            this.props.navigation.navigate( "CountrySelectPage", {
-                                callback: ( country ) => {
-                                    this.setState( {
-                                        currentCountry: country
-                                    } );
-                                }
-                            } );
+                    <MediaSingleComponent
+                        editOptions={{}}
+                        item={this.state.icFont}
+                        title={"证件正面照"}
+                        mediaType={'Photo'}
+                        isSupportEdit={true}
+                        onItemChange={( item ) => {
+                            this.setState( {
+                                icFont: item
+                            } )
                         }}
                     />
 
-                    <Input
-                        label={"First Name"}
-                        style={[ commonStyles.wrapper ]}
-                        leftIconContainerStyle={[ commonStyles.pdr_normal ]}
-                        value={this.state.firstName}
-                        onChangeText={( text ) => this.setState( {
-                            firstName: text
-                        } )}
-                        keyboardType={'phone-pad'}
-                        errorStyle={{ color: 'red' }}
-                        errorMessage={
-                            this.state.showError && ( !this.state.firstName || this.state.firstName.length <= 0 ) ?
-                                "Please input first name"
-                                :
-                                null
-                        }
+                    <MediaSingleComponent
+                        editOptions={{}}
+                        item={this.state.icBack}
+                        title={"证件反面照"}
+                        mediaType={'Photo'}
+                        isSupportEdit={true}
+                        onItemChange={( item ) => {
+                            this.setState( {
+                                icBack: item
+                            } )
+                        }}
                     />
 
-                    <Input
-                        label={"Last Name"}
-                        style={[ commonStyles.wrapper ]}
-                        leftIconContainerStyle={[ commonStyles.pdr_normal ]}
-                        value={this.state.lastName}
-                        onChangeText={( text ) => this.setState( {
-                            lastName: text
-                        } )}
-                        keyboardType={'phone-pad'}
-                        errorStyle={{ color: 'red' }}
-                        errorMessage={
-                            this.state.showError && ( !this.state.lastName || this.state.lastName.length <= 0 ) ?
-                                "Please input last name"
-                                :
-                                null
-                        }
-                    />
-
-                    <Input
-                        label={"Id No"}
-                        style={[ commonStyles.wrapper ]}
-                        leftIconContainerStyle={[ commonStyles.pdr_normal ]}
-                        value={this.state.idNo}
-                        onChangeText={( text ) => this.setState( {
-                            idNo: text
-                        } )}
-                        keyboardType={'phone-pad'}
-                        errorStyle={{ color: 'red' }}
-                        errorMessage={
-                            this.state.showError && ( !this.state.idNo || this.state.idNo.length <= 0 ) ?
-                                "Please input id no"
-                                :
-                                null
-                        }
+                    <MediaSingleComponent
+                        editOptions={{}}
+                        item={this.state.icHandle}
+                        title={"手持证件照"}
+                        mediaType={'Photo'}
+                        isSupportEdit={true}
+                        onItemChange={( item ) => {
+                            this.setState( {
+                                icHandle: item
+                            } )
+                        }}
                     />
 
                     <Button
