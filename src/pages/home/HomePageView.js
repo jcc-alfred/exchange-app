@@ -344,7 +344,7 @@ class HomePageView extends React.Component {
                 underlayColor='#ddd'
                 style={index % 2 == 1 ? {backgroundColor: '#efefef'} : {backgroundColor: 'white'}}
                 onPress={() => {
-                    this.props.navigation.navigate( 'WebViewPage', { url: url + item.page_news_id } )
+                    this.props.navigation.navigate( 'WebViewPage', { url: url + item.page_news_id, webTitle: I18n.t( Keys.news ) } )
                 }}>
 
                 <View style={{alignItems: 'flex-start', height: 60, marginStart: 20, marginEnd: 20, marginTop: 10}}>
