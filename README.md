@@ -41,3 +41,6 @@
     => 'historyEntrustList' {user_id,coin_exchange_id}}
     =>'add_kline_client' {user_id,coin_exchange_id}}}
     =>'remove_kline_client' {user_id,coin_exchange_id}
+    
+# candle stick chart
+https://github.com/wuxudong/react-native-charts-wrapper
