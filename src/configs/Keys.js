@@ -707,7 +707,11 @@ const Keys = {
     "Punching":"Punching",
     "WithDraw":"WithDraw",
     "transfer":"Transfer",
+    "available":"available",
+    "frozen":"frozen",
+    "balance":"balance",
+    "Coin_address":"Coin address",
+    "chooseCoinType": "chooseCoinType",
     "CanUse":"CanUse"
-
 };
 export default Keys;

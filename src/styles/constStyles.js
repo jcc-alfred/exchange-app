@@ -4,7 +4,7 @@ const width = Dimensions.get( 'window' ).width;
 const height = Dimensions.get( 'window' ).height;
 
 const constStyles = {
-    THEME_COLOR: "#2f95dc",
+    THEME_COLOR: "#0f2649",
 
     TAB_BAR_ICON_SIZE: Platform.OS === 'ios' ? 34 : 28,
 

@@ -49,7 +49,7 @@ export default function userReducer(state = initialState, action) {
             return {
                 ...state,
                 isLoggedIn: false,
-                safePass:null,
+                safePass:'',
                 account: {},
                 requestCookie: {
                     token: '',

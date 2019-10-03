@@ -43,7 +43,7 @@ class HomePageView extends React.Component {
         return {
             title: null,
             headerBackTitle: null,
-            headerButtonImage: (<Image source={require('../../../assets/images/asiaedx_logo.png')}></Image>),
+            headerTitle: (<Image style={{ width: 90, height: 20}} source={require('../../../assets/images/asiaedx_logo.png')}></Image>),
             headerLeft: (
                 <BorderlessButton
                     onPress={() => {
@@ -57,8 +57,6 @@ class HomePageView extends React.Component {
                             size={Platform.OS === 'ios' ? 22 : 25}
                             color={'white'}
                         />
-                        <Image style={{ width: 80, height: 20, marginStart: 20,  alignItems: 'center', alignContent: 'center', resizeMode: 'stretch'}}
-                               source={require('../../../assets/images/asiaedx_logo.png')}></Image>
                     </View>
                 </BorderlessButton>
 
@@ -226,11 +224,11 @@ class HomePageView extends React.Component {
                                 <Text style={{
                                     fontSize: 16,
                                     fontWeight: 'bold',
-                                    color: this.state.dataSources && this.state.dataSources.length > 0 && this.state.dataSources[0].market.change_rate < 0 ? 'red' : 'green'
-                                }}>{this.state.dataSources.length == 0 ? '' : this.state.dataSources[0].market.last_price}</Text>
+                                    color: this.state.dataSources[0].market.change_rate < 0 ? 'red' : 'green'
+                                }}>{this.state.dataSources ?  this.state.dataSources[0].market.last_price : ''}</Text>
                                 <Text
                                     style={{color: this.state.dataSources[0].market.change_rate < 0 ? 'red' : 'green'}}>{this.state.dataSources.length == 0 ? '' : (this.state.dataSources[0].market.change_rate * 100).toFixed(2)}%</Text>
-                                <Text> ≈{this.state.dataSources.length == 0 ? '' : this.state.dataSources[0].price_usd.toFixed(2)} USD</Text>
+                                <Text> ≈{this.state.dataSources ? this.state.dataSources[0].price_usd.toFixed(2) : ''} USD</Text>
 
 
                             </View>
@@ -241,10 +239,10 @@ class HomePageView extends React.Component {
                                     fontSize: 16,
                                     fontWeight: 'bold',
                                     color: this.state.dataSources[0].market.change_rate < 0 ? 'red' : 'green'
-                                }}>{this.state.dataSources.length == 0 ? '' : this.state.dataSources[1].market.last_price}</Text>
+                                }}>{this.state.dataSources ? this.state.dataSources[1].market.last_price : ''}</Text>
                                 <Text
                                     style={{color: this.state.dataSources[0].market.change_rate < 0 ? 'red' : 'green'}}>{this.state.dataSources.length == 0 ? '' : (this.state.dataSources[1].market.change_rate * 100).toFixed(2)}%</Text>
-                                <Text> ≈{this.state.dataSources.length == 0 ? '' : this.state.dataSources[1].price_usd.toFixed(2)} USD</Text>
+                                <Text> ≈{this.state.dataSources ? this.state.dataSources[1].price_usd.toFixed(2) : ''} USD</Text>
 
                             </View>
 
@@ -254,10 +252,10 @@ class HomePageView extends React.Component {
                                     fontSize: 16,
                                     fontWeight: 'bold',
                                     color: this.state.dataSources[0].market.change_rate < 0 ? 'red' : 'green'
-                                }}>{this.state.dataSources.length == 0 ? '' : this.state.dataSources[2].market.last_price}</Text>
+                                }}>{this.state.dataSources ? this.state.dataSources[2].market.last_price : ''}</Text>
                                 <Text
                                     style={{color: this.state.dataSources[0].market.change_rate < 0 ? 'red' : 'green'}}>{this.state.dataSources.length == 0 ? '' : (this.state.dataSources[2].market.change_rate * 100).toFixed(2)}%</Text>
-                                <Text> ≈{this.state.dataSources.length == 0 ? '' : this.state.dataSources[2].price_usd.toFixed(2)} USD</Text>
+                                <Text> ≈{this.state.dataSources ? this.state.dataSources[2].price_usd.toFixed(2) : ''} USD</Text>
                             </View>
 
                         </View>

@@ -142,11 +142,16 @@ class AssetsListPageView extends React.Component {
                     } )
                 }}>
                 <View style={[ { height: viewHeight } ]}>
-                    <Text>
-                        {
-                            JSON.stringify( item )
-                        }
-                    </Text>
+                    <View style={{flexDirection:"row"}}><Text style= {[{flex:1},commonStyles.commonInputTextStyle]}>{item.coin_name}</Text></View>
+                    <View style={{flexDirection:"row"}}><Text style={[{flex:1},commonStyles.commonInputTextStyle]}>{I18n.t( Keys.available )}</Text><Text style= {[{flex:1},commonStyles.commonInputTextStyle]}>{I18n.t( Keys.frozen )}</Text><Text style= {[{flex:1},commonStyles.commonInputTextStyle]}>{I18n.t( Keys.balance )}</Text></View>
+                    <View style={{flexDirection:"row"}}><Text style= {[{flex:1,marginLeft:10},commonStyles.commonSmallSubTextStyle]}>{item.balance.toFixed(2)}</Text><Text style= {[{flex:1},commonStyles.commonSmallSubTextStyle]}>{item.frozen.toFixed(2)}</Text><Text style= {[{flex:1},commonStyles.commonSmallSubTextStyle]}>{item.available.toFixed(2)}</Text></View>
+
+
+                    {/*<Text>*/}
+                        {/*{*/}
+                            {/*JSON.stringify( item )*/}
+                        {/*}*/}
+                    {/*</Text>*/}
                 </View>
             </TouchableHighlight>
         );
@@ -167,16 +172,15 @@ class AssetsListPageView extends React.Component {
             <View style={[ commonStyles.wrapper, ]}>
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
                     {this.renderTopBanner()}
-                    {this.exchangeAreaTabs()}
+                    {/*{this.exchangeAreaTabs()}*/}
+
+                    {this.renderDataList()}
                 </SafeAreaView>
             </View>
         );
     }
 
     renderTopBanner(){
-
-
-
 
         return(
             <View style={[ {backgroundColor:"#0083dc"} ]}>
@@ -212,6 +216,10 @@ class AssetsListPageView extends React.Component {
             </View>
         )
     }
+
+
+
+
 
 
 

@@ -281,6 +281,7 @@ const LanguageUpdate = {
                 // perform your logic here
                 // this is mandatory to perform the actual switch
                 // don't call this if you want to prevent focus
+                // defaultHandler();
 
                 const store = getStore();
 

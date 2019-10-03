@@ -13,7 +13,7 @@ import {ConfirmDialog} from 'react-native-simple-dialogs'
 import {DrawerActions} from 'react-navigation-drawer';
 import {BorderlessButton} from "react-native-gesture-handler";
 import {Ionicons} from "@expo/vector-icons";
-
+import moment from 'moment'
 
 class TradePageView extends React.Component {
 
@@ -178,6 +178,43 @@ class TradePageView extends React.Component {
         return true;
     }
 
+    doCancelEntrust(entrust) {
+        InteractionManager.runAfterInteractions(() => {
+            this.props.onexchangeDoCancelEntrust({
+                "entrustId": entrust.entrust_id,
+                "coinExchangeId": entrust.coin_exchange_id,
+                "entrustTypeId": entrust.entrust_type_id,
+                "user_id":this.props.userInfo.user_id
+            },(err,res)=>{
+                if(!err){
+                    Toast.show("entrust canceled")
+                }
+            })
+        })
+    }
+
+    updateEntrustVolume(type, percentage) {
+        if (!this.props.isLoggedIn) {
+            this.props.navigation.navigate("AuthLoginPage");
+            return
+        }
+        if (this.state.userAssets) {
+            if (type === 'buy') {
+                let coinAsset = this.state.userAssets.find(i => i.coin_id === this.props.TradePageCoinEx.coinEx.exchange_coin_id) ?
+                    this.state.userAssets.find(i => i.coin_id === this.props.TradePageCoinEx.coinEx.exchange_coin_id).available : 0;
+                this.setState({
+                    buyVolume: JSON.stringify(coinAsset * percentage)
+                })
+            } else {
+                let coinAsset = this.state.userAssets.find(i => i.coin_id === this.props.TradePageCoinEx.coinEx.coin_id) ?
+                    this.state.userAssets.find(i => i.coin_id === this.props.TradePageCoinEx.coinEx.coin_id).available : 0;
+                this.setState({
+                    sellVolume: JSON.stringify(coinAsset * percentage)
+                })
+            }
+        }
+    }
+
     renderdoEntrustView(type = 'buy') {
         let Asset = '--';
         if (this.state.userAssets) {
@@ -196,17 +233,19 @@ class TradePageView extends React.Component {
                     <Input value={type === 'buy' ? this.state.buyPrice : this.state.sellPrice}
                            onChangeText={value => this.changeState(value, type === 'buy' ? 'buyPrice' : 'sellPrice')}
                            placeholder={(type === "buy" ? I18n.t(Keys.Buy) : I18n.t(Keys.Sell)) + ' ' + I18n.t(Keys.Price)}
-                           style={[{flex: 9}]} keyboardType={'numeric'}/>
+                           inputContainerStyle={{borderBottomWidth: 0}}
+                           containerStyle={[{flex: 9}]} keyboardType={'numeric'}/>
                     <View style={{flex: 1}}>
                         <Icon style={{backgroundColor: '#cccccc'}} name={"caret-up"} size={20} color={"grey"}/>
                         <Icon style={{backgroundColor: '#cccccc'}} name={"caret-down"} size={20} color={"grey"}/>
                     </View>
                 </View>
                 <View style={[styles.PriceInput, {flexDirection: 'row', height: 40, marginTop: 5}]}>
-                    <Input value={type === 'buy' ? this.state.buyAmount : this.state.sellAmount}
+                    <Input value={type === 'buy' ? this.state.buyVolume : this.state.sellVolume}
                            onChangeText={value => this.changeState(value, type === 'buy' ? 'buyVolume' : 'sellVolume')}
                            placeholder={(type === "buy" ? I18n.t(Keys.Buy) : I18n.t(Keys.Sell)) + ' ' + I18n.t(Keys.Volume)}
-                           style={[{flex: 9}]} keyboardType={'numeric'}/>
+                           inputContainerStyle={{borderBottomWidth: 0}}
+                           containerStyle={[{flex: 9}]} keyboardType={'numeric'}/>
                     <Text style={{
                         flex: 2,
                         lineHeight: 40
@@ -218,7 +257,8 @@ class TradePageView extends React.Component {
                         [25, 50, 75, 100].map(i => {
                             return (
                                 <View style={{flex: 1}}>
-                                    <Button titleStyle={{fontSize: 8}} title={i + '%'} type={'outline'}/>
+                                    <Button titleStyle={{fontSize: 8}} title={i + '%'} type={'outline'}
+                                            onPress={() => this.updateEntrustVolume(type, i / 100)}/>
                                 </View>
 
                             )
@@ -345,19 +385,29 @@ class TradePageView extends React.Component {
         return (
             <View style={{height: viewHeight}}>
                 <View style={{flexDirection: 'row'}}>
-                    <Text style={[{flex: 1}, styles.bigFontPrice]}>{I18n.t(Keys.Buy)}</Text>
-                    <Text style={[{flex: 4}, styles.smallGrayFont]}>14:33 09/30</Text>
-                    <Button type={'outline'} titleStyle={{fontSize: 10}} title={I18n.t(Keys.Cancel)}/>
+                    <Text style={[{
+                        flex: 1,
+                        color: entrust.entrust_type_id === 0 ? '#e7234c' : '#009d7a',
+                        fontSize: 20,
+                        paddingLeft: 20,
+                        paddingRight: 5,
+                        paddingTop: 6,
+                        paddingBottom: 6
+                    }]}>{entrust.entrust_type_id === 0 ? I18n.t(Keys.Sell) : I18n.t(Keys.Buy)}</Text>
+                    <Text
+                        style={[{flex: 4}, styles.smallGrayFont]}>{moment(entrust.create_time).format('HH:mm MM/DD')}</Text>
+                    <Button type={'outline'} titleStyle={{fontSize: 10}} title={I18n.t(Keys.Cancel)} onPress={()=>this.doCancelEntrust(entrust)}/>
                 </View>
                 <View style={{flexDirection: 'row'}}>
-                    <Text style={[styles.smallGrayFont, {flex: '1'}]}>{I18n.t(Keys.Price)}(USDT)</Text>
+                    <Text
+                        style={[styles.smallGrayFont, {flex: '1'}]}>{I18n.t(Keys.Price) + '(' + this.props.TradePageCoinEx.coinEx.exchange_coin_name + ')'}</Text>
                     <Text style={[styles.smallGrayFont, {flex: '1'}]}>{I18n.t(Keys.Volume)}</Text>
                     <Text style={[styles.smallGrayFont, {flex: '1'}]}>{I18n.t(Keys.Transaction)}</Text>
                 </View>
                 <View style={{flexDirection: 'row'}}>
-                    <Text style={[styles.smallCommission, {flex: '1'}]}>2.000</Text>
-                    <Text style={[styles.smallCommission, {flex: '1'}]}>2.000</Text>
-                    <Text style={[styles.smallCommission, {flex: '1'}]}>0</Text>
+                    <Text style={[styles.smallCommission, {flex: '1'}]}>{entrust.entrust_price}</Text>
+                    <Text style={[styles.smallCommission, {flex: '1'}]}>{entrust.entrust_volume}</Text>
+                    <Text style={[styles.smallCommission, {flex: '1'}]}>{entrust.completed_volume}</Text>
                 </View>
             </View>
         )
