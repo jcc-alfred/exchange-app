@@ -1,11 +1,13 @@
 import React from 'react';
-import { SafeAreaView, StatusBar, StyleSheet, View } from 'react-native';
+import {InteractionManager, SafeAreaView, StyleSheet, View} from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import Spinner from "react-native-loading-spinner-overlay";
 import CountryUtil from "../countrySelect/util/CountryUtil";
 import { Button, Input, ListItem } from "react-native-elements";
 import constStyles from "../../styles/constStyles";
 import { NavigationActions, StackActions } from "react-navigation";
+import Toast from "react-native-root-toast";
+import {userMe} from "../../actions/UserAction";
 
 class BasicUserInfoVerifyPageView extends React.Component {
 
@@ -49,16 +51,46 @@ class BasicUserInfoVerifyPageView extends React.Component {
     }
 
     send() {
-        this.props.navigation.dispatch(
-            StackActions.reset(
-                {
-                    index: 1,
-                    actions: [
-                        NavigationActions.navigate( { routeName: 'mainPage' } ),
-                        NavigationActions.navigate( { routeName: 'MinePage' } ),
-                    ]
+        let query;
+
+        query = {
+            areaCode: '' + this.state.currentCountry.phoneCode,
+            lastName: this.state.lastName,
+            firstName: this.state.firstName,
+            cardId: this.state.idNo
+        }
+
+
+        InteractionManager.runAfterInteractions(() => {
+            this.props.onSafeAddUserKYC(query, (error, resBody) => {
+                if (error) {
+                    this.setState({
+                        isRequesting: false
+                    });
+
+                    Toast.show(error.message);
+                } else {
+                    this.props.navigation.dispatch(
+                        StackActions.reset(
+                            {
+                                index: 1,
+                                actions: [
+                                    NavigationActions.navigate( { routeName: 'mainPage' } ),
+                                    NavigationActions.navigate( { routeName: 'MinePage' } ),
+                                ]
+                            }
+                        ) );
+
+                    this.setState({
+                        isRequesting: false,
+                    });
                 }
-            ) );
+            });
+
+
+        });
+
+
     }
 
     render() {
@@ -140,6 +172,8 @@ class BasicUserInfoVerifyPageView extends React.Component {
                     <Button
                         title={"Send"}
                         type="Send"
+                        type="outline"
+                        style={{marginStart: 16, marginEnd: 16}}
                         onPress={() => {
                             this.send()
                         }
