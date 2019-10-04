@@ -1,5 +1,5 @@
 import React from 'react';
-import {InteractionManager, SafeAreaView, StyleSheet, View} from 'react-native';
+import {InteractionManager, SafeAreaView, StyleSheet, View, StatusBar} from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import Spinner from "react-native-loading-spinner-overlay";
 import { Button } from "react-native-elements";

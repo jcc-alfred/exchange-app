@@ -6,6 +6,8 @@ import commonStyles from "../../../styles/commonStyles";
 import { Ionicons } from "@expo/vector-icons";
 import constStyles from "../../../styles/constStyles";
 import CountryUtil from "../../countrySelect/util/CountryUtil";
+import I18n from "../../../I18n";
+import Keys from "../../../configs/Keys";
 
 class BasicUserInfoVerifyResultView extends React.Component {
     static propTypes = {};
@@ -34,7 +36,7 @@ class BasicUserInfoVerifyResultView extends React.Component {
                 <ListItem
                     title={
                         <View style={[ { flexDirection: 'row', justifyContent: 'center' } ]}>
-                            <Text style={[ commonStyles.wrapper ]}>{'身份认证'}</Text>
+                            <Text style={[ commonStyles.wrapper ]}>{I18n.t( Keys.base_info )}</Text>
 
                             <Ionicons
                                 name="md-checkmark-circle-outline"
@@ -46,16 +48,16 @@ class BasicUserInfoVerifyResultView extends React.Component {
                     subtitle={
                         <View>
                             <ListItem
-                                title="Country"
+                                title={I18n.t( Keys.country_title )}
                                 rightTitle={country ? country.name : ''}
                             />
                             <ListItem
-                                title="Name"
+                                title={I18n.t( Keys.full_name )}
                                 rightTitle={this.props.userIdentity.full_name}
                             />
 
                             <ListItem
-                                title="id no"
+                                title={I18n.t( Keys.id_no )}
                                 rightTitle={this.props.userIdentity.card_id}
                             />
                         </View>

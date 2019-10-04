@@ -190,20 +190,19 @@ class HomePageView extends React.Component {
                                     justifyContent: 'flex-start',
                                     alignItems: 'flex-start'
                                 }}>
-                                    <Text style={{fontSize: 20, color: 'white', alignItems: 'flex-start'}}>Join
-                                        our</Text>
+                                    <Text style={{fontSize: 20, color: 'white', alignItems: 'flex-start'}}>{I18n.t(Keys.join_our)}</Text>
                                     <Text style={{
                                         fontSize: 20,
                                         color: 'white',
                                         alignItems: 'flex-start',
                                         marginTop: 5
-                                    }}>Telegram Group</Text>
+                                    }}>{I18n.t(Keys.telegram_group)}</Text>
                                     <Text style={{
                                         fontSize: 16,
                                         color: 'white',
                                         alignItems: 'flex-start',
                                         marginTop: 5
-                                    }}>for the latest News and Updates</Text>
+                                    }}>{I18n.t(Keys.for_latest_news)}</Text>
 
                                 </View>
                             </ImageBackground>

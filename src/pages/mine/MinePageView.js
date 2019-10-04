@@ -4,6 +4,8 @@ import commonStyles from "../../styles/commonStyles";
 import Spinner from "react-native-loading-spinner-overlay";
 import BasicUserInfoVerifyResultView from "./components/BasicUserInfoVerifyResultView";
 import UserInfoVerifyView from "./components/UserInfoVerifyView";
+import I18n from "../../I18n";
+import Keys from "../../configs/Keys";
 
 class MinePageView extends React.Component {
 
@@ -22,7 +24,7 @@ class MinePageView extends React.Component {
         const { params } = state;
 
         return {
-            title: "个人中心",
+            title: I18n.t( Keys.mine ),
             headerBackTitle: null,
         };
     };

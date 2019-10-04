@@ -6,7 +6,7 @@ import QRCode from 'react-qr-code';
 import Toast from "react-native-root-toast";
 import I18n from "../../I18n";
 import Keys from "../../configs/Keys";
-import CountDown from "./PasswordChangePageView";
+import CountDown from 'react-native-countdown-component';
 import constStyles from "../../styles/constStyles";
 import { NavigationActions, StackActions } from "react-navigation";
 
