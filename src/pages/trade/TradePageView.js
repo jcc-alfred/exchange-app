@@ -208,7 +208,14 @@ class TradePageView extends React.Component {
                 "user_id": this.props.userInfo.user_id
             }, (err, res) => {
                 if (!err) {
-                    Toast.show("entrust canceled")
+                    Toast.show("entrust canceled");
+                    let tmp = this.state.userEntrustList;
+                    tmp = tmp.filter(i=>i.entrust_id !== entrust.entrust_id);
+                    this.setState({
+                        userEntrustList:tmp
+                    })
+                }else {
+                    Toast.show(err.message)
                 }
             })
         })

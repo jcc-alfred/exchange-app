@@ -912,6 +912,7 @@
   },
   "delete": "删除",
   "email_verification_code": "电子邮件验证码",
+  "finance_history": "财务记录",
   "frozen": "冻结",
   "get_email_msg": "获取验证码",
   "home": "主页",
@@ -938,8 +939,11 @@
   "select_country": "选择国家",
   "settings": "设置",
   "sign_up": " 注册",
+  "status": "状态",
   "take_photo": "拍照",
+  "time": "时间",
   "topUp_Coin_address": "充值地址",
+  "value": "价值",
   "verify_code": "验证码",
   "volume": "量"
 }
