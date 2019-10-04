@@ -945,6 +945,8 @@
   "name": "名称",
   "new_email_verify_code": "新邮箱验证码",
   "news": "新闻",
+  "no": "取消",
+  "notification": "通知",
   "order": "订单",
   "password": "密码",
   "phone": "手机号",
@@ -969,7 +971,9 @@
   "time": "时间",
   "topUp_Coin_address": "充值地址",
   "trade": "交易",
+  "update_now": "现在更新",
   "value": "价值",
   "verify_code": "验证码",
-  "volume": "量"
+  "volume": "量",
+  "yes": "确定"
 }

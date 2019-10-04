@@ -725,6 +725,8 @@ const Keys = {
     "name": "name",
     "new_email_verify_code": "new_email_verify_code",
     "news": "news",
+    "no": "no",
+    "notification": "notification",
     "order": "order",
     "password": "password",
     "phone": "phone",
@@ -749,8 +751,10 @@ const Keys = {
     "time": "time",
     "topUp_Coin_address": "topUp_Coin_address",
     "trade": "trade",
+    "update_now": "update_now",
     "value": "value",
     "verify_code": "verify_code",
     "volume": "volume",
+    "yes": "yes",
 };
 export default Keys;

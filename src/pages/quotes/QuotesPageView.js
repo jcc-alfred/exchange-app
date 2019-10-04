@@ -1,8 +1,6 @@
 import React from 'react';
-import { Dimensions, InteractionManager, Platform, SafeAreaView, StatusBar, StyleSheet, View } from 'react-native';
+import { Dimensions, InteractionManager, SafeAreaView, StatusBar, StyleSheet, View } from 'react-native';
 import Spinner from "react-native-loading-spinner-overlay";
-import { Updates } from 'expo';
-import { ConfirmDialog } from "react-native-simple-dialogs";
 import I18n from "../../I18n";
 import Keys from "../../configs/Keys";
 import commonStyles from "../../styles/commonStyles";
@@ -12,8 +10,6 @@ import { SceneMap, TabBar, TabView } from 'react-native-tab-view';
 
 import { DrawerActions } from 'react-navigation-drawer';
 import ExchangePairList from "../../components/ExchangePairList";
-import { BorderlessButton } from "react-native-gesture-handler";
-import { Ionicons } from '@expo/vector-icons';
 
 class QuotesPageView extends React.Component {
     constructor( props ) {
@@ -43,7 +39,6 @@ class QuotesPageView extends React.Component {
     };
 
     componentDidMount() {
-        this.checkForUpdate();
         this.loadData( true );
     }
 
@@ -67,37 +62,6 @@ class QuotesPageView extends React.Component {
         }
 
         return true;
-    }
-
-
-    checkForUpdate() {
-        Updates.checkForUpdateAsync()
-            .then( ( update ) => {
-                if ( update.isAvailable ) {
-                    this.setState( {
-                        updateDialogVisible: true
-                    } );
-                }
-            } )
-            .catch( err => {
-
-            } )
-    }
-
-    doUpdate() {
-        Updates.fetchUpdateAsync()
-            .then( ( update ) => {
-                Updates.reload()
-                    .then( () => {
-
-                    } )
-                    .catch( err => {
-
-                    } );
-            } )
-            .catch( err => {
-
-            } );
     }
 
 
@@ -227,29 +191,6 @@ class QuotesPageView extends React.Component {
                 <SafeAreaView style={[ commonStyles.wrapper ]}>
                     {this.exchangeAreaTabs()}
 
-                    {/*<ConfirmDialog*/}
-                        {/*title={I18n.t( Keys.notification )}*/}
-                        {/*message={I18n.t( Keys.update_now )}*/}
-                        {/*visible={this.state.updateDialogVisible}*/}
-                        {/*onTouchOutside={() => this.setState( { updateDialogVisible: false } )}*/}
-                        {/*positiveButton={{*/}
-                            {/*title: I18n.t( Keys.yes ),*/}
-                            {/*onPress: () => {*/}
-                                {/*this.setState( {*/}
-                                    {/*updateDialogVisible: false*/}
-                                {/*} );*/}
-                                {/*this.doUpdate();*/}
-                            {/*}*/}
-                        {/*}}*/}
-                        {/*negativeButton={{*/}
-                            {/*title: I18n.t( Keys.no ),*/}
-                            {/*onPress: () => {*/}
-                                {/*this.setState( {*/}
-                                    {/*updateDialogVisible: false*/}
-                                {/*} );*/}
-                            {/*}*/}
-                        {/*}}*/}
-                    {/*/>*/}
 
                     <Spinner visible={this.state.isRequesting} cancelable={true}/>
                 </SafeAreaView>

@@ -945,6 +945,8 @@
   "name": "Name",
   "new_email_verify_code": "New mailbox verification code",
   "news": "News",
+  "no": "cancel",
+  "notification": "Notice",
   "order": "Order",
   "password": "password",
   "phone": "phone number",
@@ -969,7 +971,9 @@
   "time": "Time",
   "topUp_Coin_address": "top up coin address",
   "trade": "transaction",
+  "update_now": "Update now",
   "value": "Value",
   "verify_code": "Verification code",
-  "volume": "volume"
+  "volume": "volume",
+  "yes": "determine"
 }
