@@ -19,8 +19,8 @@
   "Transfer": "Transfer",
   "Volume": "Volume",
   "WithDraw": "WithDraw",
-  "about": "About",
-  "accouncement": "Announcement",
+  "about": "nnAbout",
+  "announcement": "Announcement",
   "account": "account number",
   "assets": "assets",
   "available": "Available",
@@ -952,5 +952,8 @@
   "topUp_Coin_address": "top up coin address",
   "value": "Value",
   "verify_code": "Verification code",
-  "volume": "volume"
+  "volume": "volume",
+  "join_our": "Join our",
+  "telegram_group": "Telegram Group",
+  "for_latest_news": "for the latest news and update"
 }

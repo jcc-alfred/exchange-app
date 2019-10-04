@@ -733,5 +733,9 @@ const Keys = {
     "value": "value",
     "verify_code": "verify_code",
     "volume": "volume",
+    "join_our": "join_our",
+    "telegram_group": "telegram_group",
+    "for_latest_news": "for_latest_news",
+
 };
 export default Keys;

@@ -20,7 +20,7 @@
   "Volume": "数量",
   "WithDraw": "提币",
   "about": "关于",
-  "accouncement": "公告",
+  "announcement": "公告",
   "account": "账号",
   "assets": "资产",
   "available": "可用",
@@ -952,5 +952,8 @@
   "topUp_Coin_address": "充值地址",
   "value": "价值",
   "verify_code": "验证码",
-  "volume": "量"
+  "volume": "量",
+  "join_our": "加入我们",
+  "telegram_group": "Telegram群",
+  "for_latest_news": "获取最新消息和更新"
 }

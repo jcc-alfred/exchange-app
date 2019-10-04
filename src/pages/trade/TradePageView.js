@@ -526,9 +526,9 @@ class TradePageView extends React.Component {
     renderInfoCell(index, entrustItem, type) {
         return (
             <View key={index}
-                  style={[{flexDirection: 'row', padding: 2, backgroundColor: type === 'buy' ? '#b3ffee' : 'white'}]}>
+                  style={[{flexDirection: 'row', padding: 2, backgroundColor: type === 'buy' ? '#ebf7f7' : 'white'}]}>
                 <View style={[styles.overlay, {
-                    backgroundColor: type === 'buy' ? 'white' : 'red',
+                    backgroundColor: type === 'buy' ? 'white' : '#faf2f0',
                     width: type === 'buy' ?
                         Util.calcDisplayDiscount(1 - entrustItem.no_completed_volume / entrustItem.entrust_volume) :
                         Util.calcDisplayDiscount(entrustItem.no_completed_volume / entrustItem.entrust_volume)
