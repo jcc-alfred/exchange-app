@@ -1,5 +1,7 @@
 {
   "Amount": "Amount",
+  "Assets_manager_key": "Assets Manager",
+  "Assets_manager_setting": "Assets_manager_setting",
   "Buy": "Buy",
   "CanUse": "Can Use",
   "Cancel": "Cancel",
@@ -15,6 +17,7 @@
   "Punching": "Punching",
   "Sell": "Sell",
   "Total account assets": "Total account assets",
+  "Total_account_assets": "Total account assets",
   "Transaction": "Transaction",
   "Transfer": "Transfer",
   "Volume": "Volume",
@@ -911,16 +914,19 @@
       "value": "Zimbabwe"
     }
   },
+  "country_title": "country",
   "delete": "Delete",
   "email": "mailbox",
   "email_verification_code": "Email verification code",
   "finance_history": "Finance History",
   "frozen": "Frozen",
+  "full_name": "Name",
   "fund_password": "Fund password",
   "get_email_msg": "Verification code",
   "google_auth_close": "Google verification is closed",
   "google_auth_open": "Google verification opens",
   "home": "Home",
+  "id_no": "ID number",
   "language": {
     "chinese": "Chinese",
     "english": "English"
@@ -955,11 +961,5 @@
   "trade": "transaction",
   "value": "Value",
   "verify_code": "Verification code",
-  "volume": "volume",
-  "Total_account_assets":"Total account assets",
-  "Assets_manager_key":"Assets Manager",
-  "Assets_manager_setting":"Assets_manager_setting"
-
-
-
+  "volume": "volume"
 }

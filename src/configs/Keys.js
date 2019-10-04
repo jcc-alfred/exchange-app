@@ -1,5 +1,7 @@
 const Keys = {
     "Amount": "Amount",
+    "Assets_manager_key": "Assets_manager_key",
+    "Assets_manager_setting": "Assets_manager_setting",
     "Buy": "Buy",
     "CanUse": "CanUse",
     "Cancel": "Cancel",
@@ -15,6 +17,7 @@ const Keys = {
     "Punching": "Punching",
     "Sell": "Sell",
     "Total account assets": "Total account assets",
+    "Total_account_assets": "Total_account_assets",
     "Transaction": "Transaction",
     "Transfer": "Transfer",
     "Volume": "Volume",
@@ -692,16 +695,19 @@ const Keys = {
     "country_ZW": "country.ZW",
     "country_ZW_sort": "country.ZW.sort",
     "country_ZW_value": "country.ZW.value",
+    "country_title": "country_title",
     "delete": "delete",
     "email": "email",
     "email_verification_code": "email_verification_code",
     "finance_history": "finance_history",
     "frozen": "frozen",
+    "full_name": "full_name",
     "fund_password": "fund_password",
     "get_email_msg": "get_email_msg",
     "google_auth_close": "google_auth_close",
     "google_auth_open": "google_auth_open",
     "home": "home",
+    "id_no": "id_no",
     "language": "language",
     "language_chinese": "language.chinese",
     "language_english": "language.english",
@@ -736,9 +742,5 @@ const Keys = {
     "value": "value",
     "verify_code": "verify_code",
     "volume": "volume",
-    "Total_account_assets":"Total_account_assets",
-    "Assets_manager_key":"Assets_manager_key",
-    "Assets_manager_setting":"Assets_manager_setting"
-
 };
 export default Keys;
