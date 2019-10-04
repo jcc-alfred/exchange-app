@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import KlinePageView from "./KlinePageView";
 import {authLogout} from "../../actions/AuthAction";
 import {LoadInitSocket} from "../../actions/SocketAction";
-import {exchangeUpdateMarketList} from "../../actions/ExchangeAction";
+import {changeTradePageCoinExchange, exchangeUpdateMarketList} from "../../actions/ExchangeAction";
 
 const mapStoreToProps = (store, ownProps) => {
     const {params} = ownProps.navigation.state;
@@ -21,7 +21,10 @@ const mapStoreToProps = (store, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => ({
     socketUpdateMarketList: (marketList) => {
         dispatch(exchangeUpdateMarketList(marketList))
-    }
+    },
+    onChangeTradePageCoinExchange: (coinEx) => {
+        dispatch(changeTradePageCoinExchange(coinEx));
+    },
 });
 
 const KlinePage = connect(

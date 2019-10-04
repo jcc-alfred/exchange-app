@@ -547,7 +547,7 @@ class TradePageView extends React.Component {
 const styles = StyleSheet.create({
     PriceInput: {
         borderWidth: 1,
-        borderColor: 'grey'
+        borderColor: '#9c9a97'
     },
     activeTab: {
         borderBottomColor: 'black',

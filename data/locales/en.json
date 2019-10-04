@@ -28,6 +28,8 @@
   "assets": "assets",
   "available": "Available",
   "balance": "Balance",
+  "buyAmount": "Buy Amount",
+  "sellAmount": "Sell Amount",
   "base_info": "Basic Information",
   "cancel": "cancel",
   "changerate": "Change Rate",

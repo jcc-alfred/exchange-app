@@ -7,7 +7,6 @@ import Keys from "../../configs/Keys";
 import I18n from "../../I18n";
 import Util from "../../util/Util";
 import Toast from "react-native-root-toast";
-import ExchangePairList from "../quotes/QuotesPageView";
 import AssetTransactionList from "../../components/AssetTransactionList";
 import {SceneMap, TabBar, TabView} from "react-native-tab-view";
 import constStyles from "../../styles/constStyles";
@@ -96,7 +95,7 @@ class AssetsDetailPageView extends React.Component {
                         <TabBar
                             {...props}
                             indicatorStyle={{backgroundColor: constStyles.THEME_COLOR}}
-                            inactiveColor={{color: 'grey'}}
+                            inactiveColor={{color: '#9c9a97'}}
                             activeColor={{color: constStyles.THEME_COLOR}}
                             style={{backgroundColor: 'white',flexDirection:'row'}}
                             tabStyle={{flex:1}}
