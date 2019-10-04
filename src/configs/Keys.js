@@ -23,7 +23,7 @@ const Keys = {
     "Volume": "Volume",
     "WithDraw": "WithDraw",
     "about": "about",
-    "accouncement": "accouncement",
+    "announcement": "announcement",
     "account": "account",
     "assets": "assets",
     "available": "available",
