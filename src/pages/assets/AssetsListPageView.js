@@ -124,17 +124,17 @@ class AssetsListPageView extends React.Component {
                 }}>
                 <View style={[{height: viewHeight}]}>
                     <View style={{flexDirection: "row"}}><Text
-                        style={[{flex: 1}, commonStyles.commonInputTextStyle]}>{item.coin_name}</Text></View>
+                        style={[{flex: 1}, styles.cellCoinNameText]}>{item.coin_name}</Text></View>
                     <View style={{flexDirection: "row"}}><Text
-                        style={[{flex: 1}, commonStyles.commonInputTextStyle]}>{I18n.t(Keys.available)}</Text><Text
-                        style={[{flex: 1}, commonStyles.commonInputTextStyle]}>{I18n.t(Keys.frozen)}</Text><Text
-                        style={[{flex: 1}, commonStyles.commonInputTextStyle]}>{I18n.t(Keys.balance)}</Text></View>
+                        style={[{flex: 1}, styles.cellMenuText]}>{I18n.t(Keys.available)}</Text><Text
+                        style={[{flex: 1}, styles.cellMenuText]}>{I18n.t(Keys.frozen)}</Text><Text
+                        style={[{flex: 1}, styles.cellMenuText]}>{I18n.t(Keys.balance)}</Text></View>
                     <View style={{flexDirection: "row"}}><Text style={[{
                         flex: 1,
                         marginLeft: 10
-                    }, commonStyles.commonSmallSubTextStyle]}>{item.balance.toFixed(2)}</Text><Text
-                        style={[{flex: 1}, commonStyles.commonSmallSubTextStyle]}>{item.frozen.toFixed(2)}</Text><Text
-                        style={[{flex: 1}, commonStyles.commonSmallSubTextStyle]}>{item.available.toFixed(2)}</Text></View>
+                    }, styles.cellValueText]}>{item.balance.toFixed(2)}</Text><Text
+                        style={[{flex: 1}, styles.cellValueText]}>{item.frozen.toFixed(2)}</Text><Text
+                        style={[{flex: 1}, styles.cellValueText]}>{item.available.toFixed(2)}</Text></View>
                 </View>
             </TouchableHighlight>
         );
@@ -164,25 +164,25 @@ class AssetsListPageView extends React.Component {
         return (
             <View style={[{backgroundColor: "#0083dc"}]}>
                 <View>
-                    <Text style={styles.smallGrayFont}>{I18n.t(Keys.Total_account_assets)} (BTC)</Text>
+                    <Text style={[styles.smallGrayFont,{marginLeft: 8}]}>{I18n.t(Keys.Total_account_assets)} (BTC)</Text>
                 </View>
                 <View style={{flexDirection: "row"}}>
                     <Text style={styles.bigAssetFont}>{BTC_VALUE.toFixed(2)} BTC</Text>
                     <Text style={styles.smallGrayFont}>={USD_VALUE.toFixed(2)} USD</Text>
                 </View>
                 <View style={{flexDirection: "row"}}>
-                    <Button
-                        title={I18n.t(Keys.Punching)}
-                        titleStyle={{fontSize: 12}}
-                        style={[{margin: 5}]}
-                        containerStyle={{flex: 1}}
-                    />
-                    <Button
-                        titleStyle={{fontSize: 12}}
-                        title={I18n.t(Keys.WithDraw)}
-                        containerStyle={{flex: 1}}
-                        style={[{margin: 5}]}
-                    />
+                    {/*<Button*/}
+                        {/*title={I18n.t(Keys.Punching)}*/}
+                        {/*titleStyle={{fontSize: 12}}*/}
+                        {/*style={[{margin: 5}]}*/}
+                        {/*containerStyle={{flex: 1}}*/}
+                    {/*/>*/}
+                    {/*<Button*/}
+                        {/*titleStyle={{fontSize: 12}}*/}
+                        {/*title={I18n.t(Keys.WithDraw)}*/}
+                        {/*containerStyle={{flex: 1}}*/}
+                        {/*style={[{margin: 5}]}*/}
+                    {/*/>*/}
                 </View>
             </View>
         )
@@ -190,7 +190,7 @@ class AssetsListPageView extends React.Component {
 
 
     renderDataList() {
-        const viewHeight = 110;
+        const viewHeight = 100;
         const separatorHeight = 1;
         return (
             <View style={[commonStyles.wrapper,]}>
