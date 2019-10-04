@@ -106,7 +106,19 @@ export function netExchangeDoBatchCancelEntrust(query, callback) {
  */
 export function netExchangeGetUserDepositListByCoinId(query, callback) {
     request
-        .post('/exchange/getUserDepositListByCoinId')
+        .post('/assets/getUserDepositListByCoinId')
+        .send(query)
+        .use(superagent_prefix(env.apiDomain))
+        .use(logger)
+        .authRequest()
+        .headerRequest()
+        .apiDomainParse()
+        .end(callback);
+}
+
+export function netExchangeGetUserWithdrawListByCoinId(query, callback) {
+    request
+        .post('/assets/getUserWithdrawListByCoinId')
         .send(query)
         .use(superagent_prefix(env.apiDomain))
         .use(logger)
