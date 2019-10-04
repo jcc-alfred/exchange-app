@@ -36,7 +36,7 @@ class BasicUserInfoVerifyResultView extends React.Component {
                 <ListItem
                     title={
                         <View style={[ { flexDirection: 'row', justifyContent: 'center' } ]}>
-                            <Text style={[ commonStyles.wrapper ]}>{'身份认证'}</Text>
+                            <Text style={[ commonStyles.wrapper ]}>{I18n.t( Keys.base_info )}</Text>
 
                             <Ionicons
                                 name="md-checkmark-circle-outline"

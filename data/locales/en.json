@@ -28,6 +28,7 @@
   "assets": "assets",
   "available": "Available",
   "balance": "Balance",
+  "base_info": "Basic Information",
   "cancel": "cancel",
   "changerate": "Change Rate",
   "chooseCoinType": "choose Coin Type",

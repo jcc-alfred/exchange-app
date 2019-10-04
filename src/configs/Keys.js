@@ -28,6 +28,7 @@ const Keys = {
     "assets": "assets",
     "available": "available",
     "balance": "balance",
+    "base_info": "base_info",
     "cancel": "cancel",
     "changerate": "changerate",
     "chooseCoinType": "chooseCoinType",
