@@ -104,7 +104,7 @@ class AssetsWithdrawPageView extends React.Component {
                     leftIconContainerStyle={[ commonStyles.pdr_normal, { paddingLeft: 0, marginLeft: 0 } ]}
                     value={this.state.coinAddress}
                     onChangeText={( text ) => this.setState( { coinAddress: text } )}
-                    label={I18n.t( Keys.Coin_address)}
+                    label={I18n.t( Keys.coin_address)}
                     errorStyle={{ color: 'red' }}
                     errorMessage={
                         this.state.showError && ( !this.state.coinAddress || this.state.coinAddress.length <= 0 ) ?

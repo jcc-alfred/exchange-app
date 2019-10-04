@@ -51,6 +51,7 @@ import BasicUserInfoVerifyPage from "./pages/mine/BasicUserInfoVerifyPage";
 import UserInfoVerifyPage from "./pages/mine/UserInfoVerifyPage";
 import GoogleAuthClosePage from "./pages/account/GoogleAuthClosePage";
 
+
 process.env.REACT_NAV_LOGGING = ( global.__DEV__ );
 
 
@@ -239,7 +240,7 @@ const LanguageUpdate = {
         };
 
         QuotesStack.navigationOptions = {
-            tabBarLabel: "Quotes",
+            tabBarLabel:I18n.t( Keys.quotes ),
             tabBarIcon: ( { focused } ) => (
                 <TabBarIcon
                     focused={focused}
@@ -255,7 +256,7 @@ const LanguageUpdate = {
         // TradeStack
 
         TradeStack.navigationOptions = {
-            tabBarLabel: "Trade",
+            tabBarLabel: I18n.t( Keys.trade ),
             tabBarIcon: ( { focused } ) => (
                 <TabBarIcon
                     focused={focused}

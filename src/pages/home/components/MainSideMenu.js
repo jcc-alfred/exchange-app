@@ -118,7 +118,7 @@ class MainSideMenu extends React.Component {
                             this.props.navigation.navigate( "AuthLoginPage" )
                         }
                     }}
-                    topDivider={true}
+                    topDivider={false}
                     bottomDivider={false}
                 />
 
@@ -155,7 +155,7 @@ class MainSideMenu extends React.Component {
                         this.props.navigation.navigate( "SettingsPage" )
                     }}
                     topDivider={true}
-                    bottomDivider={true}
+                    bottomDivider={false}
                 />
 
             </View>

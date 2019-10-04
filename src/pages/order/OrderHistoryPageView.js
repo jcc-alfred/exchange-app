@@ -2,6 +2,8 @@ import React from 'react';
 import { SafeAreaView, StatusBar, StyleSheet, View } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import { Text } from "react-native-elements";
+import I18n from "../../I18n";
+import Keys from "../../configs/Keys";
 
 class OrderHistoryPageView extends React.Component {
 
@@ -19,7 +21,7 @@ class OrderHistoryPageView extends React.Component {
         const { params } = state;
 
         return {
-            title: "OrderHistoryPageView",
+            title: I18n.t( Keys.order ),
             headerBackTitle: null,
         };
     };

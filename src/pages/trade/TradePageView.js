@@ -42,7 +42,7 @@ class TradePageView extends React.Component {
         const {params} = state;
 
         return {
-            title: "TradePageView",
+            title: I18n.t( Keys.trade ),
             headerBackTitle: null
         };
     };

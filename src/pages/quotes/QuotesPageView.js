@@ -37,7 +37,7 @@ class QuotesPageView extends React.Component {
         const { params } = state;
 
         return {
-            title: "Quotes",
+            title: I18n.t( Keys.quotes ),
             headerBackTitle: null,
         };
     };
