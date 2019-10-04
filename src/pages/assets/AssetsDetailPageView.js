@@ -10,6 +10,7 @@ import Toast from "react-native-root-toast";
 import ExchangePairList from "../quotes/QuotesPageView";
 import AssetTransactionList from "../../components/AssetTransactionList";
 import {SceneMap, TabBar, TabView} from "react-native-tab-view";
+import constStyles from "../../styles/constStyles";
 
 
 class AssetsDetailPageView extends React.Component {
@@ -94,9 +95,11 @@ class AssetsDetailPageView extends React.Component {
                     renderTabBar={props =>
                         <TabBar
                             {...props}
-                            indicatorStyle={{backgroundColor: 'blue'}}
-                            style={{backgroundColor: 'blue'}}
-                            tabStyle={{width: 'auto',color:'blue'}}
+                            indicatorStyle={{backgroundColor: constStyles.THEME_COLOR}}
+                            inactiveColor={{color: 'grey'}}
+                            activeColor={{color: constStyles.THEME_COLOR}}
+                            style={{backgroundColor: 'white',flexDirection:'row'}}
+                            tabStyle={{flex:1}}
                             scrollEnabled={true}
                         />
                     }
@@ -185,8 +188,8 @@ class AssetsDetailPageView extends React.Component {
                         <Text style={[{flex: 1}]}>{this.props.assets.frozen.toFixed(4)}</Text>
                     </View>
                     {this.seperatorView(8)}
-                    <View style={{paddingTop:15, paddingBottom:20}}>
-                        <Text style={{fontSize:24,fontWeight:"bold"}}>{I18n.t(Keys.finance_history)}</Text>
+                    <View style={{paddingTop: 15, paddingBottom: 20}}>
+                        <Text style={{fontSize: 24, fontWeight: "bold"}}>{I18n.t(Keys.finance_history)}</Text>
                     </View>
                     {this.transactionView()}
 

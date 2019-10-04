@@ -93,12 +93,12 @@ const stackNavigatorConfiguration = {
     initialRouteParams: {},
     defaultNavigationOptions: {
         headerStyle: {
-            backgroundColor: constStyles.THEME_COLOR,
+            backgroundColor: 'white',
             borderBottomWidth: 0,
             elevation: 1,
         },
         headerTitleStyle: {
-            color: 'white',
+            color: constStyles.THEME_COLOR,
             fontSize: 19,
             fontWeight: 'bold'
         },

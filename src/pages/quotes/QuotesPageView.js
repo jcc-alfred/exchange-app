@@ -14,6 +14,7 @@ import { DrawerActions } from 'react-navigation-drawer';
 import ExchangePairList from "../../components/ExchangePairList";
 import { BorderlessButton } from "react-native-gesture-handler";
 import { Ionicons } from '@expo/vector-icons';
+import constStyles from "../../styles/constStyles";
 
 class QuotesPageView extends React.Component {
     constructor( props ) {
@@ -205,8 +206,10 @@ class QuotesPageView extends React.Component {
                     renderTabBar={props =>
                         <TabBar
                             {...props}
-                            indicatorStyle={{ backgroundColor: 'white' }}
-                            // style={{backgroundColor: 'white',color:'blue'}}
+                            indicatorStyle={{backgroundColor: constStyles.THEME_COLOR}}
+                            inactiveColor={{color: 'red'}}
+                            activeColor={{color: constStyles.THEME_COLOR}}
+                            style={{backgroundColor: 'white',flexDirection:'row'}}
                             tabStyle={{ width: 'auto' }}
                             scrollEnabled={true}
                         />
@@ -226,31 +229,6 @@ class QuotesPageView extends React.Component {
                 <StatusBar backgroundColor="blue" barStyle="light-content"/>
                 <SafeAreaView style={[ commonStyles.wrapper ]}>
                     {this.exchangeAreaTabs()}
-
-                    {/*<ConfirmDialog*/}
-                        {/*title={I18n.t( Keys.notification )}*/}
-                        {/*message={I18n.t( Keys.update_now )}*/}
-                        {/*visible={this.state.updateDialogVisible}*/}
-                        {/*onTouchOutside={() => this.setState( { updateDialogVisible: false } )}*/}
-                        {/*positiveButton={{*/}
-                            {/*title: I18n.t( Keys.yes ),*/}
-                            {/*onPress: () => {*/}
-                                {/*this.setState( {*/}
-                                    {/*updateDialogVisible: false*/}
-                                {/*} );*/}
-                                {/*this.doUpdate();*/}
-                            {/*}*/}
-                        {/*}}*/}
-                        {/*negativeButton={{*/}
-                            {/*title: I18n.t( Keys.no ),*/}
-                            {/*onPress: () => {*/}
-                                {/*this.setState( {*/}
-                                    {/*updateDialogVisible: false*/}
-                                {/*} );*/}
-                            {/*}*/}
-                        {/*}}*/}
-                    {/*/>*/}
-
                     <Spinner visible={this.state.isRequesting} cancelable={true}/>
                 </SafeAreaView>
             </View>

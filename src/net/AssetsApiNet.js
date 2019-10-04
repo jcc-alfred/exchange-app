@@ -12,7 +12,7 @@ apiDomainParse( request );
 
 export function netAssetsGetUserAssets( callback ) {
     request
-        .post( '/assets/getUserAssets' )
+        .post( '/assets/getUserAssetsValue' )
         .send( {} )
         .use( superagent_prefix( env.apiDomain ) )
         .use( logger )

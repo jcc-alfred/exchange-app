@@ -42,8 +42,7 @@ class HomePageView extends React.Component {
         return {
             title: null,
             headerBackTitle: null,
-            headerTitle: (<Image style={{width: 90, height: 20}}
-                                 source={require('../../../assets/images/asiaedx_logo.png')}></Image>),
+            headerTitle: (<Image style={{width: 90, height: 20}} source={require('../../../assets/images/asiaedx_logo.png')}/>),
             headerLeft: (
                 <BorderlessButton
                     onPress={() => {
@@ -373,12 +372,6 @@ class HomePageView extends React.Component {
         return (
             <View>
                 <View style={styles.welcomeContainer}>
-                    {/*<Image*/}
-                    {/*source={*/}
-                    {/*require('/assets/images/baner-image.png')*/}
-                    {/*}*/}
-                    {/*style={styles.welcomeImage}*/}
-                    {/*/>*/}
                 </View>
 
                 <View

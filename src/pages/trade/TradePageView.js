@@ -14,7 +14,9 @@ import {Button, Image, Input, Text} from "react-native-elements";
 import Icon from 'react-native-vector-icons/FontAwesome'
 import I18n from "../../I18n";
 import Keys from "../../configs/Keys";
+import {ifIphoneX,getStatusBarHeight} from 'react-native-iphone-x-helper'
 import io from 'socket.io-client';
+import HeaderImageScrollView, {TriggeringView} from 'react-native-image-header-scroll-view';
 import * as env from "../../env";
 import Util from "../../util/Util";
 import Toast from "react-native-root-toast";
@@ -33,7 +35,7 @@ class TradePageView extends React.Component {
             isSafePassModalShow: false,
             userEntrustList: [],
             buttonClick: null
-        }
+        };
     }
 
     static navigationOptions = (props) => {
@@ -42,7 +44,7 @@ class TradePageView extends React.Component {
         const {params} = state;
 
         return {
-            title: I18n.t( Keys.trade ),
+            headerStyle: styles.header,
             headerBackTitle: null
         };
     };
@@ -186,14 +188,8 @@ class TradePageView extends React.Component {
     componentWillReceiveProps(nextProps) {
     }
 
-    async changeCoinEx(TradePageCoinEx) {
-        this.loadData()
-
-    }
-
     shouldComponentUpdate(nextProps, nextState) {
         if (this.props.TradePageCoinEx !== nextProps.TradePageCoinEx) {
-
             this.loadData()
         }
         return true;
@@ -210,11 +206,11 @@ class TradePageView extends React.Component {
                 if (!err) {
                     Toast.show("entrust canceled");
                     let tmp = this.state.userEntrustList;
-                    tmp = tmp.filter(i=>i.entrust_id !== entrust.entrust_id);
+                    tmp = tmp.filter(i => i.entrust_id !== entrust.entrust_id);
                     this.setState({
-                        userEntrustList:tmp
+                        userEntrustList: tmp
                     })
-                }else {
+                } else {
                     Toast.show(err.message)
                 }
             })
@@ -323,7 +319,7 @@ class TradePageView extends React.Component {
     header() {
         return (
             <View>
-                {this.renderTopBar()}
+                {/*{this.renderTopBar()}*/}
                 {this.renderPriceBar()}
                 {this.renderEntrustView()}
                 <View>
@@ -355,57 +351,63 @@ class TradePageView extends React.Component {
         const separatorHeight = 1;
 
         return (
-            <View style={[commonStyles.wrapper,]}>
-                <StatusBar backgroundColor="blue" barStyle="light-content"/>
-                <SafeAreaView style={[commonStyles.wrapper,]}>
-                    <FlatList
-                        data={this.state.userEntrustList}
-                        keyExtractor={(item, index) => {
-                            return 'item ' + index;
-                        }}
-                        renderItem={({item, index}) => {
-                            return this.renderCommissionCell(viewHeight, item, index);
-                        }}
-                        ListHeaderComponent={() => {
-                            return this.header();
-                        }}
-                        ItemSeparatorComponent={() => {
-                            return <View
-                                style={[commonStyles.commonIntervalStyle, {height: separatorHeight}]}/>;
-                        }}
-                        getItemLayout={(data, index) => (
-                            {length: viewHeight, offset: (viewHeight + separatorHeight) * index, index}
-                        )}
-                        onScroll={() => {
-                        }}
-                    />
+            <HeaderImageScrollView
+                maxHeight={36}
+                minHeight={36}
+                renderForeground={this.renderTopBar.bind(this)}
+            >
+                <View style={[commonStyles.wrapper,]}>
+                    <StatusBar backgroundColor="blue" barStyle="light-content"/>
+                    <SafeAreaView style={[commonStyles.wrapper,]}>
+                        <FlatList
+                            data={this.state.userEntrustList}
+                            keyExtractor={(item, index) => {
+                                return 'item ' + index;
+                            }}
+                            renderItem={({item, index}) => {
+                                return this.renderCommissionCell(viewHeight, item, index);
+                            }}
+                            ListHeaderComponent={() => {
+                                return this.header();
+                            }}
+                            ItemSeparatorComponent={() => {
+                                return <View
+                                    style={[commonStyles.commonIntervalStyle, {height: separatorHeight}]}/>;
+                            }}
+                            getItemLayout={(data, index) => (
+                                {length: viewHeight, offset: (viewHeight + separatorHeight) * index, index}
+                            )}
+                            onScroll={() => {
+                            }}
+                        />
 
 
-                    <ConfirmDialog
-                        visible={this.state.isSafePassModalShow}
-                        title={I18n.t(Keys.safePassTitle)}
-                        titleStyle={{fontSize: 16}}
-                        onTouchOutside={() => this.setState({isSafePassModalShow: false})}
-                        positiveButton={{
-                            title: I18n.t(Keys.Confirm), onPress: () => {
-                                if (this.state.entrustTypeIdClicked === 1) {
-                                    this.doEntrust(1, this.state.buyPrice, this.state.buyVolume, true)
-                                } else if (this.state.entrustTypeIdClicked === 0) {
-                                    this.doEntrust(0, this.state.sellPrice, this.state.sellVolume, true)
+                        <ConfirmDialog
+                            visible={this.state.isSafePassModalShow}
+                            title={I18n.t(Keys.safePassTitle)}
+                            titleStyle={{fontSize: 16}}
+                            onTouchOutside={() => this.setState({isSafePassModalShow: false})}
+                            positiveButton={{
+                                title: I18n.t(Keys.Confirm), onPress: () => {
+                                    if (this.state.entrustTypeIdClicked === 1) {
+                                        this.doEntrust(1, this.state.buyPrice, this.state.buyVolume, true)
+                                    } else if (this.state.entrustTypeIdClicked === 0) {
+                                        this.doEntrust(0, this.state.sellPrice, this.state.sellVolume, true)
+                                    }
                                 }
-                            }
-                        }}
-                        negativeButton={{
-                            title: I18n.t(Keys.Cancel),
-                            onPress: () => this.setState({isSafePassModalShow: false})
-                        }}>
-                        <View>
-                            <Input value={this.props.safePass}
-                                   onChangeText={(password) => this.props.changeSafePass(password)}/>
-                        </View>
-                    </ConfirmDialog>
-                </SafeAreaView>
-            </View>
+                            }}
+                            negativeButton={{
+                                title: I18n.t(Keys.Cancel),
+                                onPress: () => this.setState({isSafePassModalShow: false})
+                            }}>
+                            <View>
+                                <Input value={this.props.safePass}
+                                       onChangeText={(password) => this.props.changeSafePass(password)}/>
+                            </View>
+                        </ConfirmDialog>
+                    </SafeAreaView>
+                </View>
+            </HeaderImageScrollView>
         );
     }
 
@@ -460,10 +462,10 @@ class TradePageView extends React.Component {
                         />
                     </BorderlessButton>
                     <Text style={[commonStyles.commonInputTextStyle]}>
-                        {this.props.TradePageCoinEx.coinEx ? this.props.TradePageCoinEx.coinEx.coin_name + '/' + this.props.TradePageCoinEx.coinEx.exchange_coin_name : ''}
+                        {this.props.TradePageCoinEx ? this.props.TradePageCoinEx.coinEx.coin_name + '/' + this.props.TradePageCoinEx.coinEx.exchange_coin_name : ''}
                     </Text>
                     <Text style={[styles.smallRedFont]}>
-                        {this.props.TradePageCoinEx.coinEx ? Util.numtoPercentage(this.props.TradePageCoinEx.market.change_rate) : null}
+                        {this.props.TradePageCoinEx ? Util.numtoPercentage(this.props.TradePageCoinEx.market.change_rate) : null}
                     </Text>
                 </View>
                 <View style={[{flexDirection: 'row', flex: 1}]}>
@@ -550,6 +552,21 @@ const styles = StyleSheet.create({
     activeTab: {
         borderBottomColor: 'black',
         borderBottomWidth: 2,
+    },
+    header: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        padding: 0,
+        height: 0,
+        backgroundColor: 'transparent',
+        paddingTop: getStatusBarHeight()
+        // ...ifIphoneX({
+        //     paddingTop: 50
+        // }, {
+        //     paddingTop: 20
+        // })
     },
 
     smallRedFont: {

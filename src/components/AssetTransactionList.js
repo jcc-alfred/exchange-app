@@ -28,9 +28,7 @@ class AssetTransactionList extends React.Component {
     }
 
     header() {
-        return (
-            <View/>
-        )
+        return null
     }
 
 
@@ -89,7 +87,7 @@ class AssetTransactionList extends React.Component {
 
     render() {
         const separatorHeight = 1;
-        const viewHeight = 110;
+        const viewHeight = 75;
         return (
             <FlatList
                 data={this.props.data}
