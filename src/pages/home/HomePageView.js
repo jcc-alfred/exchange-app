@@ -338,12 +338,12 @@ class HomePageView extends React.Component {
     }
 
     renderItem(viewHeight, item, index) {
-        const url = "https://www.asiaedx.com/#/doc/newsDetail/"
+        const url = "https://www.asiaedx.com/#/doc/newsDetail/";
 
         return (
             <TouchableHighlight
                 underlayColor='#ddd'
-                style={index % 2 == 1 ? {backgroundColor: '#efefef'} : {backgroundColor: 'white'}}
+                style={index % 2 === 1 ? {backgroundColor: '#efefef'} : {backgroundColor: 'white'}}
                 onPress={() => {
                     this.props.navigation.navigate('WebViewPage', {
                         url: url + item.page_news_id,

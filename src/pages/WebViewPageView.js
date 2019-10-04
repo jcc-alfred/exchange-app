@@ -50,6 +50,7 @@ class WebViewPageView extends React.Component {
 
                         <WebView
                             source={{ uri: this.state.url + "" }}
+                            useWebKit={true}
                         />
                     </View>
                 </SafeAreaView></View>
