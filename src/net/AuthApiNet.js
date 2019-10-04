@@ -45,3 +45,34 @@ export function netAuthForgotLoginPassword( query, callback ) {
         .end( callback );
 }
 
+export function netSafeAddUserKYC( query, callback ) {
+    let query1 = {
+        ...query
+    };
+
+    request
+        .post( '/safe/addUserKYC' )
+        .send( query1 )
+        .use( superagent_prefix( env.apiDomain ) )
+        .use( logger )
+        .authRequest()
+        .headerRequest()
+        .apiDomainParse()
+        .end( callback );
+}
+
+export function netSafeAddUserSeniorKYC( query, callback ) {
+    let query1 = {
+        ...query
+    };
+
+    request
+        .post( '/safe/addUserSeniorKYC' )
+        .send( query1 )
+        .use( superagent_prefix( env.apiDomain ) )
+        .use( logger )
+        .authRequest()
+        .headerRequest()
+        .apiDomainParse()
+        .end( callback );
+}

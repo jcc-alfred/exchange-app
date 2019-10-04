@@ -36,7 +36,7 @@ class MainSideMenu extends React.Component {
                     this.props.isLoggedIn ?
                         <ListItem
                             title={"Name"}
-                            subtitle={"aaa"}
+                            subtitle={this.props.userInfo.full_name}
                             onPress={() => {
                                 this.props.navigation.dispatch( DrawerActions.closeDrawer() );
 

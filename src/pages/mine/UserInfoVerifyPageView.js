@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
+import {InteractionManager, SafeAreaView, StyleSheet, View} from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import Spinner from "react-native-loading-spinner-overlay";
 import { Button } from "react-native-elements";
@@ -9,6 +9,7 @@ import Constants from "expo-constants";
 import * as Permissions from "expo-permissions";
 import I18n from "../../I18n";
 import Keys from "../../configs/Keys";
+import Toast from "react-native-root-toast";
 
 class UserInfoVerifyPageView extends React.Component {
 
@@ -63,16 +64,44 @@ class UserInfoVerifyPageView extends React.Component {
 
     // todo
     send() {
-        this.props.navigation.dispatch(
-            StackActions.reset(
-                {
-                    index: 1,
-                    actions: [
-                        NavigationActions.navigate( { routeName: 'mainPage' } ),
-                        NavigationActions.navigate( { routeName: 'MinePage' } ),
-                    ]
+        let query;
+
+        query = {
+            frontImage: this.state.icFont.url,
+            handImage: this.state.icHandle.url,
+            backImage: this.state.icBack.url
+        }
+
+
+        InteractionManager.runAfterInteractions(() => {
+            this.props.onSafeAddUserSeniorKYC(query, (error, resBody) => {
+                if (error) {
+                    this.setState({
+                        isRequesting: false
+                    });
+
+                    Toast.show(error.message);
+                } else {
+                    this.props.navigation.dispatch(
+                        StackActions.reset(
+                            {
+                                index: 1,
+                                actions: [
+                                    NavigationActions.navigate( { routeName: 'mainPage' } ),
+                                    NavigationActions.navigate( { routeName: 'MinePage' } ),
+                                ]
+                            }
+                        ) );
+
+                    this.setState({
+                        isRequesting: false,
+                    });
                 }
-            ) );
+            });
+
+
+        });
+
     }
 
     render() {
@@ -121,7 +150,8 @@ class UserInfoVerifyPageView extends React.Component {
 
                     <Button
                         title={"Send"}
-                        type="Send"
+                        type="outline"
+                        style={{marginStart: 16, marginEnd: 16}}
                         onPress={() => {
                             this.send()
                         }
