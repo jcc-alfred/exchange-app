@@ -1,10 +1,10 @@
 import React from 'react';
 import {
-    Dimensions,
     FlatList,
     InteractionManager,
     RefreshControl,
-    SafeAreaView, StatusBar,
+    SafeAreaView,
+    StatusBar,
     StyleSheet,
     TouchableHighlight,
     View
@@ -15,29 +15,7 @@ import Spinner from "react-native-loading-spinner-overlay";
 import {Text, Button, Input} from "react-native-elements";
 import I18n from "../../I18n";
 import Keys from "../../configs/Keys";
-import {SceneMap, TabBar, TabView} from "react-native-tab-view";
-
-
-
-
-
-
-const FirstRoute = () => (
-    <View style={[styles.scene, { backgroundColor: '#ff4081' }]} />
-);
-
-const SecondRoute = () => (
-    <View style={[styles.scene, { backgroundColor: '#673ab7' }]} />
-);
-
-const ThirdRout = () => (
-    <View style={[styles.scene, { backgroundColor: '#cfe961' }]} />
-);
-
-const FourthRout = () => (
-    <View style={[styles.scene, { backgroundColor: '#e9e6e3' }]} />
-);
-
+import constStyles from "../../styles/constStyles";
 
 
 
@@ -45,32 +23,35 @@ const FourthRout = () => (
 
 class AssetsListPageView extends React.Component {
 
-    constructor( props ) {
-        super( props );
+    constructor(props) {
+        super(props);
 
         this.state = {
             refreshing: false,
             isRequesting: false,
             data: [],
-
-            index: 0,
-            routes: [
-                { key: 'first', title: '币币账户' },
-                { key: 'second', title: '合约账户' },
-                { key: 'third', title: '法币账户' },
-                { key: 'fourth', title: '杠杆账户' },
-            ],
         }
     }
 
-    static navigationOptions = ( props ) => {
-        const { navigation } = props;
-        const { state, setParams } = navigation;
-        const { params } = state;
+    static navigationOptions = (props) => {
+        const {navigation} = props;
+        const {state, setParams} = navigation;
+        const {params} = state;
 
         return {
             title: "Assets",
             headerBackTitle: null,
+            headerTitleStyle: {
+                color: 'white',
+                fontSize: 19,
+                fontWeight: 'bold'
+            },
+            headerStyle: {
+                backgroundColor: '#0083dc',
+                borderBottomWidth: 0,
+                elevation: 1,
+            },
+
         };
     };
 
@@ -79,222 +60,178 @@ class AssetsListPageView extends React.Component {
     }
 
     componentWillUnmount() {
-        this.setState = ( state, callback ) => {
+        this.setState = (state, callback) => {
 
         };
     }
 
-    componentWillReceiveProps( nextProps ) {
+    componentWillReceiveProps(nextProps) {
     }
 
-    shouldComponentUpdate( nextProps, nextState ) {
+    shouldComponentUpdate(nextProps, nextState) {
         return true;
     }
 
-    loadData( isInit ) {
+    loadData(isInit) {
 
-        if ( isInit ) {
-            this.setState( {
+        if (isInit) {
+            this.setState({
                 isRequesting: true
-            } );
+            });
         } else {
-            if ( this.state.refreshing ) {
+            if (this.state.refreshing) {
                 return;
             }
 
-            this.setState( {
+            this.setState({
                 refreshing: true,
-            } );
+            });
         }
 
-        InteractionManager.runAfterInteractions( () => {
-            this.props.onAssetsGetUserAssets( ( error, resBody ) => {
-                if ( error ) {
-                    this.setState( {
+        InteractionManager.runAfterInteractions(() => {
+            this.props.onAssetsGetUserAssets((error, resBody) => {
+                if (error) {
+                    this.setState({
                         isRequesting: false,
                         refreshing: false
-                    } );
+                    });
 
-                    Toast.show( error.message );
+                    Toast.show(error.message);
                 } else {
-                    this.setState( {
+                    this.setState({
                         isRequesting: false,
                         refreshing: false,
                         data: resBody.data
-                    } );
+                    });
                 }
-            } );
-        } );
+            });
+        });
     }
 
     _onRefresh = () => {
-        this.loadData( false );
+        this.loadData(false);
     };
 
 
-    renderItem( viewHeight, item, index ) {
+    renderItem(viewHeight, item, index) {
         return (
             <TouchableHighlight
                 underlayColor='#ddd'
                 onPress={() => {
-                    this.props.navigation.navigate( "AssetsDetailPage", {
+                    this.props.navigation.navigate("AssetsDetailPage", {
                         assets: item
-                    } )
+                    })
                 }}>
-                <View style={[ { height: viewHeight } ]}>
-                    <View style={{flexDirection:"row"}}><Text style= {[{flex:1},styles.cellCoinNameText]}>{item.coin_name}</Text></View>
-                    <View style={{flexDirection:"row"}}><Text style={[{flex:1},styles.cellMenuText]}>{I18n.t( Keys.available )}</Text><Text style= {[{flex:1},styles.cellMenuText]}>{I18n.t( Keys.frozen )}</Text><Text style= {[{flex:1},styles.cellMenuText]}>{I18n.t( Keys.balance )}</Text></View>
-                    <View style={{flexDirection:"row"}}><Text style= {[{flex:1,marginLeft:10},styles.cellValueText]}>{item.balance.toFixed(2)}</Text><Text style= {[{flex:1},styles.cellValueText]}>{item.frozen.toFixed(2)}</Text><Text style= {[{flex:1},styles.cellValueText]}>{item.available.toFixed(2)}</Text></View>
-
-
-                    {/*<Text>*/}
-                        {/*{*/}
-                            {/*JSON.stringify( item )*/}
-                        {/*}*/}
-                    {/*</Text>*/}
+                <View style={[{height: viewHeight}]}>
+                    <View style={{flexDirection: "row"}}><Text
+                        style={[{flex: 1}, commonStyles.commonInputTextStyle]}>{item.coin_name}</Text></View>
+                    <View style={{flexDirection: "row"}}><Text
+                        style={[{flex: 1}, commonStyles.commonInputTextStyle]}>{I18n.t(Keys.available)}</Text><Text
+                        style={[{flex: 1}, commonStyles.commonInputTextStyle]}>{I18n.t(Keys.frozen)}</Text><Text
+                        style={[{flex: 1}, commonStyles.commonInputTextStyle]}>{I18n.t(Keys.balance)}</Text></View>
+                    <View style={{flexDirection: "row"}}><Text style={[{
+                        flex: 1,
+                        marginLeft: 10
+                    }, commonStyles.commonSmallSubTextStyle]}>{item.balance.toFixed(2)}</Text><Text
+                        style={[{flex: 1}, commonStyles.commonSmallSubTextStyle]}>{item.frozen.toFixed(2)}</Text><Text
+                        style={[{flex: 1}, commonStyles.commonSmallSubTextStyle]}>{item.available.toFixed(2)}</Text></View>
                 </View>
             </TouchableHighlight>
         );
-
     }
-
 
     header() {
         return null;
     }
 
     render() {
-
-        const viewHeight = 110;
-        const separatorHeight = 1;
-
         return (
-            <View style={[ commonStyles.wrapper, ]}>
+            <View style={[commonStyles.wrapper,]}>
                 <StatusBar backgroundColor="blue" barStyle="light-content"/>
-                <SafeAreaView style={[ commonStyles.wrapper, ]}>
-                    {this.renderTopBanner()}
-                    {/*{this.exchangeAreaTabs()}*/}
-
-                    {this.renderDataList()}
+                <SafeAreaView style={[commonStyles.wrapper,]}>
+                    <View style={[commonStyles.wrapper,]}>
+                        {this.renderTopBanner()}
+                        {this.renderDataList()}
+                    </View>
                 </SafeAreaView>
             </View>
         );
     }
 
-    renderTopBanner(){
-
-        return(
-            <View style={[ {backgroundColor:"#0083dc"} ]}>
-                <View >
-                    <Text style={[styles.smallGrayFont,{marginLeft: 8}]} >{I18n.t( Keys.Total_account_assets)} (GTB)</Text>
+    renderTopBanner() {
+        const BTC_VALUE = this.state.data.length > 0 ? this.state.data.map(i => i.value_BTC).reduce((a, b) => parseFloat(a) + parseFloat(b)) : 0;
+        const USD_VALUE = this.state.data.length > 0 ? this.state.data.map(i => i.value_USD).reduce((a, b) => parseFloat(a) + parseFloat(b)) : 0;
+        return (
+            <View style={[{backgroundColor: "#0083dc"}]}>
+                <View>
+                    <Text style={styles.smallGrayFont}>{I18n.t(Keys.Total_account_assets)} (BTC)</Text>
                 </View>
-                <View style={{flexDirection:"row"}}>
-                    <Text style={styles.bigAssetFont}>0.000000</Text>
-                    <Text style={styles.smallGrayFont}>=0.00 cny</Text>
+                <View style={{flexDirection: "row"}}>
+                    <Text style={styles.bigAssetFont}>{BTC_VALUE.toFixed(2)} BTC</Text>
+                    <Text style={styles.smallGrayFont}>={USD_VALUE.toFixed(2)} USD</Text>
                 </View>
-                <View style={{flexDirection:"row"}}>
-                    {/*<Button*/}
-                        {/*title={I18n.t( Keys.Punching)}*/}
-                        {/*titleStyle={{fontSize:12}}*/}
-                        {/*style={[{margin:5}]}*/}
-                        {/*containerStyle={{flex:1}}*/}
-                    {/*/>*/}
-                    {/*<Button*/}
-                        {/*titleStyle={{fontSize:12}}*/}
-                        {/*title={I18n.t( Keys.WithDraw)}*/}
-                        {/*containerStyle={{flex:1}}*/}
-                        {/*style={[{margin:5}]}*/}
-                    {/*/>*/}
-                    {/*<Button*/}
-                        {/*title={I18n.t( Keys.transfer)}*/}
-                        {/*titleStyle={{fontSize:12}}*/}
-                        {/*style={[{margin:5}]}*/}
-                        {/*containerStyle={{flex:1}}*/}
-                    {/*/>*/}
+                <View style={{flexDirection: "row"}}>
+                    <Button
+                        title={I18n.t(Keys.Punching)}
+                        titleStyle={{fontSize: 12}}
+                        style={[{margin: 5}]}
+                        containerStyle={{flex: 1}}
+                    />
+                    <Button
+                        titleStyle={{fontSize: 12}}
+                        title={I18n.t(Keys.WithDraw)}
+                        containerStyle={{flex: 1}}
+                        style={[{margin: 5}]}
+                    />
                 </View>
             </View>
         )
     }
 
 
-
-
-
-
-
-
-    exchangeAreaTabs() {
-
+    renderDataList() {
+        const viewHeight = 110;
+        const separatorHeight = 1;
         return (
+            <View style={[commonStyles.wrapper,]}>
 
-            <TabView
-                navigationState={this.state}
-                renderScene={SceneMap({
-                    first: FirstRoute,
-                    second: SecondRoute,
-                    third: ThirdRout,
-                    fourth: FourthRout,
-                })}
-                onIndexChange={index => this.setState({ index })}
-                initialLayout={{ width: Dimensions.get('window').width }}
-            />
+                <FlatList
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={this.state.refreshing}
+                            onRefresh={this._onRefresh}
+                        />
+                    }
+                    data={this.state.data}
+                    keyExtractor={(item, index) => {
+                        return 'item ' + index;
+                    }}
+                    renderItem={({item, index}) => {
+                        return this.renderItem(viewHeight, item, index);
+                    }}
+                    ListHeaderComponent={() => {
+                        return this.header();
+                    }}
+                    ItemSeparatorComponent={() => {
+                        return <View
+                            style={[commonStyles.commonIntervalStyle, {height: separatorHeight}]}/>;
+                    }}
+                    getItemLayout={(data, index) => (
+                        {length: viewHeight, offset: (viewHeight + separatorHeight) * index, index}
+                    )}
+                    onScroll={() => {
+                    }}
+                />
+                <Spinner visible={this.state.isRequesting} cancelable={true}/>
+
+            </View>
 
         );
-    }
-
-
-
-
-    renderDataList(){
-        const viewHeight = 100;
-        const separatorHeight = 1;
-        return(
-        <View style={[ commonStyles.wrapper, ]}>
-
-            <FlatList
-                refreshControl={
-                    <RefreshControl
-                        refreshing={this.state.refreshing}
-                        onRefresh={this._onRefresh}
-                    />
-                }
-                data={this.state.data}
-                keyExtractor={( item, index ) => {
-                    return 'item ' + index;
-                }}
-                renderItem={( { item, index } ) => {
-                    return this.renderItem( viewHeight, item, index );
-                }}
-                // renderItem={({ item }) => <Item title={item.title} />}
-                ListHeaderComponent={() => {
-                    return this.header();
-                }}
-                ItemSeparatorComponent={() => {
-                    return <View
-                        style={[ commonStyles.commonIntervalStyle, { height: separatorHeight } ]}/>;
-                }}
-                getItemLayout={( data, index ) => (
-                    { length: viewHeight, offset: ( viewHeight + separatorHeight ) * index, index }
-                )}
-                onScroll={() => {
-                }}
-            />
-            <Spinner visible={this.state.isRequesting} cancelable={true}/>
-
-        </View>
-
-    );
     }
 }
 
 
-
-
-
-
-
-
-const styles = StyleSheet.create( {
+const styles = StyleSheet.create({
     smallGrayFont: {
         color: 'white',
         fontSize: 12,
@@ -318,7 +255,6 @@ const styles = StyleSheet.create( {
         flex: 1,
     },
 
-//        color: '#62a3bf',
 
     cellCoinNameText:{
         color: '#292e33',
@@ -344,7 +280,7 @@ const styles = StyleSheet.create( {
     },
 
 
-} );
+});
 
 export default AssetsListPageView;
 

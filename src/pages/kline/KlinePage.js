@@ -3,26 +3,25 @@ import {connect} from "react-redux";
 import KlinePageView from "./KlinePageView";
 import {authLogout} from "../../actions/AuthAction";
 import {LoadInitSocket} from "../../actions/SocketAction";
+import {exchangeUpdateMarketList} from "../../actions/ExchangeAction";
 
 const mapStoreToProps = (store, ownProps) => {
     const {params} = ownProps.navigation.state;
-    const coin_exchange =params.coin_exchange;
+    const coin_exchange = params.coin_exchange;
 
     return {
         coin_exchange: params.coin_exchange,
         isLoggedIn: store.userStore.isLoggedIn,
         userInfo: store.userStore.userInfo,
         entrustList: store.metaStore.entrustList,
+        marketList:store.metaStore.marketList
     }
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    // oninitSocket: (user_id, coin_exchange_id,callback) => {
-    //     dispatch(LoadInitSocket(user_id, coin_exchange_id, (err, res) => {
-    //             callback && callback(err, res)
-    //         }
-    //     ))
-    // },
+    socketUpdateMarketList: (marketList) => {
+        dispatch(exchangeUpdateMarketList(marketList))
+    }
 });
 
 const KlinePage = connect(

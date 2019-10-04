@@ -21,7 +21,7 @@ import {netDocGetHomeNewsList} from "../net/DocApiNet";
 export function exchangeGetMarketList(callback) {
     return (dispatch) => {
         netExchangeGetMarketList((err, res) => {
-            if(!err){
+            if (!err) {
                 dispatch(
                     {
                         type: metaActionTypes.MARKET_LIST,
@@ -31,6 +31,17 @@ export function exchangeGetMarketList(callback) {
             }
             callback && callback(err, res)
         });
+    };
+}
+
+export function exchangeUpdateMarketList(marketlist) {
+    return (dispatch) => {
+        dispatch(
+            {
+                type: metaActionTypes.MARKET_LIST,
+                data: marketlist
+            }
+        )
     };
 }
 
@@ -93,6 +104,7 @@ export function exchangeGetUserDepositListByCoinId(query, callback) {
         });
     };
 }
+
 export function exchangeGetUserWithdrawListByCoinId(query, callback) {
     return (dispatch) => {
         netExchangeGetUserWithdrawListByCoinId(query, (err, res) => {

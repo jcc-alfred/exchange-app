@@ -10,6 +10,10 @@ import { SceneMap, TabBar, TabView } from 'react-native-tab-view';
 
 import { DrawerActions } from 'react-navigation-drawer';
 import ExchangePairList from "../../components/ExchangePairList";
+import { BorderlessButton } from "react-native-gesture-handler";
+import { Ionicons } from '@expo/vector-icons';
+import constStyles from "../../styles/constStyles";
+
 
 class QuotesPageView extends React.Component {
     constructor( props ) {
@@ -169,8 +173,10 @@ class QuotesPageView extends React.Component {
                     renderTabBar={props =>
                         <TabBar
                             {...props}
-                            indicatorStyle={{ backgroundColor: 'white' }}
-                            // style={{backgroundColor: 'white',color:'blue'}}
+                            indicatorStyle={{backgroundColor: constStyles.THEME_COLOR}}
+                            inactiveColor={{color: 'red'}}
+                            activeColor={{color: constStyles.THEME_COLOR}}
+                            style={{backgroundColor: 'white',flexDirection:'row'}}
                             tabStyle={{ width: 'auto' }}
                             scrollEnabled={true}
                         />
@@ -190,8 +196,6 @@ class QuotesPageView extends React.Component {
                 <StatusBar backgroundColor="blue" barStyle="light-content"/>
                 <SafeAreaView style={[ commonStyles.wrapper ]}>
                     {this.exchangeAreaTabs()}
-
-
                     <Spinner visible={this.state.isRequesting} cancelable={true}/>
                 </SafeAreaView>
             </View>
