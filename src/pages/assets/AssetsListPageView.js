@@ -191,27 +191,25 @@ class AssetsListPageView extends React.Component {
                 <View style={{flexDirection:"row"}}>
                     <Text style={styles.bigAssetFont}>0.000000</Text>
                     <Text style={styles.smallGrayFont}>=0.00 cny</Text>
-
                 </View>
                 <View style={{flexDirection:"row"}}>
-                    <Button
-                        title={I18n.t( Keys.Punching)}
-                        titleStyle={{fontSize:12}}
-                        style={[{margin:5}]}
-                        containerStyle={{flex:1}}
-                    />
-                    <Button
-                        titleStyle={{fontSize:12}}
-                        title={I18n.t( Keys.WithDraw)}
-                        containerStyle={{flex:1}}
-                        style={[{margin:5}]}
-                    />
+                    {/*<Button*/}
+                        {/*title={I18n.t( Keys.Punching)}*/}
+                        {/*titleStyle={{fontSize:12}}*/}
+                        {/*style={[{margin:5}]}*/}
+                        {/*containerStyle={{flex:1}}*/}
+                    {/*/>*/}
+                    {/*<Button*/}
+                        {/*titleStyle={{fontSize:12}}*/}
+                        {/*title={I18n.t( Keys.WithDraw)}*/}
+                        {/*containerStyle={{flex:1}}*/}
+                        {/*style={[{margin:5}]}*/}
+                    {/*/>*/}
                     {/*<Button*/}
                         {/*title={I18n.t( Keys.transfer)}*/}
                         {/*titleStyle={{fontSize:12}}*/}
                         {/*style={[{margin:5}]}*/}
                         {/*containerStyle={{flex:1}}*/}
-
                     {/*/>*/}
                 </View>
             </View>

@@ -952,5 +952,11 @@
   "topUp_Coin_address": "top up coin address",
   "value": "Value",
   "verify_code": "Verification code",
-  "volume": "volume"
+  "volume": "volume",
+  "Total_account_assets":"Total account assets",
+  "Assets_manager_key":"Assets Manager",
+  "Assets_manager_setting":"Assets_manager_setting"
+
+
+
 }
