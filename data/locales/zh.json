@@ -955,5 +955,11 @@
   "trade": "交易",
   "value": "价值",
   "verify_code": "验证码",
-  "volume": "量"
+  "volume": "量",
+  "Total_account_assets":"当前账户总资产",
+  "Assets_manager_key":"资产管理",
+  "Assets_manager_setting":"资产管理设置"
+
+
+
 }

@@ -736,5 +736,9 @@ const Keys = {
     "value": "value",
     "verify_code": "verify_code",
     "volume": "volume",
+    "Total_account_assets":"Total_account_assets",
+    "Assets_manager_key":"Assets_manager_key",
+    "Assets_manager_setting":"Assets_manager_setting"
+
 };
 export default Keys;
