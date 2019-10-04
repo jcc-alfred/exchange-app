@@ -142,9 +142,9 @@ class AssetsListPageView extends React.Component {
                     } )
                 }}>
                 <View style={[ { height: viewHeight } ]}>
-                    <View style={{flexDirection:"row"}}><Text style= {[{flex:1},commonStyles.commonInputTextStyle]}>{item.coin_name}</Text></View>
-                    <View style={{flexDirection:"row"}}><Text style={[{flex:1},commonStyles.commonInputTextStyle]}>{I18n.t( Keys.available )}</Text><Text style= {[{flex:1},commonStyles.commonInputTextStyle]}>{I18n.t( Keys.frozen )}</Text><Text style= {[{flex:1},commonStyles.commonInputTextStyle]}>{I18n.t( Keys.balance )}</Text></View>
-                    <View style={{flexDirection:"row"}}><Text style= {[{flex:1,marginLeft:10},commonStyles.commonSmallSubTextStyle]}>{item.balance.toFixed(2)}</Text><Text style= {[{flex:1},commonStyles.commonSmallSubTextStyle]}>{item.frozen.toFixed(2)}</Text><Text style= {[{flex:1},commonStyles.commonSmallSubTextStyle]}>{item.available.toFixed(2)}</Text></View>
+                    <View style={{flexDirection:"row"}}><Text style= {[{flex:1},styles.cellCoinNameText]}>{item.coin_name}</Text></View>
+                    <View style={{flexDirection:"row"}}><Text style={[{flex:1},styles.cellMenuText]}>{I18n.t( Keys.available )}</Text><Text style= {[{flex:1},styles.cellMenuText]}>{I18n.t( Keys.frozen )}</Text><Text style= {[{flex:1},styles.cellMenuText]}>{I18n.t( Keys.balance )}</Text></View>
+                    <View style={{flexDirection:"row"}}><Text style= {[{flex:1,marginLeft:10},styles.cellValueText]}>{item.balance.toFixed(2)}</Text><Text style= {[{flex:1},styles.cellValueText]}>{item.frozen.toFixed(2)}</Text><Text style= {[{flex:1},styles.cellValueText]}>{item.available.toFixed(2)}</Text></View>
 
 
                     {/*<Text>*/}
@@ -186,7 +186,7 @@ class AssetsListPageView extends React.Component {
         return(
             <View style={[ {backgroundColor:"#0083dc"} ]}>
                 <View >
-                    <Text style={styles.smallGrayFont} >{I18n.t( Keys.Total_account_assets)} (GTB)</Text>
+                    <Text style={[styles.smallGrayFont,{marginLeft: 8}]} >{I18n.t( Keys.Total_account_assets)} (GTB)</Text>
                 </View>
                 <View style={{flexDirection:"row"}}>
                     <Text style={styles.bigAssetFont}>0.000000</Text>
@@ -245,18 +245,8 @@ class AssetsListPageView extends React.Component {
 
 
 
-
-
-
-
-
-
-
-
-
-
     renderDataList(){
-        const viewHeight = 110;
+        const viewHeight = 100;
         const separatorHeight = 1;
         return(
         <View style={[ commonStyles.wrapper, ]}>
@@ -330,6 +320,28 @@ const styles = StyleSheet.create( {
 
 //        color: '#62a3bf',
 
+    cellCoinNameText:{
+        color: '#292e33',
+        fontSize: 16,
+        paddingLeft: 10,
+        paddingRight: 10,
+        paddingTop: 12,
+        paddingBottom: 6
+    },
+
+    cellMenuText: {
+        color: '#7a8a99',
+        fontSize: 12,
+        paddingLeft: 10,
+        paddingRight: 10,
+        paddingTop: 8,
+        paddingBottom: 8
+    },
+
+    cellValueText: {
+        color: '#292e33',
+        fontSize: 14
+    },
 
 
 } );
