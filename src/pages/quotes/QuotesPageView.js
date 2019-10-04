@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dimensions, InteractionManager, Platform, SafeAreaView, StyleSheet, View } from 'react-native';
+import { Dimensions, InteractionManager, Platform, SafeAreaView, StatusBar, StyleSheet, View } from 'react-native';
 import Spinner from "react-native-loading-spinner-overlay";
 import { Updates } from 'expo';
 import { ConfirmDialog } from "react-native-simple-dialogs";
@@ -223,6 +223,7 @@ class QuotesPageView extends React.Component {
     render() {
         return (
             <View style={commonStyles.wrapper}>
+                <StatusBar backgroundColor="blue" barStyle="light-content"/>
                 <SafeAreaView style={[ commonStyles.wrapper ]}>
                     {this.exchangeAreaTabs()}
 

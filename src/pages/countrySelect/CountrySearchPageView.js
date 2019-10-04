@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FlatList, StyleSheet, View, } from 'react-native';
+import { FlatList, StatusBar, StyleSheet, View, } from 'react-native';
 import SearchLayout from 'react-navigation-addon-search-layout';
 import commonStyles from "../../styles/commonStyles";
 import { ListItem } from "react-native-elements";
@@ -215,6 +215,7 @@ class CountrySearchPageView extends React.Component {
                 headerBackgroundColor={constStyles.THEME_COLOR}
                 headerTintColor={'white'}
             >
+                <StatusBar backgroundColor="blue" barStyle="light-content"/>
                 <FlatList
                     keyboardShouldPersistTaps="always"
                     data={this.state.modelShowArray}

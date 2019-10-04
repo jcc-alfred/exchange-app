@@ -1,5 +1,5 @@
 import React from 'react';
-import { InteractionManager, SafeAreaView, StyleSheet, View } from 'react-native';
+import { InteractionManager, SafeAreaView, StatusBar, StyleSheet, View } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import { Button, Input } from "react-native-elements";
 import CountryUtil from "../countrySelect/util/CountryUtil";
@@ -158,6 +158,7 @@ class AuthRegisterPageView extends React.Component {
     render() {
         return (
             <View style={[ commonStyles.wrapper, ]}>
+                <StatusBar backgroundColor="blue" barStyle="light-content"/>
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
                     <View style={[ commonStyles.paddingCommon ]}>
 

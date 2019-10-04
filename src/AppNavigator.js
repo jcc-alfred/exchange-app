@@ -26,11 +26,8 @@ import Keys from "./configs/Keys";
 import OrderHistoryPage from "./pages/order/OrderHistoryPage";
 import TradeExMenu from "./pages/trade/components/TradeExMenu";
 import TradePage from "./pages/trade/TradePage";
-import UserEmailVerifyPage from "./pages/user/UserEmailVerifyPage";
-import UserGoogleAuthPage from "./pages/user/UserGoogleAuthPage";
-import UserKYCPage from "./pages/user/UserKYCPage";
-import UserPasswordResetPage from "./pages/user/UserPasswordResetPage";
-import UserPhoneVerifyPage from "./pages/user/UserPhoneVerifyPage";
+import UserEmailVerifyPage from "./pages/account/UserEmailVerifyPage";
+import UserPhoneVerifyPage from "./pages/account/UserPhoneVerifyPage";
 import FundPasswordChangePage from "./pages/account/FundPasswordChangePage";
 import AssetsDepositHistoryPage from "./pages/assets/AssetsDepositHistoryPage";
 import AssetsDepositPage from "./pages/assets/AssetsDepositPage";
@@ -206,7 +203,7 @@ const MainTabContainer = createBottomTabNavigator(
         HomeStack: HomeStack,
         QuotesStack: QuotesStack,
         TradePageStack: TradeStack,
-        OTCTradeStack: OTCTradeStack,
+        // OTCTradeStack: OTCTradeStack,
         AssetsDetailStack: AssetsDetailStack,
     },
     TabNavigatorConfig
@@ -341,15 +338,6 @@ const routeConfiguration = {
     },
     UserEmailVerifyPage: {
         screen: UserEmailVerifyPage
-    },
-    UserGoogleAuthPage: {
-        screen: UserGoogleAuthPage
-    },
-    UserKYCPage: {
-        screen: UserKYCPage
-    },
-    UserPasswordResetPage: {
-        screen: UserPasswordResetPage
     },
     UserPhoneVerifyPage: {
         screen: UserPhoneVerifyPage

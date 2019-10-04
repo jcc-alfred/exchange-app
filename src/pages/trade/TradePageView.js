@@ -1,5 +1,14 @@
 import React from 'react';
-import {FlatList, InteractionManager, PixelRatio, Platform, SafeAreaView, StyleSheet, View} from 'react-native';
+import {
+    FlatList,
+    InteractionManager,
+    PixelRatio,
+    Platform,
+    SafeAreaView,
+    StatusBar,
+    StyleSheet,
+    View
+} from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import {Button, Image, Input, Text} from "react-native-elements";
 import Icon from 'react-native-vector-icons/FontAwesome'
@@ -59,30 +68,33 @@ class TradePageView extends React.Component {
                     })
                 })
             }
-
-            this.socket = io(env.webSocket);
-            if (!this.socket.connected) {
-                this.socket.connect();
-            }
-            this.socket.on('connect', () => {
-                console.log('connect:', this.socket.connected);
-                this.socket.emit('init', {
-                    user_id: this.props.userInfo.user_id ? this.props.userInfo.user_id : 0,
-                    coin_exchange_id: this.props.TradePageCoinEx.coin_exchange_id,
-                    range: this.state.range
-                });
-            });
-            this.socket.on('entrustList', (data) => {
-                this.setState({entrustList: data});
-                if (!this.state.buyPrice) {
-                    this.setState({buyPrice: data.sellList.length > 0 ? JSON.stringify(data.sellList[data.sellList.length - 1].entrust_price) : ''});
-                    this.setState({sellPrice: data.buyList.length > 0 ? JSON.stringify(data.buyList[0].entrust_price) : ''});
-                }
-            });
-            this.socket.on('userEntrustList', (data) => {
-                this.setState({userEntrustList: data});
-            });
+            this.initSocket(this.props.TradePageCoinEx.coin_exchange_id)
         })
+    }
+
+    initSocket(coin_exchange_id) {
+        this.socket = io(env.webSocket);
+        if (!this.socket.connected) {
+            this.socket.connect();
+        }
+        this.socket.on('connect', () => {
+            console.log('connect:', this.socket.connected);
+            this.socket.emit('init', {
+                user_id: this.props.userInfo.user_id ? this.props.userInfo.user_id : 0,
+                coin_exchange_id: coin_exchange_id,
+                range: this.state.range
+            });
+        });
+        this.socket.on('entrustList', (data) => {
+            this.setState({entrustList: data});
+            if (!this.state.buyPrice) {
+                this.setState({buyPrice: data.sellList.length > 0 ? JSON.stringify(data.sellList[data.sellList.length - 1].entrust_price) : ''});
+                this.setState({sellPrice: data.buyList.length > 0 ? JSON.stringify(data.buyList[0].entrust_price) : ''});
+            }
+        });
+        this.socket.on('userEntrustList', (data) => {
+            this.setState({userEntrustList: data});
+        });
     }
 
     changeState(value, field) {
@@ -166,15 +178,24 @@ class TradePageView extends React.Component {
     }
 
     componentWillUnmount() {
-        this.setState = (state, callback) => {
-
-        };
+        if (this.socket.connected) {
+            this.socket.emit("disconnect")
+        }
     }
 
     componentWillReceiveProps(nextProps) {
     }
 
+    async changeCoinEx(TradePageCoinEx) {
+        this.loadData()
+
+    }
+
     shouldComponentUpdate(nextProps, nextState) {
+        if (this.props.TradePageCoinEx !== nextProps.TradePageCoinEx) {
+
+            this.loadData()
+        }
         return true;
     }
 
@@ -184,10 +205,17 @@ class TradePageView extends React.Component {
                 "entrustId": entrust.entrust_id,
                 "coinExchangeId": entrust.coin_exchange_id,
                 "entrustTypeId": entrust.entrust_type_id,
-                "user_id":this.props.userInfo.user_id
-            },(err,res)=>{
-                if(!err){
-                    Toast.show("entrust canceled")
+                "user_id": this.props.userInfo.user_id
+            }, (err, res) => {
+                if (!err) {
+                    Toast.show("entrust canceled");
+                    let tmp = this.state.userEntrustList;
+                    tmp = tmp.filter(i=>i.entrust_id !== entrust.entrust_id);
+                    this.setState({
+                        userEntrustList:tmp
+                    })
+                }else {
+                    Toast.show(err.message)
                 }
             })
         })
@@ -256,7 +284,7 @@ class TradePageView extends React.Component {
                     {
                         [25, 50, 75, 100].map(i => {
                             return (
-                                <View style={{flex: 1}}>
+                                <View style={{flex: 1}} key={'key ' + i}>
                                     <Button titleStyle={{fontSize: 8}} title={i + '%'} type={'outline'}
                                             onPress={() => this.updateEntrustVolume(type, i / 100)}/>
                                 </View>
@@ -328,6 +356,7 @@ class TradePageView extends React.Component {
 
         return (
             <View style={[commonStyles.wrapper,]}>
+                <StatusBar backgroundColor="blue" barStyle="light-content"/>
                 <SafeAreaView style={[commonStyles.wrapper,]}>
                     <FlatList
                         data={this.state.userEntrustList}
@@ -396,18 +425,19 @@ class TradePageView extends React.Component {
                     }]}>{entrust.entrust_type_id === 0 ? I18n.t(Keys.Sell) : I18n.t(Keys.Buy)}</Text>
                     <Text
                         style={[{flex: 4}, styles.smallGrayFont]}>{moment(entrust.create_time).format('HH:mm MM/DD')}</Text>
-                    <Button type={'outline'} titleStyle={{fontSize: 10}} title={I18n.t(Keys.Cancel)} onPress={()=>this.doCancelEntrust(entrust)}/>
+                    <Button type={'outline'} titleStyle={{fontSize: 10}} title={I18n.t(Keys.Cancel)}
+                            onPress={() => this.doCancelEntrust(entrust)}/>
                 </View>
                 <View style={{flexDirection: 'row'}}>
                     <Text
-                        style={[styles.smallGrayFont, {flex: '1'}]}>{I18n.t(Keys.Price) + '(' + this.props.TradePageCoinEx.coinEx.exchange_coin_name + ')'}</Text>
-                    <Text style={[styles.smallGrayFont, {flex: '1'}]}>{I18n.t(Keys.Volume)}</Text>
-                    <Text style={[styles.smallGrayFont, {flex: '1'}]}>{I18n.t(Keys.Transaction)}</Text>
+                        style={[styles.smallGrayFont, {flex: 1}]}>{I18n.t(Keys.Price) + '(' + this.props.TradePageCoinEx.coinEx.exchange_coin_name + ')'}</Text>
+                    <Text style={[styles.smallGrayFont, {flex: 1}]}>{I18n.t(Keys.Volume)}</Text>
+                    <Text style={[styles.smallGrayFont, {flex: 1}]}>{I18n.t(Keys.Transaction)}</Text>
                 </View>
                 <View style={{flexDirection: 'row'}}>
-                    <Text style={[styles.smallCommission, {flex: '1'}]}>{entrust.entrust_price}</Text>
-                    <Text style={[styles.smallCommission, {flex: '1'}]}>{entrust.entrust_volume}</Text>
-                    <Text style={[styles.smallCommission, {flex: '1'}]}>{entrust.completed_volume}</Text>
+                    <Text style={[styles.smallCommission, {flex: 1}]}>{entrust.entrust_price}</Text>
+                    <Text style={[styles.smallCommission, {flex: 1}]}>{entrust.entrust_volume}</Text>
+                    <Text style={[styles.smallCommission, {flex: 1}]}>{entrust.completed_volume}</Text>
                 </View>
             </View>
         )
@@ -469,7 +499,7 @@ class TradePageView extends React.Component {
                     <View style={[{flexDirection: 'row', padding: 2}]}>
                         <Text style={[{flexDirection: 'row', flex: 1, fontSize: 8}]}>{I18n.t(Keys.Buy)}</Text>
                         <Text style={[{flexDirection: 'row', flex: 2, fontSize: 8}]}>{I18n.t(Keys.Volume)}</Text>
-                        <Text style={[{flexDirection: 'row', flex: 1, fontSize: 8}]}>{I18n.t(Keys.Sell)}</Text>
+                        <Text style={[{flexDirection: 'row', flex: 1, fontSize: 8}]}>{I18n.t(Keys.Price)}</Text>
                     </View>
                     {buyList.map((entrustItem, index) => {
                         return this.renderInfoCell(index, entrustItem, 'buy')
@@ -480,9 +510,11 @@ class TradePageView extends React.Component {
                     <View style={[{flexDirection: 'row', padding: 2}]}>
                         <Text style={[{flexDirection: 'row', flex: 1, fontSize: 8}]}>{I18n.t(Keys.Sell)}</Text>
                         <Text style={[{flexDirection: 'row', flex: 2, fontSize: 8}]}>{I18n.t(Keys.Volume)}</Text>
-                        <Text style={[{flexDirection: 'row', flex: 1, fontSize: 8}]}>{I18n.t(Keys.Sell)}</Text>
+                        <Text style={[{flexDirection: 'row', flex: 1, fontSize: 8}]}>{I18n.t(Keys.Price)}</Text>
                     </View>
-                    {sellList.map((entrustItem, index) => {
+                    {sellList.sort(function (a, b) {
+                        return a.entrust_price - b.entrust_price
+                    }).map((entrustItem, index) => {
                         return this.renderInfoCell(index, entrustItem, 'sell')
                     })}
                 </View>

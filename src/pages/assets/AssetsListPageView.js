@@ -4,7 +4,7 @@ import {
     FlatList,
     InteractionManager,
     RefreshControl,
-    SafeAreaView,
+    SafeAreaView, StatusBar,
     StyleSheet,
     TouchableHighlight,
     View
@@ -170,6 +170,7 @@ class AssetsListPageView extends React.Component {
 
         return (
             <View style={[ commonStyles.wrapper, ]}>
+                <StatusBar backgroundColor="blue" barStyle="light-content"/>
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
                     {this.renderTopBanner()}
                     {/*{this.exchangeAreaTabs()}*/}
@@ -205,13 +206,13 @@ class AssetsListPageView extends React.Component {
                         containerStyle={{flex:1}}
                         style={[{margin:5}]}
                     />
-                    <Button
-                        title={I18n.t( Keys.transfer)}
-                        titleStyle={{fontSize:12}}
-                        style={[{margin:5}]}
-                        containerStyle={{flex:1}}
+                    {/*<Button*/}
+                        {/*title={I18n.t( Keys.transfer)}*/}
+                        {/*titleStyle={{fontSize:12}}*/}
+                        {/*style={[{margin:5}]}*/}
+                        {/*containerStyle={{flex:1}}*/}
 
-                    />
+                    {/*/>*/}
                 </View>
             </View>
         )

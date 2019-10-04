@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, SafeAreaView, StyleSheet, View } from 'react-native';
+import { FlatList, SafeAreaView, StatusBar, StyleSheet, View } from 'react-native';
 import { ListItem } from "react-native-elements";
 import I18n from "../../I18n";
 import commonStyles from "../../styles/commonStyles";
@@ -64,6 +64,7 @@ class SettingLanguagePageView extends React.Component {
 
         return (
             <View style={[ commonStyles.wrapper, ]}>
+                <StatusBar backgroundColor="blue" barStyle="light-content"/>
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
                     <FlatList
                         data={this.state.languageData}

@@ -2610,7 +2610,7 @@ escape-html@~1.0.3:
   resolved "https://registry.yarnpkg.com/escape-html/-/escape-html-1.0.3.tgz#0258eae4d3d0c0974de1c169188ef0051d1d1988"
   integrity sha1-Aljq5NPQwJdN4cFpGI7wBR0dGYg=
 
-escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.5:
+escape-string-regexp@1.0.5, escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
   integrity sha1-G2HAViGQqN/2rjuyzwIAyhMLhtQ=
@@ -3604,7 +3604,7 @@ inquirer@^3.0.6:
     strip-ansi "^4.0.0"
     through "^2.3.6"
 
-invariant@*, invariant@^2.2.2, invariant@^2.2.4:
+invariant@*, invariant@2.2.4, invariant@^2.2.2, invariant@^2.2.4:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
   integrity sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==
@@ -6018,10 +6018,10 @@ react-native-countdown-component@^2.6.0:
     prop-types "^15.5.8"
     sprintf-js "^1.1.1"
 
-react-native-elements@^1.2.3:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/react-native-elements/-/react-native-elements-1.2.3.tgz#de16b592d872ec550da414f787bbf030598e702b"
-  integrity sha512-z7xwqSmLh5a4buW/zjAROTmn+4AanoWifP1VYs6cNh0AAguPKw7wp68TW2KyJykIsfugxzscGSAStl/l6NhNkA==
+react-native-elements@^1.2.5:
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/react-native-elements/-/react-native-elements-1.2.5.tgz#f806af1d6c8df56f84ef4e2c8db4c84207ede25a"
+  integrity sha512-zAZPc5BLoep2dPzVNsZfTMDpb7vq3frVmB71N0SzAgK59mDBNvw8Ku/P7XHp9DGdMVLqJRnAJuGybkxTTkzDoQ==
   dependencies:
     "@types/react-native-vector-icons" "^6.4.1"
     color "^3.1.0"
@@ -6215,6 +6215,14 @@ react-native-web@^0.11.4:
     prop-types "^15.6.0"
     react-timer-mixin "^0.13.4"
 
+react-native-webview@7.0.5:
+  version "7.0.5"
+  resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-7.0.5.tgz#1dd9d4f2856bda86a40222eca3612bf2152bacd3"
+  integrity sha512-FWY3tjbyV3Uhuw1JxJ0zs2HspJ5HAsIfkJaquURsVWQnTdZPnkSQjHWQp0PzGIwJ1PPVOA/gnhRmd7SZU/Br5Q==
+  dependencies:
+    escape-string-regexp "1.0.5"
+    invariant "2.2.4"
+
 "react-native@https://github.com/expo/react-native/archive/sdk-34.0.0.tar.gz":
   version "0.59.8"
   resolved "https://github.com/expo/react-native/archive/sdk-34.0.0.tar.gz#717c25bde6007a70e9f206ef4360999dae18e7b0"
@@ -6285,10 +6293,10 @@ react-navigation-drawer@~1.4.0:
   dependencies:
     react-native-tab-view "^1.2.0"
 
-react-navigation-redux-helpers@^3.0.3:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/react-navigation-redux-helpers/-/react-navigation-redux-helpers-3.0.3.tgz#4ebb15baacf843b1855e7d05964678a469174c7b"
-  integrity sha512-0d2+nP9CeWQmhQy81OZ39EE0AxSwRXj7v0BTBxkz7tDsfM4SIbNdFtsakXbGi7aYyY4imZmhUje+gA8EdjVvag==
+react-navigation-redux-helpers@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/react-navigation-redux-helpers/-/react-navigation-redux-helpers-4.0.1.tgz#a2da4e403114ddf6438071bba6c2e81dd9ffa269"
+  integrity sha512-hzReLzBbfVQGyh+FUQvWXhaK8vg2kwcIPM8vztQ21+8VL5JvijCBVRbXox22EfYTKh+AWHNiY8TCQtHbXlqNsA==
   dependencies:
     invariant "^2.2.2"
 

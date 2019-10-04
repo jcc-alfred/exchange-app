@@ -1,8 +1,10 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { SafeAreaView, StatusBar, StyleSheet, View } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import Spinner from "react-native-loading-spinner-overlay";
 import { ListItem } from "react-native-elements";
+import I18n from "../../I18n";
+import Keys from "../../configs/Keys";
 
 class AccountInfoPageView extends React.Component {
 
@@ -21,7 +23,7 @@ class AccountInfoPageView extends React.Component {
         const { params } = state;
 
         return {
-            title: "账户中心",
+            title: I18n.t( Keys.account ),
             headerBackTitle: null,
         };
     };
@@ -45,47 +47,53 @@ class AccountInfoPageView extends React.Component {
     render() {
         return (
             <View style={[ commonStyles.wrapper, ]}>
+                <StatusBar backgroundColor="blue" barStyle="light-content"/>
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
-                    {
-                        this.props.isLoggedIn ?
-                            <ListItem
-                                title={"Password"}
-                                onPress={() => {
-                                    this.props.navigation.navigate( "PasswordChangePage" )
-                                }}
-                                bottomDivider={true}
-                            />
-                            :
-                            null
-                    }
+                    <ListItem
+                        title={I18n.t( Keys.email )}
+                        onPress={() => {
+                            this.props.navigation.navigate( "UserEmailVerifyPage" )
+                        }}
+                        bottomDivider={true}
+                    />
 
-                    {
-                        this.props.isLoggedIn ?
-                            <ListItem
-                                title={"Fund Password"}
-                                onPress={() => {
-                                    this.props.navigation.navigate( "FundPasswordChangePage", {
-                                        isReset: false
-                                    } )
-                                }}
-                                bottomDivider={true}
-                            />
-                            :
-                            null
-                    }
+                    <ListItem
+                        title={I18n.t( Keys.phone )}
+                        onPress={() => {
+                            this.props.navigation.navigate( "UserPhoneVerifyPage" )
+                        }}
+                        bottomDivider={true}
+                    />
 
-                    {
-                        this.props.isLoggedIn ?
-                            <ListItem
-                                title={"Google Auth"}
-                                onPress={() => {
-                                    this.props.navigation.navigate( "GoogleAuthOpenPage" )
-                                }}
-                                bottomDivider={true}
-                            />
-                            :
-                            null
-                    }
+                    <ListItem
+                        title={I18n.t( Keys.password )}
+                        onPress={() => {
+                            this.props.navigation.navigate( "PasswordChangePage" )
+                        }}
+                        bottomDivider={true}
+                    />
+
+                    <ListItem
+                        title={I18n.t( Keys.fund_password )}
+                        onPress={() => {
+                            this.props.navigation.navigate( "FundPasswordChangePage", {
+                                isReset: false
+                            } )
+                        }}
+                        bottomDivider={true}
+                    />
+
+                    <ListItem
+                        title={this.props.userInfo.google_secret === 0 ? I18n.t( Keys.google_auth_open ) : I18n.t( Keys.google_auth_close )}
+                        onPress={() => {
+                            if ( this.props.userInfo.google_secret === 0 ) {
+                                this.props.navigation.navigate( "GoogleAuthOpenPage" )
+                            } else {
+                                this.props.navigation.navigate( "GoogleAuthClosePage" )
+                            }
+                        }}
+                        bottomDivider={true}
+                    />
 
                     <Spinner visible={this.state.isRequesting} cancelable={true}/>
                 </SafeAreaView>

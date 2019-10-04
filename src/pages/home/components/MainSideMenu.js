@@ -1,5 +1,5 @@
 import React from "react";
-import { Platform, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { connect } from "react-redux";
 
 import { DrawerActions } from 'react-navigation-drawer';
@@ -7,9 +7,9 @@ import { getStatusBarHeight } from "react-native-iphone-x-helper";
 import { Button, ListItem } from "react-native-elements";
 import { Header } from 'react-navigation';
 import constStyles from "../../../styles/constStyles";
-import { Ionicons } from "@expo/vector-icons";
-import commonStyles from "../../../styles/commonStyles";
 import OrderHistoryPage from "../../order/OrderHistoryPage";
+import I18n from "../../../I18n";
+import Keys from "../../../configs/Keys";
 
 class MainSideMenu extends React.Component {
 
@@ -35,8 +35,8 @@ class MainSideMenu extends React.Component {
                 {
                     this.props.isLoggedIn ?
                         <ListItem
-                            title={"Name"}
-                            subtitle={this.props.userInfo.full_name}
+                            title={this.props.userInfo.full_name}
+                            subtitle={this.props.userInfo.email}
                             onPress={() => {
                                 this.props.navigation.dispatch( DrawerActions.closeDrawer() );
 
@@ -52,7 +52,7 @@ class MainSideMenu extends React.Component {
                         />
                         :
                         <Button
-                            title={"Login"}
+                            title={I18n.t( Keys.login )}
                             type="outline"
                             onPress={() => {
                                 this.props.navigation.dispatch( DrawerActions.closeDrawer() )
@@ -62,54 +62,54 @@ class MainSideMenu extends React.Component {
                         />
                 }
 
-                <View style={[ { flexDirection: 'row' }, commonStyles.paddingCommon ]}>
-                    <Button
-                        icon={
-                            <Ionicons
-                                name="md-wallet"
-                                size={Platform.OS === 'ios' ? 22 : 25}
-                                color={'white'}
-                            />
-                        }
-                        title="Deposit"
-                        onPress={() => {
-                            this.props.navigation.dispatch( DrawerActions.closeDrawer() );
-                            if ( this.props.isLoggedIn ) {
-                                this.props.navigation.navigate( "AssetsDepositPage" )
-                            } else {
-                                this.props.navigation.navigate( "AuthLoginPage" )
-                            }
-                        }
-                        }
-                    />
+                {/*<View style={[ { flexDirection: 'row' }, commonStyles.paddingCommon ]}>*/}
+                {/*<Button*/}
+                {/*icon={*/}
+                {/*<Ionicons*/}
+                {/*name="md-wallet"*/}
+                {/*size={Platform.OS === 'ios' ? 22 : 25}*/}
+                {/*color={'white'}*/}
+                {/*/>*/}
+                {/*}*/}
+                {/*title="Deposit"*/}
+                {/*onPress={() => {*/}
+                {/*this.props.navigation.dispatch( DrawerActions.closeDrawer() );*/}
+                {/*if ( this.props.isLoggedIn ) {*/}
+                {/*this.props.navigation.navigate( "AssetsDepositPage" )*/}
+                {/*} else {*/}
+                {/*this.props.navigation.navigate( "AuthLoginPage" )*/}
+                {/*}*/}
+                {/*}*/}
+                {/*}*/}
+                {/*/>*/}
 
-                    <View style={[ commonStyles.wrapper ]}/>
+                {/*<View style={[ commonStyles.wrapper ]}/>*/}
 
-                    <Button
-                        icon={
-                            <Ionicons
-                                name="md-card"
-                                size={Platform.OS === 'ios' ? 22 : 25}
-                                color={'white'}
-                            />
-                        }
-                        title="Withdraw"
-                        onPress={() => {
-                            this.props.navigation.dispatch( DrawerActions.closeDrawer() )
-                            if ( this.props.isLoggedIn ) {
-                                this.props.navigation.navigate( "AssetsWithdrawPage" )
-                            } else {
-                                this.props.navigation.navigate( "AuthLoginPage" )
-                            }
-                        }
-                        }
-                    />
+                {/*<Button*/}
+                {/*icon={*/}
+                {/*<Ionicons*/}
+                {/*name="md-card"*/}
+                {/*size={Platform.OS === 'ios' ? 22 : 25}*/}
+                {/*color={'white'}*/}
+                {/*/>*/}
+                {/*}*/}
+                {/*title="Withdraw"*/}
+                {/*onPress={() => {*/}
+                {/*this.props.navigation.dispatch( DrawerActions.closeDrawer() )*/}
+                {/*if ( this.props.isLoggedIn ) {*/}
+                {/*this.props.navigation.navigate( "AssetsWithdrawPage" )*/}
+                {/*} else {*/}
+                {/*this.props.navigation.navigate( "AuthLoginPage" )*/}
+                {/*}*/}
+                {/*}*/}
+                {/*}*/}
+                {/*/>*/}
 
-                </View>
+                {/*</View>*/}
 
 
                 <ListItem
-                    title={"Order"}
+                    title={I18n.t( Keys.order )}
                     onPress={() => {
                         this.props.navigation.dispatch( DrawerActions.closeDrawer() )
                         if ( this.props.isLoggedIn ) {
@@ -123,7 +123,7 @@ class MainSideMenu extends React.Component {
                 />
 
                 <ListItem
-                    title={"Account"}
+                    title={I18n.t( Keys.account )}
                     onPress={() => {
                         this.props.navigation.dispatch( DrawerActions.closeDrawer() )
                         if ( this.props.isLoggedIn ) {
@@ -138,7 +138,7 @@ class MainSideMenu extends React.Component {
 
 
                 <ListItem
-                    title={"About"}
+                    title={I18n.t( Keys.about )}
                     onPress={() => {
                         this.props.navigation.dispatch( DrawerActions.closeDrawer() )
                         this.props.navigation.navigate( "AboutPage" )
@@ -149,7 +149,7 @@ class MainSideMenu extends React.Component {
 
 
                 <ListItem
-                    title={"Settings"}
+                    title={I18n.t( Keys.settings )}
                     onPress={() => {
                         this.props.navigation.dispatch( DrawerActions.closeDrawer() )
                         this.props.navigation.navigate( "SettingsPage" )
@@ -169,6 +169,7 @@ function select( store ) {
     return {
         isLoggedIn: store.userStore.isLoggedIn,
         userInfo: store.userStore.userInfo,
+        userIdentity: store.userStore.userIdentity,
     }
 }
 

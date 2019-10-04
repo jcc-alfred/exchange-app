@@ -1,5 +1,5 @@
 import React from 'react';
-import {InteractionManager, PixelRatio, SafeAreaView, StyleSheet, View, TextInput} from 'react-native';
+import { InteractionManager, PixelRatio, SafeAreaView, StyleSheet, View, TextInput, StatusBar } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import {Button, Text, Input} from "react-native-elements";
 import Icon from 'react-native-vector-icons/FontAwesome'
@@ -67,6 +67,7 @@ class OTCTradePageView extends React.Component {
     render() {
         return (
             <View style={[commonStyles.wrapper,]}>
+                <StatusBar backgroundColor="blue" barStyle="light-content"/>
                 <SafeAreaView style={[commonStyles.wrapper,]}>
                     <Text>otc</Text>
                 </SafeAreaView>

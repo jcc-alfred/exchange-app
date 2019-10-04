@@ -1,5 +1,5 @@
 import React from "react";
-import { Platform, SafeAreaView, SectionList, StyleSheet, Text, View } from "react-native";
+import { Platform, SafeAreaView, SectionList, StatusBar, StyleSheet, Text, View } from "react-native";
 import commonStyles from "../../styles/commonStyles";
 import { countryDataParse } from "./data/countryDataParse";
 import Util from "../../util/Util";
@@ -157,6 +157,7 @@ class CountrySelectPageView extends ( React.PureComponent || React.Component ) {
 
         return (
             <View style={[ commonStyles.wrapper ]}>
+                <StatusBar backgroundColor="blue" barStyle="light-content"/>
                 <SafeAreaView style={commonStyles.wrapper}>
                     <View style={[ commonStyles.wrapper ]}>
                         <SectionList

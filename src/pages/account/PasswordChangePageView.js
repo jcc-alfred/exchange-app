@@ -1,5 +1,5 @@
 import React from 'react';
-import { InteractionManager, SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
+import { InteractionManager, SafeAreaView, ScrollView, StatusBar, StyleSheet, View } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import { Button, Input } from "react-native-elements";
 import I18n from "../../I18n";
@@ -99,6 +99,7 @@ class PasswordChangePageView extends React.Component {
     render() {
         return (
             <View style={[ commonStyles.wrapper, ]}>
+                <StatusBar backgroundColor="blue" barStyle="light-content"/>
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
                     <ScrollView style={[ commonStyles.wrapper ]}>
                         <View>
