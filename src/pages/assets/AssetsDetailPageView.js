@@ -180,9 +180,9 @@ class AssetsDetailPageView extends React.Component {
                         <Text style={[{flex: 1}, styles.greyCommonFont]}>{I18n.t(Keys.frozen)}</Text>
                     </View>
                     <View style={[{flexDirection: 'row'}]}>
-                        <Text style={[{flex: 1, paddingRight: 10}]}>{this.props.assets.balance}</Text>
-                        <Text style={[{flex: 1, paddingRight: 10}]}>{this.props.assets.available}</Text>
-                        <Text style={[{flex: 1}]}>{this.props.assets.frozen}</Text>
+                        <Text style={[{flex: 1, paddingRight: 10}]}>{this.props.assets.balance.toFixed(4)}</Text>
+                        <Text style={[{flex: 1, paddingRight: 10}]}>{this.props.assets.available.toFixed(4)}</Text>
+                        <Text style={[{flex: 1}]}>{this.props.assets.frozen.toFixed(4)}</Text>
                     </View>
                     {this.seperatorView(8)}
                     <View style={{paddingTop:15, paddingBottom:20}}>
