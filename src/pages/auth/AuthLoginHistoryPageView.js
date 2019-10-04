@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, StyleSheet, View } from 'react-native';
+import { FlatList, SafeAreaView, StatusBar, StyleSheet, View } from 'react-native';
 import { ListItem } from "react-native-elements";
 import commonStyles from "../../styles/commonStyles";
 import Util from "../../util/Util";
@@ -71,24 +71,28 @@ class AuthLoginHistoryPageView extends React.Component {
                 style={[
                     commonStyles.wrapper, commonStyles.commonBG
                 ]}>
-
-                <FlatList
-                    style={[ commonStyles.wrapper, {} ]}
-                    renderItem={( { item, index } ) => {
-                        return this._renderItem( viewHeight, item, index );
-                    }}
-                    data={this.props.loginHistoryForDebug}
-                    keyExtractor={( item, index ) => {
-                        return '' + index;
-                    }}
-                    ItemSeparatorComponent={() => {
-                        return <View style={[ commonStyles.commonIntervalStyle, { height: separatorHeight } ]}/>;
-                    }}
-                    getItemLayout={( data, index ) => (
-                        { length: viewHeight, offset: ( viewHeight + separatorHeight ) * index, index }
-                    )}
-                >
-                </FlatList>
+                <StatusBar backgroundColor="blue" barStyle="light-content"/>
+                <SafeAreaView style={[
+                    commonStyles.wrapper, commonStyles.commonBG
+                ]}>
+                    <FlatList
+                        style={[ commonStyles.wrapper, {} ]}
+                        renderItem={( { item, index } ) => {
+                            return this._renderItem( viewHeight, item, index );
+                        }}
+                        data={this.props.loginHistoryForDebug}
+                        keyExtractor={( item, index ) => {
+                            return '' + index;
+                        }}
+                        ItemSeparatorComponent={() => {
+                            return <View style={[ commonStyles.commonIntervalStyle, { height: separatorHeight } ]}/>;
+                        }}
+                        getItemLayout={( data, index ) => (
+                            { length: viewHeight, offset: ( viewHeight + separatorHeight ) * index, index }
+                        )}
+                    >
+                    </FlatList>
+                </SafeAreaView>
             </View>
         );
     }

@@ -206,7 +206,7 @@ const MainTabContainer = createBottomTabNavigator(
         HomeStack: HomeStack,
         QuotesStack: QuotesStack,
         TradePageStack: TradeStack,
-        OTCTradeStack: OTCTradeStack,
+        // OTCTradeStack: OTCTradeStack,
         AssetsDetailStack: AssetsDetailStack,
     },
     TabNavigatorConfig

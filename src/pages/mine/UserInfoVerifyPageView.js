@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { SafeAreaView, StatusBar, StyleSheet, View } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import Spinner from "react-native-loading-spinner-overlay";
 import { Button } from "react-native-elements";
@@ -78,6 +78,7 @@ class UserInfoVerifyPageView extends React.Component {
     render() {
         return (
             <View style={[ commonStyles.wrapper, ]}>
+                <StatusBar backgroundColor="blue" barStyle="light-content"/>
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
 
                     <MediaSingleComponent

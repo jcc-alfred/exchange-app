@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform, SafeAreaView, StyleSheet, View,Clipboard } from 'react-native';
+import { Platform, SafeAreaView, StyleSheet, View, Clipboard, StatusBar } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import {Button, Text} from "react-native-elements";
 import { BorderlessButton } from "react-native-gesture-handler";
@@ -66,6 +66,7 @@ class AssetsDepositPageView extends React.Component {
     render() {
         return (
             <View style={[ commonStyles.wrapper, ]}>
+                <StatusBar backgroundColor="blue" barStyle="light-content"/>
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
 
                     {this.renderCoinChoose()}

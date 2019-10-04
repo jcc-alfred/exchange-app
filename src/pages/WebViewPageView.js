@@ -1,5 +1,5 @@
 import React from "react";
-import { SafeAreaView, StyleSheet, View, WebView } from "react-native";
+import { SafeAreaView, StatusBar, StyleSheet, View, WebView } from "react-native";
 import commonStyles from "../styles/commonStyles";
 
 const styles = StyleSheet.create( {} );
@@ -44,6 +44,7 @@ class WebViewPageView extends React.Component {
     render() {
         return (
             <View style={[ commonStyles.wrapper, commonStyles.commonBG ]}>
+                <StatusBar backgroundColor="blue" barStyle="light-content"/>
                 <SafeAreaView style={commonStyles.wrapper}>
                     <View style={[ commonStyles.wrapper, commonStyles.commonBG, commonStyles.commonBorderTop ]}>
 

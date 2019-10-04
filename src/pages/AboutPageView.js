@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { SafeAreaView, StatusBar, StyleSheet, View } from 'react-native';
 import { Text } from "react-native-elements";
 import commonStyles from "../styles/commonStyles";
 import Constants from 'expo-constants';
@@ -48,6 +48,7 @@ class AboutPageView extends React.Component {
     render() {
         return (
             <View style={[ commonStyles.wrapper, ]}>
+                <StatusBar backgroundColor="blue" barStyle="light-content"/>
                 <SafeAreaView style={[ commonStyles.wrapper, commonStyles.justAlignCenter ]}>
                     <Text h4>
                         {Constants.nativeAppVersion}

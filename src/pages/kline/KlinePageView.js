@@ -1,7 +1,7 @@
 import React from 'react';
 // import { WebView } from 'react-native-webview';
 // import {WebView} from 'react-native-webview';
-import { InteractionManager, SafeAreaView, StyleSheet, View, WebView } from 'react-native';
+import { InteractionManager, SafeAreaView, StatusBar, StyleSheet, View, WebView } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import * as env from '../../env';
 import io from 'socket.io-client';
@@ -85,6 +85,7 @@ class KlinePageView extends React.Component {
         const { navigation } = this.props;
         return (
             <View style={[ commonStyles.wrapper, ]}>
+                <StatusBar backgroundColor="blue" barStyle="light-content"/>
                 <SafeAreaView style={[ commonStyles.wrapper ]}>
                     {/*<Text>{JSON.stringify(this.props.coin_exchange)}</Text>*/}
 

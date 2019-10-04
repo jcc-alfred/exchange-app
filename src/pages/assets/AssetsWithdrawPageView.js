@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform, SafeAreaView, StyleSheet, View } from 'react-native';
+import { Platform, SafeAreaView, StatusBar, StyleSheet, View } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import { Text ,Input, Button} from "react-native-elements";
 import { BorderlessButton } from "react-native-gesture-handler";
@@ -64,6 +64,7 @@ class AssetsWithdrawPageView extends React.Component {
     render() {
         return (
             <View style={[ commonStyles.wrapper, ]}>
+                <StatusBar backgroundColor="blue" barStyle="light-content"/>
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
                     {this.renderCoinChoose()}
                     {this.renderCoinAddressChoose()}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { InteractionManager, SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
+import { InteractionManager, SafeAreaView, ScrollView, StatusBar, StyleSheet, View } from 'react-native';
 import { Button, ListItem } from "react-native-elements";
 import commonStyles from "../../styles/commonStyles";
 import { NavigationActions, StackActions } from "react-navigation";
@@ -71,6 +71,7 @@ class SettingsPageView extends React.Component {
     render() {
         return (
             <View style={[ commonStyles.wrapper, ]}>
+                <StatusBar backgroundColor="blue" barStyle="light-content"/>
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
                     <ScrollView>
                         <View style={[ commonStyles.pdt_normal, commonStyles.pdb_normal ]}>

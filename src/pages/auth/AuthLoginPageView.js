@@ -1,5 +1,5 @@
 import React from 'react';
-import { InteractionManager, SafeAreaView, StyleSheet, View } from 'react-native';
+import { InteractionManager, SafeAreaView, StatusBar, StyleSheet, View } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import I18n from "../../I18n";
 import Keys from "../../configs/Keys";
@@ -93,6 +93,7 @@ class AuthLoginPageView extends React.Component {
     render() {
         return (
             <View style={[ commonStyles.wrapper, ]}>
+                <StatusBar backgroundColor="blue" barStyle="light-content"/>
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
 
                     <View style={[ commonStyles.paddingCommon ]}>

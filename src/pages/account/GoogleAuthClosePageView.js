@@ -1,5 +1,5 @@
 import React from 'react';
-import { Clipboard, InteractionManager, SafeAreaView, ScrollView, View , StyleSheet} from 'react-native';
+import { Clipboard, InteractionManager, SafeAreaView, ScrollView, View, StyleSheet, StatusBar } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import { Button, Input, ListItem } from "react-native-elements";
 import QRCode from "../assets/AssetsDepositPageView";
@@ -109,6 +109,7 @@ class GoogleAuthClosePageView extends React.Component {
     render() {
         return (
             <View style={[ commonStyles.wrapper, ]}>
+                <StatusBar backgroundColor="blue" barStyle="light-content"/>
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
                     <ScrollView style={[ commonStyles.wrapper ]}>
                         <View>

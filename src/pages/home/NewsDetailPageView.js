@@ -1,5 +1,5 @@
 import React from 'react';
-import {InteractionManager, Platform, SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
+import { InteractionManager, Platform, SafeAreaView, ScrollView, StatusBar, StyleSheet, View } from 'react-native';
 import {Button, ListItem, Text} from "react-native-elements";
 import commonStyles from "../../styles/commonStyles";
 import {NavigationActions, StackActions} from "react-navigation";
@@ -55,6 +55,7 @@ class NewsDetailPageView extends React.Component {
         const {navigation} = this.props;
         return (
             <View style={[commonStyles.wrapper,]}>
+                <StatusBar backgroundColor="blue" barStyle="light-content"/>
                 <SafeAreaView style={[commonStyles.wrapper]}>
                     <Text style={{padding: 16}}>{this.news.news_title}</Text>
                     <Text style={{paddingStart: 16, color: ColorUtil.secondary_text_color}}>Update Time: {this.news.update_time}</Text>

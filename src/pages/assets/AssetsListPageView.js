@@ -4,7 +4,7 @@ import {
     FlatList,
     InteractionManager,
     RefreshControl,
-    SafeAreaView,
+    SafeAreaView, StatusBar,
     StyleSheet,
     TouchableHighlight,
     View
@@ -170,6 +170,7 @@ class AssetsListPageView extends React.Component {
 
         return (
             <View style={[ commonStyles.wrapper, ]}>
+                <StatusBar backgroundColor="blue" barStyle="light-content"/>
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
                     {this.renderTopBanner()}
                     {/*{this.exchangeAreaTabs()}*/}

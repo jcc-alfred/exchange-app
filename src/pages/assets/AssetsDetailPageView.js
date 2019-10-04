@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, View , Platform} from 'react-native';
+import { SafeAreaView, StyleSheet, View, Platform, StatusBar } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import { Button, Text } from "react-native-elements";
 import { Ionicons } from "@expo/vector-icons";
@@ -44,6 +44,7 @@ class AssetsDetailPageView extends React.Component {
     render() {
         return (
             <View style={[ commonStyles.wrapper, ]}>
+                <StatusBar backgroundColor="blue" barStyle="light-content"/>
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
                     <Text>
                         {JSON.stringify( this.props.assets )}

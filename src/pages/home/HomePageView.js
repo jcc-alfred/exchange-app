@@ -8,7 +8,7 @@ import {
     ScrollView,
     FlatList,
     RefreshControl,
-    ImageBackground, Image
+    ImageBackground, Image, StatusBar
 } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import Toast from "react-native-root-toast";
@@ -172,6 +172,7 @@ class HomePageView extends React.Component {
 
         return (
             <View style={styles.container}>
+                <StatusBar backgroundColor="blue" barStyle="light-content"/>
                 <ScrollView
                     style={styles.container}
                     contentContainerStyle={styles.contentContainer}>
@@ -189,16 +190,16 @@ class HomePageView extends React.Component {
                                     justifyContent: 'flex-start',
                                     alignItems: 'flex-start'
                                 }}>
-                                    <Text style={{fontSize: '20', color: 'white', alignItems: 'flex-start'}}>Join
+                                    <Text style={{fontSize: 20, color: 'white', alignItems: 'flex-start'}}>Join
                                         our</Text>
                                     <Text style={{
-                                        fontSize: '20',
+                                        fontSize: 20,
                                         color: 'white',
                                         alignItems: 'flex-start',
                                         marginTop: 5
                                     }}>Telegram Group</Text>
                                     <Text style={{
-                                        fontSize: '16',
+                                        fontSize: 16,
                                         color: 'white',
                                         alignItems: 'flex-start',
                                         marginTop: 5
