@@ -38,7 +38,7 @@ class BuySellEntrustList extends React.Component {
                 <Text style={{flex: 1, textAlign: 'center', color: '#9c9a97'}}>
                     {I18n.t(Keys.Price)}
                 </Text>
-                <Text style={{flex: 1, color: '#9c9a97'}}>
+                <Text style={{flex: 1, textAlign: 'right',color: '#9c9a97'}}>
                     {I18n.t(Keys.sellAmount)}
                 </Text>
             </View>

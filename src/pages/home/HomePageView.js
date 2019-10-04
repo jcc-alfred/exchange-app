@@ -21,6 +21,7 @@ import I18n from "../../I18n";
 import Keys from "../../configs/Keys";
 import { Updates } from "expo";
 import { ConfirmDialog } from "react-native-simple-dialogs";
+import constStyles from "../../styles/constStyles";
 
 
 class HomePageView extends React.Component {
@@ -57,7 +58,7 @@ class HomePageView extends React.Component {
                         <Ionicons
                             name="md-menu"
                             size={Platform.OS === 'ios' ? 22 : 25}
-                            color={'white'}
+                            color={constStyles.THEME_COLOR}
                         />
                     </View>
                 </BorderlessButton>

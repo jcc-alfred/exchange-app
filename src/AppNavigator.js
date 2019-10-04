@@ -102,7 +102,7 @@ const stackNavigatorConfiguration = {
             fontSize: 19,
             fontWeight: 'bold'
         },
-        headerTintColor: 'white'
+        headerTintColor: constStyles.THEME_COLOR
     },
     navigationOptions: {
         headerStyle: {
