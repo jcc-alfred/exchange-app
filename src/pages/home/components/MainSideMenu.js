@@ -55,7 +55,7 @@ class MainSideMenu extends React.Component {
                             title={I18n.t( Keys.login )}
                             type="outline"
                             onPress={() => {
-                                this.props.navigation.dispatch( DrawerActions.closeDrawer() )
+                                this.props.navigation.dispatch( DrawerActions.closeDrawer() );
                                 this.props.navigation.navigate( "AuthLoginPage" )
                             }
                             }
@@ -111,7 +111,7 @@ class MainSideMenu extends React.Component {
                 <ListItem
                     title={I18n.t( Keys.order )}
                     onPress={() => {
-                        this.props.navigation.dispatch( DrawerActions.closeDrawer() )
+                        this.props.navigation.dispatch( DrawerActions.closeDrawer() );
                         if ( this.props.isLoggedIn ) {
                             this.props.navigation.navigate( "OrderHistoryPage" )
                         } else {
@@ -125,7 +125,7 @@ class MainSideMenu extends React.Component {
                 <ListItem
                     title={I18n.t( Keys.account )}
                     onPress={() => {
-                        this.props.navigation.dispatch( DrawerActions.closeDrawer() )
+                        this.props.navigation.dispatch( DrawerActions.closeDrawer() );
                         if ( this.props.isLoggedIn ) {
                             this.props.navigation.navigate( "AccountInfoPage" )
                         } else {
@@ -140,7 +140,7 @@ class MainSideMenu extends React.Component {
                 <ListItem
                     title={I18n.t( Keys.about )}
                     onPress={() => {
-                        this.props.navigation.dispatch( DrawerActions.closeDrawer() )
+                        this.props.navigation.dispatch( DrawerActions.closeDrawer() );
                         this.props.navigation.navigate( "AboutPage" )
                     }}
                     topDivider={true}
@@ -151,7 +151,7 @@ class MainSideMenu extends React.Component {
                 <ListItem
                     title={I18n.t( Keys.settings )}
                     onPress={() => {
-                        this.props.navigation.dispatch( DrawerActions.closeDrawer() )
+                        this.props.navigation.dispatch( DrawerActions.closeDrawer() );
                         this.props.navigation.navigate( "SettingsPage" )
                     }}
                     topDivider={true}

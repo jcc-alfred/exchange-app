@@ -50,17 +50,17 @@ class MinePageView extends React.Component {
             <View style={[ commonStyles.wrapper, ]}>
                 <StatusBar backgroundColor="blue" barStyle="dark-content"/>
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
-<ScrollView>
-    <View>
-                    <BasicUserInfoVerifyResultView/>
-                    {
-                        this.props.userInfo.identity_status !== 0 ?
-                            <UserInfoVerifyView navigation={this.props.navigation}/>
-                            :
-                            null
-                    }
-    </View>
-</ScrollView>
+                    <ScrollView>
+                        <View>
+                            <BasicUserInfoVerifyResultView/>
+                            {
+                                this.props.userInfo.identity_status !== 0 ?
+                                    <UserInfoVerifyView navigation={this.props.navigation}/>
+                                    :
+                                    null
+                            }
+                        </View>
+                    </ScrollView>
                     <Spinner visible={this.state.isRequesting} cancelable={true}/>
                 </SafeAreaView>
             </View>

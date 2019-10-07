@@ -1,17 +1,16 @@
 import React from 'react';
 import { connect } from "react-redux";
 import OTCTradePageView from "./OTCTradePageView";
-import userActionTypes from "../../reducers/user/userActionTypes";
-import {exchangeGetMarketList} from "../../actions/ExchangeAction";
+import { exchangeGetMarketList } from "../../actions/ExchangeAction";
 
 const mapStoreToProps = ( store, ownProps ) => {
-    const {params} = ownProps.navigation.state;
+    const { params } = ownProps.navigation.state;
 
     return {
         isLoggedIn: store.userStore.isLoggedIn,
         userInfo: store.userStore.userInfo,
         entrustList: store.metaStore.entrustList,
-        TradePageCoinEx:store.userStore.TradePageCoinEx
+        TradePageCoinEx: store.userStore.TradePageCoinEx
     }
 };
 

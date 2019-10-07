@@ -3,15 +3,12 @@ import { connect } from "react-redux";
 import NewsDetailPageView from "./NewsDetailPageView";
 
 const mapStoreToProps = ( store, ownProps ) => {
-    const {params} = ownProps.navigation.state;
+    const { params } = ownProps.navigation.state;
 
     return {}
 };
 
-const mapDispatchToProps = ( dispatch, ownProps ) => ( {
-
-} );
-
+const mapDispatchToProps = ( dispatch, ownProps ) => ( {} );
 
 
 const NewsDetailPage = connect(

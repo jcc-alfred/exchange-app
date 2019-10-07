@@ -1,5 +1,5 @@
 import React from 'react';
-import { InteractionManager, SafeAreaView, StyleSheet, View, StatusBar, ScrollView } from 'react-native';
+import { InteractionManager, SafeAreaView, ScrollView, StatusBar, StyleSheet, View } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import Spinner from "react-native-loading-spinner-overlay";
 import { Button } from "react-native-elements";
@@ -70,17 +70,17 @@ class UserInfoVerifyPageView extends React.Component {
             frontImage: this.state.icFont.url,
             handImage: this.state.icHandle.url,
             backImage: this.state.icBack.url
-        }
+        };
 
 
-        InteractionManager.runAfterInteractions(() => {
-            this.props.onSafeAddUserSeniorKYC(query, (error, resBody) => {
-                if (error) {
-                    this.setState({
+        InteractionManager.runAfterInteractions( () => {
+            this.props.onSafeAddUserSeniorKYC( query, ( error, resBody ) => {
+                if ( error ) {
+                    this.setState( {
                         isRequesting: false
-                    });
+                    } );
 
-                    Toast.show(error.message);
+                    Toast.show( error.message );
                 } else {
                     this.props.navigation.dispatch(
                         StackActions.reset(
@@ -93,14 +93,14 @@ class UserInfoVerifyPageView extends React.Component {
                             }
                         ) );
 
-                    this.setState({
+                    this.setState( {
                         isRequesting: false,
-                    });
+                    } );
                 }
-            });
+            } );
 
 
-        });
+        } );
 
     }
 
@@ -109,59 +109,59 @@ class UserInfoVerifyPageView extends React.Component {
             <View style={[ commonStyles.wrapper, ]}>
                 <StatusBar backgroundColor="blue" barStyle="dark-content"/>
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
-    <ScrollView style={[commonStyles.wrapper]}>
-        <View>
-                    <MediaSingleComponent
-                        editOptions={{}}
-                        item={this.state.icFont}
-                        title={"证件正面照"}
-                        mediaType={'Photo'}
-                        isSupportEdit={true}
-                        onItemChange={( item ) => {
-                            this.setState( {
-                                icFont: item
-                            } )
-                        }}
-                    />
+                    <ScrollView style={[ commonStyles.wrapper ]}>
+                        <View>
+                            <MediaSingleComponent
+                                editOptions={{}}
+                                item={this.state.icFont}
+                                title={"证件正面照"}
+                                mediaType={'Photo'}
+                                isSupportEdit={true}
+                                onItemChange={( item ) => {
+                                    this.setState( {
+                                        icFont: item
+                                    } )
+                                }}
+                            />
 
-                    <MediaSingleComponent
-                        editOptions={{}}
-                        item={this.state.icBack}
-                        title={"证件反面照"}
-                        mediaType={'Photo'}
-                        isSupportEdit={true}
-                        onItemChange={( item ) => {
-                            this.setState( {
-                                icBack: item
-                            } )
-                        }}
-                    />
+                            <MediaSingleComponent
+                                editOptions={{}}
+                                item={this.state.icBack}
+                                title={"证件反面照"}
+                                mediaType={'Photo'}
+                                isSupportEdit={true}
+                                onItemChange={( item ) => {
+                                    this.setState( {
+                                        icBack: item
+                                    } )
+                                }}
+                            />
 
-                    <MediaSingleComponent
-                        editOptions={{}}
-                        item={this.state.icHandle}
-                        title={"手持证件照"}
-                        mediaType={'Photo'}
-                        isSupportEdit={true}
-                        onItemChange={( item ) => {
-                            this.setState( {
-                                icHandle: item
-                            } )
-                        }}
-                    />
+                            <MediaSingleComponent
+                                editOptions={{}}
+                                item={this.state.icHandle}
+                                title={"手持证件照"}
+                                mediaType={'Photo'}
+                                isSupportEdit={true}
+                                onItemChange={( item ) => {
+                                    this.setState( {
+                                        icHandle: item
+                                    } )
+                                }}
+                            />
 
-                    <Button
-                        title={"Send"}
-                        type="outline"
-                        style={{marginStart: 16, marginEnd: 16}}
-                        onPress={() => {
-                            this.send()
-                        }
-                        }
-                        containerStyle={[ commonStyles.mgt_normal ]}
-                    />
-        </View>
-    </ScrollView>
+                            <Button
+                                title={"Send"}
+                                type="outline"
+                                style={{ marginStart: 16, marginEnd: 16 }}
+                                onPress={() => {
+                                    this.send()
+                                }
+                                }
+                                containerStyle={[ commonStyles.mgt_normal ]}
+                            />
+                        </View>
+                    </ScrollView>
 
 
                     <Spinner visible={this.state.isRequesting} cancelable={true}/>

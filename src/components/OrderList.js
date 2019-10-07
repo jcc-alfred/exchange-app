@@ -1,16 +1,13 @@
 import React from "react";
 
-import {FlatList, PixelRatio, RefreshControl, StyleSheet, TouchableHighlight, View, ViewPropTypes} from "react-native";
+import { FlatList, PixelRatio, StyleSheet, View, ViewPropTypes } from "react-native";
 import PropTypes from 'prop-types';
-import {Divider, Text} from "react-native-elements";
+import { Text } from "react-native-elements";
 import commonStyles from "../styles/commonStyles";
-import constStyles from "../styles/constStyles";
 import I18n from "../I18n";
 import Keys from "../configs/Keys";
 // import Util from "../util/Util";
 import moment from 'moment'
-import Util from "../util/Util";
-import {getStatusBarHeight} from "react-native-iphone-x-helper";
 
 class BuySellEntrustList extends React.Component {
     static propTypes = {
@@ -19,45 +16,46 @@ class BuySellEntrustList extends React.Component {
         errorMessage: PropTypes.string,
     };
 
-    constructor(props) {
-        super(props);
+    constructor( props ) {
+        super( props );
     }
 
-    shouldComponentUpdate(nextProps, nextState, nextContext) {
-        if (nextProps.data !== this.props.data) {
+    shouldComponentUpdate( nextProps, nextState, nextContext ) {
+        if ( nextProps.data !== this.props.data ) {
             return true
         }
     }
 
     header() {
         return (
-            <View style={{flexDirection: 'row', marginTop: 10, marginBottom: 12}}>
-                <Text style={{flex: 1, color: '#9c9a97'}}>
-                    {I18n.t(Keys.date)}
+            <View style={{ flexDirection: 'row', marginTop: 10, marginBottom: 12 }}>
+                <Text style={{ flex: 1, color: '#9c9a97' }}>
+                    {I18n.t( Keys.date )}
                 </Text>
-                <Text style={{flex: 1, textAlign: 'center', color: '#9c9a97'}}>
-                    {I18n.t(Keys.type)}
+                <Text style={{ flex: 1, textAlign: 'center', color: '#9c9a97' }}>
+                    {I18n.t( Keys.type )}
                 </Text>
-                <Text style={{flex: 1, textAlign: 'center', color: '#9c9a97'}}>
-                    {I18n.t(Keys.Price)}
+                <Text style={{ flex: 1, textAlign: 'center', color: '#9c9a97' }}>
+                    {I18n.t( Keys.Price )}
                 </Text>
-                <Text style={{flex: 1, textAlign: 'right', color: '#9c9a97'}}>
-                    {I18n.t(Keys.Amount)}
+                <Text style={{ flex: 1, textAlign: 'right', color: '#9c9a97' }}>
+                    {I18n.t( Keys.Amount )}
                 </Text>
             </View>
         )
     }
 
-    renderItem(viewHeight, order, index) {
+    renderItem( viewHeight, order, index ) {
         return (
-            <View style={{flexDirection: 'row', height: viewHeight}}>
-                <Text style={{flex: 1}}>{order.create_time ? moment(order.create_time).format("HH-mm-ss") : ''}</Text>
+            <View style={{ flexDirection: 'row', height: viewHeight }}>
+                <Text
+                    style={{ flex: 1 }}>{order.create_time ? moment( order.create_time ).format( "HH-mm-ss" ) : ''}</Text>
                 <Text style={{
                     flex: 1,
                     color: order.trigger_type_id === 0 ? 'red' : 'green'
-                }}>{order.trigger_type_id === 0 ? I18n.t(Keys.Sell) : I18n.t(Keys.Buy)}</Text>
-                <Text style={{flex: 1}}>{order.trade_price}</Text>
-                <Text style={{flex: 1}}>{order.trade_volume}</Text>
+                }}>{order.trigger_type_id === 0 ? I18n.t( Keys.Sell ) : I18n.t( Keys.Buy )}</Text>
+                <Text style={{ flex: 1 }}>{order.trade_price}</Text>
+                <Text style={{ flex: 1 }}>{order.trade_volume}</Text>
             </View>
         )
     }
@@ -69,21 +67,21 @@ class BuySellEntrustList extends React.Component {
         return (
             <FlatList
                 data={this.props.data ? this.props.data : []}
-                keyExtractor={(item, index) => {
+                keyExtractor={( item, index ) => {
                     return 'item ' + index;
                 }}
-                renderItem={({item, index}) => {
-                    return this.renderItem(viewHeight, item, index);
+                renderItem={( { item, index } ) => {
+                    return this.renderItem( viewHeight, item, index );
                 }}
                 ListHeaderComponent={() => {
                     return this.header();
                 }}
                 ItemSeparatorComponent={() => {
                     return <View
-                        style={[commonStyles.commonIntervalStyle, {height: separatorHeight}]}/>;
+                        style={[ commonStyles.commonIntervalStyle, { height: separatorHeight } ]}/>;
                 }}
-                getItemLayout={(data, index) => (
-                    {length: viewHeight, offset: (viewHeight + separatorHeight) * index, index}
+                getItemLayout={( data, index ) => (
+                    { length: viewHeight, offset: ( viewHeight + separatorHeight ) * index, index }
                 )}
                 onScroll={() => {
                 }}
@@ -92,7 +90,7 @@ class BuySellEntrustList extends React.Component {
     }
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create( {
     PriceInput: {
         borderWidth: 1,
         borderColor: '#9c9a97'
@@ -163,6 +161,6 @@ const styles = StyleSheet.create({
         borderWidth: 1 / PixelRatio.get(),
         color: '#777'
     }
-});
+} );
 
 export default BuySellEntrustList;

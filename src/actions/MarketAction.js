@@ -1,4 +1,4 @@
-import {netMarketList, netMarketTradeKline} from "../net/MarketApiNet";
+import { netMarketList, netMarketTradeKline } from "../net/MarketApiNet";
 
 export function marketTradeKline( coinExchangeId, range, callback ) {
     return ( dispatch ) => {
@@ -8,7 +8,7 @@ export function marketTradeKline( coinExchangeId, range, callback ) {
     };
 }
 
-export function marketList(  callback ) {
+export function marketList( callback ) {
     return ( dispatch ) => {
         netMarketList( ( err, res ) => {
             callback && callback( err, res )

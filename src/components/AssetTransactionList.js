@@ -1,10 +1,9 @@
 import React from "react";
 
-import {FlatList, RefreshControl, StyleSheet, TouchableHighlight, View, ViewPropTypes} from "react-native";
+import { FlatList, StyleSheet, TouchableHighlight, View, ViewPropTypes } from "react-native";
 import PropTypes from 'prop-types';
-import {Divider, Text} from "react-native-elements";
+import { Text } from "react-native-elements";
 import commonStyles from "../styles/commonStyles";
-import constStyles from "../styles/constStyles";
 import I18n from "../I18n";
 import Keys from "../configs/Keys";
 // import Util from "../util/Util";
@@ -17,12 +16,12 @@ class AssetTransactionList extends React.Component {
         errorMessage: PropTypes.string,
     };
 
-    constructor(props) {
-        super(props);
+    constructor( props ) {
+        super( props );
     }
 
-    shouldComponentUpdate(nextProps, nextState, nextContext) {
-        if (nextProps.data !== this.props.data) {
+    shouldComponentUpdate( nextProps, nextState, nextContext ) {
+        if ( nextProps.data !== this.props.data ) {
             return true
         }
     }
@@ -32,11 +31,11 @@ class AssetTransactionList extends React.Component {
     }
 
 
-    renderItem(viewHeight, item, index) {
+    renderItem( viewHeight, item, index ) {
         return (
             <TouchableHighlight
                 underlayColor='#ddd'
-                onPress={() => this.props.onPressItem(item)}>
+                onPress={() => this.props.onPressItem( item )}>
                 <View>
                     <View
                         style={{
@@ -46,36 +45,36 @@ class AssetTransactionList extends React.Component {
                             lineHeight: 20
                         }}>
 
-                        <View style={[{flex: 1, alignItems: 'center'}]}>
-                            <Text style={[styles.greyCommonFont]}>{I18n.t(Keys.Amount)}</Text>
+                        <View style={[ { flex: 1, alignItems: 'center' } ]}>
+                            <Text style={[ styles.greyCommonFont ]}>{I18n.t( Keys.Amount )}</Text>
                         </View>
 
-                        <View style={{flex: 1, alignItems: 'center'}}>
-                            <Text style={[styles.greyCommonFont]}>{I18n.t(Keys.status)}</Text>
+                        <View style={{ flex: 1, alignItems: 'center' }}>
+                            <Text style={[ styles.greyCommonFont ]}>{I18n.t( Keys.status )}</Text>
                         </View>
 
-                        <View style={{flex: 1, alignItems: 'center'}}>
-                            <Text style={[styles.greyCommonFont]}>{I18n.t(Keys.time)}</Text>
+                        <View style={{ flex: 1, alignItems: 'center' }}>
+                            <Text style={[ styles.greyCommonFont ]}>{I18n.t( Keys.time )}</Text>
                         </View>
                     </View>
 
-                    <View style={{alignItems: 'center', flexDirection: 'row', height: 50, marginStart: 40}}>
-                        <View style={{flex: 1}}>
+                    <View style={{ alignItems: 'center', flexDirection: 'row', height: 50, marginStart: 40 }}>
+                        <View style={{ flex: 1 }}>
                             <Text>
                                 {item.submit_amount ? item.submit_amount : item.trade_amount}
                             </Text>
                         </View>
 
-                        <View style={{flex: 1}}>
+                        <View style={{ flex: 1 }}>
                             <Text>
                                 {item.confirm_status_name}
                             </Text>
                         </View>
 
 
-                        <View style={{flex: 1, alignItems: 'center'}}>
+                        <View style={{ flex: 1, alignItems: 'center' }}>
                             <Text>
-                                {moment(item.create_time).format("YYYY-MM-DD HH:mm")}
+                                {moment( item.create_time ).format( "YYYY-MM-DD HH:mm" )}
                             </Text>
                         </View>
                     </View>
@@ -91,21 +90,21 @@ class AssetTransactionList extends React.Component {
         return (
             <FlatList
                 data={this.props.data}
-                keyExtractor={(item, index) => {
+                keyExtractor={( item, index ) => {
                     return 'item ' + index;
                 }}
-                renderItem={({item, index}) => {
-                    return this.renderItem(viewHeight, item, index);
+                renderItem={( { item, index } ) => {
+                    return this.renderItem( viewHeight, item, index );
                 }}
                 ListHeaderComponent={() => {
                     return this.header();
                 }}
                 ItemSeparatorComponent={() => {
                     return <View
-                        style={[commonStyles.commonIntervalStyle, {height: separatorHeight}]}/>;
+                        style={[ commonStyles.commonIntervalStyle, { height: separatorHeight } ]}/>;
                 }}
-                getItemLayout={(data, index) => (
-                    {length: viewHeight, offset: (viewHeight + separatorHeight) * index, index}
+                getItemLayout={( data, index ) => (
+                    { length: viewHeight, offset: ( viewHeight + separatorHeight ) * index, index }
                 )}
                 onScroll={() => {
                 }}
@@ -113,7 +112,8 @@ class AssetTransactionList extends React.Component {
         )
     }
 }
-const styles = StyleSheet.create({
+
+const styles = StyleSheet.create( {
     CoinName: {
         fontSize: 24,
         color: '#006bce',
@@ -123,6 +123,6 @@ const styles = StyleSheet.create({
         color: '#cad5db'
     }
 
-});
+} );
 
 export default AssetTransactionList;

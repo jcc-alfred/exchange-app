@@ -1,28 +1,22 @@
 import React from 'react';
-import { InteractionManager, PixelRatio, SafeAreaView, StyleSheet, View, TextInput, StatusBar } from 'react-native';
+import { InteractionManager, SafeAreaView, StatusBar, View } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
-import {Button, Text, Input} from "react-native-elements";
-import Icon from 'react-native-vector-icons/FontAwesome'
-import I18n from "../../I18n";
-import Keys from "../../configs/Keys";
-import io from 'socket.io-client';
-import * as env from "../../env";
-import Util from "../../util/Util";
+import { Text } from "react-native-elements";
 import Spinner from "../mine/UserInfoVerifyPageView";
 
 class OTCTradePageView extends React.Component {
 
-    constructor(props) {
-        super(props);
+    constructor( props ) {
+        super( props );
         this.state = {
             isRequesting: false,
         }
     }
 
-    static navigationOptions = (props) => {
-        const {navigation} = props;
-        const {state, setParams} = navigation;
-        const {params} = state;
+    static navigationOptions = ( props ) => {
+        const { navigation } = props;
+        const { state, setParams } = navigation;
+        const { params } = state;
 
         return {
             title: "OTCTradePageView",
@@ -39,37 +33,36 @@ class OTCTradePageView extends React.Component {
         //     isRequesting: true
         // });
 
-        InteractionManager.runAfterInteractions(() => {
-        })
+        InteractionManager.runAfterInteractions( () => {
+        } )
 
     }
 
-    changeState(value, field) {
+    changeState( value, field ) {
         let param = {};
-        param[field] = value;
-        this.setState(param)
+        param[ field ] = value;
+        this.setState( param )
     }
 
     componentWillUnmount() {
-        this.setState = (state, callback) => {
+        this.setState = ( state, callback ) => {
 
         };
     }
 
-    componentWillReceiveProps(nextProps) {
+    componentWillReceiveProps( nextProps ) {
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
+    shouldComponentUpdate( nextProps, nextState ) {
         return true;
     }
 
 
-
     render() {
         return (
-            <View style={[commonStyles.wrapper,]}>
+            <View style={[ commonStyles.wrapper, ]}>
                 <StatusBar backgroundColor="blue" barStyle="dark-content"/>
-                <SafeAreaView style={[commonStyles.wrapper,]}>
+                <SafeAreaView style={[ commonStyles.wrapper, ]}>
                     <Text>otc</Text>
                     <Spinner visible={this.state.isRequesting} cancelable={true}/>
                 </SafeAreaView>
@@ -78,10 +71,7 @@ class OTCTradePageView extends React.Component {
     }
 
 
-
 }
-
-
 
 
 export default OTCTradePageView;

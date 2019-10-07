@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import HomePageView from "./HomePageView";
-import { exchangeGetMarketList, docGetHomeNewsList} from "../../actions/ExchangeAction";
+import { docGetHomeNewsList, exchangeGetMarketList } from "../../actions/ExchangeAction";
 
 const mapStoreToProps = ( store, ownProps ) => {
     return {
@@ -22,7 +22,6 @@ const mapDispatchToProps = ( dispatch, ownProps ) => ( {
         } ) );
     },
 } );
-
 
 
 const HomePage = connect(

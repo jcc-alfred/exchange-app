@@ -1,10 +1,9 @@
 import React from "react";
 
-import {FlatList, RefreshControl, StyleSheet, TouchableHighlight, View, ViewPropTypes} from "react-native";
+import { FlatList, RefreshControl, TouchableHighlight, View, ViewPropTypes } from "react-native";
 import PropTypes from 'prop-types';
-import {Divider, Text} from "react-native-elements";
+import { Text } from "react-native-elements";
 import commonStyles from "../styles/commonStyles";
-import constStyles from "../styles/constStyles";
 import I18n from "../I18n";
 import Keys from "../configs/Keys";
 import Util from "../util/Util";
@@ -16,12 +15,12 @@ class ExchangePairList extends React.Component {
         errorMessage: PropTypes.string,
     };
 
-    constructor(props) {
-        super(props);
+    constructor( props ) {
+        super( props );
     }
 
-    shouldComponentUpdate(nextProps, nextState, nextContext) {
-        if (nextProps.data !== this.props.data) {
+    shouldComponentUpdate( nextProps, nextState, nextContext ) {
+        if ( nextProps.data !== this.props.data ) {
             return true
         }
     }
@@ -36,57 +35,57 @@ class ExchangePairList extends React.Component {
                     lineHeight: 20
                 }}>
 
-                <View style={{flex: 1, alignItems: 'center'}}>
-                    <Text>{I18n.t(Keys.name)}</Text>
+                <View style={{ flex: 1, alignItems: 'center' }}>
+                    <Text>{I18n.t( Keys.name )}</Text>
 
                 </View>
 
-                <View style={{flex: 1, alignItems: 'center'}}>
-                    <Text>{I18n.t(Keys.latest_price)}</Text>
+                <View style={{ flex: 1, alignItems: 'center' }}>
+                    <Text>{I18n.t( Keys.latest_price )}</Text>
                 </View>
 
-                <View style={{flex: 1, alignItems: 'center'}}>
-                    <Text>{I18n.t(Keys.changerate)}</Text>
+                <View style={{ flex: 1, alignItems: 'center' }}>
+                    <Text>{I18n.t( Keys.changerate )}</Text>
                 </View>
             </View>
         )
     }
 
 
-    renderItem(viewHeight, item, index) {
+    renderItem( viewHeight, item, index ) {
         return (
             <TouchableHighlight
                 underlayColor='#ddd'
-                onPress={() => this.props.onPressItem(item)}>
+                onPress={() => this.props.onPressItem( item )}>
 
-                <View style={{alignItems: 'center', flexDirection: 'row', height: 50, marginStart: 40}}>
-                    <View style={{flex:1}}>
+                <View style={{ alignItems: 'center', flexDirection: 'row', height: 50, marginStart: 40 }}>
+                    <View style={{ flex: 1 }}>
                         <Text>
                             {item.coinEx.coin_name}/{item.coinEx.exchange_coin_name}
                         </Text>
-                        <Text style={{fontSize:8}}>
-                            24{I18n.t(Keys.volume)} {Util.toMoneyDisplay(item.market.total_volume)}
+                        <Text style={{ fontSize: 8 }}>
+                            24{I18n.t( Keys.volume )} {Util.toMoneyDisplay( item.market.total_volume )}
                         </Text>
                     </View>
 
-                    <View style={{flex:1}}>
-                        <Text >
+                    <View style={{ flex: 1 }}>
+                        <Text>
                             {item.market.last_price}
                         </Text>
-                        <Text style={{fontSize:8}}>
-                            ${Util.toMoneyDisplay(item.price_usd)}
+                        <Text style={{ fontSize: 8 }}>
+                            ${Util.toMoneyDisplay( item.price_usd )}
                         </Text>
                     </View>
 
 
-                    <View style={{flex: 1, alignItems: 'center'}}>
+                    <View style={{ flex: 1, alignItems: 'center' }}>
                         <View style={{
                             backgroundColor: item.market.change_rate > 0 ? 'green' : 'red',
                             width: '60%',
                             alignItems: 'center',
                         }}>
-                            <Text style={{color: 'white'}}>
-                                {Util.numtoPercentage(item.market.change_rate)}
+                            <Text style={{ color: 'white' }}>
+                                {Util.numtoPercentage( item.market.change_rate )}
                             </Text>
                         </View>
 
@@ -109,22 +108,22 @@ class ExchangePairList extends React.Component {
                     />
                 }
                 data={this.props.data && this.props.data.marketList ?
-                    this.props.data.marketList.filter(i => i.coinEx.coin_exchange_area_id === this.props.data.coin_exchange_area_id) : []}
-                keyExtractor={(item, index) => {
+                    this.props.data.marketList.filter( i => i.coinEx.coin_exchange_area_id === this.props.data.coin_exchange_area_id ) : []}
+                keyExtractor={( item, index ) => {
                     return 'item ' + index;
                 }}
-                renderItem={({item, index}) => {
-                    return this.renderItem(viewHeight, item, index);
+                renderItem={( { item, index } ) => {
+                    return this.renderItem( viewHeight, item, index );
                 }}
                 ListHeaderComponent={() => {
                     return this.header();
                 }}
                 ItemSeparatorComponent={() => {
                     return <View
-                        style={[commonStyles.commonIntervalStyle, {height: separatorHeight}]}/>;
+                        style={[ commonStyles.commonIntervalStyle, { height: separatorHeight } ]}/>;
                 }}
-                getItemLayout={(data, index) => (
-                    {length: viewHeight, offset: (viewHeight + separatorHeight) * index, index}
+                getItemLayout={( data, index ) => (
+                    { length: viewHeight, offset: ( viewHeight + separatorHeight ) * index, index }
                 )}
                 onScroll={() => {
                 }}

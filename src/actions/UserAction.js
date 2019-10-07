@@ -1,6 +1,6 @@
 import { netUserMe, netUserSendCode } from "../net/UserApiNet";
 
-import {netAuthSignUp, netSafeAddUserKYC, netSafeAddUserSeniorKYC} from "../net/AuthApiNet"
+import { netAuthSignUp, netSafeAddUserKYC, netSafeAddUserSeniorKYC } from "../net/AuthApiNet"
 import userActionTypes from "../reducers/user/userActionTypes";
 
 export function userSendCode( query, callback ) {
@@ -45,7 +45,7 @@ export function safeAddUserKYC( query, callback ) {
     return ( dispatch ) => {
         netSafeAddUserKYC( query, ( err, res ) => {
             if ( !err ) {
-                dispatch(userMe( null ));
+                dispatch( userMe( null ) );
             }
 
             callback && callback( err, res )
@@ -57,7 +57,7 @@ export function safeAddUserSeniorKYC( query, callback ) {
     return ( dispatch ) => {
         netSafeAddUserSeniorKYC( query, ( err, res ) => {
             if ( !err ) {
-                dispatch(userMe( null ));
+                dispatch( userMe( null ) );
             }
 
             callback && callback( err, res )

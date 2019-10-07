@@ -6,58 +6,58 @@ import apiDomainParse from "./parse/apiDomainParse";
 import header from "./header/headerRequest";
 import authRequest from "./auth/authRequest";
 
-authRequest(request);
-header(request);
-apiDomainParse(request);
+authRequest( request );
+header( request );
+apiDomainParse( request );
 
 
-export function netExchangeGetMarketList(callback) {
+export function netExchangeGetMarketList( callback ) {
     request
-        .post('/exchange/getMarketList')
-        .send({})
-        .use(superagent_prefix(env.apiDomain))
-        .use(logger)
+        .post( '/exchange/getMarketList' )
+        .send( {} )
+        .use( superagent_prefix( env.apiDomain ) )
+        .use( logger )
         .authRequest()
         .headerRequest()
         .apiDomainParse()
-        .end(callback);
+        .end( callback );
 }
 
 
-export function netExchangeGetCoinExchangeList(callback) {
+export function netExchangeGetCoinExchangeList( callback ) {
     request
-        .post('/exchange/getCoinExchangeList')
-        .send({})
-        .use(superagent_prefix(env.apiDomain))
-        .use(logger)
+        .post( '/exchange/getCoinExchangeList' )
+        .send( {} )
+        .use( superagent_prefix( env.apiDomain ) )
+        .use( logger )
         .authRequest()
         .headerRequest()
         .apiDomainParse()
-        .end(callback);
+        .end( callback );
 }
 
-export function netExchangeGetCoinExchangeAreaList(callback) {
+export function netExchangeGetCoinExchangeAreaList( callback ) {
     request
-        .post('/exchange/getCoinExchangeAreaList')
-        .send({})
-        .use(superagent_prefix(env.apiDomain))
-        .use(logger)
+        .post( '/exchange/getCoinExchangeAreaList' )
+        .send( {} )
+        .use( superagent_prefix( env.apiDomain ) )
+        .use( logger )
         .authRequest()
         .headerRequest()
         .apiDomainParse()
-        .end(callback);
+        .end( callback );
 }
 
-export function netExchangeLastPrice(coin_name, callback) {
+export function netExchangeLastPrice( coin_name, callback ) {
     request
-        .post('/exchange/lastprice')
-        .send({coin_name: coin_name})
-        .use(superagent_prefix(env.apiDomain))
-        .use(logger)
+        .post( '/exchange/lastprice' )
+        .send( { coin_name: coin_name } )
+        .use( superagent_prefix( env.apiDomain ) )
+        .use( logger )
         .authRequest()
         .headerRequest()
         .apiDomainParse()
-        .end(callback);
+        .end( callback );
 }
 
 /**
@@ -73,16 +73,16 @@ export function netExchangeLastPrice(coin_name, callback) {
  *
  * @param callback
  */
-export function netExchangeDoBatchCancelEntrust(query, callback) {
+export function netExchangeDoBatchCancelEntrust( query, callback ) {
     request
-        .post('/exchange/doBatchCancelEntrust')
-        .send(query)
-        .use(superagent_prefix(env.apiDomain))
-        .use(logger)
+        .post( '/exchange/doBatchCancelEntrust' )
+        .send( query )
+        .use( superagent_prefix( env.apiDomain ) )
+        .use( logger )
         .authRequest()
         .headerRequest()
         .apiDomainParse()
-        .end(callback);
+        .end( callback );
 }
 
 /**
@@ -104,129 +104,129 @@ export function netExchangeDoBatchCancelEntrust(query, callback) {
  *               }
  * @param callback
  */
-export function netExchangeGetUserDepositListByCoinId(query, callback) {
+export function netExchangeGetUserDepositListByCoinId( query, callback ) {
     request
-        .post('/assets/getUserDepositListByCoinId')
-        .send(query)
-        .use(superagent_prefix(env.apiDomain))
-        .use(logger)
+        .post( '/assets/getUserDepositListByCoinId' )
+        .send( query )
+        .use( superagent_prefix( env.apiDomain ) )
+        .use( logger )
         .authRequest()
         .headerRequest()
         .apiDomainParse()
-        .end(callback);
+        .end( callback );
 }
 
-export function netExchangeGetUserWithdrawListByCoinId(query, callback) {
+export function netExchangeGetUserWithdrawListByCoinId( query, callback ) {
     request
-        .post('/assets/getUserWithdrawListByCoinId')
-        .send(query)
-        .use(superagent_prefix(env.apiDomain))
-        .use(logger)
+        .post( '/assets/getUserWithdrawListByCoinId' )
+        .send( query )
+        .use( superagent_prefix( env.apiDomain ) )
+        .use( logger )
         .authRequest()
         .headerRequest()
         .apiDomainParse()
-        .end(callback);
-}
-
-
-export function netExchangeGetCoinList(callback) {
-    request
-        .post('/exchange/getCoinList')
-        .send({})
-        .use(superagent_prefix(env.apiDomain))
-        .use(logger)
-        .authRequest()
-        .headerRequest()
-        .apiDomainParse()
-        .end(callback);
+        .end( callback );
 }
 
 
-export function netExchangeGetEntrustList(coinExchangeId, callback) {
+export function netExchangeGetCoinList( callback ) {
     request
-        .post('/exchange/getEntrustList')
-        .send({coinExchangeId: coinExchangeId})
-        .use(superagent_prefix(env.apiDomain))
-        .use(logger)
+        .post( '/exchange/getCoinList' )
+        .send( {} )
+        .use( superagent_prefix( env.apiDomain ) )
+        .use( logger )
         .authRequest()
         .headerRequest()
         .apiDomainParse()
-        .end(callback);
+        .end( callback );
 }
 
 
-export function netExchangeEntrustlist(coinExchangeId, callback) {
+export function netExchangeGetEntrustList( coinExchangeId, callback ) {
     request
-        .post('/exchange/entrustlist')
-        .send({coinExchangeId: coinExchangeId})
-        .use(superagent_prefix(env.apiDomain))
-        .use(logger)
+        .post( '/exchange/getEntrustList' )
+        .send( { coinExchangeId: coinExchangeId } )
+        .use( superagent_prefix( env.apiDomain ) )
+        .use( logger )
         .authRequest()
         .headerRequest()
         .apiDomainParse()
-        .end(callback);
+        .end( callback );
 }
 
 
-export function netExchangeGetIsExchangeSafe(coinExchangeId, callback) {
+export function netExchangeEntrustlist( coinExchangeId, callback ) {
     request
-        .post('/exchange/getIsExchangeSafe')
-        .send({coinExchangeId: coinExchangeId})
-        .use(superagent_prefix(env.apiDomain))
-        .use(logger)
+        .post( '/exchange/entrustlist' )
+        .send( { coinExchangeId: coinExchangeId } )
+        .use( superagent_prefix( env.apiDomain ) )
+        .use( logger )
         .authRequest()
         .headerRequest()
         .apiDomainParse()
-        .end(callback);
+        .end( callback );
 }
 
 
-export function netExchangeDoEntrust(query, callback) {
+export function netExchangeGetIsExchangeSafe( coinExchangeId, callback ) {
     request
-        .post('/exchange/doEntrust')
-        .send(query)
-        .use(superagent_prefix(env.apiDomain))
-        .use(logger)
+        .post( '/exchange/getIsExchangeSafe' )
+        .send( { coinExchangeId: coinExchangeId } )
+        .use( superagent_prefix( env.apiDomain ) )
+        .use( logger )
         .authRequest()
         .headerRequest()
         .apiDomainParse()
-        .end(callback);
+        .end( callback );
 }
 
-export function netExchangeGetUserEntrustlist(query, callback) {
+
+export function netExchangeDoEntrust( query, callback ) {
     request
-        .post('/exchange/getUserEntrustList')
-        .send({})
-        .use(superagent_prefix(env.apiDomain))
-        .use(logger)
+        .post( '/exchange/doEntrust' )
+        .send( query )
+        .use( superagent_prefix( env.apiDomain ) )
+        .use( logger )
         .authRequest()
         .headerRequest()
         .apiDomainParse()
-        .end(callback);
+        .end( callback );
 }
 
-export function netExchangeGetUserHistoryEntrustlist(query, callback) {
+export function netExchangeGetUserEntrustlist( query, callback ) {
     request
-        .post('/exchange/getUserHistoryEntrustList')
-        .send({})
-        .use(superagent_prefix(env.apiDomain))
-        .use(logger)
+        .post( '/exchange/getUserEntrustList' )
+        .send( {} )
+        .use( superagent_prefix( env.apiDomain ) )
+        .use( logger )
         .authRequest()
         .headerRequest()
         .apiDomainParse()
-        .end(callback);
+        .end( callback );
 }
 
-export function netExchangeDoCancelEntrust(query, callback) {
+export function netExchangeGetUserHistoryEntrustlist( query, callback ) {
     request
-        .post('/exchange/doCancelEntrust')
-        .send(query)
-        .use(superagent_prefix(env.apiDomain))
-        .use(logger)
+        .post( '/exchange/getUserHistoryEntrustList' )
+        .send( {} )
+        .use( superagent_prefix( env.apiDomain ) )
+        .use( logger )
         .authRequest()
         .headerRequest()
         .apiDomainParse()
-        .end(callback);
+        .end( callback );
+}
+
+export function netExchangeDoCancelEntrust( query, callback ) {
+    request
+        .post( '/exchange/doCancelEntrust' )
+        .send( query )
+        .use( superagent_prefix( env.apiDomain ) )
+        .use( logger )
+        .authRequest()
+        .headerRequest()
+        .apiDomainParse()
+        .end( callback );
 }
 
 

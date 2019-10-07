@@ -12,7 +12,7 @@ export function assetsGetUserAssets( callback ) {
 
 export function assetsDoUserWithdraw( query, callback ) {
     return ( dispatch ) => {
-        netAssetsDoUserWithdraw(query,  ( err, res ) => {
+        netAssetsDoUserWithdraw( query, ( err, res ) => {
             callback && callback( err, res )
         } );
     };

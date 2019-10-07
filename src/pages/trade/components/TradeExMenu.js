@@ -1,20 +1,20 @@
 import React from "react";
-import {Dimensions, SafeAreaView, StyleSheet, View} from "react-native";
-import {connect} from "react-redux";
+import { Dimensions, SafeAreaView, StyleSheet, View } from "react-native";
+import { connect } from "react-redux";
 
-import {DrawerActions} from 'react-navigation-drawer';
-import { SearchBar} from "react-native-elements";
+import { DrawerActions } from 'react-navigation-drawer';
+import { SearchBar } from "react-native-elements";
 import commonStyles from "../../../styles/commonStyles";
-import {changeTradePageCoinExchange} from "../../../actions/ExchangeAction";
-import {SceneMap, TabBar, TabView} from "react-native-tab-view";
+import { changeTradePageCoinExchange } from "../../../actions/ExchangeAction";
+import { SceneMap, TabBar, TabView } from "react-native-tab-view";
 import TradeMenuPairList from "../../../components/TradeMenuPairList";
 import Spinner from "react-native-loading-spinner-overlay";
 
 class TradeExMenu extends React.Component {
 
-    constructor(props) {
-        super(props);
-        const {index, routes, scenes} = this.initTabData(this.props.coin_exchange_area);
+    constructor( props ) {
+        super( props );
+        const { index, routes, scenes } = this.initTabData( this.props.coin_exchange_area );
         this.state = {
             index: index ? index : 0,
             routes: routes ? routes : [],
@@ -33,40 +33,41 @@ class TradeExMenu extends React.Component {
 
     }
 
-    componentWillReceiveProps(nextProps) {
+    componentWillReceiveProps( nextProps ) {
 
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        if (this.props.coin_exchange_area !== nextProps.coin_exchange_area || nextProps.marketList !== this.props.marketList ||nextState.search !== this.state.search) {
-            const {index, routes, scenes} = this.initTabData(nextProps.coin_exchange_area);
-            this.setState({
+    shouldComponentUpdate( nextProps, nextState ) {
+        if ( this.props.coin_exchange_area !== nextProps.coin_exchange_area || nextProps.marketList !== this.props.marketList || nextState.search !== this.state.search ) {
+            const { index, routes, scenes } = this.initTabData( nextProps.coin_exchange_area );
+            this.setState( {
                 // index: index,
                 routes: routes,
                 scenes: scenes
-            })
+            } )
         }
 
         return true;
     }
 
-    updateSearch = (search) => {
-        this.setState({ search : search });
+    updateSearch = ( search ) => {
+        this.setState( { search: search } );
     };
 
-    filterSearch = (search,marketList) => {
-        const current_coin_exchange_area_id =this.props.coin_exchange_area[this.state.index].coin_exchange_area_id;
-        if(search!==''){
-            let res= marketList.filter(function(item) {
+    filterSearch = ( search, marketList ) => {
+        const current_coin_exchange_area_id = this.props.coin_exchange_area[ this.state.index ].coin_exchange_area_id;
+        if ( search !== '' ) {
+            let res = marketList.filter( function ( item ) {
                 //applying filter for the inserted text in search bar
-                if( item.coinEx.coin_exchange_area_id !== current_coin_exchange_area_id  || item.coinEx.coin_name.toUpperCase().indexOf(search.toUpperCase())<0){
+                if ( item.coinEx.coin_exchange_area_id !== current_coin_exchange_area_id || item.coinEx.coin_name.toUpperCase().indexOf( search.toUpperCase() ) < 0 ) {
                     return false
                 }
                 return true
-            });
+            } );
             return res
-        }else {return marketList}
-
+        } else {
+            return marketList
+        }
 
 
     };
@@ -76,7 +77,7 @@ class TradeExMenu extends React.Component {
 
         return (
             <View style={commonStyles.wrapper}>
-                <SafeAreaView style={[commonStyles.wrapper]}>
+                <SafeAreaView style={[ commonStyles.wrapper ]}>
                     <SearchBar
                         placeholder="Type Here..."
                         onChangeText={this.updateSearch}
@@ -94,29 +95,29 @@ class TradeExMenu extends React.Component {
 
     }
 
-    initTabData(tabData) {
+    initTabData( tabData ) {
         const routes = [];
         const scenes = [];
-        if (tabData) {
-            for (let index = 0; index < tabData.length; index++) {
-                routes.push({
+        if ( tabData ) {
+            for ( let index = 0; index < tabData.length; index++ ) {
+                routes.push( {
                     key: '' + index,
-                    title: tabData[index].coin_exchange_area_name
-                });
-                scenes ['' + index] = () => {
+                    title: tabData[ index ].coin_exchange_area_name
+                } );
+                scenes [ '' + index ] = () => {
                     return (
                         <TradeMenuPairList
                             data={{
-                                marketList: this.filterSearch(this.state.search,this.props.marketList),
-                                coin_exchange_area_id: tabData[index].coin_exchange_area_id
+                                marketList: this.filterSearch( this.state.search, this.props.marketList ),
+                                coin_exchange_area_id: tabData[ index ].coin_exchange_area_id
                             }}
                             onPressItem={this.onPressItem.bind( this )}/>
                     );
                 };
             }
         } else {
-            routes.push({key: 0, title: "loading"});
-            scenes.push(<View/>)
+            routes.push( { key: 0, title: "loading" } );
+            scenes.push( <View/> )
         }
 
 
@@ -129,19 +130,19 @@ class TradeExMenu extends React.Component {
 
 
     exchangeAreaTabs() {
-        if (this.state.scenes && this.state.scenes.length > 0) {
+        if ( this.state.scenes && this.state.scenes.length > 0 ) {
             return (
                 <TabView
                     navigationState={this.state}
-                    renderScene={SceneMap(this.state.scenes)}
-                    onIndexChange={index => this.setState({index})}
-                    initialLayout={{width: Dimensions.get('window').width}}
+                    renderScene={SceneMap( this.state.scenes )}
+                    onIndexChange={index => this.setState( { index } )}
+                    initialLayout={{ width: Dimensions.get( 'window' ).width }}
                     renderTabBar={props =>
                         <TabBar
                             {...props}
-                            indicatorStyle={{backgroundColor: 'white'}}
+                            indicatorStyle={{ backgroundColor: 'white' }}
                             // style={{backgroundColor: 'white',color:'blue'}}
-                            tabStyle={{width: 'auto'}}
+                            tabStyle={{ width: 'auto' }}
                             scrollEnabled={true}
                         />
                     }
@@ -154,7 +155,7 @@ class TradeExMenu extends React.Component {
     }
 
     onPressItem( coin_exchange ) {
-        this.props.onChangeTradePageCoinExchange(coin_exchange)
+        this.props.onChangeTradePageCoinExchange( coin_exchange );
         this.props.navigation.dispatch( DrawerActions.closeDrawer() )
 
     }
@@ -162,9 +163,9 @@ class TradeExMenu extends React.Component {
 
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create( {} );
 
-function select(store) {
+function select( store ) {
     return {
         TradePageCoinEx: store.metaStore.TradePageCoinEx,
         marketList: store.metaStore.marketList,
@@ -173,9 +174,9 @@ function select(store) {
 }
 
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-    onChangeTradePageCoinExchange: (coinEx) => {
-        dispatch(changeTradePageCoinExchange(coinEx));
+const mapDispatchToProps = ( dispatch, ownProps ) => ( {
+    onChangeTradePageCoinExchange: ( coinEx ) => {
+        dispatch( changeTradePageCoinExchange( coinEx ) );
     },
-});
-export default connect(select, mapDispatchToProps)(TradeExMenu)
+} );
+export default connect( select, mapDispatchToProps )( TradeExMenu )

@@ -1,17 +1,18 @@
 import React from 'react';
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 import TradePageView from "./TradePageView";
 import userActionTypes from "../../reducers/user/userActionTypes";
 import {
-    exchangeGetMarketList,
-    exchangeGetIsExchangeSafe,
+    changeTradePageCoinExchange,
+    exchangeDoCancelEntrust,
     exchangeDoEntrust,
-    changeTradePageCoinExchange, exchangeDoCancelEntrust
+    exchangeGetIsExchangeSafe,
+    exchangeGetMarketList
 } from "../../actions/ExchangeAction";
-import {assetsGetUserAssets} from "../../actions/AssetsAction";
+import { assetsGetUserAssets } from "../../actions/AssetsAction";
 
-const mapStoreToProps = (store, ownProps) => {
-    const {params} = ownProps.navigation.state;
+const mapStoreToProps = ( store, ownProps ) => {
+    const { params } = ownProps.navigation.state;
 
     return {
         isLoggedIn: store.userStore.isLoggedIn,
@@ -22,49 +23,49 @@ const mapStoreToProps = (store, ownProps) => {
     }
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = ( dispatch, ownProps ) => ( {
 
-    onChangeTradePageCoinExchange: (coinEx) => {
-        dispatch(changeTradePageCoinExchange(coinEx));
-    },
-
-    onAssetsGetUserAssets: (callback) => {
-        dispatch(assetsGetUserAssets((err, res) => {
-            callback && callback(err, res)
-        }));
+    onChangeTradePageCoinExchange: ( coinEx ) => {
+        dispatch( changeTradePageCoinExchange( coinEx ) );
     },
 
-    onExchangeGetMarketList: (callback) => {
-        dispatch(exchangeGetMarketList((err, res) => {
-            callback && callback(err, res)
-        }));
+    onAssetsGetUserAssets: ( callback ) => {
+        dispatch( assetsGetUserAssets( ( err, res ) => {
+            callback && callback( err, res )
+        } ) );
     },
-    DoEntrust: (query, callback) => {
-        dispatch(exchangeDoEntrust(query, (err, res) => {
-            callback && callback(err, res)
-        }))
+
+    onExchangeGetMarketList: ( callback ) => {
+        dispatch( exchangeGetMarketList( ( err, res ) => {
+            callback && callback( err, res )
+        } ) );
     },
-    CheckExchangeSafe: (coinExchangeId, callback) => {
-        dispatch(exchangeGetIsExchangeSafe(coinExchangeId, (err, res) => {
-            callback && callback(err, res)
-        }))
+    DoEntrust: ( query, callback ) => {
+        dispatch( exchangeDoEntrust( query, ( err, res ) => {
+            callback && callback( err, res )
+        } ) )
     },
-    changeSafePass: (password) => {
-        dispatch({
+    CheckExchangeSafe: ( coinExchangeId, callback ) => {
+        dispatch( exchangeGetIsExchangeSafe( coinExchangeId, ( err, res ) => {
+            callback && callback( err, res )
+        } ) )
+    },
+    changeSafePass: ( password ) => {
+        dispatch( {
             type: userActionTypes.SAVE_SAFE_PASS,
             data: password
-        })
+        } )
     },
-    onexchangeDoCancelEntrust:(query,callback)=>{
-        dispatch(exchangeDoCancelEntrust(query,(err,res)=>{
-            callback && callback(err,res)
-        }))
+    onexchangeDoCancelEntrust: ( query, callback ) => {
+        dispatch( exchangeDoCancelEntrust( query, ( err, res ) => {
+            callback && callback( err, res )
+        } ) )
     }
-});
+} );
 
 const TradePage = connect(
     mapStoreToProps,
     mapDispatchToProps
-)(TradePageView);
+)( TradePageView );
 
 export default TradePage;

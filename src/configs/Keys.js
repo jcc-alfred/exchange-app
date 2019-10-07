@@ -3,7 +3,7 @@ const Keys = {
     "Assets_manager_key": "Assets_manager_key",
     "Assets_manager_setting": "Assets_manager_setting",
     "Buy": "Buy",
-    "sellAmount":"sellAmount",
+    "sellAmount": "sellAmount",
     "Coin address": "Coin address",
     "Confirm": "Confirm",
     "Current_Commission": "Current_Commission",
@@ -27,10 +27,10 @@ const Keys = {
     "base_info": "base_info",
     "buyAmount": "buyAmount",
     "cancel": "cancel",
-    "date":"date",
+    "date": "date",
     "Confirm": "Confirm",
     "high": "high",
-    "low":"low",
+    "low": "low",
     "changerate": "changerate",
     "chooseCoinType": "chooseCoinType",
     "choose_photo": "choose_photo",
@@ -781,6 +781,6 @@ const Keys = {
     "coin_address": "coin_address",
     "Processing_fee": "Processing_fee",
     "email_verification_code": "email_verification_code",
-    "type":"type"
+    "type": "type"
 };
 export default Keys;

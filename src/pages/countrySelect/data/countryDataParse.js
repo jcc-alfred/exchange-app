@@ -25,7 +25,7 @@ export function countryDataParse() {
 
         modelArray.push( model );
         modelMap[ model.key ] = model;
-        modelPhoneCodeMap['' + countryDataJson[ index ].phoneCode] = model;
+        modelPhoneCodeMap[ '' + countryDataJson[ index ].phoneCode ] = model;
     }
 
     modelArray = modelArray.sort( function ( a, b ) {

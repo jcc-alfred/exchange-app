@@ -10,11 +10,9 @@ const mapStoreToProps = ( store, ownProps ) => {
 
     let coin = null;
 
-    for (let index = 0; index < store.metaStore.coinList.length; index ++)
-    {
-        if (store.metaStore.coinList[index].coin_id === params.assets.coin_id)
-        {
-            coin =    store.metaStore.coinList[index];
+    for ( let index = 0; index < store.metaStore.coinList.length; index++ ) {
+        if ( store.metaStore.coinList[ index ].coin_id === params.assets.coin_id ) {
+            coin = store.metaStore.coinList[ index ];
             break;
         }
     }
@@ -23,7 +21,7 @@ const mapStoreToProps = ( store, ownProps ) => {
         assets: params ? params.assets : null,
         marketList: store.metaStore.marketList,
         coinList: store.metaStore.coinList,
-        coin:coin,
+        coin: coin,
         userInfo: store.userStore.userInfo,
     }
 };

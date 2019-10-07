@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import OrderHistoryPageView from "./OrderHistoryPageView";
-import {exchangeGetUserEntrustList, exchangeGetUserHistoryEntrustList} from "../../actions/ExchangeAction";
+import { exchangeGetUserEntrustList, exchangeGetUserHistoryEntrustList } from "../../actions/ExchangeAction";
 
 const mapStoreToProps = ( store, ownProps ) => {
     return {}

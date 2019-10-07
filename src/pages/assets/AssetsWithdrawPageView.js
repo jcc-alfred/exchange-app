@@ -1,9 +1,7 @@
 import React from 'react';
-import { InteractionManager, Platform, SafeAreaView, ScrollView, StatusBar, StyleSheet, View } from 'react-native';
+import { InteractionManager, SafeAreaView, ScrollView, StatusBar, StyleSheet, View } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import { Button, Input, Text } from "react-native-elements";
-import { BorderlessButton } from "react-native-gesture-handler";
-import { Ionicons } from "@expo/vector-icons";
 import I18n from "../../I18n";
 import Keys from "../../configs/Keys";
 import constStyles from "../../styles/constStyles";

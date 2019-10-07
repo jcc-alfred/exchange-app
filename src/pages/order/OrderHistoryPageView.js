@@ -1,5 +1,5 @@
 import React from 'react';
-import {InteractionManager, SafeAreaView, StatusBar, StyleSheet, View} from 'react-native';
+import { InteractionManager, SafeAreaView, StatusBar, StyleSheet, View } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import { Text } from "react-native-elements";
 import I18n from "../../I18n";
@@ -48,11 +48,11 @@ class OrderHistoryPageView extends React.Component {
     }
 
     loadData() {
-        this.setState({
+        this.setState( {
             isRequesting: true
-        });
+        } );
 
-        InteractionManager.runAfterInteractions(() => {
+        InteractionManager.runAfterInteractions( () => {
             this.props.onExchangeGetUserEntrustList( ( error, resBody ) => {
                 if ( error ) {
                     this.setState( {
@@ -81,7 +81,7 @@ class OrderHistoryPageView extends React.Component {
                 }
             } );
 
-        })
+        } )
 
 
     }

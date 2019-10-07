@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
 import AuthLoginPageView from "./AuthLoginPageView";
-import { assetsGetUserAssets } from "../../actions/AssetsAction";
 import { authLogin } from "../../actions/AuthAction";
 
 const mapStoreToProps = ( store, ownProps ) => {

@@ -31,8 +31,8 @@ class Main extends React.Component {
         this._onBack = this.onBack.bind( this );
         this._onLoginSuccess = this.onLoginSuccess.bind( this );
 
-        this.props.dispatch( exchangeGetMarketList(null) );
-        this.props.dispatch( exchangeGetCoinList(null) );
+        this.props.dispatch( exchangeGetMarketList( null ) );
+        this.props.dispatch( exchangeGetCoinList( null ) );
 
         I18n.locale = this.props.language;
         LanguageUpdate.update();
@@ -66,7 +66,7 @@ class Main extends React.Component {
 
     onLoginSuccess() {
         InteractionManager.runAfterInteractions( () => {
-            this.props.dispatch(userMe( null ));
+            this.props.dispatch( userMe( null ) );
         } );
     }
 
@@ -91,8 +91,8 @@ class Main extends React.Component {
                     getEventEmitter().emit( PubSubConstant.PUB_SUB_LOGIN_SUCCESS, '' );
                 }
 
-                this.props.dispatch( exchangeGetMarketList(null) );
-                this.props.dispatch( exchangeGetCoinList(null) );
+                this.props.dispatch( exchangeGetMarketList( null ) );
+                this.props.dispatch( exchangeGetCoinList( null ) );
             } else {
                 this.setState( {
                     isShowLockView: true

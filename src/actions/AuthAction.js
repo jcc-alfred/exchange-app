@@ -28,7 +28,7 @@ export function authLogin( account, password, imageCode, callback ) {
                     data: res.data.userInfo,
                 } );
 
-                dispatch(userMe( null ));
+                dispatch( userMe( null ) );
             }
             callback && callback( err, res )
         } );
@@ -59,7 +59,7 @@ export function authSignUp( query, callback ) {
                     type: userActionTypes.UPDATE_USER_INFO,
                     data: res.data.userInfo,
                 } );
-                dispatch(userMe( null ));
+                dispatch( userMe( null ) );
             }
             callback && callback( err, res )
         } );
@@ -91,7 +91,7 @@ export function authForgotLoginPassword( query, callback ) {
                     data: res.data.userInfo,
                 } );
 
-                dispatch(userMe( null ));
+                dispatch( userMe( null ) );
             }
             callback && callback( err, res )
         } );

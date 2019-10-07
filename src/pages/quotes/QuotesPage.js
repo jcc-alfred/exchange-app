@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import {exchangeGetCoinExchangeAreaList, exchangeGetMarketList} from "../../actions/ExchangeAction";
-import userActionTypes from "../../reducers/user/userActionTypes";
+import { exchangeGetCoinExchangeAreaList, exchangeGetMarketList } from "../../actions/ExchangeAction";
 import QuotesPageView from "./QuotesPageView";
 
 const mapStoreToProps = ( store, ownProps ) => {
@@ -23,7 +22,7 @@ const mapDispatchToProps = ( dispatch, ownProps ) => ( {
         } ) );
     },
     onExchangeGetCoinExchangeArea: ( callback ) => {
-        dispatch(exchangeGetCoinExchangeAreaList( ( err, res ) => {
+        dispatch( exchangeGetCoinExchangeAreaList( ( err, res ) => {
             callback && callback( err, res )
         } ) );
     },

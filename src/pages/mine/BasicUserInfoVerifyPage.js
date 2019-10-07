@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import BasicUserInfoVerifyPageView from "./BasicUserInfoVerifyPageView";
-import {safeAddUserKYC} from "../../actions/UserAction";
+import { safeAddUserKYC } from "../../actions/UserAction";
 
 const mapStoreToProps = ( store, ownProps ) => {
     const { params } = ownProps.navigation.state;
@@ -14,7 +14,7 @@ const mapStoreToProps = ( store, ownProps ) => {
 
 const mapDispatchToProps = ( dispatch, ownProps ) => ( {
     onSafeAddUserKYC: ( query, callback ) => {
-        dispatch( safeAddUserKYC(query, ( err, res ) => {
+        dispatch( safeAddUserKYC( query, ( err, res ) => {
             callback && callback( err, res )
         } ) );
     }
