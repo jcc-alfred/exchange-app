@@ -19,12 +19,6 @@ class ExchangePairList extends React.Component {
         super( props );
     }
 
-    shouldComponentUpdate( nextProps, nextState, nextContext ) {
-        if ( nextProps.data !== this.props.data ) {
-            return true
-        }
-    }
-
     static header() {
         return (
             <View
@@ -51,6 +45,11 @@ class ExchangePairList extends React.Component {
         )
     }
 
+    shouldComponentUpdate( nextProps, nextState, nextContext ) {
+        if ( nextProps.data !== this.props.data ) {
+            return true
+        }
+    }
 
     renderItem( viewHeight, item, index ) {
         return (

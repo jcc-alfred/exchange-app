@@ -51,6 +51,10 @@ class AssetsListPageView extends React.Component {
         };
     };
 
+    static header() {
+        return null;
+    }
+
     componentDidMount() {
         this.loadData()
     }
@@ -108,7 +112,6 @@ class AssetsListPageView extends React.Component {
         this.loadData( false );
     };
 
-
     renderItem( viewHeight, item, index ) {
         return (
             <TouchableHighlight
@@ -134,10 +137,6 @@ class AssetsListPageView extends React.Component {
                 </View>
             </TouchableHighlight>
         );
-    }
-
-    static header() {
-        return null;
     }
 
     render() {

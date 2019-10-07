@@ -19,16 +19,15 @@ class AssetTransactionList extends React.Component {
         super( props );
     }
 
+    static header() {
+        return null
+    }
+
     shouldComponentUpdate( nextProps, nextState, nextContext ) {
         if ( nextProps.data !== this.props.data ) {
             return true
         }
     }
-
-    static header() {
-        return null
-    }
-
 
     renderItem( viewHeight, item, index ) {
         return (

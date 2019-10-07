@@ -24,13 +24,13 @@ class OTCTradePageView extends React.Component {
         };
     };
 
-    componentDidMount() {
-        OTCTradePageView.loadData()
-    }
-
     static loadData() {
         InteractionManager.runAfterInteractions( () => {
         } )
+    }
+
+    componentDidMount() {
+        OTCTradePageView.loadData()
     }
 
     changeState( value, field ) {

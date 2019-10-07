@@ -48,6 +48,31 @@ class TradePageView extends React.Component {
         };
     };
 
+    static renderInfoCell( index, entrustItem, type ) {
+        return (
+            <View key={index}
+                  style={[ {
+                      flexDirection: 'row',
+                      padding: 2,
+                      backgroundColor: type === 'buy' ? '#ebf7f7' : 'white'
+                  } ]}>
+                <View style={[ styles.overlay, {
+                    backgroundColor: type === 'buy' ? 'white' : '#faf2f0',
+                    width: type === 'buy' ?
+                        Util.calcDisplayDiscount( 1 - entrustItem.no_completed_volume / entrustItem.entrust_volume ) :
+                        Util.calcDisplayDiscount( entrustItem.no_completed_volume / entrustItem.entrust_volume )
+                } ]}/>
+                <Text style={[ { flex: 1, fontSize: 8, color: '#303940' } ]}>{index}</Text>
+                <Text style={[ { flex: 1, fontSize: 8, color: '#303940' } ]}>{entrustItem.no_completed_volume}</Text>
+                <Text style={[ {
+                    flex: 1,
+                    fontSize: 8,
+                    color: '#009d7a'
+                } ]}>{entrustItem.entrust_price.toFixed( 8 )}</Text>
+            </View>
+        )
+    }
+
     componentDidMount() {
         this.loadData()
     }
@@ -103,7 +128,6 @@ class TradePageView extends React.Component {
         param[ field ] = value;
         this.setState( param )
     }
-
 
     doEntrust( entrustTypeId, entrustPrice, entrustVolume, input = false ) {
         if ( !this.props.isLoggedIn ) {
@@ -405,7 +429,6 @@ class TradePageView extends React.Component {
         );
     }
 
-
     renderCommissionCell( viewHeight, entrust, index ) {
         return (
             <View style={{ height: viewHeight }}>
@@ -439,7 +462,6 @@ class TradePageView extends React.Component {
         )
     }
 
-
     renderTopBar() {
         return (
             <View style={[ { flexDirection: 'row' } ]}>
@@ -471,7 +493,6 @@ class TradePageView extends React.Component {
         )
 
     }
-
 
     renderPriceBar() {
         return (
@@ -514,32 +535,6 @@ class TradePageView extends React.Component {
                         return TradePageView.renderInfoCell( index, entrustItem, 'sell' )
                     } )}
                 </View>
-            </View>
-        )
-    }
-
-
-    static renderInfoCell( index, entrustItem, type ) {
-        return (
-            <View key={index}
-                  style={[ {
-                      flexDirection: 'row',
-                      padding: 2,
-                      backgroundColor: type === 'buy' ? '#ebf7f7' : 'white'
-                  } ]}>
-                <View style={[ styles.overlay, {
-                    backgroundColor: type === 'buy' ? 'white' : '#faf2f0',
-                    width: type === 'buy' ?
-                        Util.calcDisplayDiscount( 1 - entrustItem.no_completed_volume / entrustItem.entrust_volume ) :
-                        Util.calcDisplayDiscount( entrustItem.no_completed_volume / entrustItem.entrust_volume )
-                } ]}/>
-                <Text style={[ { flex: 1, fontSize: 8, color: '#303940' } ]}>{index}</Text>
-                <Text style={[ { flex: 1, fontSize: 8, color: '#303940' } ]}>{entrustItem.no_completed_volume}</Text>
-                <Text style={[ {
-                    flex: 1,
-                    fontSize: 8,
-                    color: '#009d7a'
-                } ]}>{entrustItem.entrust_price.toFixed( 8 )}</Text>
             </View>
         )
     }
@@ -612,8 +607,7 @@ const styles = StyleSheet.create( {
     },
 
 
-    smallIconButton: {
-    },
+    smallIconButton: {},
 
 
     data: {

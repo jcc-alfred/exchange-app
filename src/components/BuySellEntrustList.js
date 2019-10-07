@@ -21,12 +21,6 @@ class BuySellEntrustList extends React.Component {
         super( props );
     }
 
-    shouldComponentUpdate( nextProps, nextState, nextContext ) {
-        if ( nextProps.data !== this.props.data ) {
-            return true
-        }
-    }
-
     static header( type ) {
         if ( type.toLowerCase() === 'depth' ) {
             return (
@@ -151,6 +145,11 @@ class BuySellEntrustList extends React.Component {
         }
     }
 
+    shouldComponentUpdate( nextProps, nextState, nextContext ) {
+        if ( nextProps.data !== this.props.data ) {
+            return true
+        }
+    }
 
     render() {
         const separatorHeight = 0;
@@ -238,8 +237,7 @@ const styles = StyleSheet.create( {
     },
 
 
-    smallIconButton: {
-    },
+    smallIconButton: {},
 
 
     data: {
