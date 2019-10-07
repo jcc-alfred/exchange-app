@@ -25,7 +25,7 @@ class ExchangePairList extends React.Component {
         }
     }
 
-    header() {
+    static header() {
         return (
             <View
                 style={{
@@ -116,7 +116,7 @@ class ExchangePairList extends React.Component {
                     return this.renderItem( viewHeight, item, index );
                 }}
                 ListHeaderComponent={() => {
-                    return this.header();
+                    return ExchangePairList.header();
                 }}
                 ItemSeparatorComponent={() => {
                     return <View

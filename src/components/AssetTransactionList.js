@@ -26,7 +26,7 @@ class AssetTransactionList extends React.Component {
         }
     }
 
-    header() {
+    static header() {
         return null
     }
 
@@ -97,7 +97,7 @@ class AssetTransactionList extends React.Component {
                     return this.renderItem( viewHeight, item, index );
                 }}
                 ListHeaderComponent={() => {
-                    return this.header();
+                    return AssetTransactionList.header();
                 }}
                 ItemSeparatorComponent={() => {
                     return <View

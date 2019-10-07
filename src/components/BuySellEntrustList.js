@@ -28,8 +28,8 @@ class BuySellEntrustList extends React.Component {
         }
     }
 
-    header( type ) {
-        if ( type.toLowerCase() == 'depth' ) {
+    static header( type ) {
+        if ( type.toLowerCase() === 'depth' ) {
             return (
                 <View style={{ flexDirection: 'row', marginTop: 10, marginBottom: 12 }}>
                     <Text style={{ flex: 1, color: '#9c9a97' }}>
@@ -62,7 +62,7 @@ class BuySellEntrustList extends React.Component {
         )
     }
 
-    renderItem( viewHeight, item, index, type ) {
+    static renderItem( viewHeight, item, index, type ) {
         if ( type.toLowerCase() === 'depth' ) {
             let entrustList = item;
             let buyEntrust = entrustList[ 0 ];
@@ -164,10 +164,10 @@ class BuySellEntrustList extends React.Component {
                     return 'item ' + index;
                 }}
                 renderItem={( { item, index } ) => {
-                    return this.renderItem( viewHeight, item, index, this.props.type );
+                    return BuySellEntrustList.renderItem( viewHeight, item, index, this.props.type );
                 }}
                 ListHeaderComponent={() => {
-                    return this.header( this.props.type );
+                    return BuySellEntrustList.header( this.props.type );
                 }}
                 ItemSeparatorComponent={() => {
                     return <View

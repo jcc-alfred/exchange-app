@@ -499,7 +499,7 @@ class TradePageView extends React.Component {
                         <Text style={[ { flexDirection: 'row', flex: 1, fontSize: 8 } ]}>{I18n.t( Keys.Price )}</Text>
                     </View>
                     {buyList.map( ( entrustItem, index ) => {
-                        return this.renderInfoCell( index, entrustItem, 'buy' )
+                        return TradePageView.renderInfoCell( index, entrustItem, 'buy' )
                     } )}
                 </View>
 
@@ -512,7 +512,7 @@ class TradePageView extends React.Component {
                     {sellList.sort( function ( a, b ) {
                         return a.entrust_price - b.entrust_price
                     } ).map( ( entrustItem, index ) => {
-                        return this.renderInfoCell( index, entrustItem, 'sell' )
+                        return TradePageView.renderInfoCell( index, entrustItem, 'sell' )
                     } )}
                 </View>
             </View>
@@ -520,7 +520,7 @@ class TradePageView extends React.Component {
     }
 
 
-    renderInfoCell( index, entrustItem, type ) {
+    static renderInfoCell( index, entrustItem, type ) {
         return (
             <View key={index}
                   style={[ {

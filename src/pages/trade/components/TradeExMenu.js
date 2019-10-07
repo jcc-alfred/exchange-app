@@ -57,14 +57,13 @@ class TradeExMenu extends React.Component {
     filterSearch = ( search, marketList ) => {
         const current_coin_exchange_area_id = this.props.coin_exchange_area[ this.state.index ].coin_exchange_area_id;
         if ( search !== '' ) {
-            let res = marketList.filter( function ( item ) {
+            return marketList.filter( function ( item ) {
                 //applying filter for the inserted text in search bar
                 if ( item.coinEx.coin_exchange_area_id !== current_coin_exchange_area_id || item.coinEx.coin_name.toUpperCase().indexOf( search.toUpperCase() ) < 0 ) {
                     return false
                 }
                 return true
-            } );
-            return res
+            } )
         } else {
             return marketList
         }

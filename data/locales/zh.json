@@ -30,6 +30,7 @@
   "balance": "折合",
   "base_info": "基本信息",
   "buyAmount": "买盘",
+  "camera_roll_permission_error": "没有权限访问相册",
   "cancel": "取消",
   "changerate": "涨幅",
   "chooseCoinType": "选择币种",
@@ -952,6 +953,7 @@
   "new_email_verify_code": "新邮箱验证码",
   "news": "新闻",
   "no": "取消",
+  "no_internet_connection": "没有网络链接",
   "notification": "通知",
   "order": "订单",
   "password": "密码",
@@ -968,6 +970,7 @@
   "resend": "重发",
   "safePassTitle": "请先输入交易密码",
   "save_qrCodePic": "保存二维码到相册",
+  "save_success": "保存成功",
   "select_country": "选择国家",
   "sellAmount": "卖盘",
   "settings": "设置",
@@ -985,5 +988,6 @@
   "volume": "量",
   "withdraw": "提现",
   "withdraw_history": "提现历史",
-  "yes": "确定"
+  "yes": "确定",
+  "save_to_album": "保存相册"
 }

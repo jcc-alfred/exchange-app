@@ -25,7 +25,7 @@ class TradeMenuPairList extends React.Component {
         }
     }
 
-    header() {
+    static header() {
         return (
             <View
                 style={{

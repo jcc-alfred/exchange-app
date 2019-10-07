@@ -25,10 +25,10 @@ class OTCTradePageView extends React.Component {
     };
 
     componentDidMount() {
-        this.loadData()
+        OTCTradePageView.loadData()
     }
 
-    loadData() {
+    static loadData() {
         // this.setState({
         //     isRequesting: true
         // });

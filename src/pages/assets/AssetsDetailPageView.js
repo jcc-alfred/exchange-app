@@ -43,7 +43,7 @@ class AssetsDetailPageView extends React.Component {
         };
     };
 
-    seperatorView( viewHeight ) {
+    static separatorView( viewHeight ) {
         return (
             <View style={{ backgroundColor: '#f4f3fa', height: viewHeight }}/>
         )
@@ -192,7 +192,7 @@ class AssetsDetailPageView extends React.Component {
                             style={[ { flex: 1, paddingRight: 10 } ]}>{this.props.assets.available.toFixed( 4 )}</Text>
                         <Text style={[ { flex: 1 } ]}>{this.props.assets.frozen.toFixed( 4 )}</Text>
                     </View>
-                    {this.seperatorView( 8 )}
+                    {AssetsDetailPageView.separatorView( 8 )}
                     <View style={{ paddingTop: 15, paddingBottom: 20 }}>
                         <Text style={{ fontSize: 24, fontWeight: "bold" }}>{I18n.t( Keys.finance_history )}</Text>
                     </View>

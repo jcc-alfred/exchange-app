@@ -26,7 +26,7 @@ class BuySellEntrustList extends React.Component {
         }
     }
 
-    header() {
+    static header() {
         return (
             <View style={{ flexDirection: 'row', marginTop: 10, marginBottom: 12 }}>
                 <Text style={{ flex: 1, color: '#9c9a97' }}>
@@ -45,7 +45,7 @@ class BuySellEntrustList extends React.Component {
         )
     }
 
-    renderItem( viewHeight, order, index ) {
+    static renderItem( viewHeight, order, index ) {
         return (
             <View style={{ flexDirection: 'row', height: viewHeight }}>
                 <Text
@@ -71,10 +71,10 @@ class BuySellEntrustList extends React.Component {
                     return 'item ' + index;
                 }}
                 renderItem={( { item, index } ) => {
-                    return this.renderItem( viewHeight, item, index );
+                    return BuySellEntrustList.renderItem( viewHeight, item, index );
                 }}
                 ListHeaderComponent={() => {
-                    return this.header();
+                    return BuySellEntrustList.header();
                 }}
                 ItemSeparatorComponent={() => {
                     return <View

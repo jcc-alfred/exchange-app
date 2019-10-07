@@ -136,7 +136,7 @@ class AssetsListPageView extends React.Component {
         );
     }
 
-    header() {
+    static header() {
         return null;
     }
 
@@ -208,7 +208,7 @@ class AssetsListPageView extends React.Component {
                         return this.renderItem( viewHeight, item, index );
                     }}
                     ListHeaderComponent={() => {
-                        return this.header();
+                        return AssetsListPageView.header();
                     }}
                     ItemSeparatorComponent={() => {
                         return <View
