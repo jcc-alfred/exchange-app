@@ -237,8 +237,14 @@ class KlinePageView extends React.Component {
 
 
     render() {
+
         const { navigation } = this.props;
         const coinEx = this.props.marketList.find( i => i.coin_exchange_id === this.props.coin_exchange.coin_exchange_id );
+        let KlineWebUrl = `https://www.asiaedx.com/#/kline/${coinEx.coin_exchange_id}`;
+        if(I18n.locale==='zh-Hans'){
+            KlineWebUrl= KlineWebUrl+ '?lang=zh-cn'
+        }
+
         return (
             <View style={[ commonStyles.wrapper, { backgroundColor: constStyles.THEME_COLOR } ]}>
                 <StatusBar backgroundColor="blue" barStyle="dark-content"/>
@@ -294,7 +300,7 @@ class KlinePageView extends React.Component {
 
                         <View style={[ { height: 280, marginTop: 10 } ]}>
                             <WebView
-                                source={{ uri: 'https://www.asiaedx.com/#/kline/6?lang=zh-cn' }}
+                                source={{ uri: KlineWebUrl }}
                                 useWebKit={true}
                                 style={{ backgroundColor: constStyles.THEME_COLOR }}
                                 scrollEnabled={false}
