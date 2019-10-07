@@ -331,8 +331,8 @@ class TradePageView extends React.Component {
                 </View>
                 <View>
                     <View style={{flexDirection: 'row'}}>
-                        <Text style={{fontSize: 8, flex: 3}}>{I18n.t(Keys.ExchangeAmount)}</Text>
-                        <Text style={{fontSize: 8, flex: 8}}>{ExchangeAmount}</Text>
+                        <Text style={{fontSize: 12, flex: 3}}>{I18n.t(Keys.ExchangeAmount)}</Text>
+                        <Text style={{fontSize: 12, flex: 8}}>{ExchangeAmount}</Text>
 
                     </View>
                     <Button style={{margin: 10}}
@@ -503,9 +503,11 @@ class TradePageView extends React.Component {
                     </Text>
                 </View>
                 <View style={[{flexDirection: 'row', flex: 1}]}>
-                    {/*<TouchableHighlight underlayColor='#ddd' onPress={() => this.gotoKlinePage()}>*/}
-                    {/*/!*<Image source={require('../../../assets/images/klineIcon.png')} containerStyle={[{width: 25, height: 25}]}/>*!/*/}
-                    {/*</TouchableHighlight>*/}
+                    <TouchableHighlight underlayColor='#ddd' onPress={() => this.gotoKlinePage()}>
+                        <View>
+                            <Image source={require('../../../assets/images/klineIcon.png')} containerStyle={[{width: 25, height: 25}]}/>
+                        </View>
+                    </TouchableHighlight>
                 </View>
             </View>
         )
