@@ -58,10 +58,7 @@ class TradeExMenu extends React.Component {
         if ( search !== '' ) {
             return marketList.filter( function ( item ) {
                 //applying filter for the inserted text in search bar
-                if ( item.coinEx.coin_exchange_area_id !== current_coin_exchange_area_id || item.coinEx.coin_name.toUpperCase().indexOf( search.toUpperCase() ) < 0 ) {
-                    return false
-                }
-                return true
+                return !( item.coinEx.coin_exchange_area_id !== current_coin_exchange_area_id || item.coinEx.coin_name.toUpperCase().indexOf( search.toUpperCase() ) < 0 );
             } )
         } else {
             return marketList

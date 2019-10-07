@@ -14,10 +14,6 @@ class AssetsDepositPageView extends React.Component {
         super( props );
 
         this.state = {
-            items: [ { label: "wo", value: "wo" }, { label: "yao", value: "yao" }, {
-                label: "zuo",
-                value: "zuo"
-            }, { label: "ai", value: "ai" } ],
             selectItem: null,
             isRequesting: false,
         }
@@ -59,8 +55,6 @@ class AssetsDepositPageView extends React.Component {
                         <View>
                             {this.renderCoinChoose()}
                             {this.renderQRCodeView()}
-
-                            {/*<QRCode value="Hello, World!"/>*/}
                         </View>
                     </ScrollView>
 

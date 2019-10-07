@@ -54,12 +54,6 @@ class NewsDetailPageView extends React.Component {
                             <Text style={{ paddingStart: 16, color: ColorUtil.secondary_text_color }}>Update
                                 Time: {this.news.update_time}</Text>
                             <Text style={{ padding: 16 }}>{this.news.news_content}</Text>
-
-                            {/*<Text>kline page {JSON.stringify(navigation.getParam('coin_exchange'))}</Text>*/}
-                            {/*<Text>*/}
-                            {/*{JSON.stringify(this.state.buyList)}*/}
-                            {/*</Text>*/}
-                            {/*<Spinner visible={this.state.isRequesting} cancelable={true}/>*/}
                         </View>
                     </ScrollView>
                     <Spinner visible={this.state.isRequesting} cancelable={true}/>

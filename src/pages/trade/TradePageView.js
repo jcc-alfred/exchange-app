@@ -337,7 +337,6 @@ class TradePageView extends React.Component {
     header() {
         return (
             <View>
-                {/*{this.renderTopBar()}*/}
                 {this.renderPriceBar()}
                 {this.renderEntrustView()}
                 <View>

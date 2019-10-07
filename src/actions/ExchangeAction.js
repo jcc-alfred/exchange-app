@@ -188,12 +188,3 @@ export function exchangeGetUserEntrustList( callback ) {
         } );
     };
 }
-
-export function docGetHomeNewsList( query, callback ) {
-    return ( dispatch ) => {
-        netDocGetHomeNewsList( query, ( err, res ) => {
-            callback && callback( err, res )
-        } );
-    }
-}
-

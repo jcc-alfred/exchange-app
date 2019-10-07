@@ -971,6 +971,7 @@
   "safePassTitle": "请先输入交易密码",
   "save_qrCodePic": "保存二维码到相册",
   "save_success": "保存成功",
+  "save_to_album": "保存相册",
   "select_country": "选择国家",
   "sellAmount": "卖盘",
   "settings": "设置",
@@ -989,5 +990,6 @@
   "withdraw": "提现",
   "withdraw_history": "提现历史",
   "yes": "确定",
-  "save_to_album": "保存相册"
+  "choose_video": "选择",
+  "take_video": "录制"
 }

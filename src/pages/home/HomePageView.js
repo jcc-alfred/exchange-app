@@ -409,9 +409,6 @@ class HomePageView extends React.Component {
                         <Text>ETH/BTC</Text>
                         <Text>{this.state.dataSources[ 0 ].market.last_price}</Text>
                         <Text> ≈{this.state.dataSources[ 0 ].price_usd.toFixed( 2 )} USD</Text>
-                        {/*{this.state.dataSources.map(dataSource => <Text>{dataSource.market.last_price}</Text>)}*/}
-
-
                     </View>
 
                     <View style={{ flex: 1, alignItems: 'center' }}>

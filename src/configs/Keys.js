@@ -751,6 +751,7 @@ const Keys = {
     "safePassTitle": "safePassTitle",
     "save_qrCodePic": "save_qrCodePic",
     "save_success": "save_success",
+    "save_to_album": "save_to_album",
     "select_country": "select_country",
     "sellAmount": "sellAmount",
     "settings": "settings",
