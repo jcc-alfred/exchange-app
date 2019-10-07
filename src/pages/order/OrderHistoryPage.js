@@ -4,7 +4,10 @@ import OrderHistoryPageView from "./OrderHistoryPageView";
 import { exchangeGetUserEntrustList, exchangeGetUserHistoryEntrustList } from "../../actions/ExchangeAction";
 
 const mapStoreToProps = ( store, ownProps ) => {
-    return {}
+    return {
+        // TradePageCoinEx: store.metaStore.TradePageCoinEx
+        marketList: store.metaStore.marketList
+    }
 };
 
 const mapDispatchToProps = ( dispatch, ownProps ) => ( {

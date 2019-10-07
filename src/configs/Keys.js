@@ -766,5 +766,8 @@ const Keys = {
     "withdraw": "withdraw",
     "withdraw_history": "withdraw_history",
     "yes": "yes",
+    "completed": "completed",
+    "all": "all",
+    "histroy": "histroy"
 };
 export default Keys;

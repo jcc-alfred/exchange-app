@@ -985,5 +985,8 @@
   "volume": "volume",
   "withdraw": "withdraw",
   "withdraw_history": "Cash withdrawal history",
-  "yes": "Yes"
+  "yes": "Yes",
+  "completed": "Completed",
+  "all": "All",
+  "histroy": "Histroy"
 }

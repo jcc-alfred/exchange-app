@@ -985,5 +985,8 @@
   "volume": "量",
   "withdraw": "提现",
   "withdraw_history": "提现历史",
-  "yes": "确定"
+  "yes": "确定",
+  "completed": "已完成",
+  "all": "委托",
+  "histroy": "历史订单"
 }

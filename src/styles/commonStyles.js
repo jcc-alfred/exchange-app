@@ -239,6 +239,22 @@ const commonStyles = StyleSheet.create(
             height: 1,
             marginLeft: 10,
             marginRight: 10,
+        },
+        smallGrayFont: {
+            color: '#aaa',
+            fontSize: 12,
+            paddingLeft: 10,
+            paddingRight: 10,
+            paddingTop: 10,
+            paddingBottom: 8
+        },
+        smallCommission: {
+            color: '#aaa',
+            fontSize: 12,
+            paddingLeft: 10,
+            paddingRight: 10,
+            paddingTop: 10,
+            paddingBottom: 8
         }
     }
 );

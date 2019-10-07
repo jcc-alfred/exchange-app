@@ -193,7 +193,7 @@ export function netExchangeDoEntrust( query, callback ) {
         .end( callback );
 }
 
-export function netExchangeGetUserEntrustlist( query, callback ) {
+export function netExchangeGetUserEntrustlist( callback ) {
     request
         .post( '/exchange/getUserEntrustList' )
         .send( {} )
@@ -205,7 +205,7 @@ export function netExchangeGetUserEntrustlist( query, callback ) {
         .end( callback );
 }
 
-export function netExchangeGetUserHistoryEntrustlist( query, callback ) {
+export function netExchangeGetUserHistoryEntrustlist( callback ) {
     request
         .post( '/exchange/getUserHistoryEntrustList' )
         .send( {} )
