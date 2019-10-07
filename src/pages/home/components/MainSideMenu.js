@@ -62,52 +62,6 @@ class MainSideMenu extends React.Component {
                         />
                 }
 
-                {/*<View style={[ { flexDirection: 'row' }, commonStyles.paddingCommon ]}>*/}
-                {/*<Button*/}
-                {/*icon={*/}
-                {/*<Ionicons*/}
-                {/*name="md-wallet"*/}
-                {/*size={Platform.OS === 'ios' ? 22 : 25}*/}
-                {/*color={'white'}*/}
-                {/*/>*/}
-                {/*}*/}
-                {/*title="Deposit"*/}
-                {/*onPress={() => {*/}
-                {/*this.props.navigation.dispatch( DrawerActions.closeDrawer() );*/}
-                {/*if ( this.props.isLoggedIn ) {*/}
-                {/*this.props.navigation.navigate( "AssetsDepositPage" )*/}
-                {/*} else {*/}
-                {/*this.props.navigation.navigate( "AuthLoginPage" )*/}
-                {/*}*/}
-                {/*}*/}
-                {/*}*/}
-                {/*/>*/}
-
-                {/*<View style={[ commonStyles.wrapper ]}/>*/}
-
-                {/*<Button*/}
-                {/*icon={*/}
-                {/*<Ionicons*/}
-                {/*name="md-card"*/}
-                {/*size={Platform.OS === 'ios' ? 22 : 25}*/}
-                {/*color={'white'}*/}
-                {/*/>*/}
-                {/*}*/}
-                {/*title="Withdraw"*/}
-                {/*onPress={() => {*/}
-                {/*this.props.navigation.dispatch( DrawerActions.closeDrawer() )*/}
-                {/*if ( this.props.isLoggedIn ) {*/}
-                {/*this.props.navigation.navigate( "AssetsWithdrawPage" )*/}
-                {/*} else {*/}
-                {/*this.props.navigation.navigate( "AuthLoginPage" )*/}
-                {/*}*/}
-                {/*}*/}
-                {/*}*/}
-                {/*/>*/}
-
-                {/*</View>*/}
-
-
                 <ListItem
                     title={I18n.t( Keys.order )}
                     onPress={() => {

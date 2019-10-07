@@ -6,7 +6,6 @@ import { Text } from "react-native-elements";
 import commonStyles from "../styles/commonStyles";
 import I18n from "../I18n";
 import Keys from "../configs/Keys";
-// import Util from "../util/Util";
 import moment from 'moment'
 
 class BuySellEntrustList extends React.Component {
@@ -20,13 +19,7 @@ class BuySellEntrustList extends React.Component {
         super( props );
     }
 
-    shouldComponentUpdate( nextProps, nextState, nextContext ) {
-        if ( nextProps.data !== this.props.data ) {
-            return true
-        }
-    }
-
-    header() {
+    static header() {
         return (
             <View style={{ flexDirection: 'row', marginTop: 10, marginBottom: 12 }}>
                 <Text style={{ flex: 1, color: '#9c9a97' }}>
@@ -45,7 +38,7 @@ class BuySellEntrustList extends React.Component {
         )
     }
 
-    renderItem( viewHeight, order, index ) {
+    static renderItem( viewHeight, order, index ) {
         return (
             <View style={{ flexDirection: 'row', height: viewHeight }}>
                 <Text
@@ -60,6 +53,11 @@ class BuySellEntrustList extends React.Component {
         )
     }
 
+    shouldComponentUpdate( nextProps, nextState, nextContext ) {
+        if ( nextProps.data !== this.props.data ) {
+            return true
+        }
+    }
 
     render() {
         const separatorHeight = 1;
@@ -71,10 +69,10 @@ class BuySellEntrustList extends React.Component {
                     return 'item ' + index;
                 }}
                 renderItem={( { item, index } ) => {
-                    return this.renderItem( viewHeight, item, index );
+                    return BuySellEntrustList.renderItem( viewHeight, item, index );
                 }}
                 ListHeaderComponent={() => {
-                    return this.header();
+                    return BuySellEntrustList.header();
                 }}
                 ItemSeparatorComponent={() => {
                     return <View
@@ -147,10 +145,7 @@ const styles = StyleSheet.create( {
     },
 
 
-    smallIconButton: {
-
-        // backgroundColor: '#ddd',
-    },
+    smallIconButton: {},
 
 
     data: {

@@ -14,10 +14,6 @@ class AssetsDepositPageView extends React.Component {
         super( props );
 
         this.state = {
-            items: [ { label: "wo", value: "wo" }, { label: "yao", value: "yao" }, {
-                label: "zuo",
-                value: "zuo"
-            }, { label: "ai", value: "ai" } ],
             selectItem: null,
             isRequesting: false,
         }
@@ -58,9 +54,7 @@ class AssetsDepositPageView extends React.Component {
                     <ScrollView style={[ commonStyles.wrapper ]}>
                         <View>
                             {this.renderCoinChoose()}
-                            {this.renderQRcodeView()}
-
-                            {/*<QRCode value="Hello, World!"/>*/}
+                            {this.renderQRCodeView()}
                         </View>
                     </ScrollView>
 
@@ -88,7 +82,7 @@ class AssetsDepositPageView extends React.Component {
     }
 
 
-    renderQRcodeView() {
+    renderQRCodeView() {
         return (
             <View style={{
                 backgroundColor: '#f6f6f8',
@@ -106,7 +100,6 @@ class AssetsDepositPageView extends React.Component {
                     containerStyle={{ marginTop: 10, marginLeft: 40, marginRight: 40, marginBottom: 10 }}
                     onPress={() => {
                         Clipboard.setString( this.props.assets.block_address );
-                        // this.props.toast( I18n.t( Keys.copy_address_success ) );
                         Toast.show( I18n.t( Keys.copy_success ) );
                     }}
                 />

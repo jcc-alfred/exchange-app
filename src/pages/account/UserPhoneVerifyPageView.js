@@ -101,7 +101,6 @@ class UserPhoneVerifyPageView extends React.Component {
         } );
     }
 
-    //todo
     resetPassword() {
         this.props.navigation.dispatch(
             StackActions.reset(

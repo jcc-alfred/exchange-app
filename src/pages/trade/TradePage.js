@@ -56,7 +56,7 @@ const mapDispatchToProps = ( dispatch, ownProps ) => ( {
             data: password
         } )
     },
-    onexchangeDoCancelEntrust: ( query, callback ) => {
+    onExchangeDoCancelEntrust: ( query, callback ) => {
         dispatch( exchangeDoCancelEntrust( query, ( err, res ) => {
             callback && callback( err, res )
         } ) )

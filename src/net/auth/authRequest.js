@@ -6,7 +6,7 @@ import logger from "../logger/superagent-logger";
 import request from "superagent";
 import authRequestRetries from "./authRequestRetries";
 import { getStore } from "../../setup";
-import { netAuthLogin, netAuthLoginPhonePassword } from "../AuthApiNet1";
+import { netAuthLogin } from "../AuthApiNet1";
 import PubSubConstant from "../../pubSub/PubSubConstant";
 import * as env from "../../env";
 

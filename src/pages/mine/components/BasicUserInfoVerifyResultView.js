@@ -35,7 +35,7 @@ class BasicUserInfoVerifyResultView extends React.Component {
             <View>
                 <ListItem
                     title={
-                        <View style={[ { flexDirection: 'row', justifyContent: 'center' } ]}>
+                        <View style={[ { flexDirection: 'row', justifyContent: 'center',borderBottomColor:'#e8e6e7',borderBottomWidth:1,padding:4 } ]}>
                             <Text style={[ commonStyles.wrapper ]}>{I18n.t( Keys.base_info )}</Text>
 
                             <Ionicons

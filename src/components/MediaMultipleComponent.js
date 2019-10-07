@@ -9,7 +9,7 @@ import { Ionicons } from '@expo/vector-icons';
 import PropTypes from 'prop-types';
 import Spinner from "react-native-loading-spinner-overlay";
 import { connect } from "react-redux";
-import { fileUploadImage, fileUploadVideo, photoUpload } from "../actions/FileAction";
+import { photoUpload } from "../actions/FileAction";
 import Toast from "react-native-root-toast";
 import * as ImagePicker from "expo-image-picker";
 import ModalPicker from "./ModalPicker";
@@ -117,8 +117,6 @@ class MediaMultipleComponent extends React.Component {
         let result = await ImagePicker.launchImageLibraryAsync( {
             ...this.props.editOptions,
             mediaTypes: mediaTypes,
-            // allowsEditing: true,
-            // aspect: [ 4, 3 ],
             quality: 0.5
         } );
 
@@ -141,11 +139,7 @@ class MediaMultipleComponent extends React.Component {
             ...this.props.editOptions,
             mediaTypes: mediaTypes,
             allowsEditing: false,
-            // aspect: [ 4, 3 ],
-            // quality: 0.5
         } );
-
-        // console.error( "1111" )
 
         console.log( result );
 

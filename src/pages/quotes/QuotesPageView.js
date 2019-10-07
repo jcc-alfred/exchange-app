@@ -57,7 +57,6 @@ class QuotesPageView extends React.Component {
         if ( this.props.coin_exchange_area !== nextProps.coin_exchange_area || nextProps.marketList !== this.props.marketList ) {
             const { index, routes, scenes } = this.initTabData( nextProps.coin_exchange_area );
             this.setState( {
-                // index: index,
                 routes: routes,
                 scenes: scenes
             } )
@@ -172,8 +171,8 @@ class QuotesPageView extends React.Component {
                         <TabBar
                             {...props}
                             indicatorStyle={{ backgroundColor: constStyles.THEME_COLOR }}
-                            inactiveColor={{ color: 'red' }}
-                            activeColor={{ color: constStyles.THEME_COLOR }}
+                            inactiveColor={'#888'}
+                            activeColor={ constStyles.THEME_COLOR}
                             style={{ backgroundColor: 'white', flexDirection: 'row' }}
                             tabStyle={{ width: 'auto' }}
                             scrollEnabled={true}

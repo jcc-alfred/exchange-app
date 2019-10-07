@@ -19,13 +19,7 @@ class ExchangePairList extends React.Component {
         super( props );
     }
 
-    shouldComponentUpdate( nextProps, nextState, nextContext ) {
-        if ( nextProps.data !== this.props.data ) {
-            return true
-        }
-    }
-
-    header() {
+    static header() {
         return (
             <View
                 style={{
@@ -51,6 +45,11 @@ class ExchangePairList extends React.Component {
         )
     }
 
+    shouldComponentUpdate( nextProps, nextState, nextContext ) {
+        if ( nextProps.data !== this.props.data ) {
+            return true
+        }
+    }
 
     renderItem( viewHeight, item, index ) {
         return (
@@ -85,7 +84,7 @@ class ExchangePairList extends React.Component {
                             alignItems: 'center',
                         }}>
                             <Text style={{ color: 'white' }}>
-                                {Util.numtoPercentage( item.market.change_rate )}
+                                {Util.numToPercentage( item.market.change_rate )}
                             </Text>
                         </View>
 
@@ -116,7 +115,7 @@ class ExchangePairList extends React.Component {
                     return this.renderItem( viewHeight, item, index );
                 }}
                 ListHeaderComponent={() => {
-                    return this.header();
+                    return ExchangePairList.header();
                 }}
                 ItemSeparatorComponent={() => {
                     return <View

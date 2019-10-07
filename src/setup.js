@@ -44,14 +44,16 @@ export function setup( props ) {
 async function loadResourcesAsync() {
     await Promise.all( [
         Asset.loadAsync( [
+            require( '../assets/images/asiaedx_logo.png' ),
+            require( '../assets/images/banner-image.png' ),
+            require( '../assets/images/icon.png' ),
+            require( '../assets/images/klineIcon.png' ),
+            require( '../assets/images/logo.png' ),
+            require( '../assets/images/qr_code.png' ),
             require( '../assets/images/robot-dev.png' ),
             require( '../assets/images/robot-prod.png' ),
+            require( '../assets/images/splash.png' ),
             require( '../assets/images/vip.png' ),
-            require( '../assets/images/qr_code.png' ),
-            require( '../assets/images/klineIcon.png' ),
-            require( '../assets/images/asiaedx_logo.png' ),
-            require( '../assets/images/baner-image.png' ),
-
         ] ),
         Font.loadAsync( {
             // This is the font that we are using for our tab bar

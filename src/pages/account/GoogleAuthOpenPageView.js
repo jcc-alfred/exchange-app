@@ -51,7 +51,6 @@ class GoogleAuthOpenPageView extends React.Component {
     }
 
 
-    // todo
     verificationCodeGet() {
         this.setState( {
             isRequesting: true
@@ -91,7 +90,6 @@ class GoogleAuthOpenPageView extends React.Component {
         } );
     }
 
-    //todo
     send() {
         this.props.navigation.dispatch(
             StackActions.reset(

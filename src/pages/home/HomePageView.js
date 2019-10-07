@@ -32,10 +32,10 @@ class HomePageView extends React.Component {
 
         this.state = {
             isRequesting: true,
-            // dataSources: [],
             newsList: [],
             announcementList: [],
             refreshing: false,
+            updateDialogVisible:false
         }
     }
 
@@ -75,9 +75,8 @@ class HomePageView extends React.Component {
     }
 
     componentWillUnmount() {
-
+        this.interval && clearInterval( this.interval );
         this.setState = ( state, callback ) => {
-
         };
     }
 
@@ -124,7 +123,7 @@ class HomePageView extends React.Component {
         } );
 
         try {
-            setInterval( async () => {
+            this.interval = setInterval( async () => {
                 InteractionManager.runAfterInteractions( () => {
                     this.props.onExchangeGetMarketList( ( error, resBody ) => {
                         if ( error ) {
@@ -178,7 +177,8 @@ class HomePageView extends React.Component {
                 }
             } )
             .catch( err => {
-
+                // console.log( err.message )
+                Toast.show( err.message )
             } )
     }
 
@@ -194,7 +194,7 @@ class HomePageView extends React.Component {
                     } );
             } )
             .catch( err => {
-
+                Toast.show( err.message )
             } );
     }
 
@@ -206,6 +206,12 @@ class HomePageView extends React.Component {
             return <Text>Loading...</Text>
         }
 
+        const EHT_BTC = this.props.marketList ? this.props.marketList.find( i => i.coinEx.coin_name.toUpperCase() === "ETH" && i.coinEx.exchange_coin_name.toUpperCase() === "BTC" ) : null;
+        const GTB_BTC = this.props.marketList ? this.props.marketList.find( i => i.coinEx.coin_name.toUpperCase() === "GTB" && i.coinEx.exchange_coin_name.toUpperCase() === "BTC" ) : null;
+        const GTB_ETH = this.props.marketList ? this.props.marketList.find( i => i.coinEx.coin_name.toUpperCase() === "GTB" && i.coinEx.exchange_coin_name.toUpperCase() === "ETH" ) : null;
+        const mainTradePair = [ EHT_BTC, GTB_BTC, GTB_ETH ];
+
+
         return (
             <View style={styles.container}>
                 <StatusBar backgroundColor="blue" barStyle="dark-content"/>
@@ -216,7 +222,7 @@ class HomePageView extends React.Component {
                     <View>
                         <View style={styles.welcomeContainer}>
 
-                            <ImageBackground source={require( '../../../assets/images/baner-image.png' )}
+                            <ImageBackground source={require( '../../../assets/images/banner-image.png' )}
                                              style={styles.welcomeImage}>
                                 <View style={{
                                     top: 10,
@@ -255,49 +261,28 @@ class HomePageView extends React.Component {
                                 height: 80,
                                 justifyContent: 'center'
                             }}>
+                            {
 
-                            <View style={{ flex: 1, alignItems: 'center' }}>
-                                <Text>ETH/BTC</Text>
-
-                                <Text style={{
-                                    fontSize: 16,
-                                    fontWeight: 'bold',
-                                    color: this.props.marketList && this.props.marketList.find( i => i.coinEx.coin_name.toUpperCase() === "ETH" && i.coinEx.exchange_coin_name === "BTC" ).market.change_rate < 0 ? 'red' : 'green'
-                                }}>{this.props.marketList.length > 0 ? this.props.marketList.find( i => i.coinEx.coin_name.toUpperCase() === "ETH" && i.coinEx.exchange_coin_name === "BTC" ).market.last_price : ''}</Text>
-                                <Text
-                                    style={{ color: this.props.marketList.find( i => i.coinEx.coin_name.toUpperCase() === "ETH" && i.coinEx.exchange_coin_name === "BTC" ).market.change_rate < 0 ? 'red' : 'green' }}>
-                                    {( this.props.marketList[ 0 ].market.change_rate * 100 ).toFixed( 2 )}%
-                                </Text>
-                                <Text> ≈{this.props.marketList ? this.props.marketList.find( i => i.coinEx.coin_name.toUpperCase() === "ETH" && i.coinEx.exchange_coin_name === "BTC" ).price_usd.toFixed( 2 ) : ''} USD</Text>
-
-
-                            </View>
-
-                            <View style={{ flex: 1, alignItems: 'center' }}>
-                                <Text>GTB/BTC</Text>
-                                <Text style={{
-                                    fontSize: 16,
-                                    fontWeight: 'bold',
-                                    color: this.props.marketList && this.props.marketList.find( i => i.coinEx.coin_name.toUpperCase() === "GTB" && i.coinEx.exchange_coin_name === "BTC" ).market.change_rate < 0 ? 'red' : 'green'
-                                }}>{this.props.marketList ? this.props.marketList.find( i => i.coinEx.coin_name.toUpperCase() === "GTB" && i.coinEx.exchange_coin_name === "BTC" ).market.last_price : ''}</Text>
-                                <Text
-                                    style={{ color: this.props.marketList.find( i => i.coinEx.coin_name.toUpperCase() === "GTB" && i.coinEx.exchange_coin_name === "BTC" ).market.change_rate < 0 ? 'red' : 'green' }}>{this.props.marketList.length == 0 ? '' : ( this.props.marketList[ 1 ].market.change_rate * 100 ).toFixed( 2 )}%</Text>
-                                <Text> ≈{this.props.marketList ? this.props.marketList.find( i => i.coinEx.coin_name.toUpperCase() === "GTB" && i.coinEx.exchange_coin_name === "BTC" ).price_usd.toFixed( 2 ) : ''} USD</Text>
-
-                            </View>
-
-                            <View style={{ flex: 1, alignItems: 'center' }}>
-                                <Text>GTB/ETH</Text>
-                                <Text style={{
-                                    fontSize: 16,
-                                    fontWeight: 'bold',
-                                    color: this.props.marketList && this.props.marketList.find( i => i.coinEx.coin_name.toUpperCase() === "GTB" && i.coinEx.exchange_coin_name === "ETH" ).market.change_rate < 0 ? 'red' : 'green'
-                                }}>{this.props.marketList ? this.props.marketList.find( i => i.coinEx.coin_name.toUpperCase() === "GTB" && i.coinEx.exchange_coin_name === "ETH" ).market.last_price : ''}</Text>
-                                <Text
-                                    style={{ color: this.props.marketList.find( i => i.coinEx.coin_name.toUpperCase() === "GTB" && i.coinEx.exchange_coin_name === "ETH" ).market.change_rate < 0 ? 'red' : 'green' }}>{this.props.marketList.length == 0 ? '' : ( this.props.marketList[ 2 ].market.change_rate * 100 ).toFixed( 2 )}%</Text>
-                                <Text> ≈{this.props.marketList ? this.props.marketList.find( i => i.coinEx.coin_name.toUpperCase() === "GTB" && i.coinEx.exchange_coin_name === "ETH" ).price_usd.toFixed( 2 ) : ''} USD</Text>
-                            </View>
-
+                                mainTradePair.map( pair => {
+                                    if ( pair ) {
+                                        return (
+                                            <View style={{ flex: 1, alignItems: 'center' }}>
+                                                <Text>{pair.coinEx.coin_name + '/' + pair.coinEx.exchange_coin_name}</Text>
+                                                <Text style={{
+                                                    fontSize: 16,
+                                                    fontWeight: 'bold',
+                                                    color: pair.market.change_rate < 0 ? 'red' : 'green'
+                                                }}>{pair ? pair.market.last_price : ''}</Text>
+                                                <Text
+                                                    style={{ color: pair.market.change_rate < 0 ? 'red' : 'green' }}>
+                                                    {pair ? ( pair.market.change_rate * 100 ).toFixed( 2 ) + '%' : null}
+                                                </Text>
+                                                <Text> ≈{pair ? pair.price_usd.toFixed( 2 ) + ' USD' : null} </Text>
+                                            </View>
+                                        )
+                                    }
+                                } )
+                            }
                         </View>
 
                         <View style={{ height: 10, backgroundColor: '#efefef' }}/>
@@ -309,12 +294,6 @@ class HomePageView extends React.Component {
                         <Text style={{ padding: 16, fontSize: 16 }}>{I18n.t( Keys.news )}</Text>
 
                         <FlatList
-                            // refreshControl={
-                            //     <RefreshControl
-                            //         refreshing={this.state.refreshing}
-                            //         onRefresh={this._onRefresh}
-                            //     />
-                            // }
                             data={this.state.newsList}
                             keyExtractor={( item, index ) => {
                                 return 'item ' + index;
@@ -322,9 +301,6 @@ class HomePageView extends React.Component {
                             renderItem={( { item, index } ) => {
                                 return this.renderItem( viewHeight, item, index );
                             }}
-                            // ListHeaderComponent={() => {
-                            //     return this.header();
-                            // }}
                             ItemSeparatorComponent={() => {
                                 return <View
                                     style={[ commonStyles.commonIntervalStyle, { height: separatorHeight } ]}/>;
@@ -341,12 +317,6 @@ class HomePageView extends React.Component {
                         <Text style={{ padding: 16, fontSize: 16 }}>{I18n.t( Keys.announcement )}</Text>
 
                         <FlatList
-                            // refreshControl={
-                            //     <RefreshControl
-                            //         refreshing={this.state.refreshing}
-                            //         onRefresh={this._onRefresh}
-                            //     />
-                            // }
                             data={this.state.announcementList}
                             keyExtractor={( item, index ) => {
                                 return 'item ' + index;
@@ -354,9 +324,6 @@ class HomePageView extends React.Component {
                             renderItem={( { item, index } ) => {
                                 return this.renderItem( viewHeight, item, index );
                             }}
-                            // ListHeaderComponent={() => {
-                            //     return this.header();
-                            // }}
                             ItemSeparatorComponent={() => {
                                 return <View
                                     style={[ commonStyles.commonIntervalStyle, { height: separatorHeight } ]}/>;
@@ -373,6 +340,30 @@ class HomePageView extends React.Component {
                 </ScrollView>
 
                 <Spinner visible={this.state.isRequesting} cancelable={true}/>
+
+                <ConfirmDialog
+                    title={I18n.t( Keys.notification )}
+                    message={I18n.t( Keys.update_now )}
+                    visible={this.state.updateDialogVisible}
+                    onTouchOutside={() => this.setState( { updateDialogVisible: false } )}
+                    positiveButton={{
+                        title: I18n.t( Keys.yes ),
+                        onPress: () => {
+                            this.setState( {
+                                updateDialogVisible: false
+                            } );
+                            this.doUpdate();
+                        }
+                    }}
+                    negativeButton={{
+                        title: I18n.t( Keys.no ),
+                        onPress: () => {
+                            this.setState( {
+                                updateDialogVisible: false
+                            } );
+                        }
+                    }}
+                />
 
             </View>
         );
@@ -428,9 +419,6 @@ class HomePageView extends React.Component {
                         <Text>ETH/BTC</Text>
                         <Text>{this.state.dataSources[ 0 ].market.last_price}</Text>
                         <Text> ≈{this.state.dataSources[ 0 ].price_usd.toFixed( 2 )} USD</Text>
-                        {/*{this.state.dataSources.map(dataSource => <Text>{dataSource.market.last_price}</Text>)}*/}
-
-
                     </View>
 
                     <View style={{ flex: 1, alignItems: 'center' }}>
@@ -470,29 +458,7 @@ class HomePageView extends React.Component {
 
                 </View>
 
-                <ConfirmDialog
-                    title={I18n.t( Keys.notification )}
-                    message={I18n.t( Keys.update_now )}
-                    visible={this.state.updateDialogVisible}
-                    onTouchOutside={() => this.setState( { updateDialogVisible: false } )}
-                    positiveButton={{
-                        title: I18n.t( Keys.yes ),
-                        onPress: () => {
-                            this.setState( {
-                                updateDialogVisible: false
-                            } );
-                            this.doUpdate();
-                        }
-                    }}
-                    negativeButton={{
-                        title: I18n.t( Keys.no ),
-                        onPress: () => {
-                            this.setState( {
-                                updateDialogVisible: false
-                            } );
-                        }
-                    }}
-                />
+
 
             </View>
         )

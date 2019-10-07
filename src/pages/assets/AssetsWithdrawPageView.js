@@ -166,7 +166,6 @@ class AssetsWithdrawPageView extends React.Component {
                                 }
                                 returnKeyType={'next'}
                                 onSubmitEditing={() => {
-                                    // this.passwordInput.focus()
                                 }}
                             />
 
@@ -185,7 +184,6 @@ class AssetsWithdrawPageView extends React.Component {
                                 }
                                 returnKeyType={'next'}
                                 onSubmitEditing={() => {
-                                    // this.passwordInput.focus()
                                 }}
                                 editable={false}
                             />

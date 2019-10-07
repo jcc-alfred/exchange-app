@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from "react-redux";
 import HomePageView from "./HomePageView";
-import { docGetHomeNewsList, exchangeGetMarketList } from "../../actions/ExchangeAction";
+import { exchangeGetMarketList } from "../../actions/ExchangeAction";
+import { docGetHomeNewsList } from "../../actions/DocAction";
 
 const mapStoreToProps = ( store, ownProps ) => {
     return {

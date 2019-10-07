@@ -171,7 +171,6 @@ class BasicUserInfoVerifyPageView extends React.Component {
 
                             <Button
                                 title={"Send"}
-                                type="Send"
                                 type="outline"
                                 style={{ marginStart: 16, marginEnd: 16 }}
                                 onPress={() => {

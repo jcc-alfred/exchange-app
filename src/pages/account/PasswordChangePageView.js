@@ -51,7 +51,6 @@ class PasswordChangePageView extends React.Component {
         return true;
     }
 
-    // todo
     verificationCodeGet() {
         this.setState( {
             isRequesting: true
@@ -91,7 +90,6 @@ class PasswordChangePageView extends React.Component {
         } );
     }
 
-    // todo
     resetPassword() {
 
     }

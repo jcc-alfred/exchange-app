@@ -71,7 +71,8 @@
     "string-format": "^2.0.0",
     "superagent": "^5.1.0",
     "superagent-prefix": "^0.0.2",
-    "url": "^0.11.0"
+    "url": "^0.11.0",
+    "react-navigation-drawer": "latest"
   },
   "devDependencies": {
     "babel-preset-expo": "^7.0.0",

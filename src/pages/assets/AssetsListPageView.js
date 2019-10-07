@@ -51,6 +51,10 @@ class AssetsListPageView extends React.Component {
         };
     };
 
+    static header() {
+        return null;
+    }
+
     componentDidMount() {
         this.loadData()
     }
@@ -108,7 +112,6 @@ class AssetsListPageView extends React.Component {
         this.loadData( false );
     };
 
-
     renderItem( viewHeight, item, index ) {
         return (
             <TouchableHighlight
@@ -134,10 +137,6 @@ class AssetsListPageView extends React.Component {
                 </View>
             </TouchableHighlight>
         );
-    }
-
-    header() {
-        return null;
     }
 
     render() {
@@ -169,18 +168,6 @@ class AssetsListPageView extends React.Component {
                     <Text style={styles.smallGrayFont}>={USD_VALUE.toFixed( 2 )} USD</Text>
                 </View>
                 <View style={{ flexDirection: "row" }}>
-                    {/*<Button*/}
-                    {/*title={I18n.t(Keys.Punching)}*/}
-                    {/*titleStyle={{fontSize: 12}}*/}
-                    {/*style={[{margin: 5}]}*/}
-                    {/*containerStyle={{flex: 1}}*/}
-                    {/*/>*/}
-                    {/*<Button*/}
-                    {/*titleStyle={{fontSize: 12}}*/}
-                    {/*title={I18n.t(Keys.WithDraw)}*/}
-                    {/*containerStyle={{flex: 1}}*/}
-                    {/*style={[{margin: 5}]}*/}
-                    {/*/>*/}
                 </View>
             </View>
         )
@@ -208,7 +195,7 @@ class AssetsListPageView extends React.Component {
                         return this.renderItem( viewHeight, item, index );
                     }}
                     ListHeaderComponent={() => {
-                        return this.header();
+                        return AssetsListPageView.header();
                     }}
                     ItemSeparatorComponent={() => {
                         return <View

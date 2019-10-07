@@ -137,7 +137,6 @@ class Main extends React.Component {
         this.setState( {
             appState: appState,
             previousAppStates: previousAppStates,
-            // deviceCountry: DeviceInfo.getDeviceCountry()
         } );
     }
 

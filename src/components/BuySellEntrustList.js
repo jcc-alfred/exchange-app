@@ -7,7 +7,6 @@ import commonStyles from "../styles/commonStyles";
 import constStyles from "../styles/constStyles";
 import I18n from "../I18n";
 import Keys from "../configs/Keys";
-// import Util from "../util/Util";
 import moment from 'moment'
 import Util from "../util/Util";
 
@@ -22,14 +21,8 @@ class BuySellEntrustList extends React.Component {
         super( props );
     }
 
-    shouldComponentUpdate( nextProps, nextState, nextContext ) {
-        if ( nextProps.data !== this.props.data ) {
-            return true
-        }
-    }
-
-    header( type ) {
-        if ( type.toLowerCase() == 'depth' ) {
+    static header( type ) {
+        if ( type.toLowerCase() === 'depth' ) {
             return (
                 <View style={{ flexDirection: 'row', marginTop: 10, marginBottom: 12 }}>
                     <Text style={{ flex: 1, color: '#9c9a97' }}>
@@ -62,7 +55,7 @@ class BuySellEntrustList extends React.Component {
         )
     }
 
-    renderItem( viewHeight, item, index, type ) {
+    static renderItem( viewHeight, item, index, type ) {
         if ( type.toLowerCase() === 'depth' ) {
             let entrustList = item;
             let buyEntrust = entrustList[ 0 ];
@@ -74,7 +67,6 @@ class BuySellEntrustList extends React.Component {
                             flexDirection: 'row',
                             flex: 1,
                             backgroundColor: '#f0f7f5'
-                            // backgroundColor: constStyles.THEME_COLOR
                         } ]}>
                         {
                             buyEntrust !== {} && (
@@ -153,6 +145,11 @@ class BuySellEntrustList extends React.Component {
         }
     }
 
+    shouldComponentUpdate( nextProps, nextState, nextContext ) {
+        if ( nextProps.data !== this.props.data ) {
+            return true
+        }
+    }
 
     render() {
         const separatorHeight = 0;
@@ -164,10 +161,10 @@ class BuySellEntrustList extends React.Component {
                     return 'item ' + index;
                 }}
                 renderItem={( { item, index } ) => {
-                    return this.renderItem( viewHeight, item, index, this.props.type );
+                    return BuySellEntrustList.renderItem( viewHeight, item, index, this.props.type );
                 }}
                 ListHeaderComponent={() => {
-                    return this.header( this.props.type );
+                    return BuySellEntrustList.header( this.props.type );
                 }}
                 ItemSeparatorComponent={() => {
                     return <View
@@ -240,10 +237,7 @@ const styles = StyleSheet.create( {
     },
 
 
-    smallIconButton: {
-
-        // backgroundColor: '#ddd',
-    },
+    smallIconButton: {},
 
 
     data: {

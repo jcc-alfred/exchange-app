@@ -84,7 +84,6 @@ export function netOtcOrderCreate( entrust_id, coin_amount, callback ) {
         .end( callback );
 }
 
-//error
 export function netOtcOrderPay( order_id, callback ) {
     request
         .post( '/otc/order/pay' )
@@ -97,7 +96,6 @@ export function netOtcOrderPay( order_id, callback ) {
         .end( callback );
 }
 
-//error
 export function netOtcOrderConfirm( order_id, safePass, callback ) {
     request
         .post( '/otc/order/confirm' )
@@ -135,7 +133,6 @@ export function netOtcEntrustCancel( entrust_id, callback ) {
         .end( callback );
 }
 
-//error
 export function netOtcOrderCancel( entrust_id, callback ) {
     request
         .post( '/otc/order/cancel' )

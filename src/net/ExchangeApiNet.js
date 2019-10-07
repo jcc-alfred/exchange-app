@@ -155,7 +155,7 @@ export function netExchangeGetEntrustList( coinExchangeId, callback ) {
 }
 
 
-export function netExchangeEntrustlist( coinExchangeId, callback ) {
+export function netExchangeEntrustList( coinExchangeId, callback ) {
     request
         .post( '/exchange/entrustlist' )
         .send( { coinExchangeId: coinExchangeId } )

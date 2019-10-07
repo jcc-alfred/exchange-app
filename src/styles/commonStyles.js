@@ -2,7 +2,8 @@
  * @class StylesCommon
  * @desc 通用样式
  */
-import React, { Dimensions, StyleSheet } from "react-native";
+import React from 'react';
+import { Dimensions, StyleSheet } from "react-native";
 import constStyles from "./constStyles";
 import Util from "../util/Util";
 
