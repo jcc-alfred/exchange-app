@@ -17,8 +17,8 @@ class AssetsDetailPageView extends React.Component {
     constructor(props) {
         super(props);
         const tabData = [
-            {title: "Deposit", value: []},
-            {title: "Withdraw", value: []}];
+            {title: I18n.t(Keys.deposit), value: []},
+            {title: I18n.t(Keys.withdraw), value: []}];
         const {index, routes, scenes} = this.initTabData(tabData);
 
         this.state = {
@@ -38,7 +38,7 @@ class AssetsDetailPageView extends React.Component {
         const {params} = state;
 
         return {
-            title: "TokenWithdrawHistoryPageView",
+            title: I18n.t(Keys.assets),
             headerBackTitle: null,
         };
     };
@@ -201,7 +201,7 @@ class AssetsDetailPageView extends React.Component {
                                     color={'white'}
                                 />
                             }
-                            title="Deposit"
+                            title={I18n.t(Keys.deposit)}
                             onPress={() => {
                                 this.props.navigation.navigate("AssetsDepositPage", {
                                     assets: this.props.assets
@@ -222,7 +222,7 @@ class AssetsDetailPageView extends React.Component {
                                     color={'white'}
                                 />
                             }
-                            title="Withdraw"
+                            title={I18n.t(Keys.withdraw)}
                             onPress={() => {
                                 this.props.navigation.navigate("AssetsWithdrawPage", {
                                     assets: this.props.assets

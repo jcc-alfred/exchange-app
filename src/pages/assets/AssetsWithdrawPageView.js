@@ -1,11 +1,12 @@
 import React from 'react';
 import { Platform, SafeAreaView, StatusBar, StyleSheet, View } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
-import { Text ,Input, Button} from "react-native-elements";
+import { Button, Input, Text } from "react-native-elements";
 import { BorderlessButton } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
 import I18n from "../../I18n";
 import Keys from "../../configs/Keys";
+import constStyles from "../../styles/constStyles";
 
 class AssetsWithdrawPageView extends React.Component {
 
@@ -15,7 +16,7 @@ class AssetsWithdrawPageView extends React.Component {
         this.state = {
             isRequesting: false,
             coinAddress: '',
-            coinCount:0
+            coinCount: 0
 
 
         }
@@ -27,7 +28,7 @@ class AssetsWithdrawPageView extends React.Component {
         const { params } = state;
 
         return {
-            title: "TokenWithdrawPageView",
+            title: I18n.t( Keys.withdraw ),
             headerBackTitle: null,
             headerRight: (
                 <View style={[ { flexDirection: 'row' } ]}>
@@ -37,7 +38,7 @@ class AssetsWithdrawPageView extends React.Component {
                         <Ionicons
                             name="md-time"
                             size={Platform.OS === 'ios' ? 22 : 25}
-                            color={'white'}
+                            color={constStyles.THEME_COLOR}
                         />
                     </BorderlessButton>
                 </View>
@@ -75,10 +76,10 @@ class AssetsWithdrawPageView extends React.Component {
                     {/*{this.renderInfoView()}*/}
 
                     <Button
-                        title={I18n.t( Keys.Confirm)}
-                        titleStyle={{fontSize:12}}
-                        style={[{margin:5}]}
-                        containerStyle={{flex:1,marginLeft:40,marginRight:40,marginTop:40}}
+                        title={I18n.t( Keys.Confirm )}
+                        titleStyle={{ fontSize: 12 }}
+                        style={[ { margin: 5 } ]}
+                        containerStyle={{ flex: 1, marginLeft: 40, marginRight: 40, marginTop: 40 }}
                     />
 
                 </SafeAreaView>
@@ -87,24 +88,23 @@ class AssetsWithdrawPageView extends React.Component {
     }
 
 
-
-    renderCoinChoose(){
+    renderCoinChoose() {
         return (
-            <View style={{backgroundColor:'#f6f6f8',margin:15, flexDirection:'row'}}>
-                <Text style={{padding:7, fontSize:16, flex:1.5}}>{this.props.assets.coin_name}</Text>
+            <View style={{ backgroundColor: '#f6f6f8', margin: 15, flexDirection: 'row' }}>
+                <Text style={{ padding: 7, fontSize: 16, flex: 1.5 }}>{this.props.assets.coin_name}</Text>
             </View>
         );
     }
 
-    renderCoinAddressChoose(){
+    renderCoinAddressChoose() {
         return (
-            <View style={{ marginTop:10,marginLeft:5,marginRight:5}}>
+            <View style={{ marginTop: 10, marginLeft: 5, marginRight: 5 }}>
                 <Input
                     style={[ commonStyles.wrapper ]}
                     leftIconContainerStyle={[ commonStyles.pdr_normal, { paddingLeft: 0, marginLeft: 0 } ]}
                     value={this.state.coinAddress}
                     onChangeText={( text ) => this.setState( { coinAddress: text } )}
-                    label={I18n.t( Keys.coin_address)}
+                    label={I18n.t( Keys.coin_address )}
                     errorStyle={{ color: 'red' }}
                     errorMessage={
                         this.state.showError && ( !this.state.coinAddress || this.state.coinAddress.length <= 0 ) ?
@@ -129,45 +129,42 @@ class AssetsWithdrawPageView extends React.Component {
     // "email_verification_code":"Email verification code"
 
 
-
-
-
-    renderCoinCountInput(){
-            return (
-                <View style={{ marginTop:10,marginLeft:5,marginRight:5}}>
-                    <Input
-                        style={[ commonStyles.wrapper ]}
-                        leftIconContainerStyle={[ commonStyles.pdr_normal, { paddingLeft: 0, marginLeft: 0 } ]}
-                        value={this.state.coinAddress}
-                        onChangeText={( text ) => this.setState( { coinAddress: text } )}
-                        label={I18n.t( Keys.Amount)}
-                        errorStyle={{ color: 'red' }}
-                        errorMessage={
-                            this.state.showError && ( !this.state.coinAddress || this.state.coinAddress.length <= 0 ) ?
-                                "Please input coin address"
-                                :
-                                null
-                        }
-                        returnKeyType={'next'}
-                        onSubmitEditing={() => {
-                            // this.passwordInput.focus()
-                        }}
-                    />
-
-                </View>
-            );
-    }
-
-
-    renderFeeView(){
+    renderCoinCountInput() {
         return (
-            <View style={{ marginTop:10,marginLeft:5,marginRight:5}}>
+            <View style={{ marginTop: 10, marginLeft: 5, marginRight: 5 }}>
                 <Input
                     style={[ commonStyles.wrapper ]}
                     leftIconContainerStyle={[ commonStyles.pdr_normal, { paddingLeft: 0, marginLeft: 0 } ]}
                     value={this.state.coinAddress}
                     onChangeText={( text ) => this.setState( { coinAddress: text } )}
-                    label={I18n.t( Keys.Processing_fee)}
+                    label={I18n.t( Keys.Amount )}
+                    errorStyle={{ color: 'red' }}
+                    errorMessage={
+                        this.state.showError && ( !this.state.coinAddress || this.state.coinAddress.length <= 0 ) ?
+                            "Please input coin address"
+                            :
+                            null
+                    }
+                    returnKeyType={'next'}
+                    onSubmitEditing={() => {
+                        // this.passwordInput.focus()
+                    }}
+                />
+
+            </View>
+        );
+    }
+
+
+    renderFeeView() {
+        return (
+            <View style={{ marginTop: 10, marginLeft: 5, marginRight: 5 }}>
+                <Input
+                    style={[ commonStyles.wrapper ]}
+                    leftIconContainerStyle={[ commonStyles.pdr_normal, { paddingLeft: 0, marginLeft: 0 } ]}
+                    value={this.state.coinAddress}
+                    onChangeText={( text ) => this.setState( { coinAddress: text } )}
+                    label={I18n.t( Keys.Processing_fee )}
                     errorStyle={{ color: 'red' }}
                     errorMessage={
                         this.state.showError && ( !this.state.coinAddress || this.state.coinAddress.length <= 0 ) ?
@@ -185,15 +182,15 @@ class AssetsWithdrawPageView extends React.Component {
     }
 
 
-    renderEmailView(){
+    renderEmailView() {
         return (
-            <View style={{ marginTop:10,marginLeft:5,marginRight:5, flexDirection:'row'}}>
+            <View style={{ marginTop: 10, marginLeft: 5, marginRight: 5, flexDirection: 'row' }}>
                 <Input
                     style={[ commonStyles.wrapper ]}
                     leftIconContainerStyle={[ commonStyles.pdr_normal, { paddingLeft: 0, marginLeft: 0 } ]}
                     value={this.state.coinAddress}
                     onChangeText={( text ) => this.setState( { coinAddress: text } )}
-                    label={I18n.t( Keys.email_verification_code)}
+                    label={I18n.t( Keys.email_verification_code )}
                     errorStyle={{ color: 'red' }}
                     errorMessage={
                         this.state.showError && ( !this.state.coinAddress || this.state.coinAddress.length <= 0 ) ?
@@ -205,13 +202,13 @@ class AssetsWithdrawPageView extends React.Component {
                     onSubmitEditing={() => {
                         // this.passwordInput.focus()
                     }}
-                    containerStyle={{flex:3}}
+                    containerStyle={{ flex: 3 }}
                 />
                 <Button
-                    title={I18n.t( Keys.get_email_msg)}
-                    titleStyle={{fontSize:12}}
-                    style={[{margin:5}]}
-                    containerStyle={{flex:1}}
+                    title={I18n.t( Keys.get_email_msg )}
+                    titleStyle={{ fontSize: 12 }}
+                    style={[ { margin: 5 } ]}
+                    containerStyle={{ flex: 1 }}
                     type="outline"
                 />
             </View>
@@ -219,15 +216,15 @@ class AssetsWithdrawPageView extends React.Component {
     }
 
 
-    renderPassword(){
-        return(
-            <View style={{ marginTop:10,marginLeft:5,marginRight:5}}>
+    renderPassword() {
+        return (
+            <View style={{ marginTop: 10, marginLeft: 5, marginRight: 5 }}>
                 <Input
                     style={[ commonStyles.wrapper ]}
                     leftIconContainerStyle={[ commonStyles.pdr_normal, { paddingLeft: 0, marginLeft: 0 } ]}
                     value={this.state.coinAddress}
                     onChangeText={( text ) => this.setState( { coinAddress: text } )}
-                    label={I18n.t( Keys.password)}
+                    label={I18n.t( Keys.password )}
                     errorStyle={{ color: 'red' }}
                     errorMessage={
                         this.state.showError && ( !this.state.coinAddress || this.state.coinAddress.length <= 0 ) ?
@@ -244,28 +241,11 @@ class AssetsWithdrawPageView extends React.Component {
         );
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    renderInfoView(){
+    renderInfoView() {
         return (
-            <View style={{margin:10, backgroundColor:'#f7f6f9',height:200}}><Text>到账数量  0.0000 ETH</Text></View>
+            <View style={{ margin: 10, backgroundColor: '#f7f6f9', height: 200 }}><Text>到账数量 0.0000 ETH</Text></View>
         );
     }
-
-
 
 
 }
