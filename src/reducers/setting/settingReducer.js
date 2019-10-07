@@ -23,6 +23,4 @@ export default function settingReducer( state = initialState, action ) {
         default:
             return state;
     }
-
-    return state;
 }

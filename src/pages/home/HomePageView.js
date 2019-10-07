@@ -280,7 +280,7 @@ class HomePageView extends React.Component {
                                     color: this.props.marketList && this.props.marketList.find( i => i.coinEx.coin_name.toUpperCase() === "GTB" && i.coinEx.exchange_coin_name === "BTC" ).market.change_rate < 0 ? 'red' : 'green'
                                 }}>{this.props.marketList ? this.props.marketList.find( i => i.coinEx.coin_name.toUpperCase() === "GTB" && i.coinEx.exchange_coin_name === "BTC" ).market.last_price : ''}</Text>
                                 <Text
-                                    style={{ color: this.props.marketList.find( i => i.coinEx.coin_name.toUpperCase() === "GTB" && i.coinEx.exchange_coin_name === "BTC" ).market.change_rate < 0 ? 'red' : 'green' }}>{this.props.marketList.length == 0 ? '' : ( this.props.marketList[ 1 ].market.change_rate * 100 ).toFixed( 2 )}%</Text>
+                                    style={{ color: this.props.marketList.find( i => i.coinEx.coin_name.toUpperCase() === "GTB" && i.coinEx.exchange_coin_name === "BTC" ).market.change_rate < 0 ? 'red' : 'green' }}>{this.props.marketList.length === 0 ? '' : ( this.props.marketList[ 1 ].market.change_rate * 100 ).toFixed( 2 )}%</Text>
                                 <Text> ≈{this.props.marketList ? this.props.marketList.find( i => i.coinEx.coin_name.toUpperCase() === "GTB" && i.coinEx.exchange_coin_name === "BTC" ).price_usd.toFixed( 2 ) : ''} USD</Text>
 
                             </View>
@@ -293,7 +293,7 @@ class HomePageView extends React.Component {
                                     color: this.props.marketList && this.props.marketList.find( i => i.coinEx.coin_name.toUpperCase() === "GTB" && i.coinEx.exchange_coin_name === "ETH" ).market.change_rate < 0 ? 'red' : 'green'
                                 }}>{this.props.marketList ? this.props.marketList.find( i => i.coinEx.coin_name.toUpperCase() === "GTB" && i.coinEx.exchange_coin_name === "ETH" ).market.last_price : ''}</Text>
                                 <Text
-                                    style={{ color: this.props.marketList.find( i => i.coinEx.coin_name.toUpperCase() === "GTB" && i.coinEx.exchange_coin_name === "ETH" ).market.change_rate < 0 ? 'red' : 'green' }}>{this.props.marketList.length == 0 ? '' : ( this.props.marketList[ 2 ].market.change_rate * 100 ).toFixed( 2 )}%</Text>
+                                    style={{ color: this.props.marketList.find( i => i.coinEx.coin_name.toUpperCase() === "GTB" && i.coinEx.exchange_coin_name === "ETH" ).market.change_rate < 0 ? 'red' : 'green' }}>{this.props.marketList.length === 0 ? '' : ( this.props.marketList[ 2 ].market.change_rate * 100 ).toFixed( 2 )}%</Text>
                                 <Text> ≈{this.props.marketList ? this.props.marketList.find( i => i.coinEx.coin_name.toUpperCase() === "GTB" && i.coinEx.exchange_coin_name === "ETH" ).price_usd.toFixed( 2 ) : ''} USD</Text>
                             </View>
 
