@@ -74,9 +74,8 @@ class HomePageView extends React.Component {
     }
 
     componentWillUnmount() {
-
+        this.interval && clearInterval(this.interval);
         this.setState = ( state, callback ) => {
-
         };
     }
 
@@ -123,7 +122,7 @@ class HomePageView extends React.Component {
         } );
 
         try {
-            setInterval( async () => {
+            this.interval = setInterval( async () => {
                 InteractionManager.runAfterInteractions( () => {
                     this.props.onExchangeGetMarketList( ( error, resBody ) => {
                         if ( error ) {
