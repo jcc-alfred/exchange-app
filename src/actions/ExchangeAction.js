@@ -16,7 +16,6 @@ import {
     netExchangeLastPrice
 } from "../net/ExchangeApiNet";
 import metaActionTypes from "../reducers/meta/metaActionTypes";
-import { netDocGetHomeNewsList } from "../net/DocApiNet";
 
 
 export function exchangeGetMarketList( callback ) {
