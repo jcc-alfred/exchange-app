@@ -35,6 +35,7 @@
   "changerate": "涨幅",
   "chooseCoinType": "选择币种",
   "choose_photo": "相册",
+  "choose_video": "选择",
   "coin_address": "代币地址",
   "copy_coin_address": "复制充值地址",
   "copy_success": "复制成功",
@@ -978,6 +979,7 @@
   "sign_up": " 注册",
   "status": "状态",
   "take_photo": "拍照",
+  "take_video": "录制",
   "telegram_group": "Telegram群",
   "time": "时间",
   "topUp_Coin_address": "充值地址",
@@ -989,7 +991,5 @@
   "volume": "量",
   "withdraw": "提现",
   "withdraw_history": "提现历史",
-  "yes": "确定",
-  "choose_video": "选择",
-  "take_video": "录制"
+  "yes": "确定"
 }
