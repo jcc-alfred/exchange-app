@@ -35,6 +35,7 @@ class HomePageView extends React.Component {
             newsList: [],
             announcementList: [],
             refreshing: false,
+            updateDialogVisible:false
         }
     }
 
@@ -340,6 +341,30 @@ class HomePageView extends React.Component {
 
                 <Spinner visible={this.state.isRequesting} cancelable={true}/>
 
+                <ConfirmDialog
+                    title={I18n.t( Keys.notification )}
+                    message={I18n.t( Keys.update_now )}
+                    visible={this.state.updateDialogVisible}
+                    onTouchOutside={() => this.setState( { updateDialogVisible: false } )}
+                    positiveButton={{
+                        title: I18n.t( Keys.yes ),
+                        onPress: () => {
+                            this.setState( {
+                                updateDialogVisible: false
+                            } );
+                            this.doUpdate();
+                        }
+                    }}
+                    negativeButton={{
+                        title: I18n.t( Keys.no ),
+                        onPress: () => {
+                            this.setState( {
+                                updateDialogVisible: false
+                            } );
+                        }
+                    }}
+                />
+
             </View>
         );
     }
@@ -433,29 +458,7 @@ class HomePageView extends React.Component {
 
                 </View>
 
-                <ConfirmDialog
-                    title={I18n.t( Keys.notification )}
-                    message={I18n.t( Keys.update_now )}
-                    visible={this.state.updateDialogVisible}
-                    onTouchOutside={() => this.setState( { updateDialogVisible: false } )}
-                    positiveButton={{
-                        title: I18n.t( Keys.yes ),
-                        onPress: () => {
-                            this.setState( {
-                                updateDialogVisible: false
-                            } );
-                            this.doUpdate();
-                        }
-                    }}
-                    negativeButton={{
-                        title: I18n.t( Keys.no ),
-                        onPress: () => {
-                            this.setState( {
-                                updateDialogVisible: false
-                            } );
-                        }
-                    }}
-                />
+
 
             </View>
         )
