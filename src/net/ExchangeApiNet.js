@@ -155,7 +155,7 @@ export function netExchangeGetEntrustList( coinExchangeId, callback ) {
 }
 
 
-export function netExchangeEntrustlist( coinExchangeId, callback ) {
+export function netExchangeEntrustList( coinExchangeId, callback ) {
     request
         .post( '/exchange/entrustlist' )
         .send( { coinExchangeId: coinExchangeId } )
@@ -193,7 +193,7 @@ export function netExchangeDoEntrust( query, callback ) {
         .end( callback );
 }
 
-export function netExchangeGetUserEntrustlist( query, callback ) {
+export function netExchangeGetUserEntrustList( query, callback ) {
     request
         .post( '/exchange/getUserEntrustList' )
         .send( {} )
@@ -205,7 +205,7 @@ export function netExchangeGetUserEntrustlist( query, callback ) {
         .end( callback );
 }
 
-export function netExchangeGetUserHistoryEntrustlist( query, callback ) {
+export function netExchangeGetUserHistoryEntrustList( query, callback ) {
     request
         .post( '/exchange/getUserHistoryEntrustList' )
         .send( {} )

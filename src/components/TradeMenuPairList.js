@@ -63,9 +63,6 @@ class TradeMenuPairList extends React.Component {
                         <Text>
                             {item.coinEx.coin_name}/{item.coinEx.exchange_coin_name}
                         </Text>
-                        {/*<Text style={{fontSize: 8}}>*/}
-                        {/*24{I18n.t(Keys.volume)} {Util.toMoneyDisplay(item.market.total_volume)}*/}
-                        {/*</Text>*/}
                     </View>
 
                     <View style={{ flex: 1 }}>
@@ -76,20 +73,6 @@ class TradeMenuPairList extends React.Component {
                             ${Util.toMoneyDisplay( item.price_usd )}
                         </Text>
                     </View>
-
-
-                    {/*<View style={{flex: 1, alignItems: 'center'}}>*/}
-                    {/*<View style={{*/}
-                    {/*backgroundColor: item.market.change_rate > 0 ? 'green' : 'red',*/}
-                    {/*width: '60%',*/}
-                    {/*alignItems: 'center',*/}
-                    {/*}}>*/}
-                    {/*<Text style={{color: 'white'}}>*/}
-                    {/*{Util.numtoPercentage(item.market.change_rate)}*/}
-                    {/*</Text>*/}
-                    {/*</View>*/}
-
-                    {/*</View>*/}
                 </View>
             </TouchableHighlight>
         );
@@ -101,12 +84,6 @@ class TradeMenuPairList extends React.Component {
         const viewHeight = 110;
         return (
             <FlatList
-                // refreshControl={
-                //     <RefreshControl
-                //         refreshing={this.props.refreshing}
-                //         onRefresh={() => this.props.onRefresh()}
-                //     />
-                // }
                 data={this.props.data && this.props.data.marketList ?
                     this.props.data.marketList.filter( i => i.coinEx.coin_exchange_area_id === this.props.data.coin_exchange_area_id ) : []}
                 keyExtractor={( item, index ) => {
@@ -115,9 +92,6 @@ class TradeMenuPairList extends React.Component {
                 renderItem={( { item, index } ) => {
                     return this.renderItem( viewHeight, item, index );
                 }}
-                // ListHeaderComponent={() => {
-                //     return this.header();
-                // }}
                 ItemSeparatorComponent={() => {
                     return <View
                         style={[ commonStyles.commonIntervalStyle, { height: separatorHeight } ]}/>;

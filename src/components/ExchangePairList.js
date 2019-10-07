@@ -85,7 +85,7 @@ class ExchangePairList extends React.Component {
                             alignItems: 'center',
                         }}>
                             <Text style={{ color: 'white' }}>
-                                {Util.numtoPercentage( item.market.change_rate )}
+                                {Util.numToPercentage( item.market.change_rate )}
                             </Text>
                         </View>
 

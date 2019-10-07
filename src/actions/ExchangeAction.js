@@ -3,7 +3,7 @@ import {
     netExchangeDoBatchEntrust,
     netExchangeDoCancelEntrust,
     netExchangeDoEntrust,
-    netExchangeEntrustlist,
+    netExchangeEntrustList,
     netExchangeGetCoinExchangeAreaList,
     netExchangeGetCoinExchangeList,
     netExchangeGetCoinList,
@@ -11,8 +11,8 @@ import {
     netExchangeGetIsExchangeSafe,
     netExchangeGetMarketList,
     netExchangeGetUserDepositListByCoinId,
-    netExchangeGetUserEntrustlist,
-    netExchangeGetUserHistoryEntrustlist,
+    netExchangeGetUserEntrustList,
+    netExchangeGetUserHistoryEntrustList,
     netExchangeGetUserWithdrawListByCoinId,
     netExchangeLastPrice
 } from "../net/ExchangeApiNet";
@@ -36,12 +36,12 @@ export function exchangeGetMarketList( callback ) {
     };
 }
 
-export function exchangeUpdateMarketList( marketlist ) {
+export function exchangeUpdateMarketList( marketList ) {
     return ( dispatch ) => {
         dispatch(
             {
                 type: metaActionTypes.MARKET_LIST,
-                data: marketlist
+                data: marketList
             }
         )
     };
@@ -139,9 +139,9 @@ export function exchangeGetEntrustList( coinExchangeId, callback ) {
 }
 
 
-export function exchangeEntrustlist( coinExchangeId, callback ) {
+export function exchangeEntrustList( coinExchangeId, callback ) {
     return ( dispatch ) => {
-        netExchangeEntrustlist( coinExchangeId, ( err, res ) => {
+        netExchangeEntrustList( coinExchangeId, ( err, res ) => {
             callback && callback( err, res )
         } );
     };
@@ -186,7 +186,7 @@ export function exchangeDoBatchEntrust( query, callback ) {
 
 export function exchangeGetUserHistoryEntrustList( callback ) {
     return ( dispatch ) => {
-        netExchangeGetUserHistoryEntrustlist( ( err, res ) => {
+        netExchangeGetUserHistoryEntrustList( ( err, res ) => {
             callback && callback( err, res )
         } );
     };
@@ -194,7 +194,7 @@ export function exchangeGetUserHistoryEntrustList( callback ) {
 
 export function exchangeGetUserEntrustList( callback ) {
     return ( dispatch ) => {
-        netExchangeGetUserEntrustlist( ( err, res ) => {
+        netExchangeGetUserEntrustList( ( err, res ) => {
             callback && callback( err, res )
         } );
     };

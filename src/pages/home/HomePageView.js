@@ -216,7 +216,7 @@ class HomePageView extends React.Component {
                     <View>
                         <View style={styles.welcomeContainer}>
 
-                            <ImageBackground source={require( '../../../assets/images/baner-image.png' )}
+                            <ImageBackground source={require( '../../../assets/images/banner-image.png' )}
                                              style={styles.welcomeImage}>
                                 <View style={{
                                     top: 10,

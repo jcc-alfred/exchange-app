@@ -58,7 +58,7 @@ class AssetsDepositPageView extends React.Component {
                     <ScrollView style={[ commonStyles.wrapper ]}>
                         <View>
                             {this.renderCoinChoose()}
-                            {this.renderQRcodeView()}
+                            {this.renderQRCodeView()}
 
                             {/*<QRCode value="Hello, World!"/>*/}
                         </View>
@@ -88,7 +88,7 @@ class AssetsDepositPageView extends React.Component {
     }
 
 
-    renderQRcodeView() {
+    renderQRCodeView() {
         return (
             <View style={{
                 backgroundColor: '#f6f6f8',

@@ -164,7 +164,6 @@ class TradePageView extends React.Component {
                                 isSafePassModalShow: true,
                                 entrustTypeIdClicked: entrustTypeId
                             } )
-                            //prompt safepass input modal
                         }
 
                     } else {
@@ -196,7 +195,7 @@ class TradePageView extends React.Component {
 
     doCancelEntrust( entrust ) {
         InteractionManager.runAfterInteractions( () => {
-            this.props.onexchangeDoCancelEntrust( {
+            this.props.onExchangeDoCancelEntrust( {
                 "entrustId": entrust.entrust_id,
                 "coinExchangeId": entrust.coin_exchange_id,
                 "entrustTypeId": entrust.entrust_type_id,
@@ -238,7 +237,7 @@ class TradePageView extends React.Component {
         }
     }
 
-    renderdoEntrustView( type = 'buy' ) {
+    renderDoEntrustView( type = 'buy' ) {
         let Asset = '--';
         if ( this.state.userAssets ) {
             if ( type === 'buy' ) {
@@ -325,8 +324,8 @@ class TradePageView extends React.Component {
                         }}>{I18n.t( "Fixed Entrust" )}</Text>
                 </View>
                 <View style={{ flexDirection: 'row' }}>
-                    {this.renderdoEntrustView( 'buy' )}
-                    {this.renderdoEntrustView( 'sell' )}
+                    {this.renderDoEntrustView( 'buy' )}
+                    {this.renderDoEntrustView( 'sell' )}
                 </View>
                 <View
                     style={[ commonStyles.commonIntervalStyle, { height: 10 } ]}/>
@@ -460,7 +459,7 @@ class TradePageView extends React.Component {
                         {this.props.TradePageCoinEx ? this.props.TradePageCoinEx.coinEx.coin_name + '/' + this.props.TradePageCoinEx.coinEx.exchange_coin_name : ''}
                     </Text>
                     <Text style={[ styles.smallRedFont ]}>
-                        {this.props.TradePageCoinEx ? Util.numtoPercentage( this.props.TradePageCoinEx.market.change_rate ) : null}
+                        {this.props.TradePageCoinEx ? Util.numToPercentage( this.props.TradePageCoinEx.market.change_rate ) : null}
                     </Text>
                 </View>
                 <View style={[ { flexDirection: 'row', flex: 1 } ]}>

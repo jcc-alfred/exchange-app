@@ -7,7 +7,7 @@ const Util = {
         return pxValue / PixelRatio.get();
     },
 
-    numtoPercentage: function ( value ) {
+    numToPercentage: function ( value ) {
         return ( value * 100 ).toFixed( 2 ) + '%'
     },
 

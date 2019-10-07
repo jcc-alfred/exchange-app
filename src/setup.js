@@ -50,7 +50,7 @@ async function loadResourcesAsync() {
             require( '../assets/images/qr_code.png' ),
             require( '../assets/images/klineIcon.png' ),
             require( '../assets/images/asiaedx_logo.png' ),
-            require( '../assets/images/baner-image.png' ),
+            require( '../assets/images/banner-image.png' ),
 
         ] ),
         Font.loadAsync( {
