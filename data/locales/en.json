@@ -917,6 +917,7 @@
     }
   },
   "country_title": "country",
+  "date": "Date",
   "delete": "Delete",
   "deposit": "deposit",
   "deposit_history": "Top-up history",
@@ -977,14 +978,12 @@
   "time": "Time",
   "topUp_Coin_address": "top up coin address",
   "trade": "transaction",
+  "type": "Type",
   "update_now": "Update now",
   "value": "Value",
   "verify_code": "Verification code",
   "volume": "volume",
   "withdraw": "withdraw",
   "withdraw_history": "Cash withdrawal history",
-  "yes": "determine"
-  "yes": "determine",
-  "date": "Date",
-  "type": "Type"
+  "yes": "Yes"
 }

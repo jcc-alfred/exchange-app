@@ -917,6 +917,7 @@
     }
   },
   "country_title": "国家",
+  "date": "日期",
   "delete": "删除",
   "deposit": "存款",
   "deposit_history": "充值历史",
@@ -977,6 +978,7 @@
   "time": "时间",
   "topUp_Coin_address": "充值地址",
   "trade": "交易",
+  "type": "类型",
   "update_now": "现在更新",
   "value": "价值",
   "verify_code": "验证码",
@@ -984,7 +986,4 @@
   "withdraw": "提现",
   "withdraw_history": "提现历史",
   "yes": "确定"
-  "yes": "确定",
-  "date": "日期",
-  "type": "类型"
 }
