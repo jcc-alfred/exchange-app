@@ -193,6 +193,29 @@ export function netExchangeDoEntrust(query, callback) {
         .end(callback);
 }
 
+export function netExchangeGetUserEntrustlist(query, callback) {
+    request
+        .post('/exchange/getUserEntrustList')
+        .send({})
+        .use(superagent_prefix(env.apiDomain))
+        .use(logger)
+        .authRequest()
+        .headerRequest()
+        .apiDomainParse()
+        .end(callback);
+}
+
+export function netExchangeGetUserHistoryEntrustlist(query, callback) {
+    request
+        .post('/exchange/getUserHistoryEntrustList')
+        .send({})
+        .use(superagent_prefix(env.apiDomain))
+        .use(logger)
+        .authRequest()
+        .headerRequest()
+        .apiDomainParse()
+        .end(callback);
+}
 
 export function netExchangeDoCancelEntrust(query, callback) {
     request

@@ -750,6 +750,7 @@ const Keys = {
     "select_country": "select_country",
     "sellAmount": "sellAmount",
     "settings": "settings",
+    "ExchangeAmount": "Exchange Amount",
     "sign_up": "sign_up",
     "status": "status",
     "take_photo": "take_photo",

@@ -10,6 +10,8 @@ import {
     netExchangeGetEntrustList,
     netExchangeGetIsExchangeSafe,
     netExchangeGetMarketList,
+    netExchangeGetUserDepositListByCoinId, netExchangeGetUserEntrustlist, netExchangeGetUserHistoryEntrustlist, netExchangeGetUserWithdrawListByCoinId,
+
     netExchangeGetUserDepositListByCoinId,
     netExchangeGetUserWithdrawListByCoinId,
     netExchangeLastPrice
@@ -181,11 +183,35 @@ export function exchangeDoBatchEntrust( query, callback ) {
     };
 }
 
+
+export function exchangeGetUserHistoryEntrustList(callback) {
+    return (dispatch) => {
+        netExchangeGetUserHistoryEntrustlist((err, res) => {
+            callback && callback(err, res)
+        });
+    };
+}
+
+export function exchangeGetUserEntrustList(callback) {
+    return (dispatch) => {
+        netExchangeGetUserEntrustlist((err, res) => {
+            callback && callback(err, res)
+        });
+    };
+}
+
+export function docGetHomeNewsList(query, callback) {
+    return (dispatch) => {
+        netDocGetHomeNewsList(query, (err, res) => {
+            callback && callback(err, res)
+        });
+
 export function docGetHomeNewsList( query, callback ) {
     return ( dispatch ) => {
         netDocGetHomeNewsList( query, ( err, res ) => {
             callback && callback( err, res )
         } );
+
     };
 }
 
