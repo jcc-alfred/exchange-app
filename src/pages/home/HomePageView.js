@@ -74,7 +74,7 @@ class HomePageView extends React.Component {
     }
 
     componentWillUnmount() {
-        this.interval && clearInterval(this.interval);
+        this.interval && clearInterval( this.interval );
         this.setState = ( state, callback ) => {
         };
     }
@@ -176,7 +176,8 @@ class HomePageView extends React.Component {
                 }
             } )
             .catch( err => {
-
+                // console.log( err.message )
+                Toast.show( err.message )
             } )
     }
 
@@ -192,7 +193,7 @@ class HomePageView extends React.Component {
                     } );
             } )
             .catch( err => {
-
+                Toast.show( err.message )
             } );
     }
 
@@ -204,11 +205,10 @@ class HomePageView extends React.Component {
             return <Text>Loading...</Text>
         }
 
-        const EHT_BTC = this.props.marketList ? this.props.marketList.find(i => i.coinEx.coin_name.toUpperCase() === "ETH" && i.coinEx.exchange_coin_name.toUpperCase() === "BTC") : null;
-        const GTB_BTC = this.props.marketList ? this.props.marketList.find(i => i.coinEx.coin_name.toUpperCase() === "GTB" && i.coinEx.exchange_coin_name.toUpperCase() === "BTC") : null;
-        const GTB_ETH = this.props.marketList ? this.props.marketList.find(i => i.coinEx.coin_name.toUpperCase() === "GTB" && i.coinEx.exchange_coin_name.toUpperCase() === "ETH") : null;
-        const mainTradePair=[EHT_BTC,GTB_BTC,GTB_ETH];
-
+        const EHT_BTC = this.props.marketList ? this.props.marketList.find( i => i.coinEx.coin_name.toUpperCase() === "ETH" && i.coinEx.exchange_coin_name.toUpperCase() === "BTC" ) : null;
+        const GTB_BTC = this.props.marketList ? this.props.marketList.find( i => i.coinEx.coin_name.toUpperCase() === "GTB" && i.coinEx.exchange_coin_name.toUpperCase() === "BTC" ) : null;
+        const GTB_ETH = this.props.marketList ? this.props.marketList.find( i => i.coinEx.coin_name.toUpperCase() === "GTB" && i.coinEx.exchange_coin_name.toUpperCase() === "ETH" ) : null;
+        const mainTradePair = [ EHT_BTC, GTB_BTC, GTB_ETH ];
 
 
         return (
@@ -235,13 +235,13 @@ class HomePageView extends React.Component {
                                         fontSize: 20,
                                         color: 'white',
                                         alignItems: 'flex-start'
-                                    }}>{I18n.t(Keys.join_our)}</Text>
+                                    }}>{I18n.t( Keys.join_our )}</Text>
                                     <Text style={{
                                         fontSize: 20,
                                         color: 'white',
                                         alignItems: 'flex-start',
                                         marginTop: 5
-                                    }}>{I18n.t(Keys.telegram_group)}</Text>
+                                    }}>{I18n.t( Keys.telegram_group )}</Text>
                                     <Text style={{
                                         fontSize: 16,
                                         color: 'white',
@@ -262,25 +262,25 @@ class HomePageView extends React.Component {
                             }}>
                             {
 
-                                mainTradePair.map(pair=>{
-                                    if(pair){
-                                        return(
-                                            <View style={{flex: 1, alignItems: 'center'}}>
-                                                <Text>{pair.coinEx.coin_name+'/' +pair.coinEx.exchange_coin_name}</Text>
+                                mainTradePair.map( pair => {
+                                    if ( pair ) {
+                                        return (
+                                            <View style={{ flex: 1, alignItems: 'center' }}>
+                                                <Text>{pair.coinEx.coin_name + '/' + pair.coinEx.exchange_coin_name}</Text>
                                                 <Text style={{
                                                     fontSize: 16,
                                                     fontWeight: 'bold',
                                                     color: pair.market.change_rate < 0 ? 'red' : 'green'
                                                 }}>{pair ? pair.market.last_price : ''}</Text>
                                                 <Text
-                                                    style={{color: pair.market.change_rate < 0 ? 'red' : 'green'}}>
-                                                    {pair ? (pair.market.change_rate * 100).toFixed(2) + '%' : null}
+                                                    style={{ color: pair.market.change_rate < 0 ? 'red' : 'green' }}>
+                                                    {pair ? ( pair.market.change_rate * 100 ).toFixed( 2 ) + '%' : null}
                                                 </Text>
-                                                <Text> ≈{pair ? pair.price_usd.toFixed(2) + ' USD' : null} </Text>
+                                                <Text> ≈{pair ? pair.price_usd.toFixed( 2 ) + ' USD' : null} </Text>
                                             </View>
                                         )
                                     }
-                                })
+                                } )
                             }
                         </View>
 
