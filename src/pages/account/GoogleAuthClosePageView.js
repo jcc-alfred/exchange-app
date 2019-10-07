@@ -9,6 +9,7 @@ import Keys from "../../configs/Keys";
 import CountDown from 'react-native-countdown-component';
 import constStyles from "../../styles/constStyles";
 import { NavigationActions, StackActions } from "react-navigation";
+import Spinner from "../auth/AuthRegisterPageView";
 
 class GoogleAuthClosePageView extends React.Component {
 
@@ -210,6 +211,7 @@ class GoogleAuthClosePageView extends React.Component {
                             />
                         </View>
                     </ScrollView>
+                    <Spinner visible={this.state.isRequesting} cancelable={true}/>
                 </SafeAreaView>
             </View>
         );

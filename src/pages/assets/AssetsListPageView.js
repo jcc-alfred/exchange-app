@@ -153,6 +153,7 @@ class AssetsListPageView extends React.Component {
                         {this.renderTopBanner()}
                         {this.renderDataList()}
                     </View>
+                    <Spinner visible={this.state.isRequesting} cancelable={true}/>
                 </SafeAreaView>
             </View>
         );

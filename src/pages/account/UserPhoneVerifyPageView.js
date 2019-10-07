@@ -1,5 +1,5 @@
 import React from 'react';
-import { InteractionManager, SafeAreaView, StatusBar, StyleSheet, View } from 'react-native';
+import { InteractionManager, SafeAreaView, ScrollView, StatusBar, StyleSheet, View } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import { Button, Input } from "react-native-elements";
 import I18n from "../../I18n";
@@ -9,6 +9,7 @@ import CountryUtil from "../countrySelect/util/CountryUtil";
 import Toast from "react-native-root-toast";
 import { NavigationActions, StackActions } from "react-navigation";
 import CountDown from 'react-native-countdown-component';
+import Spinner from "react-native-loading-spinner-overlay";
 
 class UserPhoneVerifyPageView extends React.Component {
 
@@ -120,6 +121,8 @@ class UserPhoneVerifyPageView extends React.Component {
             <View style={[ commonStyles.wrapper, ]}>
                 <StatusBar backgroundColor="blue" barStyle="dark-content"/>
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
+                    <ScrollView style={[commonStyles.wrapper]}>
+                        <View>
                     <Input
                         style={[ commonStyles.wrapper ]}
                         leftIcon={
@@ -262,7 +265,9 @@ class UserPhoneVerifyPageView extends React.Component {
                         }
                         containerStyle={[ commonStyles.mgt_normal, commonStyles.mgl_normal, commonStyles.mgr_normal ]}
                     />
-
+                        </View>
+                    </ScrollView>
+                    <Spinner visible={this.state.isRequesting} cancelable={true}/>
                 </SafeAreaView>
             </View>
         );

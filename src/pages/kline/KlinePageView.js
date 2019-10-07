@@ -22,6 +22,7 @@ import {SceneMap, TabBar, TabView} from "react-native-tab-view";
 import Util from "../../util/Util";
 import BuySellEntrustList from "../../components/BuySellEntrustList";
 import {changeTradePageCoinExchange} from "../../actions/ExchangeAction";
+import Spinner from "react-native-loading-spinner-overlay";
 
 
 class KlinePageView extends React.Component {
@@ -287,6 +288,7 @@ class KlinePageView extends React.Component {
                             onPress={this.gotoTradePage.bind(this)}
                         />
                     </View>
+                    <Spinner visible={this.state.isRequesting} cancelable={true}/>
                 </SafeAreaView>
             </View>
         );

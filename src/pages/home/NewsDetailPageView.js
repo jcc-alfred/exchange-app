@@ -57,6 +57,8 @@ class NewsDetailPageView extends React.Component {
             <View style={[commonStyles.wrapper,]}>
                 <StatusBar backgroundColor="blue" barStyle="dark-content"/>
                 <SafeAreaView style={[commonStyles.wrapper]}>
+                    <ScrollView style={[commonStyles.wrapper]}>
+                        <View>
                     <Text style={{padding: 16}}>{this.news.news_title}</Text>
                     <Text style={{paddingStart: 16, color: ColorUtil.secondary_text_color}}>Update Time: {this.news.update_time}</Text>
                     <Text style={{padding: 16}}>{this.news.news_content}</Text>
@@ -66,6 +68,9 @@ class NewsDetailPageView extends React.Component {
                         {/*{JSON.stringify(this.state.buyList)}*/}
                     {/*</Text>*/}
                     {/*<Spinner visible={this.state.isRequesting} cancelable={true}/>*/}
+                        </View>
+                    </ScrollView>
+                    <Spinner visible={this.state.isRequesting} cancelable={true}/>
                 </SafeAreaView>
             </View>
         );

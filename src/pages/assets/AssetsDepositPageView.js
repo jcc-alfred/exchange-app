@@ -1,14 +1,12 @@
 import React from 'react';
-import { Clipboard, Platform, SafeAreaView, StatusBar, StyleSheet, View } from 'react-native';
+import { Clipboard, SafeAreaView, ScrollView, StatusBar, StyleSheet, View } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import { Button, Text } from "react-native-elements";
-import { BorderlessButton } from "react-native-gesture-handler";
-import { Ionicons } from "@expo/vector-icons";
 import QRCode from 'react-qr-code';
 import I18n from "../../I18n";
 import Keys from "../../configs/Keys";
 import Toast from "react-native-root-toast";
-import constStyles from "../../styles/constStyles";
+import Spinner from "react-native-loading-spinner-overlay";
 
 class AssetsDepositPageView extends React.Component {
 
@@ -57,11 +55,16 @@ class AssetsDepositPageView extends React.Component {
             <View style={[ commonStyles.wrapper, ]}>
                 <StatusBar backgroundColor="blue" barStyle="dark-content"/>
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
+                    <ScrollView style={[ commonStyles.wrapper ]}>
+                        <View>
+                            {this.renderCoinChoose()}
+                            {this.renderQRcodeView()}
 
-                    {this.renderCoinChoose()}
-                    {this.renderQRcodeView()}
+                            {/*<QRCode value="Hello, World!"/>*/}
+                        </View>
+                    </ScrollView>
 
-                    {/*<QRCode value="Hello, World!"/>*/}
+                    <Spinner visible={this.state.isRequesting} cancelable={true}/>
                 </SafeAreaView>
             </View>
         );

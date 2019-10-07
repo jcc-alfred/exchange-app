@@ -10,6 +10,7 @@ import Toast from "react-native-root-toast";
 import AssetTransactionList from "../../components/AssetTransactionList";
 import {SceneMap, TabBar, TabView} from "react-native-tab-view";
 import constStyles from "../../styles/constStyles";
+import Spinner from "react-native-loading-spinner-overlay";
 
 
 class AssetsDetailPageView extends React.Component {
@@ -231,6 +232,7 @@ class AssetsDetailPageView extends React.Component {
                         />
 
                     </View>
+                    <Spinner visible={this.state.isRequesting} cancelable={true}/>
                 </SafeAreaView>
             </View>
         );

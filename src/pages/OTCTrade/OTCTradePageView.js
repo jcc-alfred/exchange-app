@@ -8,6 +8,7 @@ import Keys from "../../configs/Keys";
 import io from 'socket.io-client';
 import * as env from "../../env";
 import Util from "../../util/Util";
+import Spinner from "../mine/UserInfoVerifyPageView";
 
 class OTCTradePageView extends React.Component {
 
@@ -70,6 +71,7 @@ class OTCTradePageView extends React.Component {
                 <StatusBar backgroundColor="blue" barStyle="dark-content"/>
                 <SafeAreaView style={[commonStyles.wrapper,]}>
                     <Text>otc</Text>
+                    <Spinner visible={this.state.isRequesting} cancelable={true}/>
                 </SafeAreaView>
             </View>
         );

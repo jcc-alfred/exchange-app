@@ -5,6 +5,7 @@ import commonStyles from "../../styles/commonStyles";
 import Util from "../../util/Util";
 import I18n from "../../I18n";
 import Keys from "../../configs/Keys";
+import Spinner from "react-native-loading-spinner-overlay";
 
 class AuthLoginHistoryPageView extends React.Component {
 
@@ -92,6 +93,7 @@ class AuthLoginHistoryPageView extends React.Component {
                         )}
                     >
                     </FlatList>
+                    <Spinner visible={this.state.isRequesting} cancelable={true}/>
                 </SafeAreaView>
             </View>
         );

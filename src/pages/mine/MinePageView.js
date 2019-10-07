@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, StatusBar, StyleSheet, View } from 'react-native';
+import { SafeAreaView, ScrollView, StatusBar, StyleSheet, View } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import Spinner from "react-native-loading-spinner-overlay";
 import BasicUserInfoVerifyResultView from "./components/BasicUserInfoVerifyResultView";
@@ -50,7 +50,8 @@ class MinePageView extends React.Component {
             <View style={[ commonStyles.wrapper, ]}>
                 <StatusBar backgroundColor="blue" barStyle="dark-content"/>
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
-
+<ScrollView>
+    <View>
                     <BasicUserInfoVerifyResultView/>
                     {
                         this.props.userInfo.identity_status !== 0 ?
@@ -58,6 +59,8 @@ class MinePageView extends React.Component {
                             :
                             null
                     }
+    </View>
+</ScrollView>
                     <Spinner visible={this.state.isRequesting} cancelable={true}/>
                 </SafeAreaView>
             </View>

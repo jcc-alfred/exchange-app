@@ -8,6 +8,7 @@ import CountDown from 'react-native-countdown-component';
 import constStyles from "../../styles/constStyles";
 import { NavigationActions, StackActions } from "react-navigation";
 import Toast from "react-native-root-toast";
+import Spinner from "react-native-loading-spinner-overlay";
 
 class FundPasswordChangePageView extends React.Component {
 
@@ -232,6 +233,7 @@ class FundPasswordChangePageView extends React.Component {
                         </View>
 
                     </ScrollView>
+                    <Spinner visible={this.state.isRequesting} cancelable={true}/>
                 </SafeAreaView>
             </View>
         );

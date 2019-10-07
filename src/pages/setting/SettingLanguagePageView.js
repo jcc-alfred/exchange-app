@@ -6,6 +6,7 @@ import commonStyles from "../../styles/commonStyles";
 import languageData from "../../../data/languageData";
 import Util from "../../util/Util";
 import Keys from "../../configs/Keys";
+import Spinner from "react-native-loading-spinner-overlay";
 
 class SettingLanguagePageView extends React.Component {
 
@@ -86,6 +87,7 @@ class SettingLanguagePageView extends React.Component {
                             { length: viewHeight, offset: ( viewHeight + separatorHeight ) * index, index }
                         )}
                     />
+                    <Spinner visible={this.state.isRequesting} cancelable={true}/>
                 </SafeAreaView>
             </View>
         );

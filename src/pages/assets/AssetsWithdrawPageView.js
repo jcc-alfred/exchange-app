@@ -9,6 +9,7 @@ import Keys from "../../configs/Keys";
 import constStyles from "../../styles/constStyles";
 import Toast from "react-native-root-toast";
 import CountDown from 'react-native-countdown-component';
+import Spinner from "react-native-loading-spinner-overlay";
 
 class AssetsWithdrawPageView extends React.Component {
 
@@ -269,6 +270,7 @@ class AssetsWithdrawPageView extends React.Component {
 
                         </View>
                     </ScrollView>
+                    <Spinner visible={this.state.isRequesting} cancelable={true}/>
                 </SafeAreaView>
             </View>
         );

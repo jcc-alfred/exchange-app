@@ -22,6 +22,7 @@ import Keys from "../../configs/Keys";
 import { Updates } from "expo";
 import { ConfirmDialog } from "react-native-simple-dialogs";
 import constStyles from "../../styles/constStyles";
+import Spinner from "react-native-loading-spinner-overlay";
 
 
 class HomePageView extends React.Component {
@@ -369,6 +370,8 @@ class HomePageView extends React.Component {
                     </View>
 
                 </ScrollView>
+
+                <Spinner visible={this.state.isRequesting} cancelable={true}/>
 
             </View>
         );

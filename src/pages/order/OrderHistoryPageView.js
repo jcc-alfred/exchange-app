@@ -4,6 +4,7 @@ import commonStyles from "../../styles/commonStyles";
 import { Text } from "react-native-elements";
 import I18n from "../../I18n";
 import Keys from "../../configs/Keys";
+import Spinner from "react-native-loading-spinner-overlay";
 
 class OrderHistoryPageView extends React.Component {
 
@@ -50,6 +51,7 @@ class OrderHistoryPageView extends React.Component {
                     <Text>
                         {"OrderHistoryPageView"}
                     </Text>
+                    <Spinner visible={this.state.isRequesting} cancelable={true}/>
                 </SafeAreaView>
             </View>
         );

@@ -1,5 +1,5 @@
 import React from 'react';
-import {InteractionManager, SafeAreaView, StyleSheet, View, StatusBar} from 'react-native';
+import { InteractionManager, SafeAreaView, StyleSheet, View, StatusBar, ScrollView } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import Spinner from "react-native-loading-spinner-overlay";
 import { Button } from "react-native-elements";
@@ -109,7 +109,8 @@ class UserInfoVerifyPageView extends React.Component {
             <View style={[ commonStyles.wrapper, ]}>
                 <StatusBar backgroundColor="blue" barStyle="dark-content"/>
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
-
+    <ScrollView style={[commonStyles.wrapper]}>
+        <View>
                     <MediaSingleComponent
                         editOptions={{}}
                         item={this.state.icFont}
@@ -159,6 +160,8 @@ class UserInfoVerifyPageView extends React.Component {
                         }
                         containerStyle={[ commonStyles.mgt_normal ]}
                     />
+        </View>
+    </ScrollView>
 
 
                     <Spinner visible={this.state.isRequesting} cancelable={true}/>

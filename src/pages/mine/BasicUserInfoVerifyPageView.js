@@ -1,5 +1,5 @@
 import React from 'react';
-import {InteractionManager, SafeAreaView, StyleSheet, View} from 'react-native';
+import { InteractionManager, SafeAreaView, StyleSheet, View, StatusBar, ScrollView } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import Spinner from "react-native-loading-spinner-overlay";
 import CountryUtil from "../countrySelect/util/CountryUtil";
@@ -98,7 +98,8 @@ class BasicUserInfoVerifyPageView extends React.Component {
             <View style={[ commonStyles.wrapper, ]}>
                 <StatusBar backgroundColor="blue" barStyle="dark-content"/>
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
-
+<ScrollView style={[commonStyles.wrapper]}>
+    <View>
                     <ListItem
                         title={"Country"}
                         rightTitle={this.state.currentCountry.name}
@@ -180,7 +181,8 @@ class BasicUserInfoVerifyPageView extends React.Component {
                         }
                         containerStyle={[ commonStyles.mgt_normal ]}
                     />
-
+    </View>
+</ScrollView>
 
                     <Spinner visible={this.state.isRequesting} cancelable={true}/>
                 </SafeAreaView>
