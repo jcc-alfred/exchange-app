@@ -14,7 +14,7 @@ const mapStoreToProps = (store, ownProps) => {
         isLoggedIn: store.userStore.isLoggedIn,
         userInfo: store.userStore.userInfo,
         entrustList: store.metaStore.entrustList,
-        marketList:store.metaStore.marketList
+        marketList: store.metaStore.marketList
     }
 };
 

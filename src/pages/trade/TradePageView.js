@@ -259,10 +259,6 @@ class TradePageView extends React.Component {
                            placeholder={(type === "buy" ? I18n.t(Keys.Buy) : I18n.t(Keys.Sell)) + ' ' + I18n.t(Keys.Price)}
                            inputContainerStyle={{borderBottomWidth: 0}}
                            containerStyle={[{flex: 9}]} keyboardType={'numeric'}/>
-                    <View style={{flex: 1}}>
-                        <Icon style={{backgroundColor: '#cccccc'}} name={"caret-up"} size={20} color={"grey"}/>
-                        <Icon style={{backgroundColor: '#cccccc'}} name={"caret-down"} size={20} color={"grey"}/>
-                    </View>
                 </View>
                 <View style={[styles.PriceInput, {flexDirection: 'row', height: 40, marginTop: 5}]}>
                     <Input value={type === 'buy' ? this.state.buyVolume : this.state.sellVolume}
@@ -562,11 +558,6 @@ const styles = StyleSheet.create({
         height: 0,
         backgroundColor: 'transparent',
         paddingTop: getStatusBarHeight()
-        // ...ifIphoneX({
-        //     paddingTop: 50
-        // }, {
-        //     paddingTop: 20
-        // })
     },
 
     smallRedFont: {

@@ -29,13 +29,14 @@ class KlinePageView extends React.Component {
 
     constructor(props) {
         super(props);
-        const tabData = [{title: "Depth", value: []}];
+        const tabData = [{title: "Depth", value: []},{title: "Order", value: []}];
         const {index, routes, scenes} = this.initTabData(tabData);
         this.state = {
             isRequesting: false,
             socket: null,
             sellList: [],
             buyList: [],
+            orderList:[],
             index: index ? index : 0,
             routes: routes ? routes : [],
             scenes: scenes ? scenes : []
@@ -89,6 +90,7 @@ class KlinePageView extends React.Component {
                 scenes ['' + index] = () => {
                     return (
                         <BuySellEntrustList
+                            type={tabData[index].title}
                             data={tabData[index].value}/>
                     );
                 };
@@ -156,6 +158,9 @@ class KlinePageView extends React.Component {
                     this.setState({sellPrice: data.buyList.length > 0 ? data.buyList[0].entrust_price : ''});
                 }
             });
+            this.socket.on('orderList', (data) => {
+                this.setState({orderList: data});
+            });
             this.socket.on('marketList', (data) => {
                 this.props.socketUpdateMarketList(data)
             })
@@ -195,7 +200,34 @@ class KlinePageView extends React.Component {
                     EntrustList.push([buyList[index], {}])
                 }
             }
-            const tabData = [{title: "Depth", value: EntrustList}];
+            const tabData = [{title: "Depth", value: EntrustList},{title: "Order", value: this.state.orderList}];
+            const {index, routes, scenes} = this.initTabData(tabData);
+            this.setState({
+                routes, scenes
+            })
+        }
+        if(nextState.orderList!== this.state.orderList){
+            let EntrustList = [];
+            let sellList = this.state.sellList.sort(function (a, b) {
+                return a.entrust_price - b.entrust_price
+            });
+            let buyList = this.state.buyList;
+            if (sellList.length > buyList.length) {
+                for (let index = 0; index < buyList.length; index++) {
+                    EntrustList.push([buyList[index], sellList[index]])
+                }
+                for (let index = buyList.length; index < sellList.length; index++) {
+                    EntrustList.push([{}, sellList[index]])
+                }
+            } else {
+                for (let index = 0; index < sellList.length; index++) {
+                    EntrustList.push([buyList[index], sellList[index]])
+                }
+                for (let index = sellList.length; index < buyList.length; index++) {
+                    EntrustList.push([buyList[index], {}])
+                }
+            }
+            const tabData = [{title: "Depth", value: EntrustList},{title: "Order", value: nextState.orderList}];
             const {index, routes, scenes} = this.initTabData(tabData);
             this.setState({
                 routes, scenes
