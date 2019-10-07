@@ -9,7 +9,7 @@ import { Ionicons } from '@expo/vector-icons';
 import PropTypes from 'prop-types';
 import Spinner from "react-native-loading-spinner-overlay";
 import { connect } from "react-redux";
-import { fileUploadImage, fileUploadVideo, photoUpload } from "../actions/FileAction";
+import { photoUpload } from "../actions/FileAction";
 import Toast from "react-native-root-toast";
 import * as ImagePicker from "expo-image-picker";
 import ModalPicker from "./ModalPicker";
