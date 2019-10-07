@@ -33,19 +33,6 @@ class AssetsDepositPageView extends React.Component {
         return {
             title: I18n.t( Keys.deposit ),
             headerBackTitle: null,
-            headerRight: (
-                <View style={[ { flexDirection: 'row' } ]}>
-                    <BorderlessButton
-                        onPress={() => navigation.navigate( 'AssetsDepositHistoryPage' )}
-                        style={{ marginRight: 15 }}>
-                        <Ionicons
-                            name="md-time"
-                            size={Platform.OS === 'ios' ? 22 : 25}
-                            color={constStyles.THEME_COLOR}
-                        />
-                    </BorderlessButton>
-                </View>
-            )
         };
     };
 
