@@ -729,7 +729,6 @@ const Keys = {
     "select_country": "select_country",
     "settings": "settings",
     "ExchangeAmount": "Exchange Amount",
-    "safePassTitle": "safePassTitle",
     "OTC": "OTC",
     "delete": "delete",
     "Cancel": "Cancel",
