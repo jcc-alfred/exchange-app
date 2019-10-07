@@ -13,6 +13,7 @@ import {
     netExchangeGetUserDepositListByCoinId,
     netExchangeGetUserEntrustlist,
     netExchangeGetUserHistoryEntrustlist,
+    netExchangeGetUserWithdrawListByCoinId,
     netExchangeLastPrice
 } from "../net/ExchangeApiNet";
 import metaActionTypes from "../reducers/meta/metaActionTypes";
@@ -101,6 +102,14 @@ export function exchangeDoBatchCancelEntrust( query, callback ) {
 export function exchangeGetUserDepositListByCoinId( query, callback ) {
     return ( dispatch ) => {
         netExchangeGetUserDepositListByCoinId( query, ( err, res ) => {
+            callback && callback( err, res )
+        } );
+    };
+}
+
+export function exchangeGetUserWithdrawListByCoinId( query, callback ) {
+    return ( dispatch ) => {
+        netExchangeGetUserWithdrawListByCoinId( query, ( err, res ) => {
             callback && callback( err, res )
         } );
     };
@@ -196,13 +205,6 @@ export function docGetHomeNewsList( query, callback ) {
         netDocGetHomeNewsList( query, ( err, res ) => {
             callback && callback( err, res )
         } );
-
-        export function docGetHomeNewsList( query, callback ) {
-            return ( dispatch ) => {
-                netDocGetHomeNewsList( query, ( err, res ) => {
-                    callback && callback( err, res )
-                } );
-
-            };
-        };
+    }
+}
 
