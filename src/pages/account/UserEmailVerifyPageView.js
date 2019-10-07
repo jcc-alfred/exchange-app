@@ -4,7 +4,7 @@ import commonStyles from "../../styles/commonStyles";
 import { Button, Input, Text } from "react-native-elements";
 import I18n from "../../I18n";
 import Keys from "../../configs/Keys";
-import CountDown from "./UserPhoneVerifyPageView";
+import CountDown from 'react-native-countdown-component';
 import constStyles from "../../styles/constStyles";
 import Toast from "react-native-root-toast";
 
@@ -99,7 +99,7 @@ class UserEmailVerifyPageView extends React.Component {
     render() {
         return (
             <View style={[ commonStyles.wrapper, ]}>
-                <StatusBar backgroundColor="blue" barStyle="light-content"/>
+                <StatusBar backgroundColor="blue" barStyle="dark-content"/>
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
                     <Input
                         style={[ commonStyles.wrapper ]}

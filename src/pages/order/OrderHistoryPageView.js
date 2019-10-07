@@ -88,7 +88,7 @@ class OrderHistoryPageView extends React.Component {
     render() {
         return (
             <View style={[ commonStyles.wrapper, ]}>
-                <StatusBar backgroundColor="blue" barStyle="light-content"/>
+                <StatusBar backgroundColor="blue" barStyle="dark-content"/>
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
                     <Text>
                         {"OrderHistoryPageView"}

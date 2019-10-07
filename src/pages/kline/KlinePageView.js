@@ -209,7 +209,7 @@ class KlinePageView extends React.Component {
         const coinEx = this.props.marketList.find(i => i.coin_exchange_id === this.props.coin_exchange.coin_exchange_id);
         return (
             <View style={[commonStyles.wrapper, {backgroundColor: constStyles.THEME_COLOR}]}>
-                <StatusBar backgroundColor="blue" barStyle="light-content"/>
+                <StatusBar backgroundColor="blue" barStyle="dark-content"/>
                 <SafeAreaView style={[commonStyles.wrapper]}>
                     <ScrollView>
                         <View style={{flexDirection: 'row'}}>

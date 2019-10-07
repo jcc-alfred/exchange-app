@@ -3,12 +3,13 @@ import metaActionTypes from "./metaActionTypes";
 const initialState = {
     coin_exchange_area: [],
     entrustList: [],
+    coinList: [],
     marketList: [],
     TradePageCoinEx: null
 };
 
-export default function metaReducer(state = initialState, action) {
-    switch (action.type) {
+export default function metaReducer( state = initialState, action ) {
+    switch ( action.type ) {
         case metaActionTypes.COIN_EXCHANGE_AREA: {
             return {
                 ...state,
@@ -17,9 +18,9 @@ export default function metaReducer(state = initialState, action) {
         }
         case metaActionTypes.MARKET_LIST: {
             let isExist = false;
-            if (state.TradePageCoinEx) {
-                for (let index = 0; index < action.data.length; index++) {
-                    if (action.data[index].coin_exchange_id === state.TradePageCoinEx.coin_exchange_id) {
+            if ( state.TradePageCoinEx ) {
+                for ( let index = 0; index < action.data.length; index++ ) {
+                    if ( action.data[ index ].coin_exchange_id === state.TradePageCoinEx.coin_exchange_id ) {
                         isExist = true;
                         break;
                     }
@@ -28,7 +29,13 @@ export default function metaReducer(state = initialState, action) {
             return {
                 ...state,
                 marketList: action.data,
-                TradePageCoinEx: isExist ? state.TradePageCoinEx : action.data[0]
+                TradePageCoinEx: isExist ? state.TradePageCoinEx : action.data[ 0 ]
+            }
+        }
+        case metaActionTypes.COIN_LIST: {
+            return {
+                ...state,
+                coinList: action.data
             }
         }
         case metaActionTypes.CHANGE_TRADE_EX: {

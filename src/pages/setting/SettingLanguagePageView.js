@@ -64,7 +64,7 @@ class SettingLanguagePageView extends React.Component {
 
         return (
             <View style={[ commonStyles.wrapper, ]}>
-                <StatusBar backgroundColor="blue" barStyle="light-content"/>
+                <StatusBar backgroundColor="blue" barStyle="dark-content"/>
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
                     <FlatList
                         data={this.state.languageData}

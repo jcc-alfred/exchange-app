@@ -29,9 +29,7 @@ import TradePage from "./pages/trade/TradePage";
 import UserEmailVerifyPage from "./pages/account/UserEmailVerifyPage";
 import UserPhoneVerifyPage from "./pages/account/UserPhoneVerifyPage";
 import FundPasswordChangePage from "./pages/account/FundPasswordChangePage";
-import AssetsDepositHistoryPage from "./pages/assets/AssetsDepositHistoryPage";
 import AssetsDepositPage from "./pages/assets/AssetsDepositPage";
-import AssetsWithdrawHistoryPage from "./pages/assets/AssetsWithdrawHistoryPage";
 import AssetsWithdrawPage from "./pages/assets/AssetsWithdrawPage";
 import PasswordChangePage from "./pages/account/PasswordChangePage";
 import GoogleAuthOpenPage from "./pages/account/GoogleAuthOpenPage";
@@ -240,7 +238,7 @@ const LanguageUpdate = {
         };
 
         QuotesStack.navigationOptions = {
-            tabBarLabel:I18n.t( Keys.quotes ),
+            tabBarLabel: I18n.t( Keys.quotes ),
             tabBarIcon: ( { focused } ) => (
                 <TabBarIcon
                     focused={focused}
@@ -346,14 +344,8 @@ const routeConfiguration = {
     FundPasswordChangePage: {
         screen: FundPasswordChangePage
     },
-    AssetsDepositHistoryPage: {
-        screen: AssetsDepositHistoryPage
-    },
     AssetsDepositPage: {
         screen: AssetsDepositPage
-    },
-    AssetsWithdrawHistoryPage: {
-        screen: AssetsWithdrawHistoryPage
     },
     AssetsWithdrawPage: {
         screen: AssetsWithdrawPage

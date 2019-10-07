@@ -10,7 +10,7 @@ import { NavigationActions, StackActions } from "react-navigation";
 import { getEventEmitter } from "./EventEmitter";
 import I18n from "./I18n";
 import PubSubConstant from "./pubSub/PubSubConstant";
-import { exchangeGetMarketList } from "./actions/ExchangeAction";
+import { exchangeGetCoinList, exchangeGetMarketList } from "./actions/ExchangeAction";
 import { userMe } from "./actions/UserAction";
 
 class Main extends React.Component {
@@ -32,6 +32,7 @@ class Main extends React.Component {
         this._onLoginSuccess = this.onLoginSuccess.bind( this );
 
         this.props.dispatch( exchangeGetMarketList(null) );
+        this.props.dispatch( exchangeGetCoinList(null) );
 
         I18n.locale = this.props.language;
         LanguageUpdate.update();
@@ -91,6 +92,7 @@ class Main extends React.Component {
                 }
 
                 this.props.dispatch( exchangeGetMarketList(null) );
+                this.props.dispatch( exchangeGetCoinList(null) );
             } else {
                 this.setState( {
                     isShowLockView: true
@@ -142,7 +144,7 @@ class Main extends React.Component {
     render() {
         return (
             <View style={[ commonStyles.wrapper, commonStyles.commonBG, {} ]}>
-                <StatusBar backgroundColor="blue" barStyle="light-content"/>
+                <StatusBar backgroundColor="blue" barStyle="dark-content"/>
                 <AppNavigator/>
             </View>
         )
