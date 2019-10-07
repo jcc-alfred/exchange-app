@@ -1,6 +1,5 @@
 import {
     netExchangeDoBatchCancelEntrust,
-    netExchangeDoBatchEntrust,
     netExchangeDoCancelEntrust,
     netExchangeDoEntrust,
     netExchangeEntrustList,
@@ -173,16 +172,6 @@ export function exchangeDoCancelEntrust( query, callback ) {
         } );
     };
 }
-
-
-export function exchangeDoBatchEntrust( query, callback ) {
-    return ( dispatch ) => {
-        netExchangeDoBatchEntrust( query, ( err, res ) => {
-            callback && callback( err, res )
-        } );
-    };
-}
-
 
 export function exchangeGetUserHistoryEntrustList( callback ) {
     return ( dispatch ) => {
