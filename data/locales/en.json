@@ -984,4 +984,7 @@
   "withdraw": "withdraw",
   "withdraw_history": "Cash withdrawal history",
   "yes": "determine"
+  "yes": "determine",
+  "date": "Date",
+  "type": "Type"
 }

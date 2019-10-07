@@ -55,7 +55,7 @@ export function changeTradePageCoinExchange( coinEx ) {
                 type: metaActionTypes.CHANGE_TRADE_EX,
                 data: coinEx
             }
-        )
+        );
     };
 }
 
@@ -102,14 +102,6 @@ export function exchangeDoBatchCancelEntrust( query, callback ) {
 export function exchangeGetUserDepositListByCoinId( query, callback ) {
     return ( dispatch ) => {
         netExchangeGetUserDepositListByCoinId( query, ( err, res ) => {
-            callback && callback( err, res )
-        } );
-    };
-}
-
-export function exchangeGetUserWithdrawListByCoinId( query, callback ) {
-    return ( dispatch ) => {
-        netExchangeGetUserWithdrawListByCoinId( query, ( err, res ) => {
             callback && callback( err, res )
         } );
     };

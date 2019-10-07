@@ -984,4 +984,7 @@
   "withdraw": "提现",
   "withdraw_history": "提现历史",
   "yes": "确定"
+  "yes": "确定",
+  "date": "日期",
+  "type": "类型"
 }
