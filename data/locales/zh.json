@@ -996,11 +996,11 @@
   "senior_Verification": "高级实名验证",
   "senior_Verification_Tips": "高级实名验证可以后可以获得更高的交易额，和更高的取现额度",
   "verifyNow": "去认证",
-  "camera_roll_permission_error": "获取摄像头权限错误",
   "IC_Front": "证件正面照",
   "underReview": "审核中",
   "Verified": "审核通过",
   "IC_Back": "证件反面照",
   "IC_Hold": "手持证件照",
-  "Submit": "提交"
+  "Submit": "提交",
+  "SearchCoin": "搜索币"
 }

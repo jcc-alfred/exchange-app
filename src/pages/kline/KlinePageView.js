@@ -114,8 +114,8 @@ class KlinePageView extends React.Component {
                         <TabBar
                             {...props}
                             indicatorStyle={{ backgroundColor: '#0394fc' }}
-                            inactiveColor={{ color: '#9c9a97' }}
-                            activeColor={{ color: '#0394fc' }}
+                            inactiveColor={'#888'}
+                            activeColor={ 'white' }
                             style={{ backgroundColor: constStyles.THEME_COLOR, flexDirection: 'row' }}
                             tabStyle={{ flex: 1 }}
                             scrollEnabled={true}

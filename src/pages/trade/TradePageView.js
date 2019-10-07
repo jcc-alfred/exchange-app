@@ -66,7 +66,7 @@ class TradePageView extends React.Component {
                         Util.calcDisplayDiscount(entrustItem.no_completed_volume / entrustItem.entrust_volume)
                 }]}/>
                 <Text style={[{flex: 1, fontSize: 8, color: '#303940'}]}>{index}</Text>
-                <Text style={[{flex: 1, fontSize: 8, color: '#303940'}]}>{entrustItem.no_completed_volume}</Text>
+                <Text style={[{flex: 1, fontSize: 8, color: '#303940'}]}>{entrustItem.no_completed_volume.toFixed(6)}</Text>
                 <Text style={[{
                     flex: 1,
                     fontSize: 8,

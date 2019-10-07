@@ -776,12 +776,12 @@ const Keys = {
     "senior_Verification":"senior_Verification",
     "senior_Verification_Tips":"senior_Verification_Tips",
     "verifyNow":"verifyNow",
-    "camera_roll_permission_error":"camera_roll_permission_error",
     "IC_Front":"IC_Front",
     "underReview":"underReview",
     "Verified":"Verified",
     "IC_Back":"IC_Back",
     "IC_Hold":"IC_Hold",
-    "Submit":"Submit"
+    "Submit":"Submit",
+    "SearchCoin":"SearchCoin"
 };
 export default Keys;

@@ -1,7 +1,6 @@
 import React from "react";
 import { Dimensions, SafeAreaView, StyleSheet, View } from "react-native";
 import { connect } from "react-redux";
-
 import { DrawerActions } from 'react-navigation-drawer';
 import { SearchBar } from "react-native-elements";
 import commonStyles from "../../../styles/commonStyles";
@@ -9,6 +8,9 @@ import { changeTradePageCoinExchange } from "../../../actions/ExchangeAction";
 import { SceneMap, TabBar, TabView } from "react-native-tab-view";
 import TradeMenuPairList from "../../../components/TradeMenuPairList";
 import Spinner from "react-native-loading-spinner-overlay";
+import constStyles from "../../../styles/constStyles";
+import I18n from '../../../I18n';
+import Keys from "../../../configs/Keys";
 
 class TradeExMenu extends React.Component {
 
@@ -74,7 +76,7 @@ class TradeExMenu extends React.Component {
             <View style={commonStyles.wrapper}>
                 <SafeAreaView style={[ commonStyles.wrapper ]}>
                     <SearchBar
-                        placeholder="Type Here..."
+                        placeholder={I18n.t(Keys.SearchCoin)+"..."}
                         onChangeText={this.updateSearch}
                         platform={"default"}
                         lightTheme={true}
@@ -135,7 +137,10 @@ class TradeExMenu extends React.Component {
                     renderTabBar={props =>
                         <TabBar
                             {...props}
-                            indicatorStyle={{ backgroundColor: 'white' }}
+                            indicatorStyle={{ backgroundColor: constStyles.THEME_COLOR }}
+                            inactiveColor={'#888'}
+                            activeColor={ constStyles.THEME_COLOR}
+                            style={{ backgroundColor: 'white', flexDirection: 'row' }}
                             tabStyle={{ width: 'auto' }}
                             scrollEnabled={true}
                         />
