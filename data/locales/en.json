@@ -991,5 +991,16 @@
   "volume": "volume",
   "withdraw": "withdraw",
   "withdraw_history": "Cash withdrawal history",
-  "yes": "Yes"
+  "yes": "Yes",
+  "ExchangeAmount": "Exchange Amount",
+  "senior_Verification": "Senior Verification",
+  "senior_Verification_Tips": "Advanced verification allows you to complete more transactions per trade and more withdraw limitations",
+  "verifyNow": "Verify Now",
+  "camera_roll_permission_error": "Error When obtain the camera permission",
+  "IC_Front": "IC Front Image",
+  "underReview": "Under Review",
+  "Verified": "Verified",
+  "IC_Back": "IC Back Image",
+  "IC_Hold": "Selfie with holding IC",
+  "Submit": "Submit"
 }

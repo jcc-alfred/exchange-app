@@ -1,28 +1,30 @@
 import React from "react";
-import { Platform, View } from 'react-native';
-import { connect } from "react-redux";
-import { Button, ListItem, Text } from "react-native-elements";
+import {Platform, View} from 'react-native';
+import {connect} from "react-redux";
+import {Button, ListItem, Text} from "react-native-elements";
 import commonStyles from "../../../styles/commonStyles";
-import { Ionicons } from "@expo/vector-icons";
+import {Ionicons} from "@expo/vector-icons";
 import constStyles from "../../../styles/constStyles";
 import UserInfoVerifyPage from "../UserInfoVerifyPage";
+import Keys from "../../../configs/Keys";
+import I18n from '../../../I18n'
 
 class UserInfoVerifyView extends React.Component {
     static propTypes = {};
 
-    constructor( props ) {
-        super( props );
+    constructor(props) {
+        super(props);
 
         this.state = {}
     }
 
 
-    shouldComponentUpdate( nextProps, nextState ) {
+    shouldComponentUpdate(nextProps, nextState) {
         return true;
     }
 
     renderState() {
-        if ( this.props.userInfo.identity_status === 1 ) {
+        if (this.props.userInfo.identity_status === 1) {
             return (
                 <Button
                     type="clear"
@@ -33,29 +35,29 @@ class UserInfoVerifyView extends React.Component {
                             color={constStyles.THEME_COLOR}
                         />
                     }
-                    title="去认证"
+                    title={I18n.t(Keys.verifyNow)}
                     onPress={() => {
-                        this.props.navigation.navigate( "UserInfoVerifyPage" )
+                        this.props.navigation.navigate("UserInfoVerifyPage")
                     }}
                 />
             );
-        } else if ( this.props.userInfo.identity_status === 2 ) {
+        } else if (this.props.userInfo.identity_status === 2) {
             return (
                 <Text>
                     {
-                        "审核中"
+                        I18n.t(Keys.underReview)
                     }
                 </Text>
             );
-        } else if ( this.props.userInfo.identity_status === 3 ) {
+        } else if (this.props.userInfo.identity_status === 3) {
             return (
                 <Text>
                     {
-                        "审核通过"
+                        I18n.t(Keys.reviewPassed)
                     }
                 </Text>
             );
-        } else if ( this.props.userInfo.identity_status === 4 ) {
+        } else if (this.props.userInfo.identity_status === 4) {
             return (
                 <Button
                     type="clear"
@@ -68,7 +70,7 @@ class UserInfoVerifyView extends React.Component {
                     }
                     title="认证失败"
                     onPress={() => {
-                        this.props.navigation.navigate( "UserInfoVerifyPage" )
+                        this.props.navigation.navigate("UserInfoVerifyPage")
                     }}
                 />
             );
@@ -82,24 +84,24 @@ class UserInfoVerifyView extends React.Component {
             <View>
                 <ListItem
                     title={
-                        <View style={[ { flexDirection: 'row', justifyContent: 'center' } ]}>
-                            <Text style={[ commonStyles.wrapper ]}>{'身份认证'}</Text>
-                            {
-                                this.renderState()
-                            }
+                        <View style={[{flexDirection: 'row', justifyContent: 'center'}]}>
+                            <Text style={[{
+                                flex: 8,
+                                textAlignVertical: 'center',
+                                alignItems: 'center',
+                                padding: 8
+                            }]}>{I18n.t(Keys.senior_Verification)}</Text>
+                            <View style={{flex: 3}}>
+                                {
+                                    this.renderState()
+                                }
+                            </View>
                         </View>
                     }
                     subtitle={
                         <View>
                             <Text>
-                                {
-                                    "身份认证后，方可进行高级认证"
-                                }
-                            </Text>
-                            <Text>
-                                {
-                                    "身份认证后，可进行中国区单笔高于2000或累计金额大于10000的法币交易"
-                                }
+                                {I18n.t(Keys.senior_Verification_Tips)}
                             </Text>
                         </View>
                     }
@@ -110,13 +112,13 @@ class UserInfoVerifyView extends React.Component {
 }
 
 
-function select( store ) {
+function select(store) {
     return {
         isLoggedIn: store.userStore.isLoggedIn,
         userInfo: store.userStore.userInfo,
     }
 }
 
-const mapDispatchToProps = ( dispatch, ownProps ) => ( {} );
-export default connect( select, mapDispatchToProps )( UserInfoVerifyView )
+const mapDispatchToProps = (dispatch, ownProps) => ({});
+export default connect(select, mapDispatchToProps)(UserInfoVerifyView)
 

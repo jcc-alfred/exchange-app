@@ -43,7 +43,8 @@ class TradePageView extends React.Component {
         const { params } = state;
 
         return {
-            headerStyle: styles.header,
+            header: null,
+            // headerStyle: styles.header,
             headerBackTitle: null
         };
     };
@@ -272,6 +273,14 @@ class TradePageView extends React.Component {
                     this.state.userAssets.find( i => i.coin_id === this.props.TradePageCoinEx.coinEx.coin_id ).available : ''
             }
         }
+
+        let ExchangeAmount = '';
+        if (type === 'buy' && this.state.buyPrice && this.state.buyAmount) {
+            ExchangeAmount = parseFloat(this.state.buyPrice) * parseFloat(this.state.buyAmount).toFixed(2)
+        } else if (type === 'sell' && this.state.sellPrice && this.state.sellAmount) {
+            ExchangeAmount = (parseFloat(this.state.sellPrice) * parseFloat(this.state.sellAmount)).toFixed(2)
+
+        }
         return (
             <View style={{ padding: 2, flex: 1 }}>
                 <Text>{type === 'buy' ? I18n.t( Keys.Buy ) : I18n.t( Keys.Sell )}</Text>
@@ -316,10 +325,14 @@ class TradePageView extends React.Component {
                     </Text>
                 </View>
                 <View>
-                    <Text style={{ margin: 5, marginLeft: 10 }}>{I18n.t( Keys.ExchangeAmount )}</Text>
-                    <Button style={{ margin: 10 }}
-                            title={( type === 'buy' ? I18n.t( Keys.Buy ) : I18n.t( Keys.Sell ) ) + ' ' +
-                            ( this.props.TradePageCoinEx.coinEx ? this.props.TradePageCoinEx.coinEx.coin_name : '' )}
+                    <View style={{flexDirection: 'row'}}>
+                        <Text style={{fontSize: 8, flex: 3}}>{I18n.t(Keys.ExchangeAmount)}</Text>
+                        <Text style={{fontSize: 8, flex: 8}}>{ExchangeAmount}</Text>
+
+                    </View>
+                    <Button style={{margin: 10}}
+                            title={(type === 'buy' ? I18n.t(Keys.Buy) : I18n.t(Keys.Sell)) + ' ' +
+                            (this.props.TradePageCoinEx.coinEx ? this.props.TradePageCoinEx.coinEx.coin_name : '')}
                             onPress={() => {
                                 if ( type === 'buy' ) {
                                     this.doEntrust( 1, this.state.buyPrice, this.state.buyVolume, false )
@@ -461,32 +474,37 @@ class TradePageView extends React.Component {
         )
     }
 
+    gotoKlinePage() {
+        this.props.navigation.navigate('KlinePage', {coin_exchange: this.props.TradePageCoinEx});
+    }
+
     renderTopBar() {
         return (
             <View style={[ { flexDirection: 'row' } ]}>
                 <View style={[ { flexDirection: 'row', flex: 2 } ]}>
                     <BorderlessButton
                         onPress={() => {
-                            this.props.navigation.dispatch( DrawerActions.openDrawer() );
+                            this.props.navigation.dispatch(DrawerActions.openDrawer());
                         }}
-                        style={{ marginLeft: 15, paddingTop: 8 }}>
+                        style={{marginLeft: 15, paddingTop: 8}}>
                         <Ionicons
                             name="md-menu"
                             size={Platform.OS === 'ios' ? 22 : 25}
                             color={'black'}
                         />
                     </BorderlessButton>
-                    <Text style={[ commonStyles.commonInputTextStyle ]}>
+                    <Text style={[commonStyles.commonInputTextStyle]}>
                         {this.props.TradePageCoinEx ? this.props.TradePageCoinEx.coinEx.coin_name + '/' + this.props.TradePageCoinEx.coinEx.exchange_coin_name : ''}
                     </Text>
-                    <Text style={[ styles.smallRedFont ]}>
-                        {this.props.TradePageCoinEx ? Util.numToPercentage( this.props.TradePageCoinEx.market.change_rate ) : null}
+                    <Text style={[styles.smallRedFont]}>
+                        {this.props.TradePageCoinEx ? Util.numtoPercentage(this.props.TradePageCoinEx.market.change_rate) : null}
                     </Text>
                 </View>
-                <View style={[ { flexDirection: 'row', flex: 1 } ]}>
-                    <Image source={require( '../../../assets/images/klineIcon.png' )}
-                           containerStyle={[ { width: 25, height: 25 } ]}
-                    />
+                <View style={[{flexDirection: 'row', flex: 1}]}>
+                    <TouchableHighlight underlayColor='#ddd' onPress={() => this.gotoKlinePage()}>
+                        <Text>aaa</Text>
+                        {/*<Image source={require('../../../assets/images/klineIcon.png')} containerStyle={[{width: 25, height: 25}]}/>*/}
+                    </TouchableHighlight>
                 </View>
             </View>
         )
