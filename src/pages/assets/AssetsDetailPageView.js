@@ -127,7 +127,6 @@ class AssetsDetailPageView extends React.Component {
                 { title: "Withdraw", value: nextState.withdrawList } ];
             const { index, routes, scenes } = this.initTabData( tabData );
             this.setState( {
-                // index: index,
                 routes: routes,
                 scenes: scenes
             } )

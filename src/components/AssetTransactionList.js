@@ -6,7 +6,6 @@ import { Text } from "react-native-elements";
 import commonStyles from "../styles/commonStyles";
 import I18n from "../I18n";
 import Keys from "../configs/Keys";
-// import Util from "../util/Util";
 import moment from 'moment'
 
 class AssetTransactionList extends React.Component {

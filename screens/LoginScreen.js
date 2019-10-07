@@ -15,13 +15,11 @@ export default function LoginScreen() {
             <TextInput style={styles.inputView} value={'用户名'}/>
             <TextInput
                 style={styles.inputView}
-                // onChangeText={(text) => this.setState({text})}
                 value={'密码'}
             />
 
             <TouchableOpacity
                 style={styles.button}
-                // onPress={this.onPress}
             >
                 <Text style={styles.buttonText}> 登录 </Text>
             </TouchableOpacity>

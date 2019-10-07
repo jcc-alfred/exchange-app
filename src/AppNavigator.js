@@ -56,7 +56,7 @@ process.env.REACT_NAV_LOGGING = ( global.__DEV__ );
 let TabNavigatorConfig = {
     lazy: true,
     tabBarPosition: 'bottom',
-    swipeEnabled: false,//不让滑动
+    swipeEnabled: false,
     animationEnabled: false,
     tabBarOptions: {
 
@@ -202,7 +202,6 @@ const MainTabContainer = createBottomTabNavigator(
         HomeStack: HomeStack,
         QuotesStack: QuotesStack,
         TradePageStack: TradeStack,
-        // OTCTradeStack: OTCTradeStack,
         AssetsDetailStack: AssetsDetailStack,
     },
     TabNavigatorConfig
@@ -251,8 +250,6 @@ const LanguageUpdate = {
             ),
         };
 
-        // TradeStack
-
         TradeStack.navigationOptions = {
             tabBarLabel: I18n.t( Keys.trade ),
             tabBarIcon: ( { focused } ) => (
@@ -277,7 +274,7 @@ const LanguageUpdate = {
                 // perform your logic here
                 // this is mandatory to perform the actual switch
                 // don't call this if you want to prevent focus
-                // defaultHandler();
+                // defaultHandler()
 
                 const store = getStore();
 

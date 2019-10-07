@@ -106,7 +106,6 @@ class AssetsDepositPageView extends React.Component {
                     containerStyle={{ marginTop: 10, marginLeft: 40, marginRight: 40, marginBottom: 10 }}
                     onPress={() => {
                         Clipboard.setString( this.props.assets.block_address );
-                        // this.props.toast( I18n.t( Keys.copy_address_success ) );
                         Toast.show( I18n.t( Keys.copy_success ) );
                     }}
                 />

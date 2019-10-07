@@ -32,7 +32,6 @@ class HomePageView extends React.Component {
 
         this.state = {
             isRequesting: true,
-            // dataSources: [],
             newsList: [],
             announcementList: [],
             refreshing: false,
@@ -309,12 +308,6 @@ class HomePageView extends React.Component {
                         <Text style={{ padding: 16, fontSize: 16 }}>{I18n.t( Keys.news )}</Text>
 
                         <FlatList
-                            // refreshControl={
-                            //     <RefreshControl
-                            //         refreshing={this.state.refreshing}
-                            //         onRefresh={this._onRefresh}
-                            //     />
-                            // }
                             data={this.state.newsList}
                             keyExtractor={( item, index ) => {
                                 return 'item ' + index;
@@ -322,9 +315,6 @@ class HomePageView extends React.Component {
                             renderItem={( { item, index } ) => {
                                 return this.renderItem( viewHeight, item, index );
                             }}
-                            // ListHeaderComponent={() => {
-                            //     return this.header();
-                            // }}
                             ItemSeparatorComponent={() => {
                                 return <View
                                     style={[ commonStyles.commonIntervalStyle, { height: separatorHeight } ]}/>;
@@ -341,12 +331,6 @@ class HomePageView extends React.Component {
                         <Text style={{ padding: 16, fontSize: 16 }}>{I18n.t( Keys.announcement )}</Text>
 
                         <FlatList
-                            // refreshControl={
-                            //     <RefreshControl
-                            //         refreshing={this.state.refreshing}
-                            //         onRefresh={this._onRefresh}
-                            //     />
-                            // }
                             data={this.state.announcementList}
                             keyExtractor={( item, index ) => {
                                 return 'item ' + index;
@@ -354,9 +338,6 @@ class HomePageView extends React.Component {
                             renderItem={( { item, index } ) => {
                                 return this.renderItem( viewHeight, item, index );
                             }}
-                            // ListHeaderComponent={() => {
-                            //     return this.header();
-                            // }}
                             ItemSeparatorComponent={() => {
                                 return <View
                                     style={[ commonStyles.commonIntervalStyle, { height: separatorHeight } ]}/>;

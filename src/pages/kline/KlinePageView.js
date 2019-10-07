@@ -140,7 +140,6 @@ class KlinePageView extends React.Component {
                 this.socket.connect();
             }
             this.socket.on( 'connect', () => {
-                // console.log('connect:', this.socket.connected);
                 this.socket.emit( 'init', {
                     user_id: this.props.userInfo.user_id ? this.props.userInfo.user_id : 0,
                     coin_exchange_id: this.props.coin_exchange.coin_exchange_id

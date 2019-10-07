@@ -117,8 +117,6 @@ class MediaMultipleComponent extends React.Component {
         let result = await ImagePicker.launchImageLibraryAsync( {
             ...this.props.editOptions,
             mediaTypes: mediaTypes,
-            // allowsEditing: true,
-            // aspect: [ 4, 3 ],
             quality: 0.5
         } );
 
@@ -141,11 +139,7 @@ class MediaMultipleComponent extends React.Component {
             ...this.props.editOptions,
             mediaTypes: mediaTypes,
             allowsEditing: false,
-            // aspect: [ 4, 3 ],
-            // quality: 0.5
         } );
-
-        // console.error( "1111" )
 
         console.log( result );
 

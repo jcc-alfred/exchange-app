@@ -52,8 +52,6 @@ class GoogleAuthClosePageView extends React.Component {
         return true;
     }
 
-
-    // todo
     verificationCodeGet() {
         this.setState( {
             isRequesting: true
@@ -93,7 +91,6 @@ class GoogleAuthClosePageView extends React.Component {
         } );
     }
 
-    //todo
     send() {
         this.props.navigation.dispatch(
             StackActions.reset(

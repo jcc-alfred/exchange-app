@@ -61,8 +61,6 @@ class UserInfoVerifyPageView extends React.Component {
         }
     };
 
-
-    // todo
     send() {
         let query;
 

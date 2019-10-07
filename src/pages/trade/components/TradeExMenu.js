@@ -41,7 +41,6 @@ class TradeExMenu extends React.Component {
         if ( this.props.coin_exchange_area !== nextProps.coin_exchange_area || nextProps.marketList !== this.props.marketList || nextState.search !== this.state.search ) {
             const { index, routes, scenes } = this.initTabData( nextProps.coin_exchange_area );
             this.setState( {
-                // index: index,
                 routes: routes,
                 scenes: scenes
             } )
@@ -140,7 +139,6 @@ class TradeExMenu extends React.Component {
                         <TabBar
                             {...props}
                             indicatorStyle={{ backgroundColor: 'white' }}
-                            // style={{backgroundColor: 'white',color:'blue'}}
                             tabStyle={{ width: 'auto' }}
                             scrollEnabled={true}
                         />

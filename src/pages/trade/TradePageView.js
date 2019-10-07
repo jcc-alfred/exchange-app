@@ -613,8 +613,6 @@ const styles = StyleSheet.create( {
 
 
     smallIconButton: {
-
-        // backgroundColor: '#ddd',
     },
 
 

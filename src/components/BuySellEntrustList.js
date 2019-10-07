@@ -7,7 +7,6 @@ import commonStyles from "../styles/commonStyles";
 import constStyles from "../styles/constStyles";
 import I18n from "../I18n";
 import Keys from "../configs/Keys";
-// import Util from "../util/Util";
 import moment from 'moment'
 import Util from "../util/Util";
 
@@ -74,7 +73,6 @@ class BuySellEntrustList extends React.Component {
                             flexDirection: 'row',
                             flex: 1,
                             backgroundColor: '#f0f7f5'
-                            // backgroundColor: constStyles.THEME_COLOR
                         } ]}>
                         {
                             buyEntrust !== {} && (
@@ -241,8 +239,6 @@ const styles = StyleSheet.create( {
 
 
     smallIconButton: {
-
-        // backgroundColor: '#ddd',
     },
 
 

@@ -47,8 +47,6 @@ class FundPasswordChangePageView extends React.Component {
         return true;
     }
 
-
-    // todo
     verificationCodeGet() {
         this.setState( {
             isRequesting: true
@@ -88,7 +86,6 @@ class FundPasswordChangePageView extends React.Component {
         } );
     }
 
-    //todo
     resetPassword() {
         this.props.navigation.dispatch(
             StackActions.reset(
