@@ -19,7 +19,7 @@ class AssetsWithdrawPageView extends React.Component {
             isRequesting: false,
             coinAddress: '',
             coinCount: '',
-            fee: '',
+            fee: props.coin ? '' + props.coin.withdraw_fees_rate : '',
             fundPassword: '',
             isCountingDown: false,
             code: '',
@@ -138,6 +138,8 @@ class AssetsWithdrawPageView extends React.Component {
     render() {
         console.log( JSON.stringify( this.props.assets ) );
         console.log( JSON.stringify( this.props.marketList ) );
+        console.log( JSON.stringify( this.props.coinList ) );
+        console.log( JSON.stringify( this.props.coin ) );
 
         return (
             <View style={[ commonStyles.wrapper, ]}>

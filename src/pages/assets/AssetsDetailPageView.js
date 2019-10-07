@@ -170,7 +170,6 @@ class AssetsDetailPageView extends React.Component {
     }
 
     render() {
-        // const coinPriceUSD = this.props.marketList.find(i => i.coinEx.coin_id === this.props.assets.coin_id);
         return (
             <View style={[commonStyles.wrapper, {paddingLeft: 10, paddingRight: 10}]}>
                 <SafeAreaView style={[commonStyles.wrapper,]}>
