@@ -23,7 +23,8 @@ const mapStoreToProps = ( store, ownProps ) => {
         assets: params ? params.assets : null,
         marketList: store.metaStore.marketList,
         coinList: store.metaStore.coinList,
-        coin:coin
+        coin:coin,
+        userInfo: store.userStore.userInfo,
     }
 };
 

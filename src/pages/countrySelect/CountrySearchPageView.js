@@ -215,7 +215,7 @@ class CountrySearchPageView extends React.Component {
                 headerBackgroundColor={constStyles.THEME_COLOR}
                 headerTintColor={'white'}
             >
-                <StatusBar backgroundColor="blue" barStyle="light-content"/>
+                <StatusBar backgroundColor="blue" barStyle="dark-content"/>
                 <FlatList
                     keyboardShouldPersistTaps="always"
                     data={this.state.modelShowArray}

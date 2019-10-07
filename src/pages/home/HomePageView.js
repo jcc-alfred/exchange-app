@@ -206,7 +206,7 @@ class HomePageView extends React.Component {
 
         return (
             <View style={styles.container}>
-                <StatusBar backgroundColor="blue" barStyle="light-content"/>
+                <StatusBar backgroundColor="blue" barStyle="dark-content"/>
                 <ScrollView
                     style={styles.container}
                     contentContainerStyle={styles.contentContainer}>
