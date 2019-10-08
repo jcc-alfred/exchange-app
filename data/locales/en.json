@@ -7,7 +7,7 @@
   "Cancel": "Cancel",
   "Coin address": "Coin address",
   "Confirm": "Confirm",
-  "Current_Commission": "Current Entrust",
+  "Current_Commission": "Open Entrust",
   "Exchange Amount": "Exchange Amount",
   "Fixed Entrust": "Fixed Entrust",
   "Kline": "Kline",
@@ -995,7 +995,7 @@
   "completed": "Completed",
   "all": "All",
   "histroy": "Histroy",
-  "ExchangeAmount": "Exchange Amount",
+  "ExchangeAmount": "Total",
   "senior_Verification": "Senior Verification",
   "senior_Verification_Tips": "Advanced verification allows you to complete more transactions per trade and more withdraw limitations",
   "verifyNow": "Verify Now",
@@ -1005,5 +1005,6 @@
   "IC_Back": "IC Back Image",
   "IC_Hold": "Selfie with holding IC",
   "Submit": "Submit",
-  "SearchCoin": "Search Coin"
+  "SearchCoin": "Search Coin",
+  "vol": "Vol"
 }

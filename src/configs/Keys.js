@@ -785,6 +785,7 @@ const Keys = {
     "IC_Back":"IC_Back",
     "IC_Hold":"IC_Hold",
     "Submit":"Submit",
-    "SearchCoin":"SearchCoin"
+    "SearchCoin":"SearchCoin",
+    "vol":"vol"
 };
 export default Keys;
