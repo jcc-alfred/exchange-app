@@ -19,7 +19,7 @@
 
 # upload to store
 
-    expo upload:android --key ./api-5978161837754265848-81838-c53e8ec5eadc.json
+    expo upload:android --key ./api-5036498007111182668-362284-a6f221dd9834.json
     
     expo upload:ios
 
