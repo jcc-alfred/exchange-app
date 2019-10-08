@@ -178,7 +178,7 @@ class HomePageView extends React.Component {
             } )
             .catch( err => {
                 // console.log( err.message )
-                Toast.show( err.message )
+                // Toast.show( err.message )
             } )
     }
 
@@ -194,7 +194,7 @@ class HomePageView extends React.Component {
                     } );
             } )
             .catch( err => {
-                Toast.show( err.message )
+                // Toast.show( err.message )
             } );
     }
 

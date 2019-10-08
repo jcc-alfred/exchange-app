@@ -1,14 +1,5 @@
 import React from 'react';
-import {
-    Dimensions,
-    InteractionManager,
-    SafeAreaView,
-    ScrollView,
-    StatusBar,
-    StyleSheet,
-    View,
-    WebView
-} from 'react-native';
+import { Dimensions, InteractionManager, SafeAreaView, ScrollView, StatusBar, StyleSheet, View } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import * as env from '../../env';
 import I18n from "../../I18n";
@@ -19,6 +10,7 @@ import Keys from "../../configs/Keys";
 import { SceneMap, TabBar, TabView } from "react-native-tab-view";
 import BuySellEntrustList from "../../components/BuySellEntrustList";
 import Spinner from "react-native-loading-spinner-overlay";
+import { WebView } from 'react-native-webview';
 
 
 class KlinePageView extends React.Component {
@@ -115,7 +107,7 @@ class KlinePageView extends React.Component {
                             {...props}
                             indicatorStyle={{ backgroundColor: '#0394fc' }}
                             inactiveColor={'#888'}
-                            activeColor={ 'white' }
+                            activeColor={'white'}
                             style={{ backgroundColor: constStyles.THEME_COLOR, flexDirection: 'row' }}
                             tabStyle={{ flex: 1 }}
                             scrollEnabled={true}
@@ -241,8 +233,8 @@ class KlinePageView extends React.Component {
         const { navigation } = this.props;
         const coinEx = this.props.marketList.find( i => i.coin_exchange_id === this.props.coin_exchange.coin_exchange_id );
         let KlineWebUrl = `https://www.asiaedx.com/#/kline/${coinEx.coin_exchange_id}`;
-        if(I18n.locale==='zh-Hans'){
-            KlineWebUrl= KlineWebUrl+ '?lang=zh-cn'
+        if ( I18n.locale === 'zh-Hans' ) {
+            KlineWebUrl = KlineWebUrl + '?lang=zh-cn'
         }
 
         return (
