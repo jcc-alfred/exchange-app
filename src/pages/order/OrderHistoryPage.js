@@ -6,7 +6,8 @@ import { exchangeGetUserEntrustList, exchangeGetUserHistoryEntrustList } from ".
 const mapStoreToProps = ( store, ownProps ) => {
     return {
         // TradePageCoinEx: store.metaStore.TradePageCoinEx
-        marketList: store.metaStore.marketList
+        marketList: store.metaStore.marketList,
+        userInfo: store.userStore.userInfo,
     }
 };
 

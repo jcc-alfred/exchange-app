@@ -151,6 +151,8 @@ class OrderHistoryPageView extends React.Component {
                             type={index}
                             data={tabData[index].value}
                             marketList={this.props.marketList}
+                            userEntrustList={this.state.userHistoryEntrustList}
+                            userInfo={this.props.userInfo}
                         />
                     );
                 };

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { FlatList, RefreshControl, TouchableHighlight, View, ViewPropTypes } from "react-native";
+import {FlatList, InteractionManager, RefreshControl, TouchableHighlight, View, ViewPropTypes} from "react-native";
 import PropTypes from 'prop-types';
 import {Button, Text} from "react-native-elements";
 import commonStyles from "../styles/commonStyles";
@@ -8,6 +8,7 @@ import I18n from "../I18n";
 import Keys from "../configs/Keys";
 import Util from "../util/Util";
 import moment from 'moment';
+import Toast from "react-native-root-toast";
 
 class UserEntrustList extends React.Component {
     static propTypes = {
@@ -125,6 +126,29 @@ class UserEntrustList extends React.Component {
         }
 
     }
+
+    // doCancelEntrust(entrust) {
+    //     InteractionManager.runAfterInteractions(() => {
+    //         this.props.onExchangeDoCancelEntrust({
+    //             "entrustId": entrust.entrust_id,
+    //             "coinExchangeId": entrust.coin_exchange_id,
+    //             "entrustTypeId": entrust.entrust_type_id,
+    //             "user_id": this.props.userInfo.user_id
+    //         }, (err, res) => {
+    //             if (!err) {
+    //                 Toast.show("entrust canceled");
+    //                 let tmp = this.props.userEntrustList;
+    //                 tmp = tmp.filter(i => i.entrust_id !== entrust.entrust_id);
+    //                 this.setState({
+    //                     userEntrustList: tmp
+    //                 })
+    //             } else {
+    //                 Toast.show(err.message)
+    //             }
+    //         })
+    //     })
+    // }
+
 
 }
 
