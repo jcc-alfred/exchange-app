@@ -10,8 +10,8 @@ import {
     netExchangeGetIsExchangeSafe,
     netExchangeGetMarketList,
     netExchangeGetUserDepositListByCoinId,
-    netExchangeGetUserEntrustList,
-    netExchangeGetUserHistoryEntrustList,
+    netExchangeGetUserEntrustlist,
+    netExchangeGetUserHistoryEntrustlist,
     netExchangeGetUserWithdrawListByCoinId,
     netExchangeLastPrice
 } from "../net/ExchangeApiNet";
@@ -174,7 +174,7 @@ export function exchangeDoCancelEntrust( query, callback ) {
 
 export function exchangeGetUserHistoryEntrustList( callback ) {
     return ( dispatch ) => {
-        netExchangeGetUserHistoryEntrustList( ( err, res ) => {
+        netExchangeGetUserHistoryEntrustlist( ( err, res ) => {
             callback && callback( err, res )
         } );
     };
@@ -182,7 +182,7 @@ export function exchangeGetUserHistoryEntrustList( callback ) {
 
 export function exchangeGetUserEntrustList( callback ) {
     return ( dispatch ) => {
-        netExchangeGetUserEntrustList( ( err, res ) => {
+        netExchangeGetUserEntrustlist( ( err, res ) => {
             callback && callback( err, res )
         } );
     };
