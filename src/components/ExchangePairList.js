@@ -26,16 +26,16 @@ class ExchangePairList extends React.Component {
                     flexDirection: 'row',
                     height: 25,
                     alignItems: 'center',
-                    lineHeight: 20
+                    lineHeight: 20,
+                    marginLeft:5
                 }}>
 
-                <View style={{ flex: 1, alignItems: 'center' }}>
-                    <Text>{I18n.t( Keys.name )}</Text>
-
+                <View style={{ flex: 1, }}>
+                    <Text style={{textAlign: 'left' }}>{I18n.t( Keys.name )}</Text>
                 </View>
 
-                <View style={{ flex: 1, alignItems: 'center' }}>
-                    <Text>{I18n.t( Keys.latest_price )}</Text>
+                <View style={{ flex: 1}}>
+                    <Text >{I18n.t( Keys.latest_price )}</Text>
                 </View>
 
                 <View style={{ flex: 1, alignItems: 'center' }}>
@@ -57,21 +57,24 @@ class ExchangePairList extends React.Component {
                 underlayColor='#ddd'
                 onPress={() => this.props.onPressItem( item )}>
 
-                <View style={{ alignItems: 'center', flexDirection: 'row', height: 50, marginStart: 40 }}>
+                <View style={{ alignItems: 'center', flexDirection: 'row', height: viewHeight,marginLeft:5}}>
                     <View style={{ flex: 1 }}>
-                        <Text>
-                            {item.coinEx.coin_name}/{item.coinEx.exchange_coin_name}
-                        </Text>
-                        <Text style={{ fontSize: 8 }}>
-                            24{I18n.t( Keys.volume )} {Util.toMoneyDisplay( item.market.total_volume )}
+                        <View style={{flexDirection:'row'}}>
+                            <Text style={{fontWeight:'bold',fontSize:16}}>
+                                {item.coinEx.coin_name}
+                            </Text>
+                            <Text style={{color:'#e8e4dc',fontSize:16}}>/{item.coinEx.exchange_coin_name}</Text>
+                        </View>
+                        <Text style={{ color:'#696965',fontSize: 12,marginTop:3}}>
+                            24{I18n.t( Keys.vol )} {Util.toVolumeDisplay( item.market.total_volume)}
                         </Text>
                     </View>
 
                     <View style={{ flex: 1 }}>
-                        <Text>
+                        <Text style={{fontWeight:'bold',fontSize:16}}>
                             {item.market.last_price}
                         </Text>
-                        <Text style={{ fontSize: 8 }}>
+                        <Text style={{ color:'#696965',fontSize: 12,marginTop:3}}>
                             ${Util.toMoneyDisplay( item.price_usd )}
                         </Text>
                     </View>
@@ -83,11 +86,10 @@ class ExchangePairList extends React.Component {
                             width: '60%',
                             alignItems: 'center',
                         }}>
-                            <Text style={{ color: 'white' }}>
+                            <Text style={{ color: 'white' ,fontWeight:'bold',lineHeight:28,fontSize:16}}>
                                 {Util.numToPercentage( item.market.change_rate )}
                             </Text>
                         </View>
-
                     </View>
                 </View>
             </TouchableHighlight>
@@ -97,7 +99,7 @@ class ExchangePairList extends React.Component {
 
     render() {
         const separatorHeight = 1;
-        const viewHeight = 110;
+        const viewHeight = 60;
         return (
             <FlatList
                 refreshControl={

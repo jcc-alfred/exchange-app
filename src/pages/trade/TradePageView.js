@@ -56,7 +56,7 @@ class TradePageView extends React.Component {
             <View key={index}
                   style={[{
                       flexDirection: 'row',
-                      padding: 2,
+                      padding: 3,
                       backgroundColor: type === 'buy' ? '#ebf7f7' : 'white'
                   }]}>
                 <View style={[styles.overlay, {
@@ -66,11 +66,15 @@ class TradePageView extends React.Component {
                         Util.calcDisplayDiscount(entrustItem.no_completed_volume / entrustItem.entrust_volume)
                 }]}/>
                 <Text style={[{flex: 1, fontSize: 8, color: '#303940'}]}>{index}</Text>
-                <Text style={[{flex: 1, fontSize: 8, color: '#303940'}]}>{entrustItem.no_completed_volume.toFixed(6)}</Text>
                 <Text style={[{
-                    flex: 1,
+                    flex: 2,
                     fontSize: 8,
-                    color: '#009d7a'
+                    color: '#303940'
+                }]}>{entrustItem.no_completed_volume.toFixed(6)}</Text>
+                <Text style={[{
+                    flex: 2,
+                    fontSize: 8,
+                    color: type === 'buy' ? '#009d7a' : 'red'
                 }]}>{entrustItem.entrust_price.toFixed(8)}</Text>
             </View>
         )
@@ -107,6 +111,9 @@ class TradePageView extends React.Component {
             this.socket.connect();
         }
         this.socket.on('connect', () => {
+            this.setState({
+                isRequesting: false
+            });
             console.log('connect:', this.socket.connected);
             this.socket.emit('init', {
                 user_id: this.props.userInfo.user_id ? this.props.userInfo.user_id : 0,
@@ -217,7 +224,7 @@ class TradePageView extends React.Component {
         if (this.props.TradePageCoinEx !== nextProps.TradePageCoinEx) {
             this.loadData()
         }
-        if( this.state.buyAmount !== nextState.buyAmount){
+        if (this.state.buyAmount !== nextState.buyAmount) {
 
         }
         return true;
@@ -279,13 +286,22 @@ class TradePageView extends React.Component {
             }
         }
 
-        let ExchangeAmount = '';
+        let ExchangeAmount = null;
         if (type === 'buy' && this.state.buyPrice && this.state.buyVolume) {
-            ExchangeAmount = parseFloat(this.state.buyPrice) * parseFloat(this.state.buyVolume).toFixed(2)
-        } else if (type === 'sell' && this.state.sellPrice && this.state.sellVolume) {
-            ExchangeAmount = (parseFloat(this.state.sellPrice) * parseFloat(this.state.sellVolume)).toFixed(2)
+            ExchangeAmount = (<Text style={{
+                fontSize: 12,
+                flex: 8,
+                marginTop: 3
+            }}>{parseFloat(this.state.buyPrice) * parseFloat(this.state.buyVolume).toFixed(2) + this.props.TradePageCoinEx.coinEx.exchange_coin_name}</Text>)
 
+        } else if (type === 'sell' && this.state.sellPrice && this.state.sellVolume) {
+            ExchangeAmount = (<Text style={{
+                fontSize: 12,
+                flex: 8,
+                marginTop: 3
+            }}>{(parseFloat(this.state.sellPrice) * parseFloat(this.state.sellVolume)).toFixed(2) + this.props.TradePageCoinEx.coinEx.exchange_coin_name}</Text>)
         }
+
         return (
             <View style={{padding: 2, flex: 1}}>
                 <Text>{type === 'buy' ? I18n.t(Keys.Buy) : I18n.t(Keys.Sell)}</Text>
@@ -294,7 +310,7 @@ class TradePageView extends React.Component {
                            onChangeText={value => this.changeState(value, type === 'buy' ? 'buyPrice' : 'sellPrice')}
                            placeholder={(type === "buy" ? I18n.t(Keys.Buy) : I18n.t(Keys.Sell)) + ' ' + I18n.t(Keys.Price)}
                            inputContainerStyle={{borderBottomWidth: 0}}
-                           containerStyle={[{flex: 9}]} keyboardType={'numeric'}/>
+                           containerStyle={[{flex: 9,borderWidth:0}]} keyboardType={'numeric'}/>
                 </View>
                 <View style={[styles.PriceInput, {flexDirection: 'row', height: 40, marginTop: 5}]}>
                     <Input value={type === 'buy' ? this.state.buyVolume : this.state.sellVolume}
@@ -332,10 +348,11 @@ class TradePageView extends React.Component {
                 <View>
                     <View style={{flexDirection: 'row'}}>
                         <Text style={{fontSize: 12, flex: 3}}>{I18n.t(Keys.ExchangeAmount)}</Text>
-                        <Text style={{fontSize: 12, flex: 8}}>{ExchangeAmount}</Text>
-
+                        {ExchangeAmount}
                     </View>
-                    <Button style={{margin: 10}}
+                    <Button buttonStyle={{margin: 10, backgroundColor: type === 'buy' ? '#009d7a' : 'red'}}
+                            containerStyle={{}}
+                            titleStyle={{color: 'white'}}
                             title={(type === 'buy' ? I18n.t(Keys.Buy) : I18n.t(Keys.Sell)) + ' ' +
                             (this.props.TradePageCoinEx.coinEx ? this.props.TradePageCoinEx.coinEx.coin_name : '')}
                             onPress={() => {
@@ -357,14 +374,8 @@ class TradePageView extends React.Component {
             <View>
                 {this.renderPriceBar()}
                 {this.renderEntrustView()}
-                <View>
-                    <Text
-                        style={{
-                            borderBottomColor: 'black',
-                            borderBottomWidth: 2
-                        }}>{I18n.t("Fixed Entrust")}</Text>
-                </View>
-                <View style={{flexDirection: 'row'}}>
+
+                <View style={{flexDirection: 'row', marginTop: 15}}>
                     {this.renderDoEntrustView('buy')}
                     {this.renderDoEntrustView('sell')}
                 </View>
@@ -495,17 +506,22 @@ class TradePageView extends React.Component {
                             color={'black'}
                         />
                     </BorderlessButton>
-                    <Text style={[commonStyles.commonInputTextStyle]}>
+                    <Text style={[commonStyles.commonInputTextStyle, {fontSize: 20, fontWeight: 'bold'}]}>
                         {this.props.TradePageCoinEx ? this.props.TradePageCoinEx.coinEx.coin_name + '/' + this.props.TradePageCoinEx.coinEx.exchange_coin_name : ''}
                     </Text>
-                    <Text style={[styles.smallRedFont]}>
+                    <Text style={[{
+                        color: this.props.TradePageCoinEx.market.change_rate > 0 ? '#489A48' : '#e7234c', fontSize: 16,
+                        backgroundColor: this.props.TradePageCoinEx.market.change_rate > 0 ? '#ebf7f7' : '#faf2f0',
+                        marginTop: 8, marginBottom: 8, padding: 4
+                    }]}>
                         {this.props.TradePageCoinEx ? Util.numToPercentage(this.props.TradePageCoinEx.market.change_rate) : null}
                     </Text>
                 </View>
                 <View style={[{flexDirection: 'row', flex: 1}]}>
                     <TouchableHighlight underlayColor='#ddd' onPress={() => this.gotoKlinePage()}>
                         <View>
-                            <Image source={require('../../../assets/images/klineIcon.png')} containerStyle={[{width: 25, height: 25}]}/>
+                            <Image source={require('../../../assets/images/klineIcon.png')}
+                                   containerStyle={[{width: 25, height: 25}]}/>
                         </View>
                     </TouchableHighlight>
                 </View>
@@ -519,7 +535,7 @@ class TradePageView extends React.Component {
             <View style={[{flexDirection: 'row'}]}>
                 <View style={[commonStyles.customerRow]}>
                     <Text
-                        style={[styles.bigFontPrice]}>{this.props.TradePageCoinEx.market ? this.props.TradePageCoinEx.market.last_price : null}</Text>
+                        style={[styles.bigFontPrice, {fontWeight: 'bold'}]}>{this.props.TradePageCoinEx.market ? this.props.TradePageCoinEx.market.last_price : null}</Text>
                     <Text
                         style={[styles.smallGrayFont]}>={this.props.TradePageCoinEx ? Util.toMoneyDisplayWithCurrency(this.props.TradePageCoinEx.price_usd ? this.props.TradePageCoinEx.price_usd : 0, '$') : 0}</Text>
                 </View>
@@ -533,10 +549,10 @@ class TradePageView extends React.Component {
         return (
             <View style={[{flexDirection: 'row'}]}>
                 <View style={[{flex: 1}]}>
-                    <View style={[{flexDirection: 'row', padding: 2}]}>
-                        <Text style={[{flexDirection: 'row', flex: 1, fontSize: 8}]}>{I18n.t(Keys.Buy)}</Text>
-                        <Text style={[{flexDirection: 'row', flex: 2, fontSize: 8}]}>{I18n.t(Keys.Volume)}</Text>
-                        <Text style={[{flexDirection: 'row', flex: 1, fontSize: 8}]}>{I18n.t(Keys.Price)}</Text>
+                    <View style={[{flexDirection: 'row'}]}>
+                        <Text style={[{flex: 1, fontSize: 12}]}>{I18n.t(Keys.Buy)}</Text>
+                        <Text style={[{flex: 2, fontSize: 12}]}>{I18n.t(Keys.Volume)}</Text>
+                        <Text style={[{flex: 2, fontSize: 12}]}>{I18n.t(Keys.Price)}</Text>
                     </View>
                     {buyList.map((entrustItem, index) => {
                         return TradePageView.renderInfoCell(index, entrustItem, 'buy')
@@ -544,10 +560,10 @@ class TradePageView extends React.Component {
                 </View>
 
                 <View style={[{flex: 1}]}>
-                    <View style={[{flexDirection: 'row', padding: 2}]}>
-                        <Text style={[{flexDirection: 'row', flex: 1, fontSize: 8}]}>{I18n.t(Keys.Sell)}</Text>
-                        <Text style={[{flexDirection: 'row', flex: 2, fontSize: 8}]}>{I18n.t(Keys.Volume)}</Text>
-                        <Text style={[{flexDirection: 'row', flex: 1, fontSize: 8}]}>{I18n.t(Keys.Price)}</Text>
+                    <View style={[{flexDirection: 'row'}]}>
+                        <Text style={[{flex: 1, fontSize: 12}]}>{I18n.t(Keys.Sell)}</Text>
+                        <Text style={[{flex: 2, fontSize: 12}]}>{I18n.t(Keys.Volume)}</Text>
+                        <Text style={[{flex: 2, fontSize: 12}]}>{I18n.t(Keys.Price)}</Text>
                     </View>
                     {sellList.sort(function (a, b) {
                         return a.entrust_price - b.entrust_price

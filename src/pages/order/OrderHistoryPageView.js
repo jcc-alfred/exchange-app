@@ -153,6 +153,8 @@ class OrderHistoryPageView extends React.Component {
                             marketList={this.props.marketList}
                             userEntrustList={this.state.userHistoryEntrustList}
                             userInfo={this.props.userInfo}
+                            onExchangeDoCancelEntrust={this.props.onExchangeDoCancelEntrust.bind(this)}
+                            deleteItem={this.deleteItem.bind(this)}
                         />
                     );
                 };
@@ -193,6 +195,22 @@ class OrderHistoryPageView extends React.Component {
         } else {
             return null;
         }
+    }
+
+    deleteItem(id) {
+
+        this.setState({
+            userEntrustList: this.state.userEntrustList.filter(item => item.entrust_id !== id)
+        })
+
+        const tabData = [{title: I18n.t( Keys.all ), value: this.state.userEntrustList}, {
+            title: I18n.t( Keys.histroy ),
+            value: this.state.userHistoryEntrustList
+        }];
+        const {index, routes, scenes} = this.initTabData(tabData);
+        this.setState({
+            routes, scenes
+        })
     }
 
 }
