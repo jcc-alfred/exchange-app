@@ -992,6 +992,9 @@
   "withdraw": "withdraw",
   "withdraw_history": "Cash withdrawal history",
   "yes": "Yes",
+  "completed": "Completed",
+  "all": "All",
+  "histroy": "Histroy"
   "ExchangeAmount": "Exchange Amount",
   "senior_Verification": "Senior Verification",
   "senior_Verification_Tips": "Advanced verification allows you to complete more transactions per trade and more withdraw limitations",
