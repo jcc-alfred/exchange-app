@@ -26,14 +26,14 @@
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.asiaedx.client",
-      "buildNumber": "2",
+      "buildNumber": "3",
       "infoPlist": {
         "NSFaceIDUsageDescription": "This app will optionally use Face ID or Touch ID to protect your privacy"
       }
     },
     "android": {
       "package": "com.asiaedx.client",
-      "versionCode": 2
+      "versionCode": 3
     },
     "description": ""
   }
