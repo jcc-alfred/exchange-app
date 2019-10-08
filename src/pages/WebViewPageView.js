@@ -1,6 +1,7 @@
 import React from "react";
-import { SafeAreaView, StatusBar, StyleSheet, View, WebView } from "react-native";
+import { SafeAreaView, StatusBar, StyleSheet, View } from "react-native";
 import commonStyles from "../styles/commonStyles";
+import { WebView } from 'react-native-webview';
 
 const styles = StyleSheet.create( {} );
 
