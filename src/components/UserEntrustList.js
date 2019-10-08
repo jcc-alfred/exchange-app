@@ -127,27 +127,25 @@ class UserEntrustList extends React.Component {
 
     }
 
-    // doCancelEntrust(entrust) {
-    //     InteractionManager.runAfterInteractions(() => {
-    //         this.props.onExchangeDoCancelEntrust({
-    //             "entrustId": entrust.entrust_id,
-    //             "coinExchangeId": entrust.coin_exchange_id,
-    //             "entrustTypeId": entrust.entrust_type_id,
-    //             "user_id": this.props.userInfo.user_id
-    //         }, (err, res) => {
-    //             if (!err) {
-    //                 Toast.show("entrust canceled");
-    //                 let tmp = this.props.userEntrustList;
-    //                 tmp = tmp.filter(i => i.entrust_id !== entrust.entrust_id);
-    //                 this.setState({
-    //                     userEntrustList: tmp
-    //                 })
-    //             } else {
-    //                 Toast.show(err.message)
-    //             }
-    //         })
-    //     })
-    // }
+    doCancelEntrust(entrust) {
+        InteractionManager.runAfterInteractions(() => {
+            this.props.onExchangeDoCancelEntrust({
+                "entrustId": entrust.entrust_id,
+                "coinExchangeId": entrust.coin_exchange_id,
+                "entrustTypeId": entrust.entrust_type_id,
+                "user_id": this.props.userInfo.user_id
+            }, (err, res) => {
+                if (!err) {
+                    Toast.show("entrust canceled");
+                    let tmp = this.props.userEntrustList;
+                    tmp = tmp.filter(i => i.entrust_id !== entrust.entrust_id);
+                    this.props.deleteItem(entrust.entrust_id);
+                } else {
+                    Toast.show(err.message)
+                }
+            })
+        })
+    }
 
 
 }
