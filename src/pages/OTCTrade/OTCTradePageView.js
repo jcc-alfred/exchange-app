@@ -12,7 +12,60 @@ import Keys from "../../configs/Keys";
 
 
 const FirstRoute = () => (
-    <View style={[styles.scene, { backgroundColor: '#ff4081' }]} />
+    <View style={[styles.scene, { backgroundColor: '#ff4081', flexDirection: 'row' }]} >
+
+        <Button
+            title={I18n.t( Keys.resend )}
+            type="outline"
+            containerStyle={[{ flex:1, margin:5}]}
+            titleStyle={[ { fontSize: 14, } ]}
+            onPress={() => {
+
+            }
+            }
+        />
+        <Button
+            title={I18n.t( Keys.resend )}
+            type="outline"
+            containerStyle={[{ flex:1, margin:5}]}
+            titleStyle={[ { fontSize: 14, } ]}
+            onPress={() => {
+
+            }
+            }
+        />
+        <Button
+            title={I18n.t( Keys.resend )}
+            type="outline"
+            containerStyle={[{ flex:1, margin:5}]}
+            titleStyle={[ { fontSize: 14, } ]}
+            onPress={() => {
+
+            }
+            }
+        />
+        <Button
+            title={I18n.t( Keys.resend )}
+            type="outline"
+            containerStyle={[{ flex:1, margin:5}]}
+            titleStyle={[ { fontSize: 14, } ]}
+            onPress={() => {
+
+            }
+            }
+        />
+        <Button
+            title={I18n.t( Keys.resend )}
+            type="outline"
+            containerStyle={[{ flex:1, margin:5}]}
+            titleStyle={[ { fontSize: 14, } ]}
+            onPress={() => {
+
+            }
+            }
+        />
+
+    </View>
 );
 
 const SecondRoute = () => (
