@@ -1006,5 +1006,9 @@
   "IC_Hold": "Selfie with holding IC",
   "Submit": "Submit",
   "SearchCoin": "Search Coin",
-  "vol": "Vol"
+  "vol": "Vol",
+  "TradeHall":"Trade Hall",
+  "PublishPost":"Publish Post",
+  "MyPost":"My Post",
+  "MyOrder":"My Order"
 }

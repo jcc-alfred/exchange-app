@@ -1,5 +1,13 @@
 import React from 'react';
-import {InteractionManager, SafeAreaView, StatusBar, StyleSheet, View} from 'react-native';
+import {
+    InteractionManager,
+    SafeAreaView,
+    StatusBar,
+    StyleSheet,
+    View,
+    FlatList,
+    TouchableHighlight
+} from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import { TabView, SceneMap } from 'react-native-tab-view';
 import { Text,Button, Input, } from "react-native-elements";
@@ -11,62 +19,7 @@ import Keys from "../../configs/Keys";
 
 
 
-const FirstRoute = () => (
-    <View style={[styles.scene, { backgroundColor: '#ff4081', flexDirection: 'row' }]} >
 
-        <Button
-            title={I18n.t( Keys.resend )}
-            type="outline"
-            containerStyle={[{ flex:1, margin:5}]}
-            titleStyle={[ { fontSize: 14, } ]}
-            onPress={() => {
-
-            }
-            }
-        />
-        <Button
-            title={I18n.t( Keys.resend )}
-            type="outline"
-            containerStyle={[{ flex:1, margin:5}]}
-            titleStyle={[ { fontSize: 14, } ]}
-            onPress={() => {
-
-            }
-            }
-        />
-        <Button
-            title={I18n.t( Keys.resend )}
-            type="outline"
-            containerStyle={[{ flex:1, margin:5}]}
-            titleStyle={[ { fontSize: 14, } ]}
-            onPress={() => {
-
-            }
-            }
-        />
-        <Button
-            title={I18n.t( Keys.resend )}
-            type="outline"
-            containerStyle={[{ flex:1, margin:5}]}
-            titleStyle={[ { fontSize: 14, } ]}
-            onPress={() => {
-
-            }
-            }
-        />
-        <Button
-            title={I18n.t( Keys.resend )}
-            type="outline"
-            containerStyle={[{ flex:1, margin:5}]}
-            titleStyle={[ { fontSize: 14, } ]}
-            onPress={() => {
-
-            }
-            }
-        />
-
-    </View>
-);
 
 const SecondRoute = () => (
     <View style={[styles.scene, { backgroundColor: '#673ab7' }]} />
@@ -81,11 +34,19 @@ class OTCTradePageView extends React.Component {
         this.state = {
             index: 0,
 
+            nList: [
+                { key: 'first', title: 'Buy' },
+                { key: 'second', title: 'Sell' },
+            ],
+
             isRequesting: false,
             routes: [
                 { key: 'first', title: 'Buy' },
                 { key: 'second', title: 'Sell' },
             ],
+
+
+
         }
     }
 
@@ -146,13 +107,103 @@ class OTCTradePageView extends React.Component {
 
 
 
+    renderFirstPage(){
+        return (
+            <View style={[styles.scene, { backgroundColor: '#ff4081' }]} >
+
+                <View style={[styles.scene, { backgroundColor: '#ff4081', flexDirection: 'row'}]}>
+                    <Button
+                        title={"GTB"}
+                        type="outline"
+                        containerStyle={[{ flex:1, margin:5}]}
+                        titleStyle={[ { fontSize: 12, } ]}
+                        onPress={() => {
+
+                        }
+                        }
+                    />
+                    <Button
+                        title={"BTC"}
+                        type="outline"
+                        containerStyle={[{ flex:1, margin:5}]}
+                        titleStyle={[ { fontSize: 12, } ]}
+                        onPress={() => {
+
+                        }
+                        }
+                    />
+                    <Button
+                        title={I18n.t( Keys.resend )}
+                        type="outline"
+                        containerStyle={[{ flex:1, margin:5}]}
+                        titleStyle={[ { fontSize: 12, } ]}
+                        onPress={() => {
+
+                        }
+                        }
+                    />
+                    <Button
+                        title={"CNY"}
+                        type="outline"
+                        containerStyle={[{ flex:1, margin:5}]}
+                        titleStyle={[ { fontSize: 12, } ]}
+                        onPress={() => {
+
+                        }
+                        }
+                    />
+                    <Button
+                        title={"USD"}
+                        type="outline"
+                        containerStyle={[{ flex:1, margin:5}]}
+                        titleStyle={[ { fontSize: 12, } ]}
+                        onPress={() => {
+
+                        }
+                        }
+                    />
+
+
+                </View>
+
+
+                {/*<View style={[styles.scene, { backgroundColor: '#ff4081', flexDirection: 'row'}]}>*/}
+                {/*<FlatList*/}
+                {/*data={this.state.nList}*/}
+                {/*keyExtractor={(item, index) => {*/}
+                {/*return 'item ' + index;*/}
+                {/*}}*/}
+                {/*renderItem={({item, index}) => {*/}
+                {/*return this.renderItem(1, item, index);*/}
+                {/*}}*/}
+                {/*ItemSeparatorComponent={() => {*/}
+                {/*return <View*/}
+                {/*style={[commonStyles.commonIntervalStyle, {height: 1}]}/>;*/}
+                {/*}}*/}
+                {/*getItemLayout={(data, index) => (*/}
+                {/*{length: 110, offset: (110 + 1) * index, index}*/}
+                {/*)}*/}
+                {/*onScroll={() => {*/}
+                {/*}}*/}
+                {/*/>*/}
+                {/*</View>*/}
+
+
+            </View>
+        );
+    }
+
+
+
+
+
     renderTabView(){
         return (
             <TabView
                 navigationState={this.state}
                 onIndexChange={index => this.setState({ index })}
                 renderScene={SceneMap({
-                    first: FirstRoute,
+                    first: this.renderFirstPage,
                     second: SecondRoute,
                 })}
             />
@@ -167,10 +218,11 @@ class OTCTradePageView extends React.Component {
                 {/*<Button*/}
 
                 <Button
-                    title={I18n.t( Keys.resend )}
+                    title={I18n.t( Keys.TradeHall )}
                     type="outline"
                     containerStyle={[{ flex:1, margin:5}]}
-                    titleStyle={[ { fontSize: 14, } ]}
+
+                    titleStyle={[ { fontSize: 12, } ]}
                     onPress={() => {
 
                     }
@@ -178,10 +230,10 @@ class OTCTradePageView extends React.Component {
                 />
 
                 <Button
-                    title={I18n.t( Keys.resend )}
+                    title={I18n.t( Keys.PublishPost )}
                     type="outline"
                     containerStyle={[{ flex:1, margin:5}]}
-                    titleStyle={[ { fontSize: 14, } ]}
+                    titleStyle={[ { fontSize: 12, } ]}
                     onPress={() => {
 
                     }
@@ -189,10 +241,10 @@ class OTCTradePageView extends React.Component {
                 />
 
                 <Button
-                    title={I18n.t( Keys.resend )}
+                    title={I18n.t( Keys.MyPost )}
                     type="outline"
                     containerStyle={[{ flex:1, margin:5}]}
-                    titleStyle={[ { fontSize: 14, } ]}
+                    titleStyle={[ { fontSize: 12, } ]}
                     onPress={() => {
 
                     }
@@ -200,20 +252,55 @@ class OTCTradePageView extends React.Component {
                 />
 
                 <Button
-                    title={I18n.t( Keys.resend )}
+                    title={I18n.t( Keys.MyOrder )}
                     type="outline"
                     containerStyle={[{ flex:1, margin:5}]}
-                    titleStyle={[ { fontSize: 14, } ]}
+                    titleStyle={[ { fontSize: 12, } ]}
                     onPress={() => {
 
                     }
                     }
                 />
-
-
             </View>
         )
     }
+
+
+    renderItem(viewHeight, item, index) {
+        const url = "https://www.asiaedx.com/#/doc/newsDetail/";
+        return (
+            <TouchableHighlight
+                underlayColor='#ddd'
+                style={index % 2 === 1 ? {backgroundColor: '#efefef'} : {backgroundColor: 'white'}}
+                onPress={() => {
+                    // this.props.navigation.navigate('WebViewPage', {
+                    //     url: url + item.page_news_id,
+                    //     webTitle: I18n.t(Keys.news)
+                    // })
+                }}>
+
+                {/*<View style={{alignItems: 'flex-start', height: 60, marginStart: 20, marginEnd: 20, marginTop: 10}}>*/}
+
+                    {/*<Text>*/}
+                        {/*{item.news_title}*/}
+                    {/*</Text>*/}
+
+                    {/*<Text style={{marginTop: 5}}>*/}
+                        {/*{item.update_time}*/}
+                    {/*</Text>*/}
+                {/*</View>*/}
+            </TouchableHighlight>
+        );
+    }
+
+
+
+
+
+
+
+
+
 
 }
 

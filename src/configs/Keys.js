@@ -786,6 +786,10 @@ const Keys = {
     "IC_Hold":"IC_Hold",
     "Submit":"Submit",
     "SearchCoin":"SearchCoin",
-    "vol":"vol"
+    "vol":"vol",
+    "TradeHall":"TradeHall",
+    "PublishPost":"PublishPost",
+    "MyPost":"MyPost",
+    "MyOrder":"MyOrder"
 };
 export default Keys;

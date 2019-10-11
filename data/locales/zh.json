@@ -1006,5 +1006,9 @@
   "IC_Hold": "手持证件照",
   "Submit": "提交",
   "SearchCoin": "搜索币",
-  "vol": "量"
+  "vol": "量",
+  "TradeHall":"交易大厅",
+  "PublishPost":"发布交易",
+  "MyPost":"我的交易",
+  "MyOrder":"我的订单"
 }
