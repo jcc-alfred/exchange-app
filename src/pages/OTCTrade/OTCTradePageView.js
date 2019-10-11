@@ -1,14 +1,28 @@
 import React from 'react';
-import {InteractionManager, PixelRatio, SafeAreaView, StatusBar, StyleSheet, View, ScrollView} from 'react-native';
+import {
+    InteractionManager,
+    SafeAreaView,
+    StatusBar,
+    StyleSheet,
+    View,
+    FlatList,
+    TouchableHighlight,
+    ScrollView
+} from 'react-native';
 import commonStyles from "../../styles/commonStyles";
-import {Text, Button, Input} from "react-native-elements";
+import {TabView, SceneMap} from 'react-native-tab-view';
+import {Text, Button, Input,} from "react-native-elements";
+
 import Spinner from "../mine/UserInfoVerifyPageView";
 import I18n from "../../I18n";
 import Keys from "../../configs/Keys";
 import {getStatusBarHeight} from "react-native-iphone-x-helper";
 import ColorUtil from "../../util/ColorUtil";
-
 import RadioGroup from 'react-native-radio-buttons-group';
+
+const SecondRoute = () => (
+    <View style={[styles.scene, {backgroundColor: '#673ab7'}]}/>
+);
 
 
 class OTCTradePageView extends React.Component {
@@ -16,6 +30,10 @@ class OTCTradePageView extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            index: 0,
+
+            nList: [],
+
             isRequesting: false,
             paymentMethod: [
                 {
@@ -43,10 +61,15 @@ class OTCTradePageView extends React.Component {
                     color: ColorUtil.default_primary_color,
                     size: 20
                 },
-            ]
+            ],
+            routes: [
+                {key: 'first', title: 'Buy'},
+                {key: 'second', title: 'Sell'},
+            ],
+
+            isShowTradeHall: true,
+            isShowPublishPost: false
         }
-
-
     }
 
 
@@ -92,17 +115,136 @@ class OTCTradePageView extends React.Component {
 
     render() {
         return (
-            <View style={[commonStyles.wrapper,]}>
+            <View style={[commonStyles.wrapper]}>
                 <StatusBar backgroundColor="blue" barStyle="dark-content"/>
-                <SafeAreaView style={[commonStyles.wrapper,]}>
+                <SafeAreaView style={[commonStyles.wrapper]}>
                     {/*<Text>otc1</Text>*/}
                     {this.renderTopMenuBar()}
-                    {this.renderPublishPost()}
 
-                    {/*<Spinner visible={this.state.isRequesting} cancelable={true}/>*/}
+
+                    {this.state.isShowTradeHall ? this.renderTradeHallTabView() : null}
+                    {this.state.isShowPublishPost ? this.renderPublishPost() : null}
+
+
                 </SafeAreaView>
             </View>
         );
+    }
+
+
+    renderTradeHallPage() {
+        return (
+            <View style={[styles.scene, {backgroundColor: '#ff4081'}]}>
+
+                <View style={[styles.scene, {backgroundColor: '#ff4081', flexDirection: 'row'}]}>
+                    <Button
+                        title={"GTB"}
+                        type="outline"
+                        containerStyle={[{flex: 1, margin: 5}]}
+                        titleStyle={[{fontSize: 12,}]}
+                        onPress={() => {
+
+                        }
+                        }
+                    />
+                    <Button
+                        title={"BTC"}
+                        type="outline"
+                        containerStyle={[{flex: 1, margin: 5}]}
+                        titleStyle={[{fontSize: 12,}]}
+                        onPress={() => {
+
+                        }
+                        }
+                    />
+                    <Button
+                        title={I18n.t(Keys.resend)}
+                        type="outline"
+                        containerStyle={[{flex: 1, margin: 5}]}
+                        titleStyle={[{fontSize: 12,}]}
+                        onPress={() => {
+
+                        }
+                        }
+                    />
+                    <Button
+                        title={"CNY"}
+                        type="outline"
+                        containerStyle={[{flex: 1, margin: 5}]}
+                        titleStyle={[{fontSize: 12,}]}
+                        onPress={() => {
+
+                        }
+                        }
+                    />
+                    <Button
+                        title={"USD"}
+                        type="outline"
+                        containerStyle={[{flex: 1, margin: 5}]}
+                        titleStyle={[{fontSize: 12,}]}
+                        onPress={() => {
+
+                        }
+                        }
+                    />
+
+
+                </View>
+
+
+                {/*<View style={[styles.scene, { backgroundColor: '#ff4081', flexDirection: 'row'}]}>*/}
+                {/*<FlatList*/}
+                {/*data={this.state.nList}*/}
+                {/*keyExtractor={(item, index) => {*/}
+                {/*return 'item ' + index;*/}
+                {/*}}*/}
+                {/*renderItem={({item, index}) => {*/}
+                {/*return this.renderItem(1, item, index);*/}
+                {/*}}*/}
+                {/*ItemSeparatorComponent={() => {*/}
+                {/*return <View*/}
+                {/*style={[commonStyles.commonIntervalStyle, {height: 1}]}/>;*/}
+                {/*}}*/}
+                {/*getItemLayout={(data, index) => (*/}
+                {/*{length: 110, offset: (110 + 1) * index, index}*/}
+                {/*)}*/}
+                {/*onScroll={() => {*/}
+                {/*}}*/}
+                {/*/>*/}
+                {/*</View>*/}
+
+
+            </View>
+        );
+    }
+
+
+    renderTradeHallTabView() {
+        return (
+            <TabView
+                navigationState={this.state}
+                onIndexChange={index => this.setState({index})}
+                renderScene={SceneMap({
+                    first: this.renderTradeHallPage,
+                    second: this.renderTradeHallPage,
+                })}
+            />
+        );
+    }
+
+
+    renderPublishPostTabView() {
+        return (
+            <TabView
+                navigationState={this.state}
+                onIndexChange={index => this.setState({index})}
+                renderScene={SceneMap({
+                    first: this.renderPublishPost,
+                    second: this.renderPublishPost
+                })}
+            />
+
+        )
     }
 
 
@@ -117,7 +259,7 @@ class OTCTradePageView extends React.Component {
                     containerStyle={[{flex: 1, margin: 5}]}
                     titleStyle={[{fontSize: 12,}]}
                     onPress={() => {
-
+                        this.setState({isShowTradeHall: true, isShowPublishPost: false})
                     }
                     }
                 />
@@ -128,7 +270,7 @@ class OTCTradePageView extends React.Component {
                     containerStyle={[{flex: 1, margin: 5}]}
                     titleStyle={[{fontSize: 12,}]}
                     onPress={() => {
-                        this.renderPublishPost()
+                        this.setState({isShowTradeHall: false, isShowPublishPost: true})
                     }
                     }
                 />
@@ -154,17 +296,11 @@ class OTCTradePageView extends React.Component {
                     }
                     }
                 />
-
-
             </View>
         )
     }
 
     renderPublishPost() {
-        const radio_props = [
-            {label: 'param1', value: 0},
-            {label: 'param2', value: 1}
-        ];
 
         return (
             <ScrollView>
@@ -260,8 +396,35 @@ class OTCTradePageView extends React.Component {
 
             </ScrollView>
 
-
         )
+
+    }
+
+    renderItem(viewHeight, item, index) {
+        const url = "https://www.asiaedx.com/#/doc/newsDetail/";
+        return (
+            <TouchableHighlight
+                underlayColor='#ddd'
+                style={index % 2 === 1 ? {backgroundColor: '#efefef'} : {backgroundColor: 'white'}}
+                onPress={() => {
+                    // this.props.navigation.navigate('WebViewPage', {
+                    //     url: url + item.page_news_id,
+                    //     webTitle: I18n.t(Keys.news)
+                    // })
+                }}>
+
+                {/*<View style={{alignItems: 'flex-start', height: 60, marginStart: 20, marginEnd: 20, marginTop: 10}}>*/}
+
+                {/*<Text>*/}
+                {/*{item.news_title}*/}
+                {/*</Text>*/}
+
+                {/*<Text style={{marginTop: 5}}>*/}
+                {/*{item.update_time}*/}
+                {/*</Text>*/}
+                {/*</View>*/}
+            </TouchableHighlight>
+        );
     }
 
     onSelectPayMethod() {
@@ -346,9 +509,13 @@ const styles = StyleSheet.create({
         marginTop: 10,
         backgroundColor: '#ddd',
         borderColor: '#888',
-        borderWidth: 1 / PixelRatio.get(),
+        borderWidth: 1,
         color: '#777'
-    }
+    },
+
+    scene: {
+        flex: 1,
+    },
 });
 
 
