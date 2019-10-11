@@ -1,8 +1,12 @@
 import React from 'react';
 import { InteractionManager, SafeAreaView, StatusBar, View } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
-import { Text } from "react-native-elements";
+import { Text,Button, Input, } from "react-native-elements";
 import Spinner from "../mine/UserInfoVerifyPageView";
+import I18n from "../../I18n";
+import Keys from "../../configs/Keys";
+
+
 
 class OTCTradePageView extends React.Component {
 
@@ -58,12 +62,76 @@ class OTCTradePageView extends React.Component {
             <View style={[ commonStyles.wrapper, ]}>
                 <StatusBar backgroundColor="blue" barStyle="dark-content"/>
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
-                    <Text>otc</Text>
-                    <Spinner visible={this.state.isRequesting} cancelable={true}/>
+                    {/*<Text>otc1</Text>*/}
+                    {this.renderTopMenuBar()}
+
+                    {/*<Spinner visible={this.state.isRequesting} cancelable={true}/>*/}
                 </SafeAreaView>
             </View>
         );
     }
+
+
+
+
+
+
+    renderTopMenuBar() {
+        return (
+            <View style={{flexDirection:'row' ,}}>
+                {/*<Button*/}
+
+                <Button
+                    title={I18n.t( Keys.resend )}
+                    type="outline"
+                    containerStyle={[{ flex:1, margin:5}]}
+                    titleStyle={[ { fontSize: 14, } ]}
+                    onPress={() => {
+
+                    }
+                    }
+                />
+
+                <Button
+                    title={I18n.t( Keys.resend )}
+                    type="outline"
+                    containerStyle={[{ flex:1, margin:5}]}
+                    titleStyle={[ { fontSize: 14, } ]}
+                    onPress={() => {
+
+                    }
+                    }
+                />
+
+                <Button
+                    title={I18n.t( Keys.resend )}
+                    type="outline"
+                    containerStyle={[{ flex:1, margin:5}]}
+                    titleStyle={[ { fontSize: 14, } ]}
+                    onPress={() => {
+
+                    }
+                    }
+                />
+
+                <Button
+                    title={I18n.t( Keys.resend )}
+                    type="outline"
+                    containerStyle={[{ flex:1, margin:5}]}
+                    titleStyle={[ { fontSize: 14, } ]}
+                    onPress={() => {
+
+                    }
+                    }
+                />
+
+
+            </View>
+        )
+    }
+
+
+
 
 
 }

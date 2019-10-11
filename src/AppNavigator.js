@@ -200,6 +200,7 @@ const AssetsDetailStack = createStackNavigator( { AssetsListPage: { screen: Asse
 const MainTabContainer = createBottomTabNavigator(
     {
         HomeStack: HomeStack,
+        OTCTradeStack: OTCTradeStack,
         QuotesStack: QuotesStack,
         TradePageStack: TradeStack,
         AssetsDetailStack: AssetsDetailStack,
