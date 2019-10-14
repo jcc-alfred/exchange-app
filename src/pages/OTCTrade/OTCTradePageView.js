@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import {TabView, SceneMap} from 'react-native-tab-view';
-import {Text, Button, Input,} from "react-native-elements";
+import {Text, Button, Input,Image} from "react-native-elements";
 
 import Spinner from "../mine/UserInfoVerifyPageView";
 import I18n from "../../I18n";
@@ -122,7 +122,7 @@ class OTCTradePageView extends React.Component {
                     {this.renderTopMenuBar()}
 
 
-                    {this.state.isShowTradeHall ? this.renderTradeHallTabView() : null}
+                    {this.state.isShowTradeHall ? this.renderTradeHallMainView() : null}
                     {this.state.isShowPublishPost ? this.renderPublishPost() : null}
 
 
@@ -130,6 +130,76 @@ class OTCTradePageView extends React.Component {
             </View>
         );
     }
+
+//renderTradeHallTabView ScrollView exchangeIcon.png
+
+
+    renderTradeHallMainView(){
+        return (
+            <View>
+                <View style={{flexDirection:'row'}}>
+                <Text style={{flex:1, textAlign:'right', marginTop:5, marginBottom:5, marginRight:10, fontWeight:'bold'} }>Buy</Text>
+                <Text style={{flex:1, marginTop:5, marginBottom:5, marginLeft:10}}>Sell</Text>
+                </View>
+                <View style={{height:0.5,backgroundColor:'#d1cfcf'}}/>
+
+                <View style={{flexDirection:'row'}}>
+                    <ScrollView  horizontal={'true'} style={{flex:6,flexDirection:'row'}}>
+                        <Text style={{margin:8}}>111</Text>
+                        <Text style={{margin:8}}>222</Text>
+                        <Text style={{margin:8}}>333</Text>
+                        <Text style={{margin:8}}>111</Text>
+                        <Text style={{margin:8}}>222</Text>
+                        <Text style={{margin:8}}>333</Text>
+                        <Text style={{margin:8}}>111</Text>
+                        <Text style={{margin:8}}>222</Text>
+                        <Text style={{margin:8}}>333</Text>
+                    </ScrollView>
+
+                    <TouchableHighlight underlayColor='#ddd' >
+                        <View>
+                            <Image source={require('../../../assets/images/exchangeIcon.png')}
+                                   containerStyle={[{width: 30, height: 30}]}/>
+                        </View>
+                    </TouchableHighlight>
+
+
+                    <ScrollView  horizontal={'true'} style={{flex:6}}>
+                        <Text style={{margin:8}}>111</Text>
+                        <Text style={{margin:8}}>222</Text>
+                        <Text style={{margin:8}}>333</Text>
+                        <Text style={{margin:8}}>111</Text>
+                        <Text style={{margin:8}}>222</Text>
+                        <Text style={{margin:8}}>333</Text>
+                        <Text style={{margin:8}}>111</Text>
+                        <Text style={{margin:8}}>222</Text>
+                        <Text style={{margin:8}}>333</Text>
+                    </ScrollView>
+                </View>
+                <View style={{height:0.5,backgroundColor:'#d1cfcf'}}/>
+                <View style={{height:10,backgroundColor:'#edeced'}}/>
+
+            </View>
+        )
+    }
+
+
+
+    renderTradeHallFlatLit(){
+        return (
+            <View></View>
+        )
+    }
+
+
+
+
+
+
+
+
+
+
 
 
     renderTradeHallPage() {
