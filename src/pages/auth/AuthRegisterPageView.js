@@ -33,7 +33,7 @@ class AuthRegisterPageView extends React.Component {
         const { params } = state;
 
         return {
-            title: params.isResetPassword ? "Reset Password" : "Register",
+            title: params.isResetPassword ? I18n.t( Keys.forgot_password ) : I18n.t( Keys.sign_up_1 ),
             headerBackTitle: null,
         };
     };
@@ -191,7 +191,7 @@ class AuthRegisterPageView extends React.Component {
                                     value={this.state.phone}
                                     onChangeText={( text ) => this.setState( { phone: text } )}
                                     keyboardType={'phone-pad'}
-                                    label={"Phone"}
+                                    label={I18n.t( Keys.phone )}
                                     errorStyle={{ color: 'red' }}
                                     errorMessage={
                                         this.state.showError && ( !this.state.phone || this.state.phone.length <= 0 ) ?
@@ -214,7 +214,7 @@ class AuthRegisterPageView extends React.Component {
                                     value={this.state.email}
                                     onChangeText={( text ) => this.setState( { email: text } )}
                                     keyboardType={'email-address'}
-                                    label={"Email"}
+                                    label={I18n.t( Keys.email )}
                                     errorStyle={{ color: 'red' }}
                                     errorMessage={
                                         this.state.showError && ( !this.state.email || this.state.email.length <= 0 ) ?
@@ -307,7 +307,7 @@ class AuthRegisterPageView extends React.Component {
                         />
 
                         <Button
-                            title={this.props.isResetPassword ? "Send" : I18n.t( Keys.sign_up )}
+                            title={this.props.isResetPassword ? I18n.t( Keys.send ) : I18n.t( Keys.sign_up )}
                             type="solid"
                             onPress={() => {
                                 this.signUp()
@@ -319,9 +319,9 @@ class AuthRegisterPageView extends React.Component {
                         <Button
                             title={
                                 this.props.isResetPassword ?
-                                    ( this.state.type === 'email' ? "Reset by phone" : "Reset by email" )
+                                    ( this.state.type === 'email' ? I18n.t( Keys.reset_by_phone ) : I18n.t( Keys.reset_by_email ) )
                                     :
-                                    ( this.state.type === 'email' ? "Sign up by phone" : "Sign up by email" )}
+                                    ( this.state.type === 'email' ? I18n.t( Keys.sign_up_by_phone )  : I18n.t( Keys.sign_up_by_email )  )}
                             type="outline"
                             onPress={() => {
                                 if ( this.state.type === 'email' ) {

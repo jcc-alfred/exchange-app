@@ -30,7 +30,7 @@ class PasswordChangePageView extends React.Component {
         const { params } = state;
 
         return {
-            title: "Reset Password",
+            title: I18n.t( Keys.reset_password ),
             headerBackTitle: null,
         };
     };
