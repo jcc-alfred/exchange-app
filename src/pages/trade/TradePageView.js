@@ -34,7 +34,9 @@ class TradePageView extends React.Component {
             isRequesting: false,
             isSafePassModalShow: false,
             userEntrustList: [],
-            buttonClick: null
+            buttonClick: null,
+            buyVolume: '',
+            sellVolume: '',
         };
     }
 
@@ -376,7 +378,7 @@ class TradePageView extends React.Component {
         )
     }
 
-    header() {
+    header = () => {
         return (
             <View>
                 {this.renderPriceBar()}
@@ -417,9 +419,7 @@ class TradePageView extends React.Component {
                             renderItem={( { item, index } ) => {
                                 return this.renderCommissionCell( viewHeight, item, index );
                             }}
-                            ListHeaderComponent={() => {
-                                return this.header();
-                            }}
+                            ListHeaderComponent={this.header}
                             ItemSeparatorComponent={() => {
                                 return <View
                                     style={[ commonStyles.commonIntervalStyle, { height: separatorHeight } ]}/>;
