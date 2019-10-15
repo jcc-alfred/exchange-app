@@ -28,7 +28,11 @@ class AuthLoginPageView extends React.Component {
         const { params } = state;
 
         return {
+<<<<<<< HEAD
             title: I18n.t(Keys.Login),
+=======
+            title: I18n.t( Keys.login ),
+>>>>>>> master
             headerBackTitle: null,
         };
     };
@@ -104,7 +108,11 @@ class AuthLoginPageView extends React.Component {
                             leftIconContainerStyle={[ commonStyles.pdr_normal, { paddingLeft: 0, marginLeft: 0 } ]}
                             value={this.state.account}
                             onChangeText={( text ) => this.setState( { account: text } )}
+<<<<<<< HEAD
                             label={I18n.t(Keys.account)}
+=======
+                            label={I18n.t( Keys.account )}
+>>>>>>> master
                             errorStyle={{ color: 'red' }}
                             errorMessage={
                                 this.state.showError && ( !this.state.account || this.state.account.length <= 0 ) ?
@@ -151,7 +159,7 @@ class AuthLoginPageView extends React.Component {
 
                         <View style={[ { flexDirection: 'row' }, commonStyles.mgt_normal ]}>
                             <Button
-                                title={I18n.t(Keys.forgetPassword)}
+                                title={I18n.t( Keys.forgot_password )}
                                 type="outline"
                                 onPress={() => {
                                     this.props.navigation.navigate( "AuthRegisterPage", {
@@ -163,7 +171,7 @@ class AuthLoginPageView extends React.Component {
                             <View style={[ commonStyles.wrapper ]}/>
 
                             <Button
-                                title={I18n.t(Keys.Sign_UP)}
+                                title={I18n.t( Keys.sign_up_1 )}
                                 type="outline"
                                 onPress={() => {
                                     this.props.navigation.navigate( "AuthRegisterPage", {

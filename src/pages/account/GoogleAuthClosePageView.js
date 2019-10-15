@@ -31,7 +31,7 @@ class GoogleAuthClosePageView extends React.Component {
         const { params } = state;
 
         return {
-            title: "Google Auth Open",
+            title: I18n.t( Keys.google_auth_open ),
             headerBackTitle: null,
         };
     };
@@ -198,7 +198,7 @@ class GoogleAuthClosePageView extends React.Component {
 
 
                             <Button
-                                title={"Send"}
+                                title={I18n.t( Keys.send )}
                                 type="solid"
                                 onPress={() => {
                                     this.send()
