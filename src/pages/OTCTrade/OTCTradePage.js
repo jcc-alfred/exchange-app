@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from "react-redux";
 import OTCTradePageView from "./OTCTradePageView";
 import {otcSecretRemark, otcGetSecretRemark, otcEntrustCreate, otcCoins} from "../../actions/OtcAction";
+import {assetsGetUserAssets} from "../../actions/AssetsAction";
 
 const mapStoreToProps = ( store, ownProps ) => {
     const { params } = ownProps.navigation.state;
@@ -35,6 +36,12 @@ const mapDispatchToProps = ( dispatch, ownProps ) => ( {
 
     onOTCCoins: ( callback ) => {
         dispatch( otcCoins( ( err, res ) => {
+            callback && callback( err, res )
+        } ) );
+    },
+
+    onAssetsGetUserAssets: ( callback ) => {
+        dispatch( assetsGetUserAssets( ( err, res ) => {
             callback && callback( err, res )
         } ) );
     }

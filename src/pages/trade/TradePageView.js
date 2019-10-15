@@ -493,7 +493,7 @@ class TradePageView extends React.Component {
 
     renderTopBar() {
         return (
-            <View style={[{flexDirection: 'row'}]}>
+            <View style={[{flexDirection: 'row', marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight}]}>
                 <View style={[{flexDirection: 'row', flex: 2}]}>
                     <BorderlessButton
                         onPress={() => {
