@@ -71,6 +71,17 @@ export function netOtcSecretRemark( secret_remark, callback ) {
         .end( callback );
 }
 
+export function netGetOtcSecretRemark( callback ) {
+    request
+        .get( '/otc/secret_remark' )
+        .send( {} )
+        .use( superagent_prefix( env.apiDomain ) )
+        .use( logger )
+        .authRequest()
+        .headerRequest()
+        .apiDomainParse()
+        .end( callback );
+}
 
 export function netOtcOrderCreate( entrust_id, coin_amount, callback ) {
     request

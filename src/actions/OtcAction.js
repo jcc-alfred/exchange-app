@@ -11,7 +11,8 @@ import {
     netOtcOrderCreate,
     netOtcOrderMy,
     netOtcOrderPay,
-    netOtcSecretRemark
+    netOtcSecretRemark,
+    netGetOtcSecretRemark
 } from "../net/OtcApiNet";
 
 
@@ -50,6 +51,14 @@ export function otcOrder( id, callback ) {
 export function otcSecretRemark( secret_remark, callback ) {
     return ( dispatch ) => {
         netOtcSecretRemark( secret_remark, ( err, res ) => {
+            callback && callback( err, res )
+        } );
+    };
+}
+
+export function otcGetSecretRemark( callback ) {
+    return ( dispatch ) => {
+        netGetOtcSecretRemark( ( err, res ) => {
             callback && callback( err, res )
         } );
     };

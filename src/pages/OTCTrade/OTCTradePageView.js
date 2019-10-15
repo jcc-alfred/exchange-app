@@ -19,6 +19,9 @@ import Keys from "../../configs/Keys";
 import {getStatusBarHeight} from "react-native-iphone-x-helper";
 import ColorUtil from "../../util/ColorUtil";
 import RadioGroup from 'react-native-radio-buttons-group';
+import Toast from "react-native-root-toast";
+import SelectMultiple from 'react-native-select-multiple'
+import CustomMultiPicker from "react-native-multiple-select-list";
 
 const SecondRoute = () => (
     <View style={[styles.scene, {backgroundColor: '#673ab7'}]}/>
@@ -27,6 +30,8 @@ const SecondRoute = () => (
 
 class OTCTradePageView extends React.Component {
 
+
+
     constructor(props) {
         super(props);
         this.state = {
@@ -34,41 +39,52 @@ class OTCTradePageView extends React.Component {
 
             nList: [],
 
+            selectedFruits: [],
             isRequesting: false,
-            paymentMethod: [
-                {
-                    label: 'Wechat',
-                    color: ColorUtil.default_primary_color,
-                    size: 20
-                },
-                {
-                    label: 'Alipay',
-                    color: ColorUtil.default_primary_color,
-                    size: 20
-                },
-                {
-                    label: 'Bank Transfer',
-                    color: ColorUtil.default_primary_color,
-                    size: 20
-                },
-                {
-                    label: 'GT Dollar',
-                    color: ColorUtil.default_primary_color,
-                    size: 20
-                },
-                {
-                    label: 'PayPal',
-                    color: ColorUtil.default_primary_color,
-                    size: 20
-                },
-            ],
+            paymentMethodList : {
+                1:"Wechat",
+                2:"Alipay",
+                3:"Bank Transfer",
+                4:"GT Dollar",
+                5:"PayPal",
+            },
+            // paymentMethodList: [
+            //     {
+            //         label: 'Wechat',
+            //         value: '1'
+            //     },
+            //     {
+            //         label: 'Alipay',
+            //         value: '2'
+            //     },
+            //     {
+            //         label: 'Bank Transfer',
+            //         value: '3',
+            //
+            //     },
+            //     {
+            //         label: 'GT Dollar',
+            //         value: '4'
+            //     },
+            //     {
+            //         label: 'PayPal',
+            //         value: '5'
+            //     },
+            // ],
             routes: [
                 {key: 'first', title: 'Buy'},
                 {key: 'second', title: 'Sell'},
             ],
 
             isShowTradeHall: true,
-            isShowPublishPost: false
+            isShowPublishPost: false,
+
+            description: '',
+            remark: '',
+            paymentMethod: '',
+            amount: '',
+            price: '',
+            min_amount: '',
         }
     }
 
@@ -90,7 +106,8 @@ class OTCTradePageView extends React.Component {
     }
 
     componentDidMount() {
-        OTCTradePageView.loadData()
+        // OTCTradePageView.loadData()
+        this.loadData()
     }
 
     changeState(value, field) {
@@ -112,6 +129,25 @@ class OTCTradePageView extends React.Component {
         return true;
     }
 
+
+    loadData() {
+        InteractionManager.runAfterInteractions(() => {
+            this.props.onGetOTCSecretRemark((error, resBody) => {
+                if (error) {
+                    this.setState({
+                        isRequesting: false
+                    });
+
+                    Toast.show(error.message);
+                } else {
+                    this.setState({
+                        remark: resBody.data
+                    });
+                }
+            });
+        });
+
+    }
 
     render() {
         return (
@@ -313,7 +349,7 @@ class OTCTradePageView extends React.Component {
                     <View style={{flex: 1}}>
                         <View style={[styles.PriceInput, {height: 40, marginTop: 5, flexDirection: 'row'}]}>
                             <Input
-                                onChangeText={value => this.changeState(value, type === 'buy' ? 'buyVolume' : 'sellVolume')}
+                                onChangeText={value => this.setState({price : value})}
                                 placeholder={I18n.t(Keys.Price)}
                                 inputContainerStyle={{borderBottomWidth: 0}}
                                 containerStyle={[{flex: 9}]} keyboardType={'numeric'}/>
@@ -326,7 +362,7 @@ class OTCTradePageView extends React.Component {
 
                         <View style={[styles.PriceInput, {height: 40, marginTop: 10, flexDirection: 'row'}]}>
                             <Input
-                                onChangeText={value => this.changeState(value, type === 'buy' ? 'buyVolume' : 'sellVolume')}
+                                onChangeText={value => this.setState({amount : value})}
                                 placeholder={I18n.t(Keys.Amount)}
                                 inputContainerStyle={{borderBottomWidth: 0}}
                                 containerStyle={[{flex: 9}]} keyboardType={'numeric'}/>
@@ -349,7 +385,7 @@ class OTCTradePageView extends React.Component {
 
                         <View style={[styles.PriceInput, {height: 40, marginTop: 10, flexDirection: 'row'}]}>
                             <Input
-                                onChangeText={value => this.changeState(value, type === 'buy' ? 'buyVolume' : 'sellVolume')}
+                                onChangeText={value => this.setState({min_amount : value})}
                                 placeholder={'Limitation'}
                                 inputContainerStyle={{borderBottomWidth: 0}}
                                 containerStyle={[{flex: 9}]} keyboardType={'numeric'}/>
@@ -357,8 +393,30 @@ class OTCTradePageView extends React.Component {
 
                     </View>
 
-                    <View style={{flex: 0.5, marginStart: 20}}>
-                        <RadioGroup radioButtons={this.state.paymentMethod} onPress={this.onSelectPayMethod}/>
+                    <View style={{flex: 0.7, marginStart: 10}}>
+                        {/*<RadioGroup radioButtons={this.state.paymentMethodList} onPress={this.onSelectPayMethod}/>*/}
+                        {/*<SelectMultiple*/}
+                            {/*items={this.state.fruits}*/}
+                            {/*selectedItems={this.state.selectedFruits}*/}
+                            {/*onSelectionsChange={this.onSelectionsChange} />*/}
+                        <CustomMultiPicker
+                            options={this.state.paymentMethodList}
+                            search={false} // should show search bar?
+                            multiple={true} //
+                            placeholder={"Search"}
+                            placeholderTextColor={'#757575'}
+                            returnValue={"value"} // label or value
+                            callback={(res)=>{ this.setState({paymentMethod: res}) }} // callback, array of selected items
+                            rowBackgroundColor={"#fff"}
+                            rowHeight={35}
+                            rowRadius={5}
+                            iconColor={"#00a2dd"}
+                            iconSize={20}
+                            selectedIconName={"ios-checkmark-circle-outline"}
+                            scrollViewHeight={200}
+                            selected={["1"]} // list of options which are selected by default
+                        />
+
                     </View>
 
 
@@ -371,10 +429,12 @@ class OTCTradePageView extends React.Component {
 
                     <View style={[styles.PriceInput, {height: 200, marginTop: 10, flexDirection: 'row'}]}>
                         <Input
-                            onChangeText={value => this.changeState(value, type === 'buy' ? 'buyVolume' : 'sellVolume')}
+                            onChangeText={( text ) => this.setState( {
+                                description: text
+                            } )}
                             placeholder={'Example'}
                             inputContainerStyle={{borderBottomWidth: 0}}
-                            containerStyle={[{flex: 9}]} keyboardType={'numeric'}/>
+                            containerStyle={[{flex: 9}]} keyboardType={'text'}/>
                     </View>
 
                 </View>
@@ -386,17 +446,98 @@ class OTCTradePageView extends React.Component {
 
                     <View style={[styles.PriceInput, {height: 200, marginTop: 10, flexDirection: 'row'}]}>
                         <Input
-                            onChangeText={value => this.changeState(value, type === 'buy' ? 'buyVolume' : 'sellVolume')}
-                            placeholder={'Example'}
+                            onChangeText={( text ) => this.setState( {
+                                remark: text
+                            } )}
+                            placeholder={this.state.remark === '' ? 'Example' : this.state.remark}
+                            text
                             inputContainerStyle={{borderBottomWidth: 0}}
-                            containerStyle={[{flex: 9}]} keyboardType={'numeric'}/>
+                            containerStyle={[{flex: 9}]} keyboardType={'text'}/>
                     </View>
 
+                    <Button
+                        style={{width: 200, height: 40, alignSelf: 'flex-end'}}
+                        buttonStyle={{backgroundColor: ColorUtil.default_primary_color}}
+                        title={'Save as Default'}
+                        titleStyle={{fontSize: 14}}
+                        type="solid"
+                        onPress={() => {
+                            if ( this.props.isLoggedIn ) {
+                                this.updateSecretRemark();
+                            } else {
+                                this.props.navigation.navigate( "AuthLoginPage" )
+                            }
+
+                        }
+                        }
+                        containerStyle={[ commonStyles.mgt_normal, commonStyles.mgl_normal ]}
+                    />
+
+
                 </View>
+
+
+                <Button
+                    style={{marginTop: 50}}
+                    title={'Publish Post'}
+                    buttonStyle={{backgroundColor: ColorUtil.default_primary_color}}
+                    type="solid"
+                    onPress={() => {
+                        this.createEntrust();
+                    }
+                    }
+                    containerStyle={[ commonStyles.mgt_normal, commonStyles.mgl_normal, commonStyles.mgr_normal, commonStyles.mgb_normal ]}
+                />
+
 
             </ScrollView>
 
         )
+
+    }
+
+    updateSecretRemark() {
+        InteractionManager.runAfterInteractions(() => {
+            this.props.onOTCSecretRemark(this.state.remark, (error, resBody1) => {
+                if (error) {
+                    this.setState({
+                        isRequesting: false
+                    });
+
+                    Toast.show(error.message);
+                } else {
+                    Toast.show( I18n.t( Keys.save_success ) )
+                }
+            });
+        });
+
+    }
+
+    createEntrust() {
+        let query = {
+            type: 0,
+            coin_id: 8,
+            amount: parseInt(this.state.amount),
+            price: parseInt(this.state.price),
+            min_amount: parseInt(this.state.min_amount),
+            remark: this.state.description,
+            secret_remark: this.state.remark,
+            methods: this.state.paymentMethod,
+        }
+
+        InteractionManager.runAfterInteractions(() => {
+            this.props.onOTCEntrustCreate(query, (error, resBody1) => {
+                if (error) {
+                    this.setState({
+                        isRequesting: false
+                    });
+
+                    Toast.show(error.message);
+                } else {
+                    Toast.show( "Post Finished" )
+                }
+            });
+        });
 
     }
 
@@ -426,6 +567,8 @@ class OTCTradePageView extends React.Component {
             </TouchableHighlight>
         );
     }
+
+
 
     onSelectPayMethod() {
 

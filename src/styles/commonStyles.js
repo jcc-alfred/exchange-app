@@ -154,7 +154,6 @@ const commonStyles = StyleSheet.create(
             opacity: 0,
             backgroundColor: 'white'
         },
-
         buttonContainerStyle: {
             paddingLeft: 10,
             paddingRight: 10,
