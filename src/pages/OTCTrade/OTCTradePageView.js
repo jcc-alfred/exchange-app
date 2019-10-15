@@ -165,7 +165,7 @@ class OTCTradePageView extends React.Component {
                 } else {
                     this.setState({
                         buyCoins: resBody.data.buy,
-                        // sellCoins: resBody.data.sell,
+                        sellCoins: resBody.data.sell,
                         buyCoinId: resBody.data.buy[0].coin_id,
                         sellCoinId: resBody.data.sell[0].coin_id
 
