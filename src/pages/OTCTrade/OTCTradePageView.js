@@ -86,14 +86,14 @@ class OTCTradePageView extends React.Component {
             min_amount: '',
 
             isCNY: true,
-            isUSD: false,
             type: 0,
 
             buyCoins: [],
             sellCoins: [],
 
             buyCoinId: '',
-            sellCoinId: ''
+            sellCoinId: '',
+            coinName: 'GTB'
         }
     }
 
@@ -257,7 +257,7 @@ class OTCTradePageView extends React.Component {
                     }}>
                         <TouchableHighlight
                             underlayColor='#ddd'
-                            onPress={() => this.setState({isCNY: true, isUSD: false})}>
+                            onPress={() => this.setState({isCNY: true})}>
 
                             <Text style={{
                                 margin: 8,
@@ -270,13 +270,13 @@ class OTCTradePageView extends React.Component {
 
                         <TouchableHighlight
                             underlayColor='#ddd'
-                            onPress={() => this.setState({isCNY: false, isUSD: true})}>
+                            onPress={() => this.setState({isCNY: false})}>
 
                             <Text style={{
                                 margin: 8,
-                                textDecorationLine: this.state.isUSD ? 'underline' : 'none',
-                                fontWeight: this.state.isUSD ? 'bold' : 'none',
-                                color: this.state.isUSD ? ColorUtil.default_primary_color : ColorUtil.secondary_text_color
+                                textDecorationLine: !this.state.isCNY ? 'underline' : 'none',
+                                fontWeight: !this.state.isCNY ? 'bold' : 'none',
+                                color: !this.state.isCNY ? ColorUtil.default_primary_color : ColorUtil.secondary_text_color
                             }}>USD</Text>
 
                         </TouchableHighlight>
@@ -296,7 +296,7 @@ class OTCTradePageView extends React.Component {
                 return (
                     <TouchableHighlight
                         underlayColor='#ddd'
-                        onPress={() => this.setState({buyCoinId: item.coin_id})}>
+                        onPress={() => this.setState({buyCoinId: item.coin_id, coinName: item.coin_name})}>
 
                         <View><Text style={{
                             margin: 8,
@@ -312,7 +312,7 @@ class OTCTradePageView extends React.Component {
                 return (
                     <TouchableHighlight
                         underlayColor='#ddd'
-                        onPress={() => this.setState({buyCoinId: item.coin_id})}>
+                        onPress={() => this.setState({sellCoinId: item.coin_id, coinName: item.coin_name})}>
 
                         <View><Text style={{
                             margin: 8,
@@ -506,11 +506,6 @@ class OTCTradePageView extends React.Component {
         return (
             <ScrollView>
                 <View style={{padding: 16, flexDirection: 'row'}}>
-                    {/*<Input value={type === 'buy' }*/}
-                    {/*placeholder={I18n.t(Keys.Price)}*/}
-                    {/*inputContainerStyle={{borderBottomWidth: 0}}*/}
-                    {/*containerStyle={[{flex: 9,borderWidth:0}]} keyboardType={'numeric'}/>*/}
-
                     <View style={{flex: 1}}>
                         <View style={[styles.PriceInput, {height: 40, marginTop: 5, flexDirection: 'row'}]}>
                             <Input
@@ -521,7 +516,7 @@ class OTCTradePageView extends React.Component {
                             <Text style={{
                                 flex: 2,
                                 lineHeight: 40
-                            }}>CNY</Text>
+                            }}>{this.state.isCNY ? 'CNY' : 'USD'}</Text>
 
                         </View>
 
@@ -534,7 +529,7 @@ class OTCTradePageView extends React.Component {
                             <Text style={{
                                 flex: 2,
                                 lineHeight: 40
-                            }}>GTB</Text>
+                            }}>{this.state.coinName}</Text>
 
                         </View>
 
@@ -682,8 +677,8 @@ class OTCTradePageView extends React.Component {
 
     createEntrust() {
         let query = {
-            type: 0,
-            coin_id: 8,
+            type: this.state.type,
+            coin_id: this.state.type === 0 ? this.state.buyCoinId : this.state.sellCoinId,
             amount: parseInt(this.state.amount),
             price: parseInt(this.state.price),
             min_amount: parseInt(this.state.min_amount),
