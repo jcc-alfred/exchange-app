@@ -59,6 +59,7 @@ class OTCTradePageView extends React.Component {
 
             description: '',
             remark: '',
+            originRemark: '',
             paymentMethod: '',
             amount: '',
             price: '',
@@ -75,7 +76,9 @@ class OTCTradePageView extends React.Component {
 
             buyCoinId: '',
             sellCoinId: '',
-            coinName: 'GTB'
+            coinName: 'GTB',
+
+            userAsset: []
         }
     }
 
@@ -169,7 +172,7 @@ class OTCTradePageView extends React.Component {
                     Toast.show(error.message);
                 } else {
                     this.setState({
-                        remark: resBody.data
+                        originRemark: resBody.data
                     });
                 }
             });
@@ -194,6 +197,13 @@ class OTCTradePageView extends React.Component {
                 }
             });
 
+            if (this.props.isLoggedIn) {
+                this.props.onAssetsGetUserAssets((err, res) => {
+                    this.setState({
+                        userAsset: res.data
+                    })
+                })
+            }
         });
 
     }
@@ -214,9 +224,6 @@ class OTCTradePageView extends React.Component {
             </View>
         );
     }
-
-//renderTradeHallTabView ScrollView exchangeIcon.png
-
 
     renderTradeHallMainView() {
         return (
@@ -493,7 +500,7 @@ class OTCTradePageView extends React.Component {
                     title={"Trade Hall"}
                     type="outline"
                     containerStyle={[{flex: 1, margin: 5}]}
-                    titleStyle={[{fontSize: 12,}]}
+                    titleStyle={[{fontSize: 10,}]}
                     onPress={() => {
                         this.setState({isShowTradeHall: true, isShowPublishPost: false})
                     }
@@ -504,7 +511,7 @@ class OTCTradePageView extends React.Component {
                     title={"Publish Post"}
                     type="outline"
                     containerStyle={[{flex: 1, margin: 5}]}
-                    titleStyle={[{fontSize: 12,}]}
+                    titleStyle={[{fontSize: 10,}]}
                     onPress={() => {
                         this.setState({isShowTradeHall: false, isShowPublishPost: true})
                     }
@@ -515,7 +522,7 @@ class OTCTradePageView extends React.Component {
                     title={"My Post"}
                     type="outline"
                     containerStyle={[{flex: 1, margin: 5}]}
-                    titleStyle={[{fontSize: 12,}]}
+                    titleStyle={[{fontSize: 10,}]}
                     onPress={() => {
 
                     }
@@ -526,7 +533,7 @@ class OTCTradePageView extends React.Component {
                     title={"My Order"}
                     type="outline"
                     containerStyle={[{flex: 1, margin: 5}]}
-                    titleStyle={[{fontSize: 12,}]}
+                    titleStyle={[{fontSize: 10,}]}
                     onPress={() => {
 
                     }
@@ -537,6 +544,16 @@ class OTCTradePageView extends React.Component {
     }
 
     renderPublishPost() {
+        let Asset = '--';
+        if (this.state.userAssets) {
+            if(this.state.type === 0) {
+                Asset = this.state.userAsset.find(i => i.coin_id === this.state.buyCoinId).available
+            } else {
+                Asset = this.state.userAsset.find(i => i.coin_id === this.state.sellCoinId).available
+            }
+
+        }
+
 
         return (
             <ScrollView>
@@ -550,7 +567,7 @@ class OTCTradePageView extends React.Component {
                                 containerStyle={[{flex: 9}]} keyboardType={'numeric'}/>
                             <Text style={{
                                 flex: 2,
-                                lineHeight: 40
+                                lineHeight: 40,
                             }}>{this.state.isCNY ? 'CNY' : 'USD'}</Text>
 
                         </View>
@@ -563,18 +580,19 @@ class OTCTradePageView extends React.Component {
                                 containerStyle={[{flex: 9}]} keyboardType={'numeric'}/>
                             <Text style={{
                                 flex: 2,
-                                lineHeight: 40
+                                lineHeight: 40,
                             }}>{this.state.coinName}</Text>
 
                         </View>
 
                         <View style={{flexDirection: 'row', marginTop: 10}}>
-                            <Text style={{color: ColorUtil.secondary_text_color, flex: 1}}>Balance</Text>
-                            <Text style={{color: ColorUtil.secondary_text_color, flex: 1.5}}>150 GTB</Text>
+                            <Text style={{color: ColorUtil.secondary_text_color, flex: 1, fontSize: 12}}>Balance</Text>
+                            <Text style={{color: ColorUtil.secondary_text_color, flex: 1.5, fontSize: 12}}>{this.props.isLoggedIn ? Asset + ' ' + this.state.coinName : '-- ' + this.state.coinName}</Text>
                             <Text style={{
                                 color: ColorUtil.secondary_text_color,
-                                flex: 1.2,
-                                textAlign: 'right'
+                                flex: 1.3,
+                                textAlign: 'right',
+                                fontSize: 12
                             }}>Fee(0.1%)</Text>
                         </View>
 
@@ -646,7 +664,7 @@ class OTCTradePageView extends React.Component {
                             onChangeText={(text) => this.setState({
                                 remark: text
                             })}
-                            placeholder={this.state.remark === '' ? 'Example' : this.state.remark}
+                            placeholder={this.state.originRemark === '' ? 'Example' : this.state.originRemark}
                             text
                             inputContainerStyle={{borderBottomWidth: 0}}
                             containerStyle={[{flex: 9}]} keyboardType={'text'}/>
@@ -680,7 +698,13 @@ class OTCTradePageView extends React.Component {
                     buttonStyle={{backgroundColor: ColorUtil.default_primary_color}}
                     type="solid"
                     onPress={() => {
-                        this.createEntrust();
+                        if (this.props.isLoggedIn) {
+                            this.createEntrust();
+                        } else {
+                            this.props.navigation.navigate("AuthLoginPage")
+                        }
+
+
                     }
                     }
                     containerStyle={[commonStyles.mgt_normal, commonStyles.mgl_normal, commonStyles.mgr_normal, commonStyles.mgb_normal]}
@@ -714,6 +738,7 @@ class OTCTradePageView extends React.Component {
         let query = {
             type: this.state.type,
             coin_id: this.state.type === 0 ? this.state.buyCoinId : this.state.sellCoinId,
+            currency: this.state.isCNY ? 'CNY' : 'USD',
             amount: parseInt(this.state.amount),
             price: parseInt(this.state.price),
             min_amount: parseInt(this.state.min_amount),

@@ -29,7 +29,7 @@ class GoogleAuthOpenPageView extends React.Component {
         const { params } = state;
 
         return {
-            title: "Google Auth Close",
+            title: I18n.t( Keys.google_auth_close ),
             headerBackTitle: null,
         };
     };
@@ -114,7 +114,7 @@ class GoogleAuthOpenPageView extends React.Component {
                                 value={this.state.googleAuthCode}
                                 onChangeText={( text ) => this.setState( { password: text } )}
                                 secureTextEntry={true}
-                                label={"Google Auth Code"}
+                                label={I18n.t( Keys.google_auth_code )}
                                 errorStyle={{ color: 'red' }}
                                 errorMessage={
                                     this.state.showError && ( !this.state.googleAuthCode || this.state.googleAuthCode.length <= 0 ) ?
@@ -174,7 +174,7 @@ class GoogleAuthOpenPageView extends React.Component {
 
 
                             <Button
-                                title={"Send"}
+                                title={I18n.t( Keys.send )}
                                 type="solid"
                                 onPress={() => {
                                     this.send()

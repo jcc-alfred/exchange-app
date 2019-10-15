@@ -1,5 +1,5 @@
 import React from "react";
-import { Dimensions, SafeAreaView, StyleSheet, View } from "react-native";
+import {Dimensions, Platform, SafeAreaView, StyleSheet, View, StatusBar} from "react-native";
 import { connect } from "react-redux";
 import { DrawerActions } from 'react-navigation-drawer';
 import { SearchBar } from "react-native-elements";
@@ -32,7 +32,8 @@ class TradeExMenu extends React.Component {
     }
 
     componentWillUnmount() {
-
+        this.setState = ( state, callback ) => {
+        };
     }
 
     componentWillReceiveProps( nextProps ) {
@@ -73,7 +74,7 @@ class TradeExMenu extends React.Component {
         const { search } = this.state;
 
         return (
-            <View style={commonStyles.wrapper}>
+            <View style={[commonStyles.wrapper, {marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight}]}>
                 <SafeAreaView style={[ commonStyles.wrapper ]}>
                     <SearchBar
                         placeholder={I18n.t(Keys.SearchCoin)+"..."}

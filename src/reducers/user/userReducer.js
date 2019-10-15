@@ -18,6 +18,10 @@ const initialState = {
             {
                 account: 'jie.xiao@gtdollar.com',
                 password: '123456'
+            },
+            {
+                account: '98309148',
+                password: 'GTDOLLAR1234'
             }
         ],
     }

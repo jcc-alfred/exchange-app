@@ -30,7 +30,7 @@ class UserEmailVerifyPageView extends React.Component {
         const { params } = state;
 
         return {
-            title: "UserEmailVerifyPageView",
+            title: I18n.t( Keys.email_verify ),
             headerBackTitle: null,
         };
     };
@@ -113,7 +113,7 @@ class UserEmailVerifyPageView extends React.Component {
                                 value={this.state.email}
                                 onChangeText={( text ) => this.setState( { email: text } )}
                                 keyboardType={'email-address'}
-                                label={"Email"}
+                                label={I18n.t( Keys.email )}
                                 errorStyle={{ color: 'red' }}
                                 errorMessage={
                                     this.state.showError && ( !this.state.email || this.state.email.length <= 0 ) ?
@@ -220,7 +220,7 @@ class UserEmailVerifyPageView extends React.Component {
 
 
                             <Button
-                                title={"Send"}
+                                title={I18n.t( Keys.send )}
                                 type="solid"
                                 onPress={() => {
                                     this.resetPassword()

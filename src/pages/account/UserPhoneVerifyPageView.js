@@ -149,7 +149,7 @@ class UserPhoneVerifyPageView extends React.Component {
                                 value={this.state.phone}
                                 onChangeText={( text ) => this.setState( { phone: text } )}
                                 keyboardType={'phone-pad'}
-                                label={"Phone"}
+                                label={I18n.t( Keys.phone )}
                                 errorStyle={{ color: 'red' }}
                                 errorMessage={
                                     this.state.showError && ( !this.state.phone || this.state.phone.length <= 0 ) ?
@@ -256,7 +256,7 @@ class UserPhoneVerifyPageView extends React.Component {
                             />
 
                             <Button
-                                title={"Send"}
+                                title={I18n.t( Keys.send )}
                                 type="solid"
                                 onPress={() => {
                                     this.resetPassword()

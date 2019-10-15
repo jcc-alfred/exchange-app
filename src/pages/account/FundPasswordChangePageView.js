@@ -26,7 +26,7 @@ class FundPasswordChangePageView extends React.Component {
         const { params } = state;
 
         return {
-            title: params.isReset ? "FundPassword reset" : "FundPassword Change",
+            title: params.isReset ? I18n.t( Keys.fund_password_reset ) : I18n.t( Keys.fund_password_change ),
             headerBackTitle: null,
         };
     };
@@ -111,7 +111,7 @@ class FundPasswordChangePageView extends React.Component {
                                     null
                                     :
                                     <Input
-                                        label={"Old password"}
+                                        label={I18n.t( Keys.old_password )}
                                         value={this.state.oldPassword}
                                         onChangeText={( text ) => this.setState( { oldPassword: text } )}
                                         secureTextEntry={true}
@@ -126,7 +126,7 @@ class FundPasswordChangePageView extends React.Component {
                             }
 
                             <Input
-                                label={"Password"}
+                                label={I18n.t( Keys.password )}
                                 value={this.state.password}
                                 onChangeText={( text ) => this.setState( { password: text } )}
                                 secureTextEntry={true}
@@ -139,7 +139,7 @@ class FundPasswordChangePageView extends React.Component {
                                 }
                             />
                             <Input
-                                label={"Repeat Password"}
+                                label={I18n.t( Keys.repeat_password )}
                                 value={this.state.repeatPassword}
                                 onChangeText={( text ) => this.setState( { repeatPassword: text } )}
                                 secureTextEntry={true}
@@ -201,7 +201,7 @@ class FundPasswordChangePageView extends React.Component {
                             />
 
                             <Button
-                                title={"Send"}
+                                title={I18n.t( Keys.send )}
                                 type="solid"
                                 onPress={() => {
                                     this.resetPassword()
@@ -216,7 +216,7 @@ class FundPasswordChangePageView extends React.Component {
                                     null
                                     :
                                     <Button
-                                        title={"Reset"}
+                                        title={I18n.t( Keys.reset )}
                                         type="outline"
                                         onPress={() => {
                                             this.props.navigation.navigate( "FundPasswordChangePage", {

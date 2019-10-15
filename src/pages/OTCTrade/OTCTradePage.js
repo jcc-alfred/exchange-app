@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from "react-redux";
 import OTCTradePageView from "./OTCTradePageView";
 import {otcSecretRemark, otcGetSecretRemark, otcEntrustCreate, otcCoins,otcEntrustList } from "../../actions/OtcAction";
+import {assetsGetUserAssets} from "../../actions/AssetsAction";
 
 const mapStoreToProps = ( store, ownProps ) => {
     const { params } = ownProps.navigation.state;
@@ -39,10 +40,17 @@ const mapDispatchToProps = ( dispatch, ownProps ) => ( {
         } ) );
     },
 
+
     onNetOtcEntrustList:( coin_id, type, callback ) =>{
         dispatch( otcEntrustList(coin_id,type,( err, res ) => {
             callback && callback( err, res )
         }));
+	),
+    onAssetsGetUserAssets: ( callback ) => {
+        dispatch( assetsGetUserAssets( ( err, res ) => {
+            callback && callback( err, res )
+        } ) );
+
     }
 
 } );
