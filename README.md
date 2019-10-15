@@ -44,3 +44,11 @@
     
 # candle stick chart
 https://github.com/wuxudong/react-native-charts-wrapper
+
+
+turtle build:ios \
+  --team-id 79EG5THUSL \
+  --dist-p12-path xcasiaedx.p12 \
+  --provisioning-profile-path asiaedxadhock.mobileprovision
+  
+expo build:ios --dist-p12-path ./ios_build/gtdollarxiechao1.p12
