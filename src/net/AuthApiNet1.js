@@ -15,11 +15,10 @@ export function netAuthLogin( account, password, imgCode, callback ) {
         imgCode: imgCode
     };
 
-    let accountType = "phone";
-    if ( accountType.indexOf( "@" ) ) {
+    if ( account.indexOf( "@" ) >= 0 ) {
         query = { ...query, accountType: "email", email: account }
     } else {
-        query = { ...query, accountType: "phone", phone: account }
+        query = { ...query, accountType: "phone", phoneNumber: account }
     }
 
     request

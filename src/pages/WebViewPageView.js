@@ -27,6 +27,8 @@ class WebViewPageView extends React.Component {
     };
 
     componentWillUnmount() {
+        this.setState = ( state, callback ) => {
+        };
     }
 
     componentDidMount() {
