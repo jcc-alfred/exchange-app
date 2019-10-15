@@ -316,14 +316,6 @@ class TradePageView extends React.Component {
                            inputContainerStyle={{ borderBottomWidth: 0 }}
                            containerStyle={[ { flex: 9, borderWidth: 0 } ]} keyboardType={'numeric'}/>
                 </View>
-<<<<<<< HEAD
-                <View style={[styles.PriceInput, {flexDirection: 'row', height: 40, marginTop: 5}]}>
-                    <Input value={type === 'buy' ? this.state.buyVolume : this.state.sellVolume}
-                           onChangeText={value => {this.changeState(value, type === 'buy' ? 'buyVolume' : 'sellVolume')}}
-                           placeholder={(type === "buy" ? I18n.t(Keys.Buy) : I18n.t(Keys.Sell)) + ' ' + I18n.t(Keys.Volume)}
-                           inputContainerStyle={{borderBottomWidth: 0}}
-                           containerStyle={[{flex: 9}]} keyboardType={'numeric'}/>
-=======
                 <View style={[ styles.PriceInput, { flexDirection: 'row', height: 40, marginTop: 5 } ]}>
                     <Input key={type + " input volume"}
                            value={type === 'buy' ? this.state.buyVolume : this.state.sellVolume}
@@ -333,18 +325,13 @@ class TradePageView extends React.Component {
                            placeholder={( type === "buy" ? I18n.t( Keys.Buy ) : I18n.t( Keys.Sell ) ) + ' ' + I18n.t( Keys.Volume )}
                            inputContainerStyle={{ borderBottomWidth: 0 }}
                            containerStyle={[ { flex: 9 } ]} keyboardType={'numeric'}/>
->>>>>>> master
                     <Text style={{
                         flex: 2,
                         lineHeight: 40
                     }}>{this.props.TradePageCoinEx.coinEx && this.props.TradePageCoinEx.coinEx.coin_name}</Text>
                 </View>
-<<<<<<< HEAD
-                <View style={{flexDirection: 'row'}}>
-=======
                 <View style={{ flexDirection: 'row' }}>
 
->>>>>>> master
                     {
                         [ 25, 50, 75, 100 ].map( i => {
                             return (
