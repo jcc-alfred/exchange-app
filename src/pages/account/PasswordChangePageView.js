@@ -102,7 +102,7 @@ class PasswordChangePageView extends React.Component {
                     <ScrollView style={[ commonStyles.wrapper ]}>
                         <View>
                             <Input
-                                label={"Old password"}
+                                label={I18n.t( Keys.old_password )}
                                 value={this.state.oldPassword}
                                 onChangeText={( text ) => this.setState( { oldPassword: text } )}
                                 secureTextEntry={true}
@@ -116,7 +116,7 @@ class PasswordChangePageView extends React.Component {
                             />
 
                             <Input
-                                label={"Password"}
+                                label={I18n.t( Keys.password )}
                                 value={this.state.password}
                                 onChangeText={( text ) => this.setState( { password: text } )}
                                 secureTextEntry={true}
@@ -129,7 +129,7 @@ class PasswordChangePageView extends React.Component {
                                 }
                             />
                             <Input
-                                label={"Repeat Password"}
+                                label={I18n.t( Keys.repeat_password )}
                                 value={this.state.repeatPassword}
                                 onChangeText={( text ) => this.setState( { repeatPassword: text } )}
                                 secureTextEntry={true}
@@ -191,7 +191,7 @@ class PasswordChangePageView extends React.Component {
                             />
 
                             <Button
-                                title={"Send"}
+                                title={I18n.t( Keys.send )}
                                 type="solid"
                                 onPress={() => {
                                     this.resetPassword()
