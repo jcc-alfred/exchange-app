@@ -41,11 +41,11 @@ const mapDispatchToProps = ( dispatch, ownProps ) => ( {
     },
 
 
-    onNetOtcEntrustList:( coin_id, type, callback ) =>{
-        dispatch( otcEntrustList(coin_id,type,( err, res ) => {
-            callback && callback( err, res )
+    onNetOtcEntrustList:( coin_id, type, callback ) => {
+        dispatch(otcEntrustList(coin_id, type, (err, res) => {
+            callback && callback(err, res)
         }));
-	),
+    },
     onAssetsGetUserAssets: ( callback ) => {
         dispatch( assetsGetUserAssets( ( err, res ) => {
             callback && callback( err, res )
