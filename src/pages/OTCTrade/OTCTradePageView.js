@@ -47,29 +47,8 @@ class OTCTradePageView extends React.Component {
                 4: "GT Dollar",
                 5: "PayPal",
             },
-            // paymentMethodList: [
-            //     {
-            //         label: 'Wechat',
-            //         value: '1'
-            //     },
-            //     {
-            //         label: 'Alipay',
-            //         value: '2'
-            //     },
-            //     {
-            //         label: 'Bank Transfer',
-            //         value: '3',
-            //
-            //     },
-            //     {
-            //         label: 'GT Dollar',
-            //         value: '4'
-            //     },
-            //     {
-            //         label: 'PayPal',
-            //         value: '5'
-            //     },
-            // ],
+
+
             routes: [
                 {key: 'first', title: 'Buy'},
                 {key: 'second', title: 'Sell'},
@@ -90,6 +69,9 @@ class OTCTradePageView extends React.Component {
 
             buyCoins: [],
             sellCoins: [],
+
+            buyCoinEntrust: [],
+            sellCoinEntrust: [],
 
             buyCoinId: '',
             sellCoinId: '',
@@ -139,6 +121,43 @@ class OTCTradePageView extends React.Component {
     }
 
 
+    requestList(){
+        InteractionManager.runAfterInteractions(
+            () => {
+                this.props.onNetOtcEntrustList(this.state.buyCoinId,this.state.type,(error, resBody) => {
+                    if (error) {
+                        this.setState({
+                            isRequesting: false
+                        });
+
+                        Toast.show(error.message);
+                    } else {
+                        if (this.state.type === 0) {
+                            this.setState({
+                                buyCoinEntrust: resBody.data
+                            });
+                        }else {
+                            this.setState({
+                                sellCoinEntrust: resBody.data
+                            });
+                        }
+                    }
+                }
+                )
+
+            }
+        )
+    }
+
+
+
+
+
+
+
+
+
+
     loadData() {
         InteractionManager.runAfterInteractions(() => {
             this.props.onGetOTCSecretRemark((error, resBody) => {
@@ -170,6 +189,8 @@ class OTCTradePageView extends React.Component {
                         sellCoinId: resBody.data.sell[0].coin_id
 
                     });
+                    this.requestList();
+
                 }
             });
 
@@ -289,13 +310,26 @@ class OTCTradePageView extends React.Component {
         )
     }
 
+
+
+
+
+    coinsAction(item){
+        this.setState({buyCoinId: item.coin_id, coinName: item.coin_name});
+        this.requestList();
+    }
+
+
+    //this.setState({buyCoinId: item.coin_id, coinName: item.coin_name})
+
+
     renderCoins() {
         if (this.state.type === 0) {
             return this.state.buyCoins.map((item) => {
                 return (
                     <TouchableHighlight
                         underlayColor='#ddd'
-                        onPress={() => this.setState({buyCoinId: item.coin_id, coinName: item.coin_name})}>
+                        onPress={() => this.coinsAction(item) }>
 
                         <View><Text style={{
                             margin: 8,
@@ -328,9 +362,11 @@ class OTCTradePageView extends React.Component {
 
     renderTradeHallFlatList() {
         return (
-            <View style={[styles.scene, {backgroundColor: '#b2ffc5', flexDirection: 'row'}]}>
+            <View style={[styles.scene, {backgroundColor: '#ffffff', flexDirection: 'row'}]}>
                 <FlatList
-                    data={this.state.nList}
+                    // data={this.state.nList}
+                    data={this.state.type === 0 ? this.state.buyCoinEntrust : this.state.sellCoinEntrust}
+
                     keyExtractor={(item, index) => {
                         return 'item ' + index;
                     }}
@@ -342,7 +378,7 @@ class OTCTradePageView extends React.Component {
                             style={[commonStyles.commonIntervalStyle, {height: 1}]}/>;
                     }}
                     getItemLayout={(data, index) => (
-                        {length: 110, offset: (110 + 1) * index, index}
+                        {length: 130, offset: (130 + 1) * index, index}
                     )}
                     onScroll={() => {
                     }}
@@ -716,27 +752,29 @@ class OTCTradePageView extends React.Component {
                 }}>
 
                 <View style={{flexDirection: 'row'}}>
-                    <View style={{flex: 1}}>
-                        <Text>chen Leon</Text>
-                        <Text>Ammount 0.12312 BTC</Text>
-                        <Text>Limitation 12323CNY</Text>
+                    <View style={{flex: 2}}>
+                        <View style={{flexDirection:'row'}}>
+                            <Image source={require('../../../assets/images/traderIcon.png')}
+                                   containerStyle={[{width: 20, height: 20, marginLeft: 10,marginTop:8}]}/>
+                            <Text style={[{marginTop:10, marginLeft:5, marginRight: 5,marginBottom:6 ,fontSize:14}]}>{item.name}</Text>
+                        </View>
+                        <Text style={[commonStyles.commonSmallSubTextStyle,{marginTop:2, marginLeft:15, marginRight: 5,marginBottom:4}]}>amount {item.remaining_amount}</Text>
+                        <Text style={[commonStyles.commonSmallSubTextStyle,{marginTop:2, marginLeft:15, marginRight: 5,marginBottom:10}]}>min trade amount {item.min_trade_amount}</Text>
                     </View>
                     <View style={{flex: 1}}>
-                        <Text>chen Leon</Text>
-                        {/*<Text>chen Leon</Text>*/}
-
+                        <Text style={[{marginTop:2, marginLeft:15, marginRight: 5,marginBottom:4}]}>{item.price} {item.currency}</Text>
                         <Button
                             title={I18n.t(Keys.Buy)}
                             type="outline"
-                            containerStyle={[{flex: 1, margin: 5}]}
-                            titleStyle={[{fontSize: 12,}]}
+                            containerStyle={[{flex:1, margin: 5, height:20}]}
+                            titleStyle={[{fontSize: 10,}]}
+
                             onPress={() => {
                             }
                             }
                         />
 
-
-                        <Text>chen Leon</Text>
+                        {/*<Text>12345</Text>*/}
                     </View>
                 </View>
 

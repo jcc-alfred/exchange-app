@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import OTCTradePageView from "./OTCTradePageView";
-import {otcSecretRemark, otcGetSecretRemark, otcEntrustCreate, otcCoins} from "../../actions/OtcAction";
+import {otcSecretRemark, otcGetSecretRemark, otcEntrustCreate, otcCoins,otcEntrustList } from "../../actions/OtcAction";
 
 const mapStoreToProps = ( store, ownProps ) => {
     const { params } = ownProps.navigation.state;
@@ -37,7 +37,14 @@ const mapDispatchToProps = ( dispatch, ownProps ) => ( {
         dispatch( otcCoins( ( err, res ) => {
             callback && callback( err, res )
         } ) );
+    },
+
+    onNetOtcEntrustList:( coin_id, type, callback ) =>{
+        dispatch( otcEntrustList(coin_id,type,( err, res ) => {
+            callback && callback( err, res )
+        }));
     }
+
 } );
 
 const OTCTradePage = connect(
