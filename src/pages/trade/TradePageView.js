@@ -314,7 +314,7 @@ class TradePageView extends React.Component {
                 </View>
                 <View style={[styles.PriceInput, {flexDirection: 'row', height: 40, marginTop: 5}]}>
                     <Input value={type === 'buy' ? this.state.buyVolume : this.state.sellVolume}
-                           onChangeText={value => this.changeState(value, type === 'buy' ? 'buyVolume' : 'sellVolume')}
+                           onChangeText={value => {this.changeState(value, type === 'buy' ? 'buyVolume' : 'sellVolume')}}
                            placeholder={(type === "buy" ? I18n.t(Keys.Buy) : I18n.t(Keys.Sell)) + ' ' + I18n.t(Keys.Volume)}
                            inputContainerStyle={{borderBottomWidth: 0}}
                            containerStyle={[{flex: 9}]} keyboardType={'numeric'}/>
@@ -324,7 +324,6 @@ class TradePageView extends React.Component {
                     }}>{this.props.TradePageCoinEx.coinEx && this.props.TradePageCoinEx.coinEx.coin_name}</Text>
                 </View>
                 <View style={{flexDirection: 'row'}}>
-
                     {
                         [25, 50, 75, 100].map(i => {
                             return (

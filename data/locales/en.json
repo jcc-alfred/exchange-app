@@ -946,6 +946,7 @@
   "latest_price": "Latest Price",
   "login": "Login",
   "login_history": "Login History",
+  "forgetPassword": "Forget Password",
   "logout": "Logout",
   "low": "Low",
   "me": "Me",
@@ -1010,5 +1011,6 @@
   "TradeHall":"Trade Hall",
   "PublishPost":"Publish Post",
   "MyPost":"My Post",
-  "MyOrder":"My Order"
+  "MyOrder":"My Order",
+  "Sign_UP": "Sign Up"
 }

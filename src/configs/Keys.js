@@ -790,6 +790,9 @@ const Keys = {
     "TradeHall":"TradeHall",
     "PublishPost":"PublishPost",
     "MyPost":"MyPost",
-    "MyOrder":"MyOrder"
+    "MyOrder":"MyOrder",
+    "Login":"Login",
+    "forgetPassword":"forgetPassword",
+    "Sign_UP":"Sign_UP"
 };
 export default Keys;

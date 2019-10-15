@@ -28,7 +28,7 @@ class AuthLoginPageView extends React.Component {
         const { params } = state;
 
         return {
-            title: "Login",
+            title: I18n.t(Keys.Login),
             headerBackTitle: null,
         };
     };
@@ -104,7 +104,7 @@ class AuthLoginPageView extends React.Component {
                             leftIconContainerStyle={[ commonStyles.pdr_normal, { paddingLeft: 0, marginLeft: 0 } ]}
                             value={this.state.account}
                             onChangeText={( text ) => this.setState( { account: text } )}
-                            label={'Account'}
+                            label={I18n.t(Keys.account)}
                             errorStyle={{ color: 'red' }}
                             errorMessage={
                                 this.state.showError && ( !this.state.account || this.state.account.length <= 0 ) ?
@@ -125,7 +125,7 @@ class AuthLoginPageView extends React.Component {
                             value={this.state.password}
                             onChangeText={( text ) => this.setState( { password: text } )}
                             secureTextEntry={true}
-                            label={"Password"}
+                            label={I18n.t(Keys.password)}
                             errorStyle={{ color: 'red' }}
                             errorMessage={
                                 this.state.showError && ( !this.state.password || this.state.password.length <= 0 ) ?
@@ -151,7 +151,7 @@ class AuthLoginPageView extends React.Component {
 
                         <View style={[ { flexDirection: 'row' }, commonStyles.mgt_normal ]}>
                             <Button
-                                title={"Forgot Password"}
+                                title={I18n.t(Keys.forgetPassword)}
                                 type="outline"
                                 onPress={() => {
                                     this.props.navigation.navigate( "AuthRegisterPage", {
@@ -163,7 +163,7 @@ class AuthLoginPageView extends React.Component {
                             <View style={[ commonStyles.wrapper ]}/>
 
                             <Button
-                                title={"Sign Up"}
+                                title={I18n.t(Keys.Sign_UP)}
                                 type="outline"
                                 onPress={() => {
                                     this.props.navigation.navigate( "AuthRegisterPage", {
