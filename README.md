@@ -52,3 +52,10 @@ turtle build:ios \
   --provisioning-profile-path asiaedxadhock.mobileprovision
   
 expo build:ios --dist-p12-path ./ios_build/gtdollarxiechao1.p12
+
+expo build:ios \
+  --team-id 79EG5THUSL \
+  --dist-p12-path /Users/xiechao/codes/gt-exchange-app/ios_build/gtdollarxiechao1.p12 \
+  --provisioning-profile-path /Users/xiechao/codes/gt-exchange-app/ios_build/asiaedx_adhock.mobileprovision \
+  -u xc9898@gmail.com \
+  -p GzjcnwS82RJU
