@@ -399,7 +399,7 @@ class TradePageView extends React.Component {
 
             </View>
         );
-    }
+    };
 
     render() {
         const viewHeight = 100;
