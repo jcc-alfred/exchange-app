@@ -185,7 +185,6 @@ class OTCTradePageView extends React.Component {
                     {/*<Text>otc1</Text>*/}
                     {this.renderTopMenuBar()}
                     {this.renderTradeHallMainView()}
-
                     {this.state.isShowTradeHall ? this.renderTradeHallFlatLit() : null}
                     {this.state.isShowPublishPost ? this.renderPublishPost() : null}
 
@@ -291,7 +290,7 @@ class OTCTradePageView extends React.Component {
     }
 
     renderCoins() {
-        if(this.state.type === 0) {
+        if (this.state.type === 0) {
             return this.state.buyCoins.map((item) => {
                 return (
                     <TouchableHighlight
@@ -326,9 +325,31 @@ class OTCTradePageView extends React.Component {
         }
     }
 
-    renderTradeHallFlatLit() {
+
+    renderTradeHallFlatList() {
         return (
-            <View></View>
+            <View style={[styles.scene, {backgroundColor: '#b2ffc5', flexDirection: 'row'}]}>
+                <FlatList
+                    data={this.state.nList}
+                    keyExtractor={(item, index) => {
+                        return 'item ' + index;
+                    }}
+                    renderItem={({item, index}) => {
+                        return this.renderItem(1, item, index);
+                    }}
+                    ItemSeparatorComponent={() => {
+                        return <View
+                            style={[commonStyles.commonIntervalStyle, {height: 1}]}/>;
+                    }}
+                    getItemLayout={(data, index) => (
+                        {length: 110, offset: (110 + 1) * index, index}
+                    )}
+                    onScroll={() => {
+                    }}
+                />
+            </View>
+
+
         )
     }
 
@@ -391,28 +412,6 @@ class OTCTradePageView extends React.Component {
 
 
                 </View>
-
-
-                {/*<View style={[styles.scene, { backgroundColor: '#ff4081', flexDirection: 'row'}]}>*/}
-                {/*<FlatList*/}
-                {/*data={this.state.nList}*/}
-                {/*keyExtractor={(item, index) => {*/}
-                {/*return 'item ' + index;*/}
-                {/*}}*/}
-                {/*renderItem={({item, index}) => {*/}
-                {/*return this.renderItem(1, item, index);*/}
-                {/*}}*/}
-                {/*ItemSeparatorComponent={() => {*/}
-                {/*return <View*/}
-                {/*style={[commonStyles.commonIntervalStyle, {height: 1}]}/>;*/}
-                {/*}}*/}
-                {/*getItemLayout={(data, index) => (*/}
-                {/*{length: 110, offset: (110 + 1) * index, index}*/}
-                {/*)}*/}
-                {/*onScroll={() => {*/}
-                {/*}}*/}
-                {/*/>*/}
-                {/*</View>*/}
 
 
             </View>
@@ -716,12 +715,23 @@ class OTCTradePageView extends React.Component {
                     // })
                 }}>
 
-                {/*<View style={{alignItems: 'flex-start', height: 60, marginStart: 20, marginEnd: 20, marginTop: 10}}>*/}
+                <View style={{flexDirection: 'row'}}>
+                    <View style={{flex: 1}}>
+                        <Text>chen Leon</Text>
+                        <Text>chen Leon</Text>
+                        <Text>chen Leon</Text>
+                    </View>
+                    <View style={{flex: 1}}>
+                        <Text>chen Leon</Text>
+                        <Text>chen Leon</Text>
+                        <Text>chen Leon</Text>
+                    </View>
+                </View>
 
+                {/*<View style={{alignItems: 'flex-start', height: 60, marginStart: 20, marginEnd: 20, marginTop: 10}}>*/}
                 {/*<Text>*/}
                 {/*{item.news_title}*/}
                 {/*</Text>*/}
-
                 {/*<Text style={{marginTop: 5}}>*/}
                 {/*{item.update_time}*/}
                 {/*</Text>*/}
