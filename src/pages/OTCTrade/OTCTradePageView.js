@@ -718,12 +718,24 @@ class OTCTradePageView extends React.Component {
                 <View style={{flexDirection: 'row'}}>
                     <View style={{flex: 1}}>
                         <Text>chen Leon</Text>
-                        <Text>chen Leon</Text>
-                        <Text>chen Leon</Text>
+                        <Text>Ammount 0.12312 BTC</Text>
+                        <Text>Limitation 12323CNY</Text>
                     </View>
                     <View style={{flex: 1}}>
                         <Text>chen Leon</Text>
-                        <Text>chen Leon</Text>
+                        {/*<Text>chen Leon</Text>*/}
+
+                        <Button
+                            title={I18n.t(Keys.Buy)}
+                            type="outline"
+                            containerStyle={[{flex: 1, margin: 5}]}
+                            titleStyle={[{fontSize: 12,}]}
+                            onPress={() => {
+                            }
+                            }
+                        />
+
+
                         <Text>chen Leon</Text>
                     </View>
                 </View>
