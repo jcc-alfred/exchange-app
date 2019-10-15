@@ -218,6 +218,10 @@ class TradePageView extends React.Component {
         if ( this.socket.connected ) {
             this.socket.emit( "disconnect" )
         }
+
+
+        this.setState = ( state, callback ) => {
+        };
     }
 
     componentWillReceiveProps( nextProps ) {
