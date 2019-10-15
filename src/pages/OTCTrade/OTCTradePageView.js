@@ -185,7 +185,7 @@ class OTCTradePageView extends React.Component {
                     {/*<Text>otc1</Text>*/}
                     {this.renderTopMenuBar()}
                     {this.renderTradeHallMainView()}
-                    {this.state.isShowTradeHall ? this.renderTradeHallFlatLit() : null}
+                    {this.state.isShowTradeHall ? this.renderTradeHallFlatList() : null}
                     {this.state.isShowPublishPost ? this.renderPublishPost() : null}
 
 
