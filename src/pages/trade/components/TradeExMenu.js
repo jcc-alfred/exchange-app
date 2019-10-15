@@ -32,7 +32,8 @@ class TradeExMenu extends React.Component {
     }
 
     componentWillUnmount() {
-
+        this.setState = ( state, callback ) => {
+        };
     }
 
     componentWillReceiveProps( nextProps ) {
