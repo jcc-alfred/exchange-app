@@ -108,7 +108,7 @@ class AuthLoginPageView extends React.Component {
                             errorStyle={{ color: 'red' }}
                             errorMessage={
                                 this.state.showError && ( !this.state.account || this.state.account.length <= 0 ) ?
-                                    "Please input account"
+                                    I18n.t( Keys.please_input_account_number )
                                     :
                                     null
                             }
@@ -129,7 +129,7 @@ class AuthLoginPageView extends React.Component {
                             errorStyle={{ color: 'red' }}
                             errorMessage={
                                 this.state.showError && ( !this.state.password || this.state.password.length <= 0 ) ?
-                                    "Please input password"
+                                    I18n.t( Keys.please_input_password )
                                     :
                                     null
                             }

@@ -756,6 +756,7 @@ const Keys = {
     "phone": "phone",
     "phone_verify_code": "phone_verify_code",
     "please_choose_first": "please_choose_first",
+    "please_input_account_number": "please_input_account_number",
     "please_input_email_verify_code": "please_input_email_verify_code",
     "please_input_new_email_verify_code": "please_input_new_email_verify_code",
     "please_input_password": "please_input_password",
