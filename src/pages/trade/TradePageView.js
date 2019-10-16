@@ -5,7 +5,6 @@ import {
     PixelRatio,
     Platform,
     SafeAreaView,
-    ScrollView,
     StatusBar,
     StyleSheet,
     TouchableHighlight,
@@ -47,7 +46,6 @@ class TradePageView extends React.Component {
 
         return {
             header: null,
-            // headerStyle: styles.header,
             headerBackTitle: null
         };
     };
@@ -412,9 +410,10 @@ class TradePageView extends React.Component {
         return (
             <View style={[ commonStyles.wrapper, ]}>
                 <StatusBar backgroundColor="blue" barStyle="dark-content"/>
-                <SafeAreaView style={[ commonStyles.wrapper, ]}>
-                    {this.renderTopBar()}
-                    <ScrollView>
+                <SafeAreaView style={[ commonStyles.wrapper ]}>
+                    <View
+                        style={[ commonStyles.wrapper, { paddingTop: Platform.OS === 'ios' ? 0 : getStatusBarHeight() } ]}>
+                        {this.renderTopBar()}
                         <FlatList
                             data={this.state.userEntrustList}
                             keyExtractor={( item, index ) => {
@@ -434,7 +433,7 @@ class TradePageView extends React.Component {
                             onScroll={() => {
                             }}
                         />
-                    </ScrollView>
+                    </View>
 
 
                     <ConfirmDialog
@@ -596,16 +595,6 @@ const styles = StyleSheet.create( {
     activeTab: {
         borderBottomColor: 'black',
         borderBottomWidth: 2,
-    },
-    header: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        padding: 0,
-        height: 0,
-        backgroundColor: 'transparent',
-        paddingTop: getStatusBarHeight()
     },
 
     smallRedFont: {
