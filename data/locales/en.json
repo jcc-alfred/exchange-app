@@ -983,6 +983,7 @@
   "phone": "Phone Number",
   "phone_verify_code": "Mobile Phone Verification Code",
   "please_choose_first": "Please Choose First",
+  "please_input_account_number": "Please input account number",
   "please_input_email_verify_code": "Please enter the email verification code",
   "please_input_new_email_verify_code": "Please enter the verification code for the new mailbox",
   "please_input_password": "Please enter your password",
