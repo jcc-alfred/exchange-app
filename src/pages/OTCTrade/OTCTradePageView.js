@@ -124,41 +124,33 @@ class OTCTradePageView extends React.Component {
     }
 
 
-    requestList(){
+    requestList() {
         InteractionManager.runAfterInteractions(
             () => {
-                this.props.onNetOtcEntrustList(this.state.buyCoinId,this.state.type,(error, resBody) => {
-                    if (error) {
-                        this.setState({
-                            isRequesting: false
-                        });
+                this.props.onNetOtcEntrustList(this.state.buyCoinId, this.state.type, (error, resBody) => {
+                        if (error) {
+                            this.setState({
+                                isRequesting: false
+                            });
 
-                        Toast.show(error.message);
-                    } else {
-                        if (this.state.type === 0) {
-                            this.setState({
-                                buyCoinEntrust: resBody.data
-                            });
-                        }else {
-                            this.setState({
-                                sellCoinEntrust: resBody.data
-                            });
+                            Toast.show(error.message);
+                        } else {
+                            if (this.state.type === 0) {
+                                this.setState({
+                                    buyCoinEntrust: resBody.data
+                                });
+                            } else {
+                                this.setState({
+                                    sellCoinEntrust: resBody.data
+                                });
+                            }
                         }
                     }
-                }
                 )
 
             }
         )
     }
-
-
-
-
-
-
-
-
 
 
     loadData() {
@@ -318,10 +310,7 @@ class OTCTradePageView extends React.Component {
     }
 
 
-
-
-
-    coinsAction(item){
+    coinsAction(item) {
         this.setState({buyCoinId: item.coin_id, coinName: item.coin_name});
         this.requestList();
     }
@@ -336,7 +325,7 @@ class OTCTradePageView extends React.Component {
                 return (
                     <TouchableHighlight
                         underlayColor='#ddd'
-                        onPress={() => this.coinsAction(item) }>
+                        onPress={() => this.coinsAction(item)}>
 
                         <View><Text style={{
                             margin: 8,
@@ -545,13 +534,14 @@ class OTCTradePageView extends React.Component {
 
     renderPublishPost() {
         let Asset = '--';
-        if (this.state.userAssets) {
-            if(this.state.type === 0) {
-                Asset = this.state.userAsset.find(i => i.coin_id === this.state.buyCoinId).available
-            } else {
-                Asset = this.state.userAsset.find(i => i.coin_id === this.state.sellCoinId).available
+        if (this.state.userAsset !== undefined && this.state.userAsset.length > 0) {
+            if (this.props.isLoggedIn) {
+                if (this.state.type === 0) {
+                    Asset = this.state.userAsset.find(i => i.coin_id === this.state.buyCoinId).available
+                } else {
+                    Asset = this.state.userAsset.find(i => i.coin_id === this.state.sellCoinId).available
+                }
             }
-
         }
 
 
@@ -587,7 +577,11 @@ class OTCTradePageView extends React.Component {
 
                         <View style={{flexDirection: 'row', marginTop: 10}}>
                             <Text style={{color: ColorUtil.secondary_text_color, flex: 1, fontSize: 12}}>Balance</Text>
-                            <Text style={{color: ColorUtil.secondary_text_color, flex: 1.5, fontSize: 12}}>{this.props.isLoggedIn ? Asset + ' ' + this.state.coinName : '-- ' + this.state.coinName}</Text>
+                            <Text style={{
+                                color: ColorUtil.secondary_text_color,
+                                flex: 1.5,
+                                fontSize: 12
+                            }}>{this.props.isLoggedIn ? Asset + ' ' + this.state.coinName : '-- ' + this.state.coinName}</Text>
                             <Text style={{
                                 color: ColorUtil.secondary_text_color,
                                 flex: 1.3,
@@ -727,6 +721,10 @@ class OTCTradePageView extends React.Component {
 
                     Toast.show(error.message);
                 } else {
+                    this.setState({
+                        originRemark: value
+                    })
+
                     Toast.show(I18n.t(Keys.save_success))
                 }
             });
@@ -778,20 +776,41 @@ class OTCTradePageView extends React.Component {
 
                 <View style={{flexDirection: 'row'}}>
                     <View style={{flex: 2}}>
-                        <View style={{flexDirection:'row'}}>
+                        <View style={{flexDirection: 'row'}}>
                             <Image source={require('../../../assets/images/traderIcon.png')}
-                                   containerStyle={[{width: 20, height: 20, marginLeft: 10,marginTop:8}]}/>
-                            <Text style={[{marginTop:10, marginLeft:5, marginRight: 5,marginBottom:6 ,fontSize:14}]}>{item.name}</Text>
+                                   containerStyle={[{width: 20, height: 20, marginLeft: 10, marginTop: 8}]}/>
+                            <Text style={[{
+                                marginTop: 10,
+                                marginLeft: 5,
+                                marginRight: 5,
+                                marginBottom: 6,
+                                fontSize: 14
+                            }]}>{item.name}</Text>
                         </View>
-                        <Text style={[commonStyles.commonSmallSubTextStyle,{marginTop:2, marginLeft:15, marginRight: 5,marginBottom:4}]}>amount {item.remaining_amount}</Text>
-                        <Text style={[commonStyles.commonSmallSubTextStyle,{marginTop:2, marginLeft:15, marginRight: 5,marginBottom:10}]}>min trade amount {item.min_trade_amount}</Text>
+                        <Text style={[commonStyles.commonSmallSubTextStyle, {
+                            marginTop: 2,
+                            marginLeft: 15,
+                            marginRight: 5,
+                            marginBottom: 4
+                        }]}>amount {item.remaining_amount}</Text>
+                        <Text style={[commonStyles.commonSmallSubTextStyle, {
+                            marginTop: 2,
+                            marginLeft: 15,
+                            marginRight: 5,
+                            marginBottom: 10
+                        }]}>min trade amount {item.min_trade_amount}</Text>
                     </View>
                     <View style={{flex: 1}}>
-                        <Text style={[{marginTop:2, marginLeft:15, marginRight: 5,marginBottom:4}]}>{item.price} {item.currency}</Text>
+                        <Text style={[{
+                            marginTop: 2,
+                            marginLeft: 15,
+                            marginRight: 5,
+                            marginBottom: 4
+                        }]}>{item.price} {item.currency}</Text>
                         <Button
                             title={I18n.t(Keys.Buy)}
                             type="outline"
-                            containerStyle={[{flex:1, margin: 5, height:20}]}
+                            containerStyle={[{flex: 1, margin: 5, height: 20}]}
                             titleStyle={[{fontSize: 10,}]}
 
                             onPress={() => {
