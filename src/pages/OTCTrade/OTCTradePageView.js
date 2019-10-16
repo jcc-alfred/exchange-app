@@ -19,9 +19,8 @@ import ColorUtil from "../../util/ColorUtil";
 import Toast from "react-native-root-toast";
 import CustomMultiPicker from "react-native-multiple-select-list";
 
-const SecondRoute = () => (
-    <View style={[ styles.scene, { backgroundColor: '#673ab7' } ]}/>
-);
+
+
 
 
 class OTCTradePageView extends React.Component {
@@ -220,7 +219,7 @@ class OTCTradePageView extends React.Component {
                     <TouchableHighlight
                         style={{ flex: 1 }}
                         underlayColor='#ddd'
-                        onPress={() => this.setState( { type: 0 } )}>
+                        onPress={() => this.setState( { type: 0 } ,this.requestList)}>
                         <Text style={{
 
                             textAlign: 'right',
@@ -233,7 +232,7 @@ class OTCTradePageView extends React.Component {
                     <TouchableHighlight
                         style={{ flex: 1 }}
                         underlayColor='#ddd'
-                        onPress={() => this.setState( { type: 1 } )}>
+                        onPress={() => this.setState( { type: 1 } ,this.requestList)}>
                         <Text style={{
                             flex: 1,
                             marginTop: 5,
@@ -370,7 +369,7 @@ class OTCTradePageView extends React.Component {
                             style={[ commonStyles.commonIntervalStyle, { height: 1 } ]}/>;
                     }}
                     getItemLayout={( data, index ) => (
-                        { length: 130, offset: ( 130 + 1 ) * index, index }
+                        { length: 160, offset: ( 160 + 1 ) * index, index }
                     )}
                     onScroll={() => {
                     }}
@@ -381,99 +380,6 @@ class OTCTradePageView extends React.Component {
         )
     }
 
-
-    renderTradeHallPage() {
-        return (
-            <View style={[ styles.scene, { backgroundColor: '#ff4081' } ]}>
-
-                <View style={[ styles.scene, { backgroundColor: '#ff4081', flexDirection: 'row' } ]}>
-                    <Button
-                        title={"GTB"}
-                        type="outline"
-                        containerStyle={[ { flex: 1, margin: 5 } ]}
-                        titleStyle={[ { fontSize: 12, } ]}
-                        onPress={() => {
-
-                        }
-                        }
-                    />
-                    <Button
-                        title={"BTC"}
-                        type="outline"
-                        containerStyle={[ { flex: 1, margin: 5 } ]}
-                        titleStyle={[ { fontSize: 12, } ]}
-                        onPress={() => {
-
-                        }
-                        }
-                    />
-                    <Button
-                        title={I18n.t( Keys.resend )}
-                        type="outline"
-                        containerStyle={[ { flex: 1, margin: 5 } ]}
-                        titleStyle={[ { fontSize: 12, } ]}
-                        onPress={() => {
-
-                        }
-                        }
-                    />
-                    <Button
-                        title={"CNY"}
-                        type="outline"
-                        containerStyle={[ { flex: 1, margin: 5 } ]}
-                        titleStyle={[ { fontSize: 12, } ]}
-                        onPress={() => {
-
-                        }
-                        }
-                    />
-                    <Button
-                        title={"USD"}
-                        type="outline"
-                        containerStyle={[ { flex: 1, margin: 5 } ]}
-                        titleStyle={[ { fontSize: 12, } ]}
-                        onPress={() => {
-
-                        }
-                        }
-                    />
-
-
-                </View>
-
-
-            </View>
-        );
-    }
-
-
-    renderTradeHallTabView() {
-        return (
-            <TabView
-                navigationState={this.state}
-                onIndexChange={index => this.setState( { index } )}
-                renderScene={SceneMap( {
-                    first: this.renderTradeHallPage,
-                    second: this.renderTradeHallPage,
-                } )}
-            />
-        );
-    }
-
-
-    renderPublishPostTabView() {
-        return (
-            <TabView
-                navigationState={this.state}
-                onIndexChange={index => this.setState( { index } )}
-                renderScene={SceneMap( {
-                    first: this.renderPublishPost,
-                    second: this.renderPublishPost
-                } )}
-            />
-
-        )
-    }
 
 
     renderTopMenuBar() {
@@ -754,7 +660,7 @@ class OTCTradePageView extends React.Component {
     }
 
     renderItem( viewHeight, item, index ) {
-        const url = "https://www.asiaedx.com/#/doc/newsDetail/";
+
         return (
             <TouchableHighlight
                 underlayColor='#ddd'
@@ -770,65 +676,67 @@ class OTCTradePageView extends React.Component {
                     <View style={{ flex: 2 }}>
                         <View style={{ flexDirection: 'row' }}>
                             <Image source={require( '../../../assets/images/traderIcon.png' )}
-                                   containerStyle={[ { width: 20, height: 20, marginLeft: 10, marginTop: 8 } ]}/>
+                                   containerStyle={[ { width: 20, height: 20, marginLeft: 18, marginTop: 20 } ]}/>
                             <Text style={[ {
-                                marginTop: 10,
+                                marginTop: 21,
                                 marginLeft: 5,
                                 marginRight: 5,
                                 marginBottom: 6,
-                                fontSize: 14
+                                fontSize: 14,
+                                fontWeight: 'bold'
                             } ]}>{item.name}</Text>
                         </View>
                         <Text style={[ commonStyles.commonSmallSubTextStyle, {
                             marginTop: 2,
-                            marginLeft: 15,
+                            marginLeft: 20,
                             marginRight: 5,
                             marginBottom: 4
-                        } ]}>amount {item.remaining_amount}</Text>
+                        } ]}>Amount {item.remaining_amount}</Text>
                         <Text style={[ commonStyles.commonSmallSubTextStyle, {
                             marginTop: 2,
-                            marginLeft: 15,
+                            marginLeft: 20,
                             marginRight: 5,
-                            marginBottom: 10
-                        } ]}>min trade amount {item.min_trade_amount}</Text>
+                            marginBottom: 25
+                        } ]}>Min trade amount {item.min_trade_amount}</Text>
                     </View>
                     <View style={{ flex: 1 }}>
                         <Text style={[ {
-                            marginTop: 2,
+                            marginTop: 17,
                             marginLeft: 15,
                             marginRight: 5,
-                            marginBottom: 4
+                            marginBottom: 4,
+                            fontWeight: 'bold',
+                            fontSize:18
+
                         } ]}>{item.price} {item.currency}</Text>
                         <Button
                             title={I18n.t( Keys.Buy )}
-                            type="outline"
-                            containerStyle={[ { flex: 1, margin: 5, height: 20 } ]}
-                            titleStyle={[ { fontSize: 10, } ]}
-
+                            containerStyle={[ { flex: 1, margin: 5, height: 34 } ]}
+                            titleStyle={[ { fontSize: 12, } ]}
                             onPress={() => {
                             }
                             }
                         />
 
-                        {/*<Text>12345</Text>*/}
+                        <View style={{flexDirection:'row', marginBottom:12, marginLeft:5}}>
+                            {
+                                item.support_payments_id.map( (num)=>{
+                                    return this.onSelectPayMethod(num)
+                                })
+                            }
+                        </View>
+
                     </View>
                 </View>
-
-                {/*<View style={{alignItems: 'flex-start', height: 60, marginStart: 20, marginEnd: 20, marginTop: 10}}>*/}
-                {/*<Text>*/}
-                {/*{item.news_title}*/}
-                {/*</Text>*/}
-                {/*<Text style={{marginTop: 5}}>*/}
-                {/*{item.update_time}*/}
-                {/*</Text>*/}
-                {/*</View>*/}
             </TouchableHighlight>
         );
     }
 
 
-    onSelectPayMethod() {
-
+    onSelectPayMethod(item) {
+        return (
+            <Image source={require( '../../../assets/images/exchangeIcon.png' )}
+                   containerStyle={[ { width: 20, height: 20 , marginLeft:5} ]}/>        )
     }
 
 
