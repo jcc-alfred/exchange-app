@@ -14,7 +14,7 @@ class OrderHistoryPageView extends React.Component {
 
     constructor(props) {
         super(props);
-        const tabData = [{title: I18n.t( Keys.all ), value: []}, {title: I18n.t( Keys.histroy ), value: []}];
+        const tabData = [{title: I18n.t( Keys.all ), value: []}, {title: I18n.t( Keys.history ), value: []}];
         const {index, routes, scenes} = this.initTabData(tabData);
 
         this.state = {
@@ -75,7 +75,7 @@ class OrderHistoryPageView extends React.Component {
                     });
 
                     const tabData = [{title: I18n.t( Keys.all ), value: this.state.userEntrustList}, {
-                        title: I18n.t( Keys.histroy ),
+                        title: I18n.t( Keys.history ),
                         value: this.state.userHistoryEntrustList
                     }];
                     const {index, routes, scenes} = this.initTabData(tabData);
@@ -104,7 +104,7 @@ class OrderHistoryPageView extends React.Component {
                     });
 
                     const tabData = [{title: I18n.t( Keys.all ), value: this.state.userEntrustList}, {
-                        title: I18n.t( Keys.histroy ),
+                        title: I18n.t( Keys.history ),
                         value: this.state.userHistoryEntrustList
                     }];
                     const {index, routes, scenes} = this.initTabData(tabData);
@@ -204,7 +204,7 @@ class OrderHistoryPageView extends React.Component {
         })
 
         const tabData = [{title: I18n.t( Keys.all ), value: this.state.userEntrustList}, {
-            title: I18n.t( Keys.histroy ),
+            title: I18n.t( Keys.history ),
             value: this.state.userHistoryEntrustList
         }];
         const {index, routes, scenes} = this.initTabData(tabData);
