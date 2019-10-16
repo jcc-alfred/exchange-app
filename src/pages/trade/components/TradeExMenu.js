@@ -1,5 +1,5 @@
 import React from "react";
-import {Dimensions, Platform, SafeAreaView, StyleSheet, View, StatusBar} from "react-native";
+import { Dimensions, Platform, SafeAreaView, StatusBar, StyleSheet, View } from "react-native";
 import { connect } from "react-redux";
 import { DrawerActions } from 'react-navigation-drawer';
 import { SearchBar } from "react-native-elements";
@@ -74,10 +74,10 @@ class TradeExMenu extends React.Component {
         const { search } = this.state;
 
         return (
-            <View style={[commonStyles.wrapper, {marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight}]}>
+            <View style={[ commonStyles.wrapper, { marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight } ]}>
                 <SafeAreaView style={[ commonStyles.wrapper ]}>
                     <SearchBar
-                        placeholder={I18n.t(Keys.SearchCoin)+"..."}
+                        placeholder={I18n.t( Keys.SearchCoin ) + "..."}
                         onChangeText={this.updateSearch}
                         platform={"default"}
                         lightTheme={true}
@@ -140,7 +140,7 @@ class TradeExMenu extends React.Component {
                             {...props}
                             indicatorStyle={{ backgroundColor: constStyles.THEME_COLOR }}
                             inactiveColor={'#888'}
-                            activeColor={ constStyles.THEME_COLOR}
+                            activeColor={constStyles.THEME_COLOR}
                             style={{ backgroundColor: 'white', flexDirection: 'row' }}
                             tabStyle={{ width: 'auto' }}
                             scrollEnabled={true}

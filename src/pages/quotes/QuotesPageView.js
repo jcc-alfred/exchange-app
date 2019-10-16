@@ -7,8 +7,6 @@ import commonStyles from "../../styles/commonStyles";
 import Toast from "react-native-root-toast";
 
 import { SceneMap, TabBar, TabView } from 'react-native-tab-view';
-
-import { DrawerActions } from 'react-navigation-drawer';
 import ExchangePairList from "../../components/ExchangePairList";
 import constStyles from "../../styles/constStyles";
 
@@ -172,7 +170,7 @@ class QuotesPageView extends React.Component {
                             {...props}
                             indicatorStyle={{ backgroundColor: constStyles.THEME_COLOR }}
                             inactiveColor={'#888'}
-                            activeColor={ constStyles.THEME_COLOR}
+                            activeColor={constStyles.THEME_COLOR}
                             style={{ backgroundColor: 'white', flexDirection: 'row' }}
                             tabStyle={{ width: 'auto' }}
                             scrollEnabled={true}

@@ -28,7 +28,7 @@ class AuthLoginPageView extends React.Component {
         const { params } = state;
 
         return {
-            title: I18n.t(Keys.Login),
+            title: I18n.t( Keys.Login ),
             headerBackTitle: null,
         };
     };
@@ -108,7 +108,7 @@ class AuthLoginPageView extends React.Component {
                             errorStyle={{ color: 'red' }}
                             errorMessage={
                                 this.state.showError && ( !this.state.account || this.state.account.length <= 0 ) ?
-                                    "Please input account"
+                                    I18n.t( Keys.please_input_account_number )
                                     :
                                     null
                             }
@@ -125,11 +125,11 @@ class AuthLoginPageView extends React.Component {
                             value={this.state.password}
                             onChangeText={( text ) => this.setState( { password: text } )}
                             secureTextEntry={true}
-                            label={I18n.t(Keys.password)}
+                            label={I18n.t( Keys.password )}
                             errorStyle={{ color: 'red' }}
                             errorMessage={
                                 this.state.showError && ( !this.state.password || this.state.password.length <= 0 ) ?
-                                    "Please input password"
+                                    I18n.t( Keys.please_input_password )
                                     :
                                     null
                             }

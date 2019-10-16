@@ -1,31 +1,23 @@
 import React from 'react';
 import {
+    FlatList,
     InteractionManager,
     SafeAreaView,
+    ScrollView,
     StatusBar,
     StyleSheet,
-    View,
-    FlatList,
     TouchableHighlight,
-    ScrollView
+    View
 } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
-import {TabView, SceneMap} from 'react-native-tab-view';
-import {Text, Button, Input, Image} from "react-native-elements";
-
-import Spinner from "../mine/UserInfoVerifyPageView";
+import {SceneMap, TabView} from 'react-native-tab-view';
+import {Button, Image, Input, Text} from "react-native-elements";
 import I18n from "../../I18n";
 import Keys from "../../configs/Keys";
 import {getStatusBarHeight} from "react-native-iphone-x-helper";
 import ColorUtil from "../../util/ColorUtil";
-import RadioGroup from 'react-native-radio-buttons-group';
 import Toast from "react-native-root-toast";
-import SelectMultiple from 'react-native-select-multiple'
 import CustomMultiPicker from "react-native-multiple-select-list";
-
-const SecondRoute = () => (
-    <View style={[styles.scene, {backgroundColor: '#673ab7'}]}/>
-);
 
 
 class OTCTradePageView extends React.Component {
@@ -224,7 +216,7 @@ class OTCTradePageView extends React.Component {
                     <TouchableHighlight
                         style={{flex: 1}}
                         underlayColor='#ddd'
-                        onPress={() => this.setState({type: 0})}>
+                        onPress={() => this.setState({type: 0}, this.requestList)}>
                         <Text style={{
 
                             textAlign: 'right',
@@ -237,7 +229,7 @@ class OTCTradePageView extends React.Component {
                     <TouchableHighlight
                         style={{flex: 1}}
                         underlayColor='#ddd'
-                        onPress={() => this.setState({type: 1})}>
+                        onPress={() => this.setState({type: 1}, this.requestList)}>
                         <Text style={{
                             flex: 1,
                             marginTop: 5,
@@ -374,107 +366,13 @@ class OTCTradePageView extends React.Component {
                             style={[commonStyles.commonIntervalStyle, {height: 1}]}/>;
                     }}
                     getItemLayout={(data, index) => (
-                        {length: 130, offset: (130 + 1) * index, index}
+                        {length: 160, offset: (160 + 1) * index, index}
                     )}
                     onScroll={() => {
                     }}
                 />
             </View>
 
-
-        )
-    }
-
-
-    renderTradeHallPage() {
-        return (
-            <View style={[styles.scene, {backgroundColor: '#ff4081'}]}>
-
-                <View style={[styles.scene, {backgroundColor: '#ff4081', flexDirection: 'row'}]}>
-                    <Button
-                        title={"GTB"}
-                        type="outline"
-                        containerStyle={[{flex: 1, margin: 5}]}
-                        titleStyle={[{fontSize: 12,}]}
-                        onPress={() => {
-
-                        }
-                        }
-                    />
-                    <Button
-                        title={"BTC"}
-                        type="outline"
-                        containerStyle={[{flex: 1, margin: 5}]}
-                        titleStyle={[{fontSize: 12,}]}
-                        onPress={() => {
-
-                        }
-                        }
-                    />
-                    <Button
-                        title={I18n.t(Keys.resend)}
-                        type="outline"
-                        containerStyle={[{flex: 1, margin: 5}]}
-                        titleStyle={[{fontSize: 12,}]}
-                        onPress={() => {
-
-                        }
-                        }
-                    />
-                    <Button
-                        title={"CNY"}
-                        type="outline"
-                        containerStyle={[{flex: 1, margin: 5}]}
-                        titleStyle={[{fontSize: 12,}]}
-                        onPress={() => {
-
-                        }
-                        }
-                    />
-                    <Button
-                        title={"USD"}
-                        type="outline"
-                        containerStyle={[{flex: 1, margin: 5}]}
-                        titleStyle={[{fontSize: 12,}]}
-                        onPress={() => {
-
-                        }
-                        }
-                    />
-
-
-                </View>
-
-
-            </View>
-        );
-    }
-
-
-    renderTradeHallTabView() {
-        return (
-            <TabView
-                navigationState={this.state}
-                onIndexChange={index => this.setState({index})}
-                renderScene={SceneMap({
-                    first: this.renderTradeHallPage,
-                    second: this.renderTradeHallPage,
-                })}
-            />
-        );
-    }
-
-
-    renderPublishPostTabView() {
-        return (
-            <TabView
-                navigationState={this.state}
-                onIndexChange={index => this.setState({index})}
-                renderScene={SceneMap({
-                    first: this.renderPublishPost,
-                    second: this.renderPublishPost
-                })}
-            />
 
         )
     }
@@ -743,7 +641,7 @@ class OTCTradePageView extends React.Component {
             remark: this.state.description,
             secret_remark: this.state.remark,
             methods: this.state.paymentMethod,
-        }
+        };
 
         InteractionManager.runAfterInteractions(() => {
             this.props.onOTCEntrustCreate(query, (error, resBody1) => {
@@ -762,7 +660,7 @@ class OTCTradePageView extends React.Component {
     }
 
     renderItem(viewHeight, item, index) {
-        const url = "https://www.asiaedx.com/#/doc/newsDetail/";
+
         return (
             <TouchableHighlight
                 underlayColor='#ddd'
@@ -812,31 +710,30 @@ class OTCTradePageView extends React.Component {
                             type="outline"
                             containerStyle={[{flex: 1, margin: 5, height: 20}]}
                             titleStyle={[{fontSize: 10,}]}
-
                             onPress={() => {
                             }
                             }
                         />
 
-                        {/*<Text>12345</Text>*/}
+                        <View style={{flexDirection: 'row', marginBottom: 12, marginLeft: 5}}>
+                            {
+                                item.support_payments_id.map((num) => {
+                                    return this.onSelectPayMethod(num)
+                                })
+                            }
+                        </View>
+
                     </View>
                 </View>
-
-                {/*<View style={{alignItems: 'flex-start', height: 60, marginStart: 20, marginEnd: 20, marginTop: 10}}>*/}
-                {/*<Text>*/}
-                {/*{item.news_title}*/}
-                {/*</Text>*/}
-                {/*<Text style={{marginTop: 5}}>*/}
-                {/*{item.update_time}*/}
-                {/*</Text>*/}
-                {/*</View>*/}
             </TouchableHighlight>
         );
     }
 
 
-    onSelectPayMethod() {
-
+    onSelectPayMethod(item) {
+        return (
+            <Image source={require('../../../assets/images/exchangeIcon.png')}
+                   containerStyle={[{width: 20, height: 20, marginLeft: 5}]}/>)
     }
 
 

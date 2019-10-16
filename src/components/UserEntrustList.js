@@ -1,12 +1,11 @@
 import React from "react";
 
-import {FlatList, InteractionManager, RefreshControl, TouchableHighlight, View, ViewPropTypes} from "react-native";
+import { FlatList, InteractionManager, View, ViewPropTypes } from "react-native";
 import PropTypes from 'prop-types';
-import {Button, Text} from "react-native-elements";
+import { Button, Text } from "react-native-elements";
 import commonStyles from "../styles/commonStyles";
 import I18n from "../I18n";
 import Keys from "../configs/Keys";
-import Util from "../util/Util";
 import moment from 'moment';
 import Toast from "react-native-root-toast";
 
@@ -57,7 +56,7 @@ class UserEntrustList extends React.Component {
     }
 
     renderItem( viewHeight, entrust, index, type ) {
-        const coinEx = this.props.marketList.find(i=>i.coin_exchange_id === entrust.coin_exchange_id);
+        const coinEx = this.props.marketList.find( i => i.coin_exchange_id === entrust.coin_exchange_id );
         if ( type === 0 ) {
             return (
                 <View style={{ height: viewHeight }}>
@@ -71,10 +70,14 @@ class UserEntrustList extends React.Component {
                             paddingTop: 6,
                             paddingBottom: 6
                         } ]}>{entrust.entrust_type_id === 0 ? I18n.t( Keys.Sell ) : I18n.t( Keys.Buy )}</Text>
-                        <Text style={{flex:1.5, paddingTop: 6}}>{coinEx.coinEx.coin_name + '/' + coinEx.coinEx.exchange_coin_name}</Text>
+                        <Text style={{
+                            flex: 1.5,
+                            paddingTop: 6
+                        }}>{coinEx.coinEx.coin_name + '/' + coinEx.coinEx.exchange_coin_name}</Text>
                         <Text
                             style={[ { flex: 4 }, commonStyles.smallGrayFont ]}>{moment( entrust.create_time ).format( 'HH:mm MM/DD' )}</Text>
-                        <Button type={'outline'} titleStyle={{ fontSize: 10 }} title={I18n.t( Keys.Cancel )} style={{padding: 5}}
+                        <Button type={'outline'} titleStyle={{ fontSize: 10 }} title={I18n.t( Keys.Cancel )}
+                                style={{ padding: 5 }}
                                 onPress={() => this.doCancelEntrust( entrust )}/>
                     </View>
                     <View style={{ flexDirection: 'row' }}>
@@ -104,14 +107,17 @@ class UserEntrustList extends React.Component {
                             paddingTop: 6,
                             paddingBottom: 6
                         } ]}>{entrust.entrust_type_id === 0 ? I18n.t( Keys.Sell ) : I18n.t( Keys.Buy )}</Text>
-                        <Text style={{flex:2, paddingTop: 6}}>{coinEx.coinEx.coin_name + '/' + coinEx.coinEx.exchange_coin_name}</Text>
+                        <Text style={{
+                            flex: 2,
+                            paddingTop: 6
+                        }}>{coinEx.coinEx.coin_name + '/' + coinEx.coinEx.exchange_coin_name}</Text>
                         <Text
                             style={[ { flex: 4 }, commonStyles.smallGrayFont ]}>{moment( entrust.create_time ).format( 'HH:mm MM/DD' )}</Text>
                         <Text style={[ { flex: 2 }, commonStyles.smallGrayFont ]}>{I18n.t( Keys.completed )}</Text>
                     </View>
                     <View style={{ flexDirection: 'row' }}>
                         <Text
-                            style={[ commonStyles.smallGrayFont, { flex: 1 } ]}>{I18n.t( Keys.Price ) + '(' +  coinEx.coinEx.exchange_coin_name + ')'}</Text>
+                            style={[ commonStyles.smallGrayFont, { flex: 1 } ]}>{I18n.t( Keys.Price ) + '(' + coinEx.coinEx.exchange_coin_name + ')'}</Text>
                         <Text style={[ commonStyles.smallGrayFont, { flex: 1 } ]}>{I18n.t( Keys.Volume )}</Text>
                         <Text style={[ commonStyles.smallGrayFont, { flex: 1 } ]}>{I18n.t( Keys.Transaction )}</Text>
                     </View>
@@ -127,24 +133,24 @@ class UserEntrustList extends React.Component {
 
     }
 
-    doCancelEntrust(entrust) {
-        InteractionManager.runAfterInteractions(() => {
-            this.props.onExchangeDoCancelEntrust({
+    doCancelEntrust( entrust ) {
+        InteractionManager.runAfterInteractions( () => {
+            this.props.onExchangeDoCancelEntrust( {
                 "entrustId": entrust.entrust_id,
                 "coinExchangeId": entrust.coin_exchange_id,
                 "entrustTypeId": entrust.entrust_type_id,
                 "user_id": this.props.userInfo.user_id
-            }, (err, res) => {
-                if (!err) {
-                    Toast.show("entrust canceled");
+            }, ( err, res ) => {
+                if ( !err ) {
+                    Toast.show( "entrust canceled" );
                     let tmp = this.props.userEntrustList;
-                    tmp = tmp.filter(i => i.entrust_id !== entrust.entrust_id);
-                    this.props.deleteItem(entrust.entrust_id);
+                    tmp = tmp.filter( i => i.entrust_id !== entrust.entrust_id );
+                    this.props.deleteItem( entrust.entrust_id );
                 } else {
-                    Toast.show(err.message)
+                    Toast.show( err.message )
                 }
-            })
-        })
+            } )
+        } )
     }
 
 
