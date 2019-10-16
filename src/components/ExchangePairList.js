@@ -39,7 +39,7 @@ class ExchangePairList extends React.Component {
                 </View>
 
                 <View style={{ flex: 1, alignItems: 'center' }}>
-                    <Text>{I18n.t( Keys.changerate )}</Text>
+                    <Text>{I18n.t( Keys.change_rate )}</Text>
                 </View>
             </View>
         )
