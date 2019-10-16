@@ -1,4 +1,5 @@
 import {
+    netGetOtcSecretRemark,
     netOtcCoins,
     netOtcEntrust,
     netOtcEntrustCancel,
@@ -11,8 +12,7 @@ import {
     netOtcOrderCreate,
     netOtcOrderMy,
     netOtcOrderPay,
-    netOtcSecretRemark,
-    netGetOtcSecretRemark
+    netOtcSecretRemark
 } from "../net/OtcApiNet";
 
 

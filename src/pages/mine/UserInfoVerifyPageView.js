@@ -30,7 +30,7 @@ class UserInfoVerifyPageView extends React.Component {
         const { params } = state;
 
         return {
-            title: I18n.t(Keys.senior_Verification),
+            title: I18n.t( Keys.senior_Verification ),
             headerBackTitle: null,
         };
     };
@@ -112,7 +112,7 @@ class UserInfoVerifyPageView extends React.Component {
                             <MediaSingleComponent
                                 editOptions={{}}
                                 item={this.state.icFont}
-                                title={I18n.t(Keys.IC_Front)}
+                                title={I18n.t( Keys.IC_Front )}
                                 mediaType={'Photo'}
                                 isSupportEdit={true}
                                 onItemChange={( item ) => {
@@ -125,7 +125,7 @@ class UserInfoVerifyPageView extends React.Component {
                             <MediaSingleComponent
                                 editOptions={{}}
                                 item={this.state.icBack}
-                                title={I18n.t(Keys.IC_Back)}
+                                title={I18n.t( Keys.IC_Back )}
                                 mediaType={'Photo'}
                                 isSupportEdit={true}
                                 onItemChange={( item ) => {
@@ -138,7 +138,7 @@ class UserInfoVerifyPageView extends React.Component {
                             <MediaSingleComponent
                                 editOptions={{}}
                                 item={this.state.icHandle}
-                                title={I18n.t(Keys.IC_Hold)}
+                                title={I18n.t( Keys.IC_Hold )}
                                 mediaType={'Photo'}
                                 isSupportEdit={true}
                                 onItemChange={( item ) => {
@@ -149,7 +149,7 @@ class UserInfoVerifyPageView extends React.Component {
                             />
 
                             <Button
-                                title={I18n.t(Keys.Submit)}
+                                title={I18n.t( Keys.Submit )}
                                 type="outline"
                                 style={{ marginStart: 16, marginEnd: 16 }}
                                 onPress={() => {

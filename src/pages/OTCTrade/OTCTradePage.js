@@ -1,8 +1,14 @@
 import React from 'react';
 import { connect } from "react-redux";
 import OTCTradePageView from "./OTCTradePageView";
-import {otcSecretRemark, otcGetSecretRemark, otcEntrustCreate, otcCoins,otcEntrustList } from "../../actions/OtcAction";
-import {assetsGetUserAssets} from "../../actions/AssetsAction";
+import {
+    otcCoins,
+    otcEntrustCreate,
+    otcEntrustList,
+    otcGetSecretRemark,
+    otcSecretRemark
+} from "../../actions/OtcAction";
+import { assetsGetUserAssets } from "../../actions/AssetsAction";
 
 const mapStoreToProps = ( store, ownProps ) => {
     const { params } = ownProps.navigation.state;
@@ -16,8 +22,8 @@ const mapStoreToProps = ( store, ownProps ) => {
 };
 
 const mapDispatchToProps = ( dispatch, ownProps ) => ( {
-    onOTCSecretRemark: (remark, callback ) => {
-        dispatch( otcSecretRemark(remark, ( err, res ) => {
+    onOTCSecretRemark: ( remark, callback ) => {
+        dispatch( otcSecretRemark( remark, ( err, res ) => {
             callback && callback( err, res )
         } ) );
     },
@@ -28,8 +34,8 @@ const mapDispatchToProps = ( dispatch, ownProps ) => ( {
         } ) );
     },
 
-    onOTCEntrustCreate: (query, callback ) => {
-        dispatch( otcEntrustCreate(query, ( err, res ) => {
+    onOTCEntrustCreate: ( query, callback ) => {
+        dispatch( otcEntrustCreate( query, ( err, res ) => {
             callback && callback( err, res )
         } ) );
     },
@@ -41,10 +47,10 @@ const mapDispatchToProps = ( dispatch, ownProps ) => ( {
     },
 
 
-    onNetOtcEntrustList:( coin_id, type, callback ) => {
-        dispatch(otcEntrustList(coin_id, type, (err, res) => {
-            callback && callback(err, res)
-        }));
+    onNetOtcEntrustList: ( coin_id, type, callback ) => {
+        dispatch( otcEntrustList( coin_id, type, ( err, res ) => {
+            callback && callback( err, res )
+        } ) );
     },
     onAssetsGetUserAssets: ( callback ) => {
         dispatch( assetsGetUserAssets( ( err, res ) => {
