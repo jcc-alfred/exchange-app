@@ -73,7 +73,7 @@ class KlinePageView extends React.Component {
             for ( let index = 0; index < tabData.length; index++ ) {
                 routes.push( {
                     key: '' + index,
-                    title: tabData[ index ].title
+                    title: I18n.t(tabData[ index ].title)
                 } );
                 scenes [ '' + index ] = () => {
                     return (

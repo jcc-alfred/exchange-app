@@ -1021,5 +1021,10 @@
   "volume": "Volume",
   "withdraw": "Withdraw",
   "withdraw_history": "Cash Withdrawal History",
-  "yes": "Yes"
+  "yes": "Yes",
+  "Entrust_Created_Successfully": "Entrust Created Successfully",
+  "Estimated": "Estimated",
+  "Depth": "DEPTH",
+  "Order": "ORDER",
+  "Finish": "Finish"
 }

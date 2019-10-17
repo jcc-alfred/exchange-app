@@ -802,5 +802,9 @@ const Keys = {
     "withdraw": "withdraw",
     "withdraw_history": "withdraw_history",
     "yes": "yes",
+    "Entrust_Created_Successfully":"Entrust_Created_Successfully",
+    "Estimated":"Estimated",
+    "DEPTH":"DEPTH",
+    "Finish":"Finish"
 };
 export default Keys;
