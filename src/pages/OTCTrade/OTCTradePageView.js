@@ -717,7 +717,6 @@ class OTCTradePageView extends React.Component {
                             }
                             }
                         />
-
                         <View style={{flexDirection:'row', marginBottom:12, marginLeft:5}}>
                             {
                                 item.support_payments_id.map( (num)=>{
@@ -725,7 +724,6 @@ class OTCTradePageView extends React.Component {
                                 })
                             }
                         </View>
-
                     </View>
                 </View>
             </TouchableHighlight>
