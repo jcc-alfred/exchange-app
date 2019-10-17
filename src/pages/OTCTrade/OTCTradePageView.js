@@ -676,40 +676,43 @@ class OTCTradePageView extends React.Component {
                     <View style={{flex: 2}}>
                         <View style={{flexDirection: 'row'}}>
                             <Image source={require('../../../assets/images/traderIcon.png')}
-                                   containerStyle={[{width: 20, height: 20, marginLeft: 10, marginTop: 8}]}/>
+                                   containerStyle={[{width: 20, height: 20, marginLeft: 20, marginTop: 18}]}/>
                             <Text style={[{
-                                marginTop: 10,
+                                marginTop: 19,
                                 marginLeft: 5,
                                 marginRight: 5,
                                 marginBottom: 6,
-                                fontSize: 14
+                                fontSize: 14,
+                                fontWeight:'bold'
                             }]}>{item.name}</Text>
                         </View>
                         <Text style={[commonStyles.commonSmallSubTextStyle, {
-                            marginTop: 2,
-                            marginLeft: 15,
+                            marginTop: 4,
+                            marginLeft: 22,
                             marginRight: 5,
                             marginBottom: 4
-                        }]}>amount {item.remaining_amount}</Text>
+                        }]}>Amount {item.remaining_amount}</Text>
                         <Text style={[commonStyles.commonSmallSubTextStyle, {
-                            marginTop: 2,
-                            marginLeft: 15,
+                            marginTop: 4,
+                            marginLeft: 22,
                             marginRight: 5,
                             marginBottom: 10
-                        }]}>min trade amount {item.min_trade_amount}</Text>
+                        }]}>Min trade amount {item.min_trade_amount}</Text>
                     </View>
                     <View style={{flex: 1}}>
                         <Text style={[{
-                            marginTop: 2,
-                            marginLeft: 15,
-                            marginRight: 5,
-                            marginBottom: 4
+                            marginTop: 12,
+                            marginLeft: 0,
+                            marginRight: 20,
+                            marginBottom: 4,
+                            textAlign:'right',
+                            fontWeight:'bold',
+                            fontSize:18
                         }]}>{item.price} {item.currency}</Text>
                         <Button
                             title={I18n.t(Keys.Buy)}
-                            type="outline"
-                            containerStyle={[{flex: 1, margin: 5, height: 20}]}
-                            titleStyle={[{fontSize: 10,}]}
+                            containerStyle={[{flex: 1, marginLeft:20, marginRight:20,marginTop:5, marginBottom:5}]}
+                            titleStyle={[{fontSize: 14, fontWeight:'bold'}]}
                             onPress={() => {
                             }
                             }
