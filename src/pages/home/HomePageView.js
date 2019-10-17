@@ -279,10 +279,11 @@ class HomePageView extends React.Component {
                                     if (pair) {
                                         return (
                                             <TouchableHighlight
+                                                key={"items " + index}
                                                 style={{flex: 1}}
                                                 underlayColor='#ddd'
                                                 onPress={() => this.gotoKlinePage(pair)}>
-                                                <View style={{flex: 1, alignItems: 'center'}} key={"items " + index}>
+                                                <View style={{flex: 1, alignItems: 'center'}}>
                                                     <Text>{pair.coinEx.coin_name + '/' + pair.coinEx.exchange_coin_name}</Text>
                                                     <Text style={{
                                                         fontSize: 16,
@@ -310,7 +311,7 @@ class HomePageView extends React.Component {
 
                     <View>
 
-                        <Text style={{padding: 16, fontSize: 16}}>{I18n.t(Keys.news)}</Text>
+                        <Text style={{padding: 10, fontSize: 22, fontWeight: 'bold'}}>{I18n.t(Keys.news)}</Text>
 
                         <FlatList
                             data={this.state.newsList}
@@ -333,7 +334,7 @@ class HomePageView extends React.Component {
 
                         <View style={{height: 1, backgroundColor: '#efefef'}}/>
 
-                        <Text style={{padding: 16, fontSize: 16}}>{I18n.t(Keys.announcement)}</Text>
+                        <Text style={{padding: 10, fontSize: 22, fontWeight: 'bold'}}>{I18n.t(Keys.announcement)}</Text>
 
                         <FlatList
                             data={this.state.announcementList}

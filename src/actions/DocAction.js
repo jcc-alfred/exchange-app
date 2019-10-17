@@ -1,4 +1,4 @@
-import { netDocGetHomeNewsList } from "../net/DocApiNet";
+import {netdocGetArticleList, netDocGetHomeNewsList} from "../net/DocApiNet";
 
 
 export function docGetHomeNewsList( callback ) {
@@ -8,6 +8,16 @@ export function docGetHomeNewsList( callback ) {
         } );
     };
 }
+export function docGetArticleList( callback ) {
+    return ( dispatch ) => {
+        netdocGetArticleList( ( err, res ) => {
+            callback && callback( err, res )
+        } );
+    };
+}
+
+
+
 
 
 

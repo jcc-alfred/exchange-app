@@ -5,7 +5,8 @@ const initialState = {
     entrustList: [],
     coinList: [],
     marketList: [],
-    TradePageCoinEx: null
+    TradePageCoinEx: null,
+    docList:[]
 };
 
 export default function metaReducer( state = initialState, action ) {
@@ -14,6 +15,12 @@ export default function metaReducer( state = initialState, action ) {
             return {
                 ...state,
                 coin_exchange_area: action.data,
+            }
+        }
+        case metaActionTypes.DOC_LIST: {
+            return {
+                ...state,
+                docList: action.data,
             }
         }
         case metaActionTypes.MARKET_LIST: {

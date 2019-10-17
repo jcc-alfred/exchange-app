@@ -805,6 +805,9 @@ const Keys = {
     "Entrust_Created_Successfully":"Entrust_Created_Successfully",
     "Estimated":"Estimated",
     "DEPTH":"DEPTH",
-    "Finish":"Finish"
+    "Finish":"Finish",
+    "version":"version",
+    "userAgreement":"userAgreement",
+    "legal_statement":"legal_statement"
 };
 export default Keys;

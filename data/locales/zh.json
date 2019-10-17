@@ -1026,5 +1026,8 @@
   "Estimated": "大约",
   "Depth": "深度",
   "Order":"成单",
-  "Finish": "已成交"
+  "Finish": "已成交",
+  "version": "版本",
+  "userAgreement": "用户协议",
+  "legal_statement": "法律声明"
 }

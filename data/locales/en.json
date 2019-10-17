@@ -1026,5 +1026,8 @@
   "Estimated": "Estimated",
   "Depth": "DEPTH",
   "Order": "ORDER",
-  "Finish": "Finish"
+  "Finish": "Finish",
+  "version": "Version",
+  "userAgreement": "User Agreement",
+  "legal_statement": "Legal Statement"
 }

@@ -22,3 +22,16 @@ export function netDocGetHomeNewsList( callback ) {
         .apiDomainParse()
         .end( callback );
 }
+export function netdocGetArticleList( callback ) {
+    request
+        .get( '/doc/getArticleList' )
+        .send( {} )
+        .use( superagent_prefix( env.apiDomain ) )
+        .use( logger )
+        .authRequest()
+        .headerRequest()
+        .apiDomainParse()
+        .end( callback );
+}
+
+
