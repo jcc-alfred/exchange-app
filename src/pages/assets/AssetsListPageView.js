@@ -113,6 +113,7 @@ class AssetsListPageView extends React.Component {
     };
 
     renderItem( viewHeight, item, index ) {
+        console.log(item);
         return (
             <TouchableHighlight
                 underlayColor='#ddd'
@@ -127,13 +128,13 @@ class AssetsListPageView extends React.Component {
                     <View style={{ flexDirection: "row" }}><Text
                         style={[ { flex: 1 }, styles.cellMenuText ]}>{I18n.t( Keys.available )}</Text><Text
                         style={[ { flex: 1 }, styles.cellMenuText ]}>{I18n.t( Keys.frozen )}</Text><Text
-                        style={[ { flex: 1 }, styles.cellMenuText ]}>{I18n.t( Keys.balance )}</Text></View>
+                        style={[ { flex: 1 }, styles.cellMenuText ]}>{I18n.t( Keys.Estimated )}(USD)</Text></View>
                     <View style={{ flexDirection: "row" }}><Text style={[ {
                         flex: 1,
                         marginLeft: 10
-                    }, styles.cellValueText ]}>{item.balance.toFixed( 2 )}</Text><Text
+                    }, styles.cellValueText ]}>{item.available.toFixed( 2 )}</Text><Text
                         style={[ { flex: 1 }, styles.cellValueText ]}>{item.frozen.toFixed( 2 )}</Text><Text
-                        style={[ { flex: 1 }, styles.cellValueText ]}>{item.available.toFixed( 2 )}</Text></View>
+                        style={[ { flex: 1 }, styles.cellValueText ]}>{parseFloat(item.value_USD).toFixed( 2 )}</Text></View>
                 </View>
             </TouchableHighlight>
         );
