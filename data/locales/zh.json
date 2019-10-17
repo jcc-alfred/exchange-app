@@ -935,8 +935,8 @@
   "country_title": "国家",
   "date": "日期",
   "delete": "删除",
-  "deposit": "存款",
-  "deposit_history": "充值历史",
+  "deposit": "冲币",
+  "deposit_history": "充币历史",
   "email": "邮箱",
   "email_verification_code": "电子邮件验证码",
   "email_verify": "电邮验证",
@@ -1026,7 +1026,12 @@
   "verify_code": "验证码",
   "vol": "量",
   "volume": "量",
-  "withdraw": "提现",
-  "withdraw_history": "提现历史",
-  "yes": "确定"
+  "withdraw": "提币",
+  "withdraw_history": "提币历史",
+  "yes": "确定",
+  "Entrust_Created_Successfully": "下单成功",
+  "Estimated": "大约",
+  "Depth": "深度",
+  "Order":"成单",
+  "Finish": "已成交"
 }
