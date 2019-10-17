@@ -1029,5 +1029,6 @@
   "Finish": "已成交",
   "version": "版本",
   "userAgreement": "用户协议",
-  "legal_statement": "法律声明"
+  "legal_statement": "法律声明",
+  "code_send_tips": "验证码已经发送到"
 }

@@ -82,6 +82,7 @@ class AssetsWithdrawPageView extends React.Component {
                     if (error) {
                         Toast.show(error.message);
                     } else {
+                        Toast.show(I18n.t(Keys.code_send_tips) + (query.type === 'phone' ? query.phoneNumber : query.email));
                         this.setState({
                             isCountingDown: true,
                             code: '',
@@ -235,7 +236,7 @@ class AssetsWithdrawPageView extends React.Component {
                                         />
                                         :
                                         <Button
-                                            title={I18n.t(this.state.resend ? Keys.resend :Keys.send)}
+                                            title={I18n.t(this.state.resend ? Keys.resend : Keys.send)}
                                             type="outline"
                                             buttonStyle={[{height: 30, paddingTop: 7, paddingBottom: 7}]}
                                             titleStyle={[{fontSize: 14,}]}

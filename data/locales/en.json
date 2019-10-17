@@ -1029,5 +1029,6 @@
   "Finish": "Finish",
   "version": "Version",
   "userAgreement": "User Agreement",
-  "legal_statement": "Legal Statement"
+  "legal_statement": "Legal Statement",
+  "code_send_tips": "The Verification Code has been sent to "
 }

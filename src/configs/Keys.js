@@ -808,6 +808,7 @@ const Keys = {
     "Finish":"Finish",
     "version":"version",
     "userAgreement":"userAgreement",
-    "legal_statement":"legal_statement"
+    "legal_statement":"legal_statement",
+    "code_send_tips":"code_send_tips"
 };
 export default Keys;
