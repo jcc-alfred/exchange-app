@@ -42,8 +42,8 @@ class OTCTradePageView extends React.Component {
 
 
             routes: [
-                {key: 'first', title: 'Buy'},
-                {key: 'second', title: 'Sell'},
+                {key: 'first', title: I18n.t( Keys.Buy )},
+                {key: 'second', title: I18n.t( Keys.Sell )},
             ],
 
             isShowTradeHall: true,
