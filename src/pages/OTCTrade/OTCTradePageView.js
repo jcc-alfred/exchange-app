@@ -768,6 +768,9 @@ class OTCTradePageView extends React.Component {
                     getItemLayout={(data, index) => (
                         {length: 160, offset: (160 + 1) * index, index}
                     )}
+                    ListHeaderComponent={this.header}
+
+
                     onScroll={() => {
                     }}
                 />
@@ -839,6 +842,37 @@ class OTCTradePageView extends React.Component {
     }
 
 
+    header  ()  {
+        return (
+            <View  style={{flexDirection:'row'}}>
+                <Text style={{flex:1, textAlign:'center', fontSize:12, color:'#6d6c67'}}>Unit Price</Text>
+                <Text style={{flex:1, textAlign:'center',fontSize:12, color:'#6d6c67'}}>Amount</Text>
+                <Text style={{flex:1, textAlign:'center',fontSize:12, color:'#6d6c67'}}>WholeAmout</Text>
+                <Text style={{flex:2, textAlign:'center',fontSize:12, color:'#6d6c67'}}>State</Text>
+
+            </View>
+        );
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     renderMyOrderView(){
         return (
             <View style={[styles.scene, {backgroundColor: '#ffffff', flexDirection: 'row'}]}>
@@ -859,6 +893,7 @@ class OTCTradePageView extends React.Component {
                     getItemLayout={(data, index) => (
                         {length: 160, offset: (160 + 1) * index, index}
                     )}
+                    ListHeaderComponent={this.header}
                     onScroll={() => {
                     }}
                 />
