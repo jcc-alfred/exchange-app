@@ -809,6 +809,10 @@ const Keys = {
     "version":"version",
     "userAgreement":"userAgreement",
     "legal_statement":"legal_statement",
-    "code_send_tips":"code_send_tips"
+    "code_send_tips":"code_send_tips",
+    "limit_price":"limit_price",
+    "total":"total",
+    "average_price":"average_price",
+    "excecuted":"excecuted"
 };
 export default Keys;

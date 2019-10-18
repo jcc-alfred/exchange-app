@@ -1030,5 +1030,9 @@
   "version": "版本",
   "userAgreement": "用户协议",
   "legal_statement": "法律声明",
-  "code_send_tips": "验证码已经发送到"
+  "code_send_tips": "验证码已经发送到",
+  "limit_price":"限价",
+  "total":"总量",
+  "average_price":"平均价格",
+  "excecuted":"已完成"
 }
