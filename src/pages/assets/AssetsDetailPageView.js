@@ -95,10 +95,10 @@ class AssetsDetailPageView extends React.Component {
                         <TabBar
                             {...props}
                             indicatorStyle={{ backgroundColor: constStyles.THEME_COLOR }}
-                            inactiveColor={{ color: '#9c9a97' }}
-                            activeColor={{ color: constStyles.THEME_COLOR }}
+                            inactiveColor={'#888'}
+                            activeColor={constStyles.THEME_COLOR}
                             style={{ backgroundColor: 'white', flexDirection: 'row' }}
-                            tabStyle={{ flex: 1 }}
+                            tabStyle={{ width: 'auto' }}
                             scrollEnabled={true}
                         />
                     }
@@ -123,8 +123,8 @@ class AssetsDetailPageView extends React.Component {
         if ( this.state.depositList !== nextState.depositList || nextState.withdrawList !== this.state.withdrawList ) {
 
             const tabData = [
-                { title: "Deposit", value: nextState.depositList },
-                { title: "Withdraw", value: nextState.withdrawList } ];
+                { title: I18n.t(Keys.deposit), value: nextState.depositList },
+                { title: I18n.t(Keys.withdraw), value: nextState.withdrawList } ];
             const { index, routes, scenes } = this.initTabData( tabData );
             this.setState( {
                 routes: routes,
@@ -227,6 +227,7 @@ class AssetsDetailPageView extends React.Component {
                                     color={'white'}
                                 />
                             }
+                            iconContainerStyle={{ marginRight: 50 }}
                             title={I18n.t( Keys.withdraw )}
                             onPress={() => {
                                 this.props.navigation.navigate( "AssetsWithdrawPage", {

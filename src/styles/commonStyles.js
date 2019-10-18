@@ -255,6 +255,14 @@ const commonStyles = StyleSheet.create(
             paddingRight: 10,
             paddingTop: 10,
             paddingBottom: 8
+        },
+        smallCommissionValue: {
+            color: 'black',
+            fontSize: 12,
+            paddingLeft: 10,
+            paddingRight: 10,
+            paddingTop: 10,
+            paddingBottom: 8
         }
     }
 );

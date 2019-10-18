@@ -48,6 +48,8 @@ class OTCTradePageView extends React.Component {
 
             isShowTradeHall: true,
             isShowPublishPost: false,
+            isShowMyPost:false,
+            isShowMyOrder:false,
 
             description: '',
             remark: '',
@@ -199,10 +201,13 @@ class OTCTradePageView extends React.Component {
                 <SafeAreaView style={[commonStyles.wrapper]}>
                     {/*<Text>otc1</Text>*/}
                     {this.renderTopMenuBar()}
-                    {this.renderTradeHallMainView()}
+                    {/*{this.renderTradeHallMainView()}*/}
+
+                    {(this.state.isShowTradeHall||this.state.isShowPublishPost)?this.renderTradeHallMainView():null}
                     {this.state.isShowTradeHall ? this.renderTradeHallFlatList() : null}
                     {this.state.isShowPublishPost ? this.renderPublishPost() : null}
-
+                    {this.state.isShowMyPost? this.renderMyPostView():null}
+                    {this.state.isShowMyOrder? this.renderMyOrderView():null}
 
                 </SafeAreaView>
             </View>
@@ -389,7 +394,8 @@ class OTCTradePageView extends React.Component {
                     containerStyle={[{flex: 1, margin: 5}]}
                     titleStyle={[{fontSize: 10,}]}
                     onPress={() => {
-                        this.setState({isShowTradeHall: true, isShowPublishPost: false})
+                        this.setState({isShowTradeHall: true, isShowPublishPost: false, isShowMyPost:false,
+                            isShowMyOrder:false})
                     }
                     }
                 />
@@ -400,7 +406,8 @@ class OTCTradePageView extends React.Component {
                     containerStyle={[{flex: 1, margin: 5}]}
                     titleStyle={[{fontSize: 10,}]}
                     onPress={() => {
-                        this.setState({isShowTradeHall: false, isShowPublishPost: true})
+                        this.setState({isShowTradeHall: false, isShowPublishPost: true, isShowMyPost:false,
+                            isShowMyOrder:false})
                     }
                     }
                 />
@@ -411,7 +418,8 @@ class OTCTradePageView extends React.Component {
                     containerStyle={[{flex: 1, margin: 5}]}
                     titleStyle={[{fontSize: 10,}]}
                     onPress={() => {
-
+                        this.setState({isShowTradeHall: false, isShowPublishPost: false, isShowMyPost:true,
+                            isShowMyOrder:false})
                     }
                     }
                 />
@@ -422,7 +430,8 @@ class OTCTradePageView extends React.Component {
                     containerStyle={[{flex: 1, margin: 5}]}
                     titleStyle={[{fontSize: 10,}]}
                     onPress={() => {
-
+                        this.setState({isShowTradeHall: false, isShowPublishPost: false, isShowMyPost:false,
+                            isShowMyOrder:true})
                     }
                     }
                 />
@@ -718,7 +727,6 @@ class OTCTradePageView extends React.Component {
                             }
                         />
 
-
                         <View style={{flexDirection: 'row', marginBottom: 12, marginLeft: 5}}>
                             {
                                 item.support_payments_id.map((num) => {
@@ -739,6 +747,124 @@ class OTCTradePageView extends React.Component {
                    containerStyle={[{width: 20, height: 20, marginLeft: 5}]}/>)
     }
 
+
+    renderMyPostView(){
+        return (
+            <View style={[styles.scene, {backgroundColor: '#ffffff', flexDirection: 'row'}]}>
+                <FlatList
+                    // data={this.state.nList}
+                    data={this.state.type === 0 ? this.state.buyCoinEntrust : this.state.sellCoinEntrust}
+
+                    keyExtractor={(item, index) => {
+                        return 'item ' + index;
+                    }}
+                    renderItem={({item, index}) => {
+                        return this.renderPostCell(1, item, index);
+                    }}
+                    ItemSeparatorComponent={() => {
+                        return <View
+                            style={[commonStyles.commonIntervalStyle, {height: 1}]}/>;
+                    }}
+                    getItemLayout={(data, index) => (
+                        {length: 160, offset: (160 + 1) * index, index}
+                    )}
+                    onScroll={() => {
+                    }}
+                />
+            </View>
+        )
+    }
+
+
+    renderPostCell(viewHeight, item, index){
+        return (
+            <TouchableHighlight
+                underlayColor='#ddd'
+                style={index % 2 === 1 ? {backgroundColor: '#efefef'} : {backgroundColor: 'white'}}
+                onPress={() => {
+                    // this.props.navigation.navigate('WebViewPage', {
+                    //     url: url + item.page_news_id,
+                    //     webTitle: I18n.t(Keys.news)
+                    // })
+                }}>
+
+                <View style={{flexDirection: 'row'}}>
+                        <Text style={[{
+                            flex: 1,
+                            marginTop: 16,
+                            marginLeft: 20,
+                            marginRight: 20,
+                            marginBottom: 4,
+                            textAlign:'right',
+                            fontSize:12
+                        }]}>{item.price} {item.currency}</Text>
+                        <Text style={[{
+                            flex: 1,
+                            marginTop: 16,
+                            marginLeft: 0,
+                            marginRight: 20,
+                            marginBottom: 4,
+                            textAlign:'right',
+                            fontSize:12
+                        }]}>{item.price} {item.currency}</Text>
+                        <Text style={[{
+                            flex: 1,
+                            marginTop: 16,
+                            marginLeft: 0,
+                            marginRight: 20,
+                            marginBottom: 4,
+                            textAlign:'right',
+                            fontSize:12
+                        }]}>{item.price} {item.currency}</Text>
+                        <Text style={[{
+                            flex: 1,
+                            marginTop: 16,
+                            marginLeft: 0,
+                            marginRight: 20,
+                            marginBottom: 4,
+                            textAlign:'right',
+                            fontSize:12
+                        }]}>{item.price} {item.currency}</Text>
+                        <Button
+                            title={I18n.t(Keys.Buy)}
+                            containerStyle={[{flex: 1, marginLeft:20, marginRight:20,marginTop:5, marginBottom:5}]}
+                            titleStyle={[{fontSize: 14, fontWeight:'bold'}]}
+                            onPress={() => {
+                            }
+                            }
+                        />
+                </View>
+            </TouchableHighlight>
+        )
+    }
+
+
+    renderMyOrderView(){
+        return (
+            <View style={[styles.scene, {backgroundColor: '#ffffff', flexDirection: 'row'}]}>
+                <FlatList
+                    // data={this.state.nList}
+                    data={this.state.type === 0 ? this.state.buyCoinEntrust : this.state.sellCoinEntrust}
+
+                    keyExtractor={(item, index) => {
+                        return 'item ' + index;
+                    }}
+                    renderItem={({item, index}) => {
+                        return this.renderPostCell(1, item, index);
+                    }}
+                    ItemSeparatorComponent={() => {
+                        return <View
+                            style={[commonStyles.commonIntervalStyle, {height: 1}]}/>;
+                    }}
+                    getItemLayout={(data, index) => (
+                        {length: 160, offset: (160 + 1) * index, index}
+                    )}
+                    onScroll={() => {
+                    }}
+                />
+            </View>
+        )
+    }
 
 }
 

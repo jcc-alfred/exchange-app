@@ -181,8 +181,8 @@ class OrderHistoryPageView extends React.Component {
                         <TabBar
                             {...props}
                             indicatorStyle={{ backgroundColor: constStyles.THEME_COLOR }}
-                            inactiveColor={{ color: 'red' }}
-                            activeColor={{ color: constStyles.THEME_COLOR }}
+                            inactiveColor={'#888'}
+                            activeColor={constStyles.THEME_COLOR}
                             style={{ backgroundColor: 'white', flexDirection: 'row' }}
                             tabStyle={{ width: 'auto' }}
                             scrollEnabled={true}
