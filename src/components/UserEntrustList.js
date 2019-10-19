@@ -104,7 +104,7 @@ class UserEntrustList extends React.Component {
             )
 
         } else {
-            const viewHeight = 200
+            const viewHeight = 200;
             return (
                 <View style={{height: viewHeight}}>
                     <View style={{flexDirection: 'row'}}>
@@ -139,7 +139,7 @@ class UserEntrustList extends React.Component {
                         <Text
                             style={[commonStyles.smallGrayFont, {flex: 1}]}>{I18n.t(Keys.total) + '(' + coinEx.coinEx.exchange_coin_name + ')'}</Text>
                         <Text style={[commonStyles.smallGrayFont, {flex: 1}]}>{I18n.t(Keys.average_price) + '(' + coinEx.coinEx.exchange_coin_name + ')'}</Text>
-                        <Text style={[commonStyles.smallGrayFont, {flex: 1}]}>{I18n.t(Keys.excecuted) + '(' + coinEx.coinEx.coin_name + ')'}</Text>
+                        <Text style={[commonStyles.smallGrayFont, {flex: 1}]}>{I18n.t(Keys.Executed) + '(' + coinEx.coinEx.coin_name + ')'}</Text>
                     </View>
                     <View style={{flexDirection: 'row'}}>
                         <Text style={[commonStyles.smallCommissionValue, {flex: 1}]}>{entrust.completed_total_amount}</Text>
