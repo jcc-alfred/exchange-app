@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+    Dimensions,
     FlatList,
     Image,
     ImageBackground,
@@ -25,6 +26,8 @@ import {Updates} from "expo";
 import {ConfirmDialog} from "react-native-simple-dialogs";
 import constStyles from "../../styles/constStyles";
 import Spinner from "react-native-loading-spinner-overlay";
+import ExchangePairList from "./components/ExchangePairList";
+import {SceneMap, TabBar, TabView} from "react-native-tab-view";
 
 
 class HomePageView extends React.Component {
@@ -32,9 +35,15 @@ class HomePageView extends React.Component {
     constructor(props) {
         super(props);
 
+        const tabData = [{title: I18n.t(Keys.change_rank), value: []}, {title: I18n.t(Keys.amount_rank), value: []}];
+        const {index, routes, scenes} = this.initTabData(this.props.coin_exchange_area);
+
         this.state = {
             isRequesting: true,
             newsList: [],
+            index: index ? index : 0,
+            routes: routes ? routes : [],
+            scenes: scenes ? scenes : [],
             announcementList: [],
             refreshing: false,
             updateDialogVisible: false
@@ -86,7 +95,87 @@ class HomePageView extends React.Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
+        if (this.props.marketList !== nextProps.marketList) {
+            const change_rank_data = nextProps.marketList.sort((a, b) => {
+                return b.market.change_rate - a.market.change_rate
+            }).slice(0, 8);
+            const amount_rank_data = nextProps.marketList.sort((a, b) => {
+                return b.market.total_volume - a.market.total_volume
+            }).slice(0, 8);
+
+            const tabData = [{title: I18n.t(Keys.change_rank), value: change_rank_data}, {
+                title: I18n.t(Keys.amount_rank),
+                value: amount_rank_data
+            }];
+
+
+            const {index, routes, scenes} = this.initTabData(tabData);
+            this.setState({
+                routes: routes,
+                scenes: scenes
+            })
+        }
         return true;
+    }
+
+
+    initTabData(tabData) {
+        const routes = [];
+        const scenes = [];
+        if (tabData) {
+            for (let index = 0; index < tabData.length; index++) {
+                routes.push({
+                    key: '' + index,
+                    title: tabData[index].title
+                });
+                scenes ['' + index] = () => {
+                    return (
+                        <ExchangePairList
+                            data={tabData[index].value}
+                            onPressItem={this.onPressItem.bind(this)}/>
+                    );
+                };
+            }
+        }
+        return {
+            index: 0,
+            routes: routes,
+            scenes: scenes
+        }
+    }
+
+    onPressItem(coin_exchange) {
+        this.props.navigation.navigate('KlinePage', {coin_exchange: coin_exchange})
+    }
+
+    exchangeAreaTabs() {
+        if (this.state.scenes && this.state.scenes.length > 0) {
+            return (
+                <View>
+                    <TabView
+                        navigationState={this.state}
+                        renderScene={SceneMap(this.state.scenes)}
+                        onIndexChange={index => this.setState({index})}
+                        initialLayout={{width: Dimensions.get('window').width}}
+                        renderTabBar={props =>
+                            <TabBar
+                                {...props}
+                                indicatorStyle={{backgroundColor: constStyles.THEME_COLOR}}
+                                inactiveColor={'#888'}
+                                activeColor={constStyles.THEME_COLOR}
+                                style={{backgroundColor: 'white', flexDirection: 'row'}}
+                                tabStyle={{width: 'auto'}}
+                                scrollEnabled={true}
+                            />
+                        }
+                        lazy={true}
+                    />
+                    <View style={{height: 10, backgroundColor: '#efefef'}}/>
+                </View>
+            );
+        } else {
+            return null;
+        }
     }
 
     loadData(isInit) {
@@ -307,6 +396,7 @@ class HomePageView extends React.Component {
 
                         <View style={{height: 10, backgroundColor: '#efefef'}}/>
                     </View>
+                    {this.exchangeAreaTabs()}
 
 
                     <View>

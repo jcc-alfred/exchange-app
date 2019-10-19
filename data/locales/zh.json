@@ -1030,9 +1030,12 @@
   "version": "版本",
   "userAgreement": "用户协议",
   "legal_statement": "法律声明",
-  "code_send_tips": "验证码已经发送到",
   "limit_price":"限价",
   "total":"总量",
   "average_price":"平均价格",
-  "excecuted":"已完成"
+  "excecuted":"已完成",
+  "code_send_tips": "验证码已经发送到",
+  "change_rank": "涨幅榜",
+  "amount_rank": "成交额榜",
+  "Withdraw_success": "提现申请成功"
 }

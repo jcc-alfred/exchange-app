@@ -29,7 +29,7 @@
   "Volume": "Volume",
   "WithDraw": "WithDraw",
   "about": "About",
-  "account": "Account Number",
+  "account": "Account",
   "all": "All",
   "announcement": "Announcement",
   "assets": "Assets",
@@ -1030,9 +1030,12 @@
   "version": "Version",
   "userAgreement": "User Agreement",
   "legal_statement": "Legal Statement",
-  "code_send_tips": "The Verification Code has been sent to ",
   "limit_price":"Limit Price",
   "total":"Total",
   "average_price":"Average Price",
-  "excecuted":"Excecuted"
+  "excecuted":"Executed",
+  "code_send_tips": "The Verification Code has been sent to ",
+  "change_rank": "Change Rank",
+  "amount_rank": "Amount Rank",
+  "Withdraw_success": "Withdraw Request Succeed"
 }

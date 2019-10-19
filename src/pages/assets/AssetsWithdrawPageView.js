@@ -8,6 +8,7 @@ import constStyles from "../../styles/constStyles";
 import Toast from "react-native-root-toast";
 import CountDown from 'react-native-countdown-component';
 import Spinner from "react-native-loading-spinner-overlay";
+import {NavigationActions, StackActions} from "react-navigation";
 
 class AssetsWithdrawPageView extends React.Component {
 
@@ -117,7 +118,18 @@ class AssetsWithdrawPageView extends React.Component {
                     if (error) {
                         Toast.show(error.message);
                     } else {
-                        Toast.show("Withdraw success");
+                        Toast.show(I18n.t(Keys.Withdraw_success));
+                        this.props.navigation.goBack();
+                        // this.props.navigation.dispatch(
+                        //     StackActions.reset(
+                        //         {
+                        //             index: 1,
+                        //             actions: [
+                        //                 NavigationActions.navigate( { routeName: 'mainPage' } ),
+                        //                 NavigationActions.navigate( { routeName: 'AssetsDetailPage' } ),
+                        //             ]
+                        //         }
+                        //     ) );
                     }
                 });
         });
