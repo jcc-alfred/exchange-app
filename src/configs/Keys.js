@@ -812,6 +812,10 @@ const Keys = {
     "Entrust_Created_Successfully":"Entrust_Created_Successfully",
     "Estimated":"Estimated",
     "DEPTH":"DEPTH",
-    "Finish":"Finish"
+    "Finish":"Finish",
+    "UnitPrice":"UnitPrice",
+    "WholeAmout":"WholeAmout",
+    "State":"State",
+    "Detail":"Detail"
 };
 export default Keys;

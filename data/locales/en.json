@@ -1033,5 +1033,10 @@
   "Estimated": "Estimated",
   "Depth": "DEPTH",
   "Order": "ORDER",
-  "Finish": "Finish"
+  "Finish": "Finish",
+  "UnitPrice":"Unit Price",
+  "WholeAmout":"WholeAmout",
+  "State":"State",
+  "Detail":"Detail"
+
 }

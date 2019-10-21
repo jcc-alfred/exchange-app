@@ -72,7 +72,9 @@ class OTCTradePageView extends React.Component {
             sellCoinId: '',
             coinName: 'GTB',
 
-            userAsset: []
+            userAsset: [],
+            myPostList:[],
+            myOrderList:[]
         }
     }
 
@@ -115,6 +117,53 @@ class OTCTradePageView extends React.Component {
 
     shouldComponentUpdate(nextProps, nextState) {
         return true;
+    }
+
+    requestPostList(){
+        InteractionManager.runAfterInteractions(
+            () => {
+                this.props.onOTCEntrustMy(
+                    (error, resBody) => {
+                        if (error) {
+                            this.setState({
+                                isRequesting: false
+                            });
+
+                            Toast.show(error.message);
+                        } else {
+
+                            this.setState({
+                                myPostList: resBody.data
+                            });
+
+                        }
+                    }
+                )
+            }
+        )
+    }
+
+    requestOrderList(){
+        InteractionManager.runAfterInteractions(
+            () => {
+                this.props.onOTCOrderMy(
+                    (error, resBody) => {
+                        if (error) {
+                            this.setState({
+                                isRequesting: false
+                            });
+
+                            Toast.show(error.message);
+                        } else {
+                            this.setState({
+                                myOrderList: resBody.data
+                            });
+                        }
+                    }
+
+                )
+            }
+        )
     }
 
 
@@ -753,8 +802,7 @@ class OTCTradePageView extends React.Component {
             <View style={[styles.scene, {backgroundColor: '#ffffff', flexDirection: 'row'}]}>
                 <FlatList
                     // data={this.state.nList}
-                    data={this.state.type === 0 ? this.state.buyCoinEntrust : this.state.sellCoinEntrust}
-
+                    data={ this.state.myPostList }
                     keyExtractor={(item, index) => {
                         return 'item ' + index;
                     }}
@@ -768,9 +816,7 @@ class OTCTradePageView extends React.Component {
                     getItemLayout={(data, index) => (
                         {length: 160, offset: (160 + 1) * index, index}
                     )}
-                    ListHeaderComponent={this.header}
-
-
+                    ListHeaderComponent={this.headerPost}
                     onScroll={() => {
                     }}
                 />
@@ -795,78 +841,174 @@ class OTCTradePageView extends React.Component {
                         <Text style={[{
                             flex: 1,
                             marginTop: 16,
-                            marginLeft: 20,
-                            marginRight: 20,
                             marginBottom: 4,
-                            textAlign:'right',
-                            fontSize:12
+                            textAlign:'center',
+                            fontSize:12,
+                            paddingLeft:5,
                         }]}>{item.price} {item.currency}</Text>
                         <Text style={[{
                             flex: 1,
                             marginTop: 16,
-                            marginLeft: 0,
-                            marginRight: 20,
                             marginBottom: 4,
-                            textAlign:'right',
+                            textAlign:'center',
                             fontSize:12
-                        }]}>{item.price} {item.currency}</Text>
+                        }]}>{item.coin_name}</Text>
                         <Text style={[{
                             flex: 1,
                             marginTop: 16,
-                            marginLeft: 0,
-                            marginRight: 20,
                             marginBottom: 4,
-                            textAlign:'right',
+                            textAlign:'center',
                             fontSize:12
-                        }]}>{item.price} {item.currency}</Text>
+                        }]}>{item.remaining_amount}</Text>
                         <Text style={[{
                             flex: 1,
                             marginTop: 16,
-                            marginLeft: 0,
-                            marginRight: 20,
                             marginBottom: 4,
-                            textAlign:'right',
+                            textAlign:'center',
                             fontSize:12
-                        }]}>{item.price} {item.currency}</Text>
+                        }]}>{item.price}</Text>
+                        <Text style={[{
+                            flex: 2,
+                            marginTop: 16,
+                            marginBottom: 4,
+                            textAlign:'center',
+                            fontSize:12
+                        }]}>{item.valid_duration}</Text>
+
+                    <View style={{flex:3, flexDirection:'row',paddingRight:5}}>
+                        <Text style={[{
+                            flex: 1,
+                            marginTop: 16,
+                            marginBottom: 4,
+                            textAlign:'center',
+                            fontSize:12
+                        }]}>{item.status}</Text>
                         <Button
-                            title={I18n.t(Keys.Buy)}
-                            containerStyle={[{flex: 1, marginLeft:20, marginRight:20,marginTop:5, marginBottom:5}]}
+                            title={I18n.t(Keys.Detail)}
+                            containerStyle={[{flex: 1, marginTop:5, marginBottom:5}]}
                             titleStyle={[{fontSize: 14, fontWeight:'bold'}]}
                             onPress={() => {
                             }
                             }
                         />
+                    </View>
                 </View>
             </TouchableHighlight>
         )
     }
 
 
-    header  ()  {
+
+
+
+    renderOrderCell(viewHeight, item, index){
+        return (
+            <TouchableHighlight
+                underlayColor='#ddd'
+                style={index % 2 === 1 ? {backgroundColor: '#efefef'} : {backgroundColor: 'white'}}
+                onPress={() => {
+                    // this.props.navigation.navigate('WebViewPage', {
+                    //     url: url + item.page_news_id,
+                    //     webTitle: I18n.t(Keys.news)
+                    // })
+                }}>
+
+                <View style={{flexDirection: 'row'}}>
+                    <Text style={[{
+                        flex: 1,
+                        marginTop: 16,
+                        marginBottom: 4,
+                        textAlign:'center',
+                        fontSize:12,
+                        paddingLeft:5,
+                    }]}>{item.trade_price} {item.trade_currency}</Text>
+                    <Text style={[{
+                        flex: 2,
+                        marginTop: 16,
+                        marginBottom: 4,
+                        textAlign:'center',
+                        fontSize:12
+                    }]}>{item.coin_amount}</Text>
+                    <Text style={[{
+                        flex: 2,
+                        marginTop: 16,
+                        marginBottom: 4,
+                        textAlign:'center',
+                        fontSize:12
+                    }]}>{item.trade_amount}</Text>
+
+                    <View style={{flex:3, flexDirection:'row',paddingRight:5}}>
+                        <Text style={[{
+                            flex: 1,
+                            marginTop: 16,
+                            marginBottom: 4,
+                            textAlign:'center',
+                            fontSize:12
+                        }]}>{item.status}</Text>
+                        <Button
+                            title={I18n.t(Keys.Detail)}
+                            containerStyle={[{flex: 1, marginTop:5, marginBottom:5}]}
+                            titleStyle={[{fontSize: 14, fontWeight:'bold'}]}
+                            onPress={() => {
+                            }
+                            }
+                        />
+                    </View>
+                </View>
+            </TouchableHighlight>
+        )
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    headerPost ()  {
         return (
             <View  style={{flexDirection:'row'}}>
-                <Text style={{flex:1, textAlign:'center', fontSize:12, color:'#6d6c67'}}>Unit Price</Text>
-                <Text style={{flex:1, textAlign:'center',fontSize:12, color:'#6d6c67'}}>Amount</Text>
-                <Text style={{flex:1, textAlign:'center',fontSize:12, color:'#6d6c67'}}>WholeAmout</Text>
-                <Text style={{flex:2, textAlign:'center',fontSize:12, color:'#6d6c67'}}>State</Text>
-
+                <Text style={{flex:1, textAlign:'center', fontSize:12, paddingLeft:5, color:'#6d6c67'}}>Type</Text>
+                <Text style={{flex:1, textAlign:'center', fontSize:12, paddingLeft:5, color:'#6d6c67'}}>Coin</Text>
+                <Text style={{flex:1, textAlign:'center', fontSize:12, paddingLeft:5, color:'#6d6c67'}}>Remaining amount</Text>
+                <Text style={{flex:1, textAlign:'center', fontSize:12, paddingLeft:5, color:'#6d6c67'}}>{I18n.t(Keys.UnitPrice)}</Text>
+                <Text style={{flex:2, textAlign:'center',fontSize:12, color:'#6d6c67'}}>Payment Duration</Text>
+                <Text style={{flex:2, textAlign:'center',fontSize:12, color:'#6d6c67'}}>Status</Text>
             </View>
         );
     };
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+    headerOrder ()  {
+        return (
+            <View  style={{flexDirection:'row'}}>
+                <Text style={{flex:1, textAlign:'center', fontSize:12, paddingLeft:5, color:'#6d6c67'}}>{I18n.t(Keys.UnitPrice)}</Text>
+                <Text style={{flex:2, textAlign:'center',fontSize:12, color:'#6d6c67'}}>{I18n.t(Keys.Amount)}</Text>
+                <Text style={{flex:2, textAlign:'center',fontSize:12, color:'#6d6c67'}}>{I18n.t(Keys.WholeAmout)}</Text>
+                <Text style={{flex:3, textAlign:'center',fontSize:12, color:'#6d6c67'}}>{I18n.t(Keys.State)}</Text>
+            </View>
+        );
+    };
 
 
 
@@ -877,14 +1019,12 @@ class OTCTradePageView extends React.Component {
         return (
             <View style={[styles.scene, {backgroundColor: '#ffffff', flexDirection: 'row'}]}>
                 <FlatList
-                    // data={this.state.nList}
-                    data={this.state.type === 0 ? this.state.buyCoinEntrust : this.state.sellCoinEntrust}
-
+                    data={this.state.myOrderList}
                     keyExtractor={(item, index) => {
                         return 'item ' + index;
                     }}
                     renderItem={({item, index}) => {
-                        return this.renderPostCell(1, item, index);
+                        return this.renderOrderCell(1, item, index);
                     }}
                     ItemSeparatorComponent={() => {
                         return <View
@@ -893,7 +1033,7 @@ class OTCTradePageView extends React.Component {
                     getItemLayout={(data, index) => (
                         {length: 160, offset: (160 + 1) * index, index}
                     )}
-                    ListHeaderComponent={this.header}
+                    ListHeaderComponent={this.headerOrder}
                     onScroll={() => {
                     }}
                 />

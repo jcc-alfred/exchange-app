@@ -1033,5 +1033,9 @@
   "Estimated": "大约",
   "Depth": "深度",
   "Order":"成单",
-  "Finish": "已成交"
+  "Finish": "已成交",
+  "UnitPrice":"单价",
+  "WholeAmout":"总价",
+  "State":"状态",
+  "Detail":"详情"
 }
