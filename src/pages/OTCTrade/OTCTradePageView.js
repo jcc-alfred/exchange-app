@@ -677,7 +677,7 @@ class OTCTradePageView extends React.Component {
                     Toast.show(error.message);
                 } else {
                     this.setState({
-                        originRemark: value
+                        originRemark: this.state.remark
                     })
 
                     Toast.show(I18n.t(Keys.save_success))
@@ -709,7 +709,7 @@ class OTCTradePageView extends React.Component {
 
                     Toast.show(error.message);
                 } else {
-                    Toast.show("Post Finished")
+                    Toast.show(I18n.t(Keys.post_finished))
                 }
             });
         });

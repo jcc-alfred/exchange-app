@@ -147,7 +147,7 @@ class OTCBuySellPageView extends React.Component {
 
                 Toast.show(error.message);
             } else {
-                Toast.show("Order Created");
+                Toast.show(I18n.t(Keys.order_created))
 
             }
         });
