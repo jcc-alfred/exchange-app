@@ -33,9 +33,9 @@ class OTCTradePageView extends React.Component {
             selectedFruits: [],
             isRequesting: false,
             paymentMethodList: {
-                1: "Wechat",
-                2: "Alipay",
-                3: "Bank Transfer",
+                1: I18n.t( Keys.wechat ),
+                2: I18n.t( Keys.Alipay ),
+                3: I18n.t( Keys.bank_transfer),
                 4: "GT Dollar",
                 5: "PayPal",
             },
@@ -230,7 +230,7 @@ class OTCTradePageView extends React.Component {
                             marginRight: 10,
                             fontWeight: this.state.type === 0 ? 'bold' : 'none',
                             fontSize: 16
-                        }}>Buy</Text></TouchableHighlight>
+                        }}>{I18n.t(Keys.Buy)}</Text></TouchableHighlight>
                     <TouchableHighlight
                         style={{flex: 1}}
                         underlayColor='#ddd'
@@ -242,7 +242,7 @@ class OTCTradePageView extends React.Component {
                             marginLeft: 10,
                             fontWeight: this.state.type === 1 ? 'bold' : 'none',
                             fontSize: 16
-                        }}>Sell</Text></TouchableHighlight>
+                        }}>{I18n.t(Keys.Sell)}</Text></TouchableHighlight>
                 </View>
                 <View style={{height: 0.5, backgroundColor: '#d1cfcf'}}/>
 
@@ -389,7 +389,7 @@ class OTCTradePageView extends React.Component {
                 {/*<Button*/}
 
                 <Button
-                    title={"Trade Hall"}
+                    title={I18n.t(Keys.trade_hall)}
                     type="outline"
                     containerStyle={[{flex: 1, margin: 5}]}
                     titleStyle={[{fontSize: 10,}]}
@@ -401,7 +401,7 @@ class OTCTradePageView extends React.Component {
                 />
 
                 <Button
-                    title={"Publish Post"}
+                    title={I18n.t(Keys.publish_post)}
                     type="outline"
                     containerStyle={[{flex: 1, margin: 5}]}
                     titleStyle={[{fontSize: 10,}]}
@@ -413,7 +413,7 @@ class OTCTradePageView extends React.Component {
                 />
 
                 <Button
-                    title={"My Post"}
+                    title={I18n.t(Keys.my_post)}
                     type="outline"
                     containerStyle={[{flex: 1, margin: 5}]}
                     titleStyle={[{fontSize: 10,}]}
@@ -425,7 +425,7 @@ class OTCTradePageView extends React.Component {
                 />
 
                 <Button
-                    title={"My Order"}
+                    title={I18n.t(Keys.my_order)}
                     type="outline"
                     containerStyle={[{flex: 1, margin: 5}]}
                     titleStyle={[{fontSize: 10,}]}
@@ -460,13 +460,11 @@ class OTCTradePageView extends React.Component {
                             <Input
                                 onChangeText={value => this.setState({price: value})}
                                 placeholder={I18n.t(Keys.Price)}
-                                inputContainerStyle={{borderBottomWidth: 0}}
                                 containerStyle={[{flex: 9}]} keyboardType={'numeric'}/>
                             <Text style={{
                                 flex: 2,
                                 lineHeight: 40,
                             }}>{this.state.isCNY ? 'CNY' : 'USD'}</Text>
-
                         </View>
 
                         <View style={[styles.PriceInput, {height: 40, marginTop: 10, flexDirection: 'row'}]}>
@@ -483,7 +481,7 @@ class OTCTradePageView extends React.Component {
                         </View>
 
                         <View style={{flexDirection: 'row', marginTop: 10}}>
-                            <Text style={{color: ColorUtil.secondary_text_color, flex: 1, fontSize: 12}}>Balance</Text>
+                            <Text style={{color: ColorUtil.secondary_text_color, flex: 1, fontSize: 12}}>{I18n.t(Keys.balance)}</Text>
                             <Text style={{
                                 color: ColorUtil.secondary_text_color,
                                 flex: 1.5,
@@ -494,13 +492,13 @@ class OTCTradePageView extends React.Component {
                                 flex: 1.3,
                                 textAlign: 'right',
                                 fontSize: 12
-                            }}>Fee(0.1%)</Text>
+                            }}>{I18n.t(Keys.Fees)} (0.1%)</Text>
                         </View>
 
                         <View style={[styles.PriceInput, {height: 40, marginTop: 10, flexDirection: 'row'}]}>
                             <Input
                                 onChangeText={value => this.setState({min_amount: value})}
-                                placeholder={'Limitation'}
+                                placeholder={I18n.t(Keys.limitation)}
                                 inputContainerStyle={{borderBottomWidth: 0}}
                                 containerStyle={[{flex: 9}]} keyboardType={'numeric'}/>
                         </View>
@@ -541,14 +539,15 @@ class OTCTradePageView extends React.Component {
                 <View style={{height: 1, width: '100%', backgroundColor: styles.data.backgroundColor}}></View>
 
                 <View style={{padding: 16}}>
-                    <Text>Trade Description (Open To Everyone)</Text>
+                    <Text>{I18n.t(Keys.trade_description)}</Text>
 
                     <View style={[styles.PriceInput, {height: 200, marginTop: 10, flexDirection: 'row'}]}>
                         <Input
                             onChangeText={(text) => this.setState({
                                 description: text
                             })}
-                            placeholder={'Example'}
+                            multiline={true}
+                            placeholder={I18n.t(Keys.trade_des_example)}
                             inputContainerStyle={{borderBottomWidth: 0}}
                             containerStyle={[{flex: 9}]} keyboardType={'text'}/>
                     </View>
@@ -558,15 +557,15 @@ class OTCTradePageView extends React.Component {
                 <View style={{height: 1, width: '100%', backgroundColor: styles.data.backgroundColor}}></View>
 
                 <View style={{padding: 16}}>
-                    <Text>Trade Remark (Open To User Create Order)</Text>
+                    <Text>{I18n.t(Keys.trade_remark)}</Text>
 
                     <View style={[styles.PriceInput, {height: 200, marginTop: 10, flexDirection: 'row'}]}>
                         <Input
                             onChangeText={(text) => this.setState({
                                 remark: text
                             })}
-                            placeholder={this.state.originRemark === '' ? 'Example' : this.state.originRemark}
-                            text
+                            placeholder={this.state.originRemark === '' ? I18n.t(Keys.trade_remark_example) : this.state.originRemark}
+                            multiline={true}
                             inputContainerStyle={{borderBottomWidth: 0}}
                             containerStyle={[{flex: 9}]} keyboardType={'text'}/>
                     </View>
@@ -574,7 +573,7 @@ class OTCTradePageView extends React.Component {
                     <Button
                         style={{width: 200, height: 40, alignSelf: 'flex-end'}}
                         buttonStyle={{backgroundColor: ColorUtil.default_primary_color}}
-                        title={'Save as Default'}
+                        title={I18n.t(Keys.save_as_default)}
                         titleStyle={{fontSize: 14}}
                         type="solid"
                         onPress={() => {
@@ -595,7 +594,7 @@ class OTCTradePageView extends React.Component {
 
                 <Button
                     style={{marginTop: 50}}
-                    title={'Publish Post'}
+                    title={I18n.t(Keys.publish_post)}
                     buttonStyle={{backgroundColor: ColorUtil.default_primary_color}}
                     type="solid"
                     onPress={() => {
