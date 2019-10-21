@@ -52,7 +52,7 @@ class OTCBuySellPageView extends React.Component {
                     <StatusBar backgroundColor="blue" barStyle="dark-content"/>
                     <View style={{padding: 16}}>
                         <Text>
-                            Trade Description
+                            {I18n.t(Keys.trade_des)}
                         </Text>
                         <Text>
                             {this.state.orderInfo.remark}
@@ -62,8 +62,8 @@ class OTCBuySellPageView extends React.Component {
                     <View style={{height: 10, backgroundColor: '#d1cfcf'}}/>
 
                     <View style={{flexDirection: 'row', padding: 16}}>
-                        <Text style={{flex: 1}}>{this.state.type === 0 ? 'Buy Amount' : 'Sell Amount'}</Text>
-                        <Text style={{flex: 1, marginStart: 20}}>Pay</Text>
+                        <Text style={{flex: 1}}>{this.state.type === 0 ? I18n.t(Keys.buy_amount) : I18n.t(Keys.sell_amount)}</Text>
+                        <Text style={{flex: 1, marginStart: 20}}>{I18n.t(Keys.payable_amount)}</Text>
                     </View>
 
                     <View style={{flexDirection: 'row', padding: 16}}>
@@ -88,9 +88,9 @@ class OTCBuySellPageView extends React.Component {
                     </View>
 
                     <View style={{flexDirection: 'row', padding: 16}}>
-                        <Text style={{flex: 1, color: ColorUtil.secondary_text_color}}>Remain Amount</Text>
-                        <Text style={{flex: 1, color: ColorUtil.secondary_text_color}}>Unit Price</Text>
-                        <Text style={{flex: 1, color: ColorUtil.secondary_text_color}}>Limitation</Text>
+                        <Text style={{flex: 1, color: ColorUtil.secondary_text_color}}>{I18n.t(Keys.remain_amount)}</Text>
+                        <Text style={{flex: 1, color: ColorUtil.secondary_text_color}}>{I18n.t(Keys.unit_price)}</Text>
+                        <Text style={{flex: 1, color: ColorUtil.secondary_text_color}}>{I18n.t(Keys.limitation)}</Text>
                     </View>
 
                     <View style={{flexDirection: 'row', padding: 16}}>
@@ -103,21 +103,21 @@ class OTCBuySellPageView extends React.Component {
                     </View>
 
                     <View style={{flexDirection: 'row', padding: 16}}>
-                        <Text style={{flex: 1, color: ColorUtil.secondary_text_color}}>Payment Method</Text>
-                        <Text style={{flex: 1, color: ColorUtil.secondary_text_color}}>Payment Duration</Text>
-                        <Text style={{flex: 1, color: ColorUtil.secondary_text_color}}>Status</Text>
+                        <Text style={{flex: 1, color: ColorUtil.secondary_text_color}}>{I18n.t(Keys.payment_method)}</Text>
+                        <Text style={{flex: 1, color: ColorUtil.secondary_text_color}}>{I18n.t(Keys.payment_duration)}</Text>
+                        <Text style={{flex: 1, color: ColorUtil.secondary_text_color}}>{I18n.t(Keys.status)}</Text>
                     </View>
 
                     <View style={{flexDirection: 'row', padding: 16}}>
                         <Text style={{flex: 1}}></Text>
                         <Text style={{flex: 1}}>15 min</Text>
-                        <Text style={{flex: 1}}>Active</Text>
+                        <Text style={{flex: 1}}>{I18n.t(Keys.active)}</Text>
                     </View>
 
                     <Button
                         style={{margin: 16, height: 40}}
                         buttonStyle={{backgroundColor: ColorUtil.default_primary_color}}
-                        title={this.state.type === 0 ? 'Confirm Buy' : 'Confirm Sell'}
+                        title={this.state.type === 0 ? I18n.t(Keys.confirm_buy) : I18n.t(Keys.confirm_sell)}
                         titleStyle={{fontSize: 14}}
                         type="solid"
                         onPress={() => {
