@@ -108,6 +108,7 @@ class OTCTradePageView extends React.Component {
         // OTCTradePageView.loadData()
         this.loadData()
         this.requestPostList()
+        this.requestOrderList()
     }
 
     changeState(value, field) {
@@ -152,6 +153,40 @@ class OTCTradePageView extends React.Component {
             }
         )
     }
+
+
+    requestOrderList(){
+        InteractionManager.runAfterInteractions(
+            () => {
+                this.props.onOTCOrderMy(
+                    (error, resBody) => {
+                        if (error) {
+                            this.setState({
+                                isRequesting: false
+                            });
+
+                            Toast.show(error.message);
+                        } else {
+
+                            this.setState({
+                                myPostList: resBody.data
+                            });
+
+                        }
+                    }
+                )
+            }
+        )
+    }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -956,10 +991,6 @@ class OTCTradePageView extends React.Component {
             </TouchableHighlight>
         )
     }
-
-
-
-
 
 
 
