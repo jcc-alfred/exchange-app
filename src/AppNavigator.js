@@ -48,6 +48,7 @@ import NewsDetailPage from "./pages/home/NewsDetailPage";
 import BasicUserInfoVerifyPage from "./pages/mine/BasicUserInfoVerifyPage";
 import UserInfoVerifyPage from "./pages/mine/UserInfoVerifyPage";
 import GoogleAuthClosePage from "./pages/account/GoogleAuthClosePage";
+import OTCBuySellPage from "./pages/OTCTrade/OTCBuySellPage";
 
 
 process.env.REACT_NAV_LOGGING = ( global.__DEV__ );
@@ -378,6 +379,9 @@ const routeConfiguration = {
     GoogleAuthClosePage: {
         screen: GoogleAuthClosePage
     },
+    OTCBuySellPage: {
+        screen: OTCBuySellPage
+    }
 };
 
 const navMiddleware = createReactNavigationReduxMiddleware(
