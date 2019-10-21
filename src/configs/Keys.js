@@ -852,6 +852,8 @@ const Keys = {
     "limit_price":"limit_price",
     "total":"total",
     "average_price":"average_price",
-    "Executed":"Executed"
+    "Executed":"Executed",
+    "post_finished":"post_finished",
+    "order_created":"order_created"
 };
 export default Keys;

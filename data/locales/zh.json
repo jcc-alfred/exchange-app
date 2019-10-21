@@ -1073,5 +1073,7 @@
   "code_send_tips": "验证码已经发送到",
   "change_rank": "涨幅榜",
   "amount_rank": "成交额榜",
-  "Withdraw_success": "提现申请成功"
+  "Withdraw_success": "提现申请成功",
+  "post_finished":"发布成功",
+  "order_created":"订单已创建"
 }

@@ -1073,5 +1073,7 @@
   "code_send_tips": "The Verification Code has been sent to ",
   "change_rank": "Change Rank",
   "amount_rank": "Amount Rank",
-  "Withdraw_success": "Withdraw Request Succeed"
+  "Withdraw_success": "Withdraw Request Succeed",
+  "post_finished":"Post Finished",
+  "order_created":"Order Created"
 }
