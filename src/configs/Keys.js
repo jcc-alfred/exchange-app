@@ -838,5 +838,20 @@ const Keys = {
     "active":"active",
     "confirm_buy":"confirm_buy",
     "confirm_sell":"confirm_sell",
+    "UnitPrice":"UnitPrice",
+    "WholeAmout":"WholeAmout",
+    "State":"State",
+    "Detail":"Detail",
+    "version":"version",
+    "userAgreement":"userAgreement",
+    "legal_statement":"legal_statement",
+    "change_rank":"change_rank",
+    "amount_rank":"amount_rank",
+    "Withdraw_success":"Withdraw_success",
+    "code_send_tips":"code_send_tips",
+    "limit_price":"limit_price",
+    "total":"total",
+    "average_price":"average_price",
+    "Executed":"Executed"
 };
 export default Keys;

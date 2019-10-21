@@ -6,7 +6,9 @@ import {
     otcEntrustCreate,
     otcEntrustList,
     otcGetSecretRemark,
-    otcSecretRemark
+    otcSecretRemark,
+    otcEntrustMy,
+    otcOrderMy
 } from "../../actions/OtcAction";
 import { assetsGetUserAssets } from "../../actions/AssetsAction";
 
@@ -57,7 +59,22 @@ const mapDispatchToProps = ( dispatch, ownProps ) => ( {
             callback && callback( err, res )
         } ) );
 
+    },
+
+    onOTCEntrustMy: ( callback )=>{
+        dispatchEvent( otcEntrustMy( (err,res) =>{
+            callback && callback( err, res )
+        }));
+    },
+
+    onOTCOrderMy: ( callback )=>{
+        dispatchEvent( otcOrderMy( (err,res) =>{
+            callback && callback( err, res )
+        }));
     }
+
+
+
 
 } );
 

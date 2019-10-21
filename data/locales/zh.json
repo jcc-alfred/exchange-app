@@ -936,7 +936,7 @@
   "country_title": "国家",
   "date": "日期",
   "delete": "删除",
-  "deposit": "冲币",
+  "deposit": "充币",
   "deposit_history": "充币历史",
   "email": "邮箱",
   "email_verification_code": "电子邮件验证码",
@@ -1058,6 +1058,20 @@
   "payment_duration":"支付时间",
   "active":"进行中",
   "confirm_buy":"确认购买",
-  "confirm_sell":"确认出售"
-
+  "confirm_sell":"确认出售",
+  "UnitPrice":"单价",
+  "WholeAmout":"总价",
+  "State":"状态",
+  "Detail":"详情",
+  "version": "版本",
+  "userAgreement": "用户协议",
+  "legal_statement": "法律声明",
+  "limit_price":"限价",
+  "total":"总量",
+  "average_price":"平均价格",
+  "Executed":"已完成",
+  "code_send_tips": "验证码已经发送到",
+  "change_rank": "涨幅榜",
+  "amount_rank": "成交额榜",
+  "Withdraw_success": "提现申请成功"
 }
