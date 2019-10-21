@@ -104,6 +104,7 @@ class UserEntrustList extends React.Component {
             )
 
         } else {
+            const viewHeight = 200;
             return (
                 <View style={{height: viewHeight}}>
                     <View style={{flexDirection: 'row'}}>
@@ -117,22 +118,32 @@ class UserEntrustList extends React.Component {
                             paddingBottom: 6
                         }]}>{entrust.entrust_type_id === 0 ? I18n.t(Keys.Sell) : I18n.t(Keys.Buy)}</Text>
                         <Text style={{
-                            flex: 2,
+                            flex: 4,
                             paddingTop: 6
                         }}>{coinEx.coinEx.coin_name + '/' + coinEx.coinEx.exchange_coin_name}</Text>
-                        <Text
-                            style={[{flex: 4}, commonStyles.smallGrayFont]}>{moment(entrust.create_time).format('HH:mm MM/DD')}</Text>
-                        <Text style={[{flex: 2}, commonStyles.smallGrayFont]}>{I18n.t(Keys.completed)}</Text>
+                        <Text style={[{flex: 2, justifyContent: 'right', alignItems: 'flex-end'}, commonStyles.smallGrayFont]}>{I18n.t(Keys.completed)}</Text>
                     </View>
                     <View style={{flexDirection: 'row'}}>
                         <Text
-                            style={[commonStyles.smallGrayFont, {flex: 1}]}>{I18n.t(Keys.Price) + '(' + coinEx.coinEx.exchange_coin_name + ')'}</Text>
-                        <Text style={[commonStyles.smallGrayFont, {flex: 1}]}>{I18n.t(Keys.Volume)}</Text>
-                        <Text style={[commonStyles.smallGrayFont, {flex: 1}]}>{I18n.t(Keys.Transaction)}</Text>
+                            style={[commonStyles.smallGrayFont, {flex: 1}]}>{I18n.t(Keys.date)}</Text>
+                        <Text style={[commonStyles.smallGrayFont, {flex: 1}]}>{I18n.t(Keys.limit_price) + '（' +coinEx.coinEx.exchange_coin_name + ')'}</Text>
+                        <Text style={[commonStyles.smallGrayFont, {flex: 1}]}>{I18n.t(Keys.Amount) + '(' + coinEx.coinEx.coin_name + ')'}</Text>
                     </View>
                     <View style={{flexDirection: 'row'}}>
+                        <Text style={[commonStyles.smallCommissionValue, {flex: 1}]}>{moment(entrust.create_time).format('HH:mm MM/DD')}</Text>
                         <Text style={[commonStyles.smallCommissionValue, {flex: 1}]}>{entrust.entrust_price}</Text>
                         <Text style={[commonStyles.smallCommissionValue, {flex: 1}]}>{entrust.entrust_volume}</Text>
+                    </View>
+
+                    <View style={{flexDirection: 'row'}}>
+                        <Text
+                            style={[commonStyles.smallGrayFont, {flex: 1}]}>{I18n.t(Keys.total) + '(' + coinEx.coinEx.exchange_coin_name + ')'}</Text>
+                        <Text style={[commonStyles.smallGrayFont, {flex: 1}]}>{I18n.t(Keys.average_price) + '(' + coinEx.coinEx.exchange_coin_name + ')'}</Text>
+                        <Text style={[commonStyles.smallGrayFont, {flex: 1}]}>{I18n.t(Keys.Executed) + '(' + coinEx.coinEx.coin_name + ')'}</Text>
+                    </View>
+                    <View style={{flexDirection: 'row'}}>
+                        <Text style={[commonStyles.smallCommissionValue, {flex: 1}]}>{entrust.completed_total_amount}</Text>
+                        <Text style={[commonStyles.smallCommissionValue, {flex: 1}]}>{entrust.average_price}</Text>
                         <Text style={[commonStyles.smallCommissionValue, {flex: 1}]}>{entrust.completed_volume}</Text>
                     </View>
                 </View>

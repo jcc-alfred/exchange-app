@@ -65,9 +65,9 @@ class QuotesPageView extends React.Component {
 
 
     loadData() {
-        this.setState( {
-            isRequesting: true
-        } );
+        // this.setState( {
+        //     isRequesting: true
+        // } );
 
         InteractionManager.runAfterInteractions( () => {
             this.props.onExchangeGetCoinExchangeArea( ( error, resBody ) => {
@@ -144,8 +144,8 @@ class QuotesPageView extends React.Component {
                 };
             }
         } else {
-            routes.push( { key: 0, title: "loading" } );
-            scenes.push( <View/> )
+            routes.push({key: '0', title: "loading"});
+            scenes['0']=()=>{return(<View/>)}
         }
 
 

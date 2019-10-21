@@ -1,9 +1,9 @@
 import { netAssetsDoUserWithdraw, netAssetsGetUserAssets } from "../net/AssetsApiNet";
 
 
-export function assetsGetUserAssets( callback ) {
+export function assetsGetUserAssets( callback ,refresh = false) {
     return ( dispatch ) => {
-        netAssetsGetUserAssets( ( err, res ) => {
+        netAssetsGetUserAssets( refresh,( err, res ) => {
             callback && callback( err, res )
         } );
     };

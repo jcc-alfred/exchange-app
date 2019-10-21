@@ -768,10 +768,14 @@ class OTCTradePageView extends React.Component {
                             fontSize:18
                         }]}>{item.price} {item.currency}</Text>
                         <Button
-                            title={I18n.t(Keys.Buy)}
+                            title={this.state.type === 0 ? I18n.t(Keys.Buy) : I18n.t(Keys.Sell)}
                             containerStyle={[{flex: 1, marginLeft:20, marginRight:20,marginTop:5, marginBottom:5}]}
                             titleStyle={[{fontSize: 14, fontWeight:'bold'}]}
                             onPress={() => {
+                                this.props.navigation.navigate( 'OTCBuySellPage', {
+                                    orderInfo: item,
+                                    type: this.state.type
+                                } )
                             }
                             }
                         />

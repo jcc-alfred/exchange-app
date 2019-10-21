@@ -1,10 +1,10 @@
 import React from 'react';
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 import AssetsListPageView from "./AssetsListPageView";
-import { assetsGetUserAssets } from "../../actions/AssetsAction";
+import {assetsGetUserAssets} from "../../actions/AssetsAction";
 
-const mapStoreToProps = ( store, ownProps ) => {
-    const { params } = ownProps.navigation.state;
+const mapStoreToProps = (store, ownProps) => {
+    const {params} = ownProps.navigation.state;
 
     return {
         isLoggedIn: store.userStore.isLoggedIn,
@@ -12,17 +12,17 @@ const mapStoreToProps = ( store, ownProps ) => {
     }
 };
 
-const mapDispatchToProps = ( dispatch, ownProps ) => ( {
-    onAssetsGetUserAssets: ( callback ) => {
-        dispatch( assetsGetUserAssets( ( err, res ) => {
-            callback && callback( err, res )
-        } ) );
+const mapDispatchToProps = (dispatch, ownProps) => ({
+    onAssetsGetUserAssets: (callback) => {
+        dispatch(assetsGetUserAssets((err, res) => {
+            callback && callback(err, res)
+        }, true));
     },
-} );
+});
 
 const AssetsListPage = connect(
     mapStoreToProps,
     mapDispatchToProps
-)( AssetsListPageView );
+)(AssetsListPageView);
 
 export default AssetsListPage;

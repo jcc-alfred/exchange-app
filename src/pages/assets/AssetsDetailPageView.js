@@ -152,6 +152,8 @@ class AssetsDetailPageView extends React.Component {
                 scenes [ '' + index ] = () => {
                     return (
                         <AssetTransactionList
+                            refreshing={this.state.refreshing}
+                            onRefresh={this.loadData.bind(this)}
                             data={tabData[ index ].value}
                             onPressItem={this.onPressItem.bind( this )}/>
                     );
