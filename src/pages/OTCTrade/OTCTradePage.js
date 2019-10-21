@@ -62,13 +62,13 @@ const mapDispatchToProps = ( dispatch, ownProps ) => ( {
     },
 
     onOTCEntrustMy: ( callback )=>{
-        dispatchEvent( otcEntrustMy( (err,res) =>{
+        dispatch( otcEntrustMy( (err,res) =>{
             callback && callback( err, res )
         }));
     },
 
     onOTCOrderMy: ( callback )=>{
-        dispatchEvent( otcOrderMy( (err,res) =>{
+        dispatch( otcOrderMy( (err,res) =>{
             callback && callback( err, res )
         }));
     }

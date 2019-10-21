@@ -68,6 +68,15 @@ class OTCTradePageView extends React.Component {
             buyCoinEntrust: [],
             sellCoinEntrust: [],
 
+            buyCoinEntrustCNY:[],
+            buyCoinEntrustUSD:[],
+
+            sellCoinEntrustCNY: [],
+            sellCoinEntrustUSD: [],
+
+
+
+
             buyCoinId: '',
             sellCoinId: '',
             coinName: 'GTB',
@@ -98,6 +107,7 @@ class OTCTradePageView extends React.Component {
     componentDidMount() {
         // OTCTradePageView.loadData()
         this.loadData()
+        this.requestPostList()
     }
 
     changeState(value, field) {
@@ -143,28 +153,7 @@ class OTCTradePageView extends React.Component {
         )
     }
 
-    requestOrderList(){
-        InteractionManager.runAfterInteractions(
-            () => {
-                this.props.onOTCOrderMy(
-                    (error, resBody) => {
-                        if (error) {
-                            this.setState({
-                                isRequesting: false
-                            });
 
-                            Toast.show(error.message);
-                        } else {
-                            this.setState({
-                                myOrderList: resBody.data
-                            });
-                        }
-                    }
-
-                )
-            }
-        )
-    }
 
 
     requestList() {
@@ -179,6 +168,11 @@ class OTCTradePageView extends React.Component {
                             Toast.show(error.message);
                         } else {
                             if (this.state.type === 0) {
+
+
+//fengbo
+
+
                                 this.setState({
                                     buyCoinEntrust: resBody.data
                                 });
@@ -241,6 +235,8 @@ class OTCTradePageView extends React.Component {
             }
         });
 
+
+
     }
 
     render() {
@@ -248,9 +244,8 @@ class OTCTradePageView extends React.Component {
             <View style={[commonStyles.wrapper]}>
                 <StatusBar backgroundColor="blue" barStyle="dark-content"/>
                 <SafeAreaView style={[commonStyles.wrapper]}>
-                    {/*<Text>otc1</Text>*/}
+
                     {this.renderTopMenuBar()}
-                    {/*{this.renderTradeHallMainView()}*/}
 
                     {(this.state.isShowTradeHall||this.state.isShowPublishPost)?this.renderTradeHallMainView():null}
                     {this.state.isShowTradeHall ? this.renderTradeHallFlatList() : null}
@@ -362,7 +357,7 @@ class OTCTradePageView extends React.Component {
     }
 
 
-    //this.setState({buyCoinId: item.coin_id, coinName: item.coin_name})
+
 
 
     renderCoins() {
@@ -962,24 +957,6 @@ class OTCTradePageView extends React.Component {
             </TouchableHighlight>
         )
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
