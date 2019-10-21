@@ -544,7 +544,10 @@ class TradePageView extends React.Component {
             <View style={[{flexDirection: 'row'}]}>
                 <View style={[commonStyles.customerRow]}>
                     <Text
-                        style={[styles.bigFontPrice, {fontWeight: 'bold'}]}>{this.props.TradePageCoinEx.market ? this.props.TradePageCoinEx.market.last_price : null}</Text>
+                        style={[styles.bigFontPrice, {
+                            fontWeight: 'bold',
+                            color: this.props.TradePageCoinEx.market.change_rate > 0 ? '#489A48' : '#e7234c'
+                        }]}>{this.props.TradePageCoinEx.market ? this.props.TradePageCoinEx.market.last_price : null}</Text>
                     <Text
                         style={[styles.smallGrayFont]}>={this.props.TradePageCoinEx ? Util.toMoneyDisplayWithCurrency(this.props.TradePageCoinEx.price_usd ? this.props.TradePageCoinEx.price_usd : 0, '$') : 0}</Text>
                 </View>

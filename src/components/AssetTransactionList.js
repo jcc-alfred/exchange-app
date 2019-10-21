@@ -1,6 +1,6 @@
 import React from "react";
 
-import { FlatList, StyleSheet, TouchableHighlight, View, ViewPropTypes } from "react-native";
+import {FlatList, RefreshControl, StyleSheet, TouchableHighlight, View, ViewPropTypes} from "react-native";
 import PropTypes from 'prop-types';
 import { Text } from "react-native-elements";
 import commonStyles from "../styles/commonStyles";
@@ -87,6 +87,12 @@ class AssetTransactionList extends React.Component {
         const viewHeight = 75;
         return (
             <FlatList
+                refreshControl={
+                    <RefreshControl
+                        refreshing={this.props.refreshing}
+                        onRefresh={() => this.props.onRefresh()}
+                    />
+                }
                 data={this.props.data}
                 keyExtractor={( item, index ) => {
                     return 'item ' + index;
