@@ -783,6 +783,24 @@ class OTCTradePageView extends React.Component {
     }
 
     createEntrust() {
+        if(this.state.price === '') {
+            Toast.show(I18n.t(Keys.please_input_price))
+
+            return
+        }
+
+        if(this.state.amount === '') {
+            Toast.show(I18n.t(Keys.please_input_amount))
+
+            return
+        }
+
+        if(this.state.min_amount === '') {
+            Toast.show(I18n.t(Keys.please_input_limitation))
+
+            return
+        }
+
         let query = {
             type: this.state.type,
             coin_id: this.state.type === 0 ? this.state.buyCoinId : this.state.sellCoinId,
@@ -945,10 +963,9 @@ class OTCTradePageView extends React.Component {
                 underlayColor='#ddd'
                 style={index % 2 === 1 ? {backgroundColor: '#efefef'} : {backgroundColor: 'white'}}
                 onPress={() => {
-                    // this.props.navigation.navigate('WebViewPage', {
-                    //     url: url + item.page_news_id,
-                    //     webTitle: I18n.t(Keys.news)
-                    // })
+                    this.props.navigation.navigate( 'OTCPostDetailPage', {
+                        entrust: item,
+                    } )
                 }}>
 
                 <View style={{flexDirection: 'row'}}>
@@ -967,7 +984,9 @@ class OTCTradePageView extends React.Component {
                             marginTop: 16,
                             marginBottom: 4,
                             textAlign:'center',
-                            fontSize:12
+                            fontSize:12,
+                            color: ColorUtil.dark_primary_color,
+                            fontWeight: 'bold'
                         }]}>{item.coin_name}</Text>
                         <Text style={[{
                             flex: 1,
@@ -976,15 +995,15 @@ class OTCTradePageView extends React.Component {
                             textAlign:'center',
                             fontSize:12
                         }]}>{item.remaining_amount}</Text>
-                    <View style={{flex:1, paddingRight:5}}>
+                    <View style={{flex:1.5, paddingRight:5}}>
                         <Text style={[{
-                            flex: 1,
+                            flex: 2,
                             marginTop: 16,
                             marginBottom: 4,
                             textAlign:'center',
                             fontSize:12
                         }]}>{item.price} {item.currency}</Text>
-                        <View style={{flexDirection: 'row', marginBottom: 12, justifyContent: 'center'}}>
+                        <View style={{flexDirection: 'row', marginBottom: 12, justifyContent: 'flex-end'}}>
                             {
                                 item.support_payments_id.map((num) => {
                                     return this.onSelectPayMethod(num)
@@ -993,7 +1012,7 @@ class OTCTradePageView extends React.Component {
                         </View>
                     </View>
 
-                    <View style={{flex:2, paddingRight:5}}>
+                    <View style={{flex:2, paddingRight:5, justifyContent: 'flex-end'}}>
                         <Text style={[{
                             marginTop: 16,
                             marginBottom: 4,
@@ -1002,9 +1021,12 @@ class OTCTradePageView extends React.Component {
                         }]}>{item.valid_duration / 60} {I18n.t(Keys.Minutes)}</Text>
                         <Button
                             title={I18n.t(Keys.Detail)}
-                            containerStyle={[{flex: 1, marginTop:5, marginBottom:5}]}
+                            containerStyle={[{ marginTop:5, marginBottom:5, width: 80, alignSelf:'flex-end'}]}
                             titleStyle={[{fontSize: 10, fontWeight:'bold'}]}
                             onPress={() => {
+                                this.props.navigation.navigate( 'OTCPostDetailPage', {
+                                    entrust: item,
+                                } )
                             }
                             }
                         />
@@ -1020,12 +1042,10 @@ class OTCTradePageView extends React.Component {
                         }]}>{this.checkPostStatus(item.status)}</Text>
                         <Button
                             title={I18n.t(Keys.Cancel)}
-                            containerStyle={[{flex: 1, marginTop:5, marginBottom:5}]}
+                            containerStyle={[{marginTop:5, marginBottom:5}]}
                             titleStyle={[{fontSize: 10, fontWeight:'bold'}]}
                             onPress={() => {
-                                this.props.navigation.navigate( 'OTCPostDetailPage', {
-                                    entrust: item,
-                                } )
+                                this.deleteMyPost(item.id)
                             }
                             }
                         />
@@ -1034,10 +1054,6 @@ class OTCTradePageView extends React.Component {
             </TouchableHighlight>
         )
     }
-
-
-
-
 
     renderOrderCell(viewHeight, item, index){
         return (
@@ -1101,8 +1117,29 @@ class OTCTradePageView extends React.Component {
         )
     }
 
+    deleteMyPost( id ) {
+        this.setState( {
+            myPostList: this.state.myPostList.filter( item => item.id !== id )
+        } );
 
+        InteractionManager.runAfterInteractions(
+            () => {
+                this.props.onOTCEntrustCancel(id, (error, resBody) => {
+                        if (error) {
+                            this.setState({
+                                isRequesting: false
+                            });
 
+                            Toast.show(error.message);
+                        } else {
+                            Toast.show(I18n.t(Keys.Cancelled));
+                        }
+                    }
+                )
+            }
+        )
+
+    }
 
     headerPost ()  {
         return (
@@ -1117,8 +1154,6 @@ class OTCTradePageView extends React.Component {
         );
     };
 
-
-
     headerOrder ()  {
         return (
             <View  style={{flexDirection:'row', marginTop : 5}}>
@@ -1129,9 +1164,6 @@ class OTCTradePageView extends React.Component {
             </View>
         );
     };
-
-
-
 
     checkPostStatus(value){
         if (value === 0) {
@@ -1150,7 +1182,6 @@ class OTCTradePageView extends React.Component {
 
     }
 
-
     checkOrderStatus(value){
         if (value === 0) {
             return I18n.t(Keys.Unfilled);
@@ -1167,11 +1198,7 @@ class OTCTradePageView extends React.Component {
         }
 
     }
-
-
-
-
-
+    
     renderMyOrderView(){
         return (
             <View style={[styles.scene, {backgroundColor: '#ffffff', flexDirection: 'row'}]}>
@@ -1199,28 +1226,6 @@ class OTCTradePageView extends React.Component {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 const styles = StyleSheet.create({
     PriceInput: {
