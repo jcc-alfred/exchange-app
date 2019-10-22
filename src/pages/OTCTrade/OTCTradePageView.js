@@ -404,9 +404,7 @@ class OTCTradePageView extends React.Component {
                     }}>
                         <TouchableHighlight
                             underlayColor='#ddd'
-                            onPress={() => this.setState({isCNY: true})
-
-
+                            onPress={() => this.changeMoneyTypeisCNY(true)
 
                             }>
 
@@ -421,7 +419,7 @@ class OTCTradePageView extends React.Component {
 
                         <TouchableHighlight
                             underlayColor='#ddd'
-                            onPress={() => this.setState({isCNY: false})}>
+                            onPress={() => this.changeMoneyTypeisCNY(false)}>
 
                             <Text style={{
                                 margin: 8,
@@ -440,6 +438,34 @@ class OTCTradePageView extends React.Component {
             </View>
         )
     }
+
+
+
+    changeMoneyTypeisCNY(value){
+        if (value) {
+            if(this.state.type === 0){
+                var showList = this.state.buyCoinEntrustCNY;
+                this.setState({isCNY: true, buyCoinListShow: showList});
+
+            }else{
+                var showList = this.state.sellCoinEntrustCNY;
+                this.setState({isCNY: true, sellCoinListShow: showList});
+            }
+        }else {
+            if(this.state.type === 0){
+                var showList = this.state.buyCoinEntrustUSD;
+                this.setState({isCNY: false, buyCoinListShow: showList});
+            }else{
+                var showList = this.state.sellCoinEntrustUSD;
+                this.setState({isCNY: false, sellCoinListShow: showList});
+            }
+        }
+    }
+
+
+
+
+
 
 
     coinsAction(item) {
