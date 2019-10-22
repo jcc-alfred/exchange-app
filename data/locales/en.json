@@ -1076,11 +1076,12 @@
   "Withdraw_success": "Withdraw Request Succeed",
   "post_finished":"Post Finished",
   "order_created":"Order Created",
+  "trade_rem": "Trade Remark",
+  "post_detail":"Post Detail",
   "Coin":"Coin",
   "Remaining_amout":"Remaining amout",
   "Unit_Price":"Unit Price",
   "Payment_Duration":"Payment Duration",
   "Cancelled": "Cancelled",
   "Minutes":"Minutes"
-
 }
