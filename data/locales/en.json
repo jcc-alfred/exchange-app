@@ -1089,6 +1089,6 @@
   "Done":"Done",
   "Paid":"Paid",
   "expired":"Expired",
-  "trade_fee_rate":"trade fee rate"
-
+  "trade_fee_rate":"trade fee rate",
+  "order_detail":"order detail"
 }

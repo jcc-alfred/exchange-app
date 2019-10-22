@@ -1089,6 +1089,8 @@
   "Done":"完全成交",
   "Paid":"已付款",
   "expired":"已过期",
-  "trade_fee_rate":"交易费率"
+  "trade_fee_rate":"交易费率",
+  "order_detail":"订单详情"
+
 
 }

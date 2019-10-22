@@ -1,10 +1,11 @@
 import React from 'react';
-import {SafeAreaView, ScrollView, StatusBar, StyleSheet, View, Text} from 'react-native';
+import {SafeAreaView, ScrollView, StatusBar, StyleSheet, View, Text, InteractionManager} from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import I18n from "../../I18n";
 import Keys from "../../configs/Keys";
 import ColorUtil from "../../util/ColorUtil";
 import {Image} from "react-native-elements";
+import Toast from "react-native-root-toast";
 
 class OTCOrderDetailPageView extends React.Component {
 
@@ -13,6 +14,8 @@ class OTCOrderDetailPageView extends React.Component {
 
         this.state = {
             entrust: props.navigation.state.params.entrust,
+            remark: '',
+            secret_remark: ''
         }
     }
 
@@ -22,12 +25,13 @@ class OTCOrderDetailPageView extends React.Component {
         const {params} = state;
 
         return {
-            title: I18n.t( Keys.post_detail ),
+            title: I18n.t( Keys.order_detail ),
             headerBackTitle: null,
         };
     };
 
     componentDidMount() {
+        this.requestOrderDetail();
     }
 
     componentWillUnmount() {
@@ -42,6 +46,44 @@ class OTCOrderDetailPageView extends React.Component {
     shouldComponentUpdate(nextProps, nextState) {
         return true;
     }
+
+
+
+    requestOrderDetail(){
+        InteractionManager.runAfterInteractions(
+            () => {
+                this.props.onOtcOrder(this.state.entrust.id,
+                    (error, resBody) => {
+                        if (error) {
+                            this.setState({
+                                isRequesting: false
+                            });
+
+                            Toast.show(error.message);
+                        } else {
+
+                            this.setState({
+
+                                remark: resBody.data.entrust.remark,
+                                secret_remark: resBody.data.entrust.secret_remark
+                            });
+
+                        }
+                    }
+                )
+            }
+        )
+    }
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -114,7 +156,7 @@ class OTCOrderDetailPageView extends React.Component {
                         <View style={{padding : 16}}>
 
                             <Text>{I18n.t(Keys.trade_des)}</Text>
-                            <Text style={{color: ColorUtil.secondary_text_color, marginTop: 10}}>{this.state.entrust.remark}</Text>
+                            <Text style={{color: ColorUtil.secondary_text_color, marginTop: 10}}>{this.state.remark}</Text>
                         </View>
 
                         <View style={{height: 1, backgroundColor: '#d1cfcf'}}/>
@@ -122,7 +164,7 @@ class OTCOrderDetailPageView extends React.Component {
                         <View style={{padding : 16}}>
                             <Text>{I18n.t(Keys.trade_rem)}</Text>
                             <Text
-                                style={{color: ColorUtil.secondary_text_color, marginTop: 10}}>{this.state.entrust.secret_remark}</Text>
+                                style={{color: ColorUtil.secondary_text_color, marginTop: 10}}>{this.state.secret_remark}</Text>
                         </View>
                     </ScrollView>
                 </SafeAreaView>

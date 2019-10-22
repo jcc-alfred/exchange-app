@@ -868,6 +868,7 @@ const Keys = {
     "Done":"Done",
     "Paid":"Paid",
     "expired":"expired",
-    "trade_fee_rate":"trade_fee_rate"
+    "trade_fee_rate":"trade_fee_rate",
+    "order_detail":"order_detail"
 };
 export default Keys;
