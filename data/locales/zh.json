@@ -1088,5 +1088,7 @@
   "Partial Filled":"部分成交",
   "Done":"完全成交",
   "Paid":"已付款",
-  "expired":"已过期"
+  "expired":"已过期",
+  "trade_fee_rate":"交易费率"
+
 }

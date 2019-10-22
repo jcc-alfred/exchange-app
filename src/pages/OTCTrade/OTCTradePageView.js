@@ -1088,6 +1088,10 @@ class OTCTradePageView extends React.Component {
                             containerStyle={[{flex: 1, marginTop:5, marginBottom:5}]}
                             titleStyle={[{fontSize: 14, fontWeight:'bold'}]}
                             onPress={() => {
+                                this.props.navigation.navigate( 'OTCOrderDetailPage', {
+                                    entrust: item,
+                                } )
+
                             }
                             }
                         />

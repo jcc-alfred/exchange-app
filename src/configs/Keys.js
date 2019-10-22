@@ -867,6 +867,7 @@ const Keys = {
     "Partial_Filled":"Partial Filled",
     "Done":"Done",
     "Paid":"Paid",
-    "expired":"expired"
+    "expired":"expired",
+    "trade_fee_rate":"trade_fee_rate"
 };
 export default Keys;

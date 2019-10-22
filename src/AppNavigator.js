@@ -50,6 +50,7 @@ import UserInfoVerifyPage from "./pages/mine/UserInfoVerifyPage";
 import GoogleAuthClosePage from "./pages/account/GoogleAuthClosePage";
 import OTCBuySellPage from "./pages/OTCTrade/OTCBuySellPage";
 import OTCPostDetailPage from "./pages/OTCTrade/OTCPostDetailPage";
+import OTCOrderDetailPage from "./pages/OTCTrade/OTCOrderDetailPage";
 
 
 process.env.REACT_NAV_LOGGING = ( global.__DEV__ );
@@ -385,6 +386,9 @@ const routeConfiguration = {
     },
     OTCPostDetailPage: {
         screen: OTCPostDetailPage
+    },
+    OTCOrderDetailPage: {
+        screen: OTCOrderDetailPage
     }
 
 };
