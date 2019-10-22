@@ -1089,5 +1089,9 @@
   "Minutes":"Minutes",
   "Unfilled":"Unfilled",
   "Partial Filled":"Partial Filled",
-  "Done":"Done"
+  "Done":"Done",
+  "Paid":"Paid",
+  "expired":"Expired",
+  "trade_fee_rate":"trade fee rate"
+
 }

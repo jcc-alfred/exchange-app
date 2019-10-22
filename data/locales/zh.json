@@ -1087,7 +1087,11 @@
   "please_input_limitation":"请输入最少交易数量",
   "Cancelled": "已取消",
   "Minutes":"分钟",
-  "Unfilled":"没成交",
+  "Unfilled":"未成交",
   "Partial Filled":"部分成交",
-  "Done":"完全成交"
+  "Done":"完全成交",
+  "Paid":"已付款",
+  "expired":"已过期",
+  "trade_fee_rate":"交易费率"
+
 }
