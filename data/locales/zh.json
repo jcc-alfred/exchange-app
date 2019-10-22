@@ -1075,5 +1075,10 @@
   "amount_rank": "成交额榜",
   "Withdraw_success": "提现申请成功",
   "post_finished":"发布成功",
-  "order_created":"订单已创建"
+  "order_created":"订单已创建",
+  "Coin":"币种",
+  "Remaining_amout":"剩余数量",
+  "Unit_Price":"单价",
+  "Payment_Duration":"付款期限"
+
 }

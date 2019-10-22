@@ -1080,12 +1080,12 @@ class OTCTradePageView extends React.Component {
     headerPost ()  {
         return (
             <View  style={{flexDirection:'row'}}>
-                <Text style={{flex:1, textAlign:'center', fontSize:12, paddingLeft:5, color:'#6d6c67'}}>Type</Text>
-                <Text style={{flex:1, textAlign:'center', fontSize:12, paddingLeft:5, color:'#6d6c67'}}>Coin</Text>
-                <Text style={{flex:1, textAlign:'center', fontSize:12, paddingLeft:5, color:'#6d6c67'}}>Remaining amount</Text>
+                <Text style={{flex:1, textAlign:'center', fontSize:12, paddingLeft:5, color:'#6d6c67'}}>{I18n.t(Keys.type)}</Text>
+                <Text style={{flex:1, textAlign:'center', fontSize:12, paddingLeft:5, color:'#6d6c67'}}>{I18n.t(Keys.Coin)}</Text>
+                <Text style={{flex:1, textAlign:'center', fontSize:12, paddingLeft:5, color:'#6d6c67'}}>{I18n.t(Keys.Remaining_amout)}</Text>
                 <Text style={{flex:1, textAlign:'center', fontSize:12, paddingLeft:5, color:'#6d6c67'}}>{I18n.t(Keys.UnitPrice)}</Text>
-                <Text style={{flex:2, textAlign:'center',fontSize:12, color:'#6d6c67'}}>Payment Duration</Text>
-                <Text style={{flex:2, textAlign:'center',fontSize:12, color:'#6d6c67'}}>Status</Text>
+                <Text style={{flex:2, textAlign:'center',fontSize:12, color:'#6d6c67'}}>{I18n.t(Keys.Payment_Duration)}</Text>
+                <Text style={{flex:2, textAlign:'center',fontSize:12, color:'#6d6c67'}}>{I18n.t(Keys.status)}</Text>
             </View>
         );
     };
@@ -1098,7 +1098,7 @@ class OTCTradePageView extends React.Component {
                 <Text style={{flex:1, textAlign:'center', fontSize:12, paddingLeft:5, color:'#6d6c67'}}>{I18n.t(Keys.UnitPrice)}</Text>
                 <Text style={{flex:2, textAlign:'center',fontSize:12, color:'#6d6c67'}}>{I18n.t(Keys.Amount)}</Text>
                 <Text style={{flex:2, textAlign:'center',fontSize:12, color:'#6d6c67'}}>{I18n.t(Keys.WholeAmout)}</Text>
-                <Text style={{flex:3, textAlign:'center',fontSize:12, color:'#6d6c67'}}>{I18n.t(Keys.State)}</Text>
+                <Text style={{flex:3, textAlign:'center',fontSize:12, color:'#6d6c67'}}>{I18n.t(Keys.status)}</Text>
             </View>
         );
     };

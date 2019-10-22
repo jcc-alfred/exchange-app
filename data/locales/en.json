@@ -1060,7 +1060,7 @@
   "confirm_buy":"Confirm Buy",
   "confirm_sell":"Confirm Sell",
   "UnitPrice":"Unit Price",
-  "WholeAmout":"WholeAmout",
+  "WholeAmout":"Whole Amout",
   "State":"State",
   "Detail":"Detail",
   "version": "Version",
@@ -1075,5 +1075,10 @@
   "amount_rank": "Amount Rank",
   "Withdraw_success": "Withdraw Request Succeed",
   "post_finished":"Post Finished",
-  "order_created":"Order Created"
+  "order_created":"Order Created",
+  "Coin":"Coin",
+  "Remaining_amout":"Remaining amout",
+  "Unit_Price":"Unit Price",
+  "Payment_Duration":"Payment Duration"
+
 }

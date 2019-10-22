@@ -854,6 +854,10 @@ const Keys = {
     "average_price":"average_price",
     "Executed":"Executed",
     "post_finished":"post_finished",
-    "order_created":"order_created"
+    "order_created":"order_created",
+    "Coin":"Coin",
+    "Remaining_amout":"Remaining_amout",
+    "Unit_Price":"Unit_Price",
+    "Payment_Duration":"Payment_Duration"
 };
 export default Keys;
