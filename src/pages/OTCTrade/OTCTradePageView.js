@@ -977,7 +977,9 @@ class OTCTradePageView extends React.Component {
                             textAlign:'center',
                             fontSize:12,
                             paddingLeft:5,
-                        }]}>{item.price} {item.currency}</Text>
+                        }]}>
+                            {item.trade_type === 0?I18n.t(Keys.Buy):I18n.t(Keys.Sell)}
+                        </Text>
                         <Text style={[{
                             flex: 1,
                             marginTop: 16,
@@ -998,31 +1000,40 @@ class OTCTradePageView extends React.Component {
                             marginBottom: 4,
                             textAlign:'center',
                             fontSize:12
-                        }]}>{item.price}</Text>
+                        }]}>{item.price} {item.currency}</Text>
+                    <View style={{flex:2, paddingRight:5}}>
                         <Text style={[{
-                            flex: 2,
                             marginTop: 16,
                             marginBottom: 4,
                             textAlign:'center',
                             fontSize:12
-                        }]}>{item.valid_duration}</Text>
+                        }]}>{item.valid_duration / 60} {I18n.t(Keys.Minutes)}</Text>
+                        <Button
+                            title={I18n.t(Keys.Detail)}
+                            containerStyle={[{flex: 1, marginTop:5, marginBottom:5}]}
+                            titleStyle={[{fontSize: 10, fontWeight:'bold'}]}
+                            onPress={() => {
+                                this.props.navigation.navigate( 'OTCPostDetailPage', {
+                                    entrust: item,
+                                } )
+                            }
+                            }
+                        />
+                    </View>
 
-                    <View style={{flex:3, flexDirection:'row',paddingRight:5}}>
+                    <View style={{flex:2, paddingRight:5}}>
                         <Text style={[{
                             flex: 1,
                             marginTop: 16,
                             marginBottom: 4,
                             textAlign:'center',
                             fontSize:12
-                        }]}>{item.status}</Text>
+                        }]}>{item.status === 3?I18n.t(Keys.Cancelled):I18n.t(Keys.active)}</Text>
                         <Button
-                            title={I18n.t(Keys.Detail)}
+                            title={I18n.t(Keys.Cancel)}
                             containerStyle={[{flex: 1, marginTop:5, marginBottom:5}]}
-                            titleStyle={[{fontSize: 14, fontWeight:'bold'}]}
+                            titleStyle={[{fontSize: 10, fontWeight:'bold'}]}
                             onPress={() => {
-                                this.props.navigation.navigate( 'OTCPostDetailPage', {
-                                    entrust: item,
-                                } )
                             }
                             }
                         />
@@ -1101,9 +1112,9 @@ class OTCTradePageView extends React.Component {
         return (
             <View  style={{flexDirection:'row', marginTop : 5}}>
                 <Text style={{flex:1, textAlign:'center', fontSize:12, paddingLeft:5, color:'#6d6c67'}}>{I18n.t(Keys.type)}</Text>
-                <Text style={{flex:1, textAlign:'center', fontSize:12, paddingLeft:5, color:'#6d6c67'}}>{I18n.t(Keys.Coin)}</Text>
-                <Text style={{flex:1, textAlign:'center', fontSize:12, paddingLeft:5, color:'#6d6c67'}}>{I18n.t(Keys.Remaining_amout)}</Text>
-                <Text style={{flex:1, textAlign:'center', fontSize:12, paddingLeft:5, color:'#6d6c67'}}>{I18n.t(Keys.UnitPrice)}</Text>
+                <Text style={{flex:1, textAlign:'center', fontSize:12, color:'#6d6c67'}}>{I18n.t(Keys.Coin)}</Text>
+                <Text style={{flex:1, textAlign:'center', fontSize:12, color:'#6d6c67'}}>{I18n.t(Keys.Remaining_amout)}</Text>
+                <Text style={{flex:1, textAlign:'center', fontSize:12, color:'#6d6c67'}}>{I18n.t(Keys.UnitPrice)}</Text>
                 <Text style={{flex:2, textAlign:'center',fontSize:12, color:'#6d6c67'}}>{I18n.t(Keys.Payment_Duration)}</Text>
                 <Text style={{flex:2, textAlign:'center',fontSize:12, color:'#6d6c67'}}>{I18n.t(Keys.status)}</Text>
             </View>

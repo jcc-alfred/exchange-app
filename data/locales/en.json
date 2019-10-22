@@ -1084,5 +1084,7 @@
   "Payment_Duration":"Payment Duration",
   "please_input_price":"Please input price",
   "please_input_amount":"Please input amount",
-  "please_input_limitation":"Please input limitation"
+  "please_input_limitation":"Please input limitation",
+  "Cancelled": "Cancelled",
+  "Minutes":"Minutes"
 }
