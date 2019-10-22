@@ -160,7 +160,7 @@ class OTCTradePageView extends React.Component {
     requestOrderList(){
         InteractionManager.runAfterInteractions(
             () => {
-                this.props.onOTCOrderMy(
+                this.props.onOTCOrderMy('',
                     (error, resBody) => {
                         if (error) {
                             this.setState({

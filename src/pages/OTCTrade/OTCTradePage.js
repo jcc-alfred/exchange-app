@@ -67,8 +67,8 @@ const mapDispatchToProps = ( dispatch, ownProps ) => ( {
         }));
     },
 
-    onOTCOrderMy: ( callback )=>{
-        dispatch( otcOrderMy( (err,res) =>{
+    onOTCOrderMy: (coin_id, callback )=>{
+        dispatch( otcOrderMy(coin_id, (err,res) =>{
             callback && callback( err, res )
         }));
     }
