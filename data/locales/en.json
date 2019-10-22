@@ -1075,5 +1075,7 @@
   "amount_rank": "Amount Rank",
   "Withdraw_success": "Withdraw Request Succeed",
   "post_finished":"Post Finished",
-  "order_created":"Order Created"
+  "order_created":"Order Created",
+  "trade_rem": "Trade Remark",
+  "post_detail":"Post Detail"
 }

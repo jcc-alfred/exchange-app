@@ -49,6 +49,7 @@ import BasicUserInfoVerifyPage from "./pages/mine/BasicUserInfoVerifyPage";
 import UserInfoVerifyPage from "./pages/mine/UserInfoVerifyPage";
 import GoogleAuthClosePage from "./pages/account/GoogleAuthClosePage";
 import OTCBuySellPage from "./pages/OTCTrade/OTCBuySellPage";
+import OTCPostDetailPage from "./pages/OTCTrade/OTCPostDetailPage";
 
 
 process.env.REACT_NAV_LOGGING = ( global.__DEV__ );
@@ -381,7 +382,11 @@ const routeConfiguration = {
     },
     OTCBuySellPage: {
         screen: OTCBuySellPage
+    },
+    OTCPostDetailPage: {
+        screen: OTCPostDetailPage
     }
+
 };
 
 const navMiddleware = createReactNavigationReduxMiddleware(

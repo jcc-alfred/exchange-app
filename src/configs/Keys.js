@@ -824,6 +824,7 @@ const Keys = {
     "trade_description":"trade_description",
     "trade_des":"trade_des",
     "trade_remark":"trade_remark",
+    "trade_rem":"trade_rem",
     "wechat":"wechat",
     "Alipay":"Alipay",
     "bank_transfer":"bank_transfer",
@@ -854,6 +855,7 @@ const Keys = {
     "average_price":"average_price",
     "Executed":"Executed",
     "post_finished":"post_finished",
-    "order_created":"order_created"
+    "order_created":"order_created",
+    "post_detail":"post_detail"
 };
 export default Keys;
