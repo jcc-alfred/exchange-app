@@ -856,6 +856,10 @@ const Keys = {
     "Executed":"Executed",
     "post_finished":"post_finished",
     "order_created":"order_created",
-    "post_detail":"post_detail"
+    "post_detail":"post_detail",
+    "Coin":"Coin",
+    "Remaining_amout":"Remaining_amout",
+    "Unit_Price":"Unit_Price",
+    "Payment_Duration":"Payment_Duration"
 };
 export default Keys;

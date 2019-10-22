@@ -1077,5 +1077,9 @@
   "post_finished":"发布成功",
   "order_created":"订单已创建",
   "trade_rem": "交易备注",
-  "post_detail":"发布详情"
+  "post_detail":"发布详情",
+  "Coin":"币种",
+  "Remaining_amout":"剩余数量",
+  "Unit_Price":"单价",
+  "Payment_Duration":"付款期限"
 }
