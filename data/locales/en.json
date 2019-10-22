@@ -1079,6 +1079,8 @@
   "Coin":"Coin",
   "Remaining_amout":"Remaining amout",
   "Unit_Price":"Unit Price",
-  "Payment_Duration":"Payment Duration"
+  "Payment_Duration":"Payment Duration",
+  "Cancelled": "Cancelled",
+  "Minutes":"Minutes"
 
 }

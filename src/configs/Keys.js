@@ -858,6 +858,8 @@ const Keys = {
     "Coin":"Coin",
     "Remaining_amout":"Remaining_amout",
     "Unit_Price":"Unit_Price",
-    "Payment_Duration":"Payment_Duration"
+    "Payment_Duration":"Payment_Duration",
+    "Cancelled": "Cancelled",
+    "Minutes":"Minutes"
 };
 export default Keys;
