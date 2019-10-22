@@ -1086,5 +1086,8 @@
   "please_input_amount":"Please input amount",
   "please_input_limitation":"Please input limitation",
   "Cancelled": "Cancelled",
-  "Minutes":"Minutes"
+  "Minutes":"Minutes",
+  "Unfilled":"Unfilled",
+  "Partial Filled":"Partial Filled",
+  "Done":"Done"
 }

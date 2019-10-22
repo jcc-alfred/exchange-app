@@ -1086,5 +1086,8 @@
   "please_input_amount":"请输入数量",
   "please_input_limitation":"请输入最少交易数量",
   "Cancelled": "已取消",
-  "Minutes":"分钟"
+  "Minutes":"分钟",
+  "Unfilled":"没成交",
+  "Partial Filled":"部分成交",
+  "Done":"完全成交"
 }

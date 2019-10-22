@@ -865,6 +865,9 @@ const Keys = {
     "please_input_amount":"please_input_amount",
     "please_input_limitation":"please_input_limitation",
     "Cancelled": "Cancelled",
-    "Minutes":"Minutes"
+    "Minutes":"Minutes",
+    "Unfilled":"Unfilled",
+    "Partial_Filled":"Partial Filled",
+    "Done":"Done"
 };
 export default Keys;
