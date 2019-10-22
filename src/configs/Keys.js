@@ -865,6 +865,8 @@ const Keys = {
     "Minutes":"Minutes",
     "Unfilled":"Unfilled",
     "Partial_Filled":"Partial Filled",
-    "Done":"Done"
+    "Done":"Done",
+    "Paid":"Paid",
+    "expired":"expired"
 };
 export default Keys;

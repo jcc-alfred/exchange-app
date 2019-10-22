@@ -1082,7 +1082,7 @@ class OTCTradePageView extends React.Component {
                             marginBottom: 4,
                             textAlign:'center',
                             fontSize:12
-                        }]}>{item.status}</Text>
+                        }]}>{this.checkOrderStatus(item.status)}</Text>
                         <Button
                             title={I18n.t(Keys.Detail)}
                             containerStyle={[{flex: 1, marginTop:5, marginBottom:5}]}
@@ -1145,6 +1145,25 @@ class OTCTradePageView extends React.Component {
         }
 
     }
+
+
+    checkOrderStatus(value){
+        if (value === 0) {
+            return I18n.t(Keys.Unfilled);
+        }else if (value === 1) {
+            return I18n.t(Keys.Paid);
+
+        }else if (value === 2) {
+            return I18n.t(Keys.Done);
+
+        }else if (value === 3) {
+            return I18n.t(Keys.expired);
+        }else {
+            return I18n.t(Keys.Cancelled);
+        }
+
+    }
+
 
 
 
