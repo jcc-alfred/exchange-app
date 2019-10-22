@@ -8,7 +8,8 @@ import {
     otcGetSecretRemark,
     otcSecretRemark,
     otcEntrustMy,
-    otcOrderMy
+    otcOrderMy,
+    otcEntrustCancel
 } from "../../actions/OtcAction";
 import { assetsGetUserAssets } from "../../actions/AssetsAction";
 
@@ -71,8 +72,13 @@ const mapDispatchToProps = ( dispatch, ownProps ) => ( {
         dispatch( otcOrderMy( (err,res) =>{
             callback && callback( err, res )
         }));
-    }
+    },
 
+    onOTCEntrustCancel: ( entrust_id, callback )=>{
+        dispatch( otcEntrustCancel( entrust_id, (err,res) =>{
+            callback && callback( err, res )
+        }));
+    }
 
 
 

@@ -985,7 +985,9 @@ class OTCTradePageView extends React.Component {
                             marginTop: 16,
                             marginBottom: 4,
                             textAlign:'center',
-                            fontSize:12
+                            fontSize:12,
+                            color: ColorUtil.dark_primary_color,
+                            fontWeight: 'bold'
                         }]}>{item.coin_name}</Text>
                         <Text style={[{
                             flex: 1,
@@ -1034,6 +1036,7 @@ class OTCTradePageView extends React.Component {
                             containerStyle={[{flex: 1, marginTop:5, marginBottom:5}]}
                             titleStyle={[{fontSize: 10, fontWeight:'bold'}]}
                             onPress={() => {
+                                this.deleteMyPost(item.id)
                             }
                             }
                         />
@@ -1042,10 +1045,6 @@ class OTCTradePageView extends React.Component {
             </TouchableHighlight>
         )
     }
-
-
-
-
 
     renderOrderCell(viewHeight, item, index){
         return (
@@ -1105,8 +1104,29 @@ class OTCTradePageView extends React.Component {
         )
     }
 
+    deleteMyPost( id ) {
+        this.setState( {
+            myPostList: this.state.myPostList.filter( item => item.id !== id )
+        } );
 
+        InteractionManager.runAfterInteractions(
+            () => {
+                this.props.onOTCEntrustCancel(id, (error, resBody) => {
+                        if (error) {
+                            this.setState({
+                                isRequesting: false
+                            });
 
+                            Toast.show(error.message);
+                        } else {
+                            Toast.show(I18n.t(Keys.Cancelled));
+                        }
+                    }
+                )
+            }
+        )
+
+    }
 
     headerPost ()  {
         return (
@@ -1121,8 +1141,6 @@ class OTCTradePageView extends React.Component {
         );
     };
 
-
-
     headerOrder ()  {
         return (
             <View  style={{flexDirection:'row', marginTop : 5}}>
@@ -1133,11 +1151,6 @@ class OTCTradePageView extends React.Component {
             </View>
         );
     };
-
-
-
-
-
 
     renderMyOrderView(){
         return (
