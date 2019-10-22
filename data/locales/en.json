@@ -1083,5 +1083,8 @@
   "Unit_Price":"Unit Price",
   "Payment_Duration":"Payment Duration",
   "Cancelled": "Cancelled",
-  "Minutes":"Minutes"
+  "Minutes":"Minutes",
+  "Unfilled":"Unfilled",
+  "Partial Filled":"Partial Filled",
+  "Done":"Done"
 }

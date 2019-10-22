@@ -953,7 +953,7 @@ class OTCTradePageView extends React.Component {
 
                 <View style={{flexDirection: 'row'}}>
                         <Text style={[{
-                            flex: 1,
+                            flex: 0.5,
                             marginTop: 16,
                             marginBottom: 4,
                             textAlign:'center',
@@ -963,7 +963,7 @@ class OTCTradePageView extends React.Component {
                             {item.trade_type === 0?I18n.t(Keys.Buy):I18n.t(Keys.Sell)}
                         </Text>
                         <Text style={[{
-                            flex: 1,
+                            flex: 0.5,
                             marginTop: 16,
                             marginBottom: 4,
                             textAlign:'center',
@@ -976,6 +976,7 @@ class OTCTradePageView extends React.Component {
                             textAlign:'center',
                             fontSize:12
                         }]}>{item.remaining_amount}</Text>
+                    <View style={{flex:1, paddingRight:5}}>
                         <Text style={[{
                             flex: 1,
                             marginTop: 16,
@@ -983,6 +984,15 @@ class OTCTradePageView extends React.Component {
                             textAlign:'center',
                             fontSize:12
                         }]}>{item.price} {item.currency}</Text>
+                        <View style={{flexDirection: 'row', marginBottom: 12, justifyContent: 'center'}}>
+                            {
+                                item.support_payments_id.map((num) => {
+                                    return this.onSelectPayMethod(num)
+                                })
+                            }
+                        </View>
+                    </View>
+
                     <View style={{flex:2, paddingRight:5}}>
                         <Text style={[{
                             marginTop: 16,
@@ -1007,7 +1017,7 @@ class OTCTradePageView extends React.Component {
                             marginBottom: 4,
                             textAlign:'center',
                             fontSize:12
-                        }]}>{item.status === 3?I18n.t(Keys.Cancelled):I18n.t(Keys.active)}</Text>
+                        }]}>{this.checkPostStatus(item.status)}</Text>
                         <Button
                             title={I18n.t(Keys.Cancel)}
                             containerStyle={[{flex: 1, marginTop:5, marginBottom:5}]}
@@ -1093,8 +1103,8 @@ class OTCTradePageView extends React.Component {
     headerPost ()  {
         return (
             <View  style={{flexDirection:'row', marginTop : 5}}>
-                <Text style={{flex:1, textAlign:'center', fontSize:12, paddingLeft:5, color:'#6d6c67'}}>{I18n.t(Keys.type)}</Text>
-                <Text style={{flex:1, textAlign:'center', fontSize:12, color:'#6d6c67'}}>{I18n.t(Keys.Coin)}</Text>
+                <Text style={{flex:0.5, textAlign:'center', fontSize:12, paddingLeft:5, color:'#6d6c67'}}>{I18n.t(Keys.type)}</Text>
+                <Text style={{flex:0.5, textAlign:'center', fontSize:12, color:'#6d6c67'}}>{I18n.t(Keys.Coin)}</Text>
                 <Text style={{flex:1, textAlign:'center', fontSize:12, color:'#6d6c67'}}>{I18n.t(Keys.Remaining_amout)}</Text>
                 <Text style={{flex:1, textAlign:'center', fontSize:12, color:'#6d6c67'}}>{I18n.t(Keys.UnitPrice)}</Text>
                 <Text style={{flex:2, textAlign:'center',fontSize:12, color:'#6d6c67'}}>{I18n.t(Keys.Payment_Duration)}</Text>
@@ -1117,6 +1127,24 @@ class OTCTradePageView extends React.Component {
     };
 
 
+
+
+    checkPostStatus(value){
+        if (value === 0) {
+            return I18n.t(Keys.Unfilled);
+        }else if (value === 1) {
+            return I18n.t(Keys.Partial_Filled);
+
+        }else if (value === 2) {
+            return I18n.t(Keys.Done);
+
+        }else if (value === 3) {
+            return I18n.t(Keys.Cancelled);
+        }else {
+            return null;
+        }
+
+    }
 
 
 
@@ -1148,6 +1176,27 @@ class OTCTradePageView extends React.Component {
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 const styles = StyleSheet.create({

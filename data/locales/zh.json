@@ -1083,5 +1083,8 @@
   "Unit_Price":"单价",
   "Payment_Duration":"付款期限",
   "Cancelled": "已取消",
-  "Minutes":"分钟"
+  "Minutes":"分钟",
+  "Unfilled":"没成交",
+  "Partial Filled":"部分成交",
+  "Done":"完全成交"
 }
