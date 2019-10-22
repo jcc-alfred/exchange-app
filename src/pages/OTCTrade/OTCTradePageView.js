@@ -171,7 +171,7 @@ class OTCTradePageView extends React.Component {
                         } else {
 
                             this.setState({
-                                myPostList: resBody.data
+                                myOrderList: resBody.data
                             });
 
                         }
