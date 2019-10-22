@@ -1081,5 +1081,8 @@
   "Coin":"币种",
   "Remaining_amout":"剩余数量",
   "Unit_Price":"单价",
-  "Payment_Duration":"付款期限"
+  "Payment_Duration":"付款期限",
+  "please_input_price":"请输入价格",
+  "please_input_amount":"请输入数量",
+  "please_input_limitation":"请输入最少交易数量"
 }

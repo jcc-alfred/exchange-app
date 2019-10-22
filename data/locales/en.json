@@ -1081,5 +1081,8 @@
   "Coin":"Coin",
   "Remaining_amout":"Remaining amout",
   "Unit_Price":"Unit Price",
-  "Payment_Duration":"Payment Duration"
+  "Payment_Duration":"Payment Duration",
+  "please_input_price":"Please input price",
+  "please_input_amount":"Please input amount",
+  "please_input_limitation":"Please input limitation"
 }

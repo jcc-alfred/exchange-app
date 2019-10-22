@@ -783,6 +783,24 @@ class OTCTradePageView extends React.Component {
     }
 
     createEntrust() {
+        if(this.state.price === '') {
+            Toast.show(I18n.t(Keys.please_input_price))
+
+            return
+        }
+
+        if(this.state.amount === '') {
+            Toast.show(I18n.t(Keys.please_input_amount))
+
+            return
+        }
+
+        if(this.state.min_amount === '') {
+            Toast.show(I18n.t(Keys.please_input_limitation))
+
+            return
+        }
+
         let query = {
             type: this.state.type,
             coin_id: this.state.type === 0 ? this.state.buyCoinId : this.state.sellCoinId,

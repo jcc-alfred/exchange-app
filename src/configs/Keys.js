@@ -860,6 +860,10 @@ const Keys = {
     "Coin":"Coin",
     "Remaining_amout":"Remaining_amout",
     "Unit_Price":"Unit_Price",
-    "Payment_Duration":"Payment_Duration"
+    "Payment_Duration":"Payment_Duration",
+    "please_input_price":"please_input_price",
+    "please_input_amount":"please_input_amount",
+    "please_input_limitation":"please_input_limitation",
+
 };
 export default Keys;
