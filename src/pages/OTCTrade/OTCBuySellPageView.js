@@ -3,7 +3,7 @@ import I18n from "../../I18n";
 import Keys from "../../configs/Keys";
 import {SafeAreaView, StatusBar, View, Text, StyleSheet, ScrollView} from "react-native";
 import commonStyles from "../../styles/commonStyles";
-import {Button, Input} from "react-native-elements";
+import {Button, Image, Input} from "react-native-elements";
 import OTCTradePageView from "./OTCTradePageView";
 import ColorUtil from "../../util/ColorUtil";
 import {getStatusBarHeight} from "react-native-iphone-x-helper";
@@ -25,7 +25,10 @@ class OTCBuySellPageView extends React.Component {
         const {state, setParams} = navigation;
         const {params} = state;
 
-        return {};
+        return {
+            title: I18n.t(Keys.trade),
+            headerBackTitle: null,
+        };
     };
 
     componentDidMount() {
@@ -62,7 +65,8 @@ class OTCBuySellPageView extends React.Component {
                     <View style={{height: 10, backgroundColor: '#d1cfcf'}}/>
 
                     <View style={{flexDirection: 'row', padding: 16}}>
-                        <Text style={{flex: 1}}>{this.state.type === 0 ? I18n.t(Keys.buy_amount) : I18n.t(Keys.sell_amount)}</Text>
+                        <Text
+                            style={{flex: 1}}>{this.state.type === 0 ? I18n.t(Keys.buy_amount) : I18n.t(Keys.sell_amount)}</Text>
                         <Text style={{flex: 1, marginStart: 20}}>{I18n.t(Keys.payable_amount)}</Text>
                     </View>
 
@@ -88,7 +92,8 @@ class OTCBuySellPageView extends React.Component {
                     </View>
 
                     <View style={{flexDirection: 'row', padding: 16}}>
-                        <Text style={{flex: 1, color: ColorUtil.secondary_text_color}}>{I18n.t(Keys.remain_amount)}</Text>
+                        <Text
+                            style={{flex: 1, color: ColorUtil.secondary_text_color}}>{I18n.t(Keys.remain_amount)}</Text>
                         <Text style={{flex: 1, color: ColorUtil.secondary_text_color}}>{I18n.t(Keys.unit_price)}</Text>
                         <Text style={{flex: 1, color: ColorUtil.secondary_text_color}}>{I18n.t(Keys.limitation)}</Text>
                     </View>
@@ -103,13 +108,23 @@ class OTCBuySellPageView extends React.Component {
                     </View>
 
                     <View style={{flexDirection: 'row', padding: 16}}>
-                        <Text style={{flex: 1, color: ColorUtil.secondary_text_color}}>{I18n.t(Keys.payment_method)}</Text>
-                        <Text style={{flex: 1, color: ColorUtil.secondary_text_color}}>{I18n.t(Keys.payment_duration)}</Text>
+                        <Text style={{
+                            flex: 1,
+                            color: ColorUtil.secondary_text_color
+                        }}>{I18n.t(Keys.payment_method)}</Text>
+                        <Text style={{
+                            flex: 1,
+                            color: ColorUtil.secondary_text_color
+                        }}>{I18n.t(Keys.payment_duration)}</Text>
                         <Text style={{flex: 1, color: ColorUtil.secondary_text_color}}>{I18n.t(Keys.status)}</Text>
                     </View>
 
                     <View style={{flexDirection: 'row', padding: 16}}>
-                        <Text style={{flex: 1}}></Text>
+                        <View style={{flex: 1, flexDirection: 'row'}}>{
+                            this.state.orderInfo.support_payments_id.map((num) => {
+                                return this.onSelectPayMethod(num)
+                            })
+                        }</View>
                         <Text style={{flex: 1}}>15 min</Text>
                         <Text style={{flex: 1}}>{I18n.t(Keys.active)}</Text>
                     </View>
@@ -126,13 +141,10 @@ class OTCBuySellPageView extends React.Component {
                             } else {
                                 this.props.navigation.navigate("AuthLoginPage")
                             }
-
                         }
                         }
                         containerStyle={[commonStyles.mgt_normal]}
                     />
-
-
                 </View>
             </ScrollView>
         );
@@ -155,13 +167,35 @@ class OTCBuySellPageView extends React.Component {
     }
 
     setTradeAmount(value) {
-        if(value > this.state.orderInfo.remaining_amount) {
-            this.setState({payableAmount: this.state.orderInfo.remaining_amount * this.state.orderInfo.price, total : this.state.orderInfo.remaining_amount})
+        if (value > this.state.orderInfo.remaining_amount) {
+            this.setState({
+                payableAmount: this.state.orderInfo.remaining_amount * this.state.orderInfo.price,
+                total: this.state.orderInfo.remaining_amount
+            })
         } else {
             this.setState({payableAmount: value * this.state.orderInfo.price, total: value})
         }
     }
 
+    onSelectPayMethod(item) {
+
+        if(item === "1") {
+            return ( <Image source={require('../../../assets/images/payment_wechat.png')}
+                            containerStyle={[{width: 20, height: 20, marginLeft: 3}]}/> )
+        } else if(item === "2") {
+            return ( <Image source={require('../../../assets/images/payment_ali.png')}
+                            containerStyle={[{width: 20, height: 20, marginLeft: 3}]}/> )
+        } else if (item === "3") {
+            return ( <Image source={require('../../../assets/images/payment_bank.png')}
+                            containerStyle={[{width: 20, height: 20, marginLeft: 3}]}/> )
+        } else if(item === "4" ) {
+            return ( <Image source={require('../../../assets/images/payment_gtdollar.png')}
+                            containerStyle={[{width: 20, height: 20, marginLeft: 3}]}/> )
+        } else if(item === "5"){
+            return ( <Image source={require('../../../assets/images/payment_paypal.png')}
+                            containerStyle={[{width: 20, height: 20, marginLeft: 3}]}/> )
+        }
+    }
 
 
 }

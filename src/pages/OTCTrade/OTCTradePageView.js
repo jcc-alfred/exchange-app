@@ -893,7 +893,7 @@ class OTCTradePageView extends React.Component {
                             }
                         />
 
-                        <View style={{flexDirection: 'row', marginBottom: 12, marginLeft: 5}}>
+                        <View style={{flexDirection: 'row', marginBottom: 12, justifyContent: 'center'}}>
                             {
                                 item.support_payments_id.map((num) => {
                                     return this.onSelectPayMethod(num)
@@ -908,9 +908,23 @@ class OTCTradePageView extends React.Component {
 
 
     onSelectPayMethod(item) {
-        return (
-            <Image source={require('../../../assets/images/exchangeIcon.png')}
-                   containerStyle={[{width: 20, height: 20, marginLeft: 5}]}/>)
+
+            if(item === "1") {
+                return ( <Image source={require('../../../assets/images/payment_wechat.png')}
+                       containerStyle={[{width: 20, height: 20, marginLeft: 5}]}/> )
+            } else if(item === "2") {
+                return ( <Image source={require('../../../assets/images/payment_ali.png')}
+                       containerStyle={[{width: 20, height: 20, marginLeft: 5}]}/> )
+            } else if (item === "3") {
+                return ( <Image source={require('../../../assets/images/payment_bank.png')}
+                       containerStyle={[{width: 20, height: 20, marginLeft: 5}]}/> )
+            } else if(item === "4" ) {
+                return ( <Image source={require('../../../assets/images/payment_gtdollar.png')}
+                                containerStyle={[{width: 20, height: 20, marginLeft: 5}]}/> )
+            } else if(item === "5"){
+                return ( <Image source={require('../../../assets/images/payment_paypal.png')}
+                                containerStyle={[{width: 20, height: 20, marginLeft: 5}]}/> )
+            }
     }
 
 
