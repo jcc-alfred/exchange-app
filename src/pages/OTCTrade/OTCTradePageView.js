@@ -71,10 +71,12 @@ class OTCTradePageView extends React.Component {
             buyCoinEntrustCNY:[],
             buyCoinEntrustUSD:[],
 
+            buyCoinListShow:[],
+
             sellCoinEntrustCNY: [],
             sellCoinEntrustUSD: [],
 
-
+            sellCoinListShow: [],
 
 
             buyCoinId: '',
@@ -204,16 +206,66 @@ class OTCTradePageView extends React.Component {
                         } else {
                             if (this.state.type === 0) {
 
+                                var orginList = resBody.data;
+                                var orginBuyCNY = [];
+                                var orginBuyUSD = [];
 
-//fengbo
+                                orginList.map(value => {
+                                    if (value.currency === 'CNY'){
+                                        orginBuyCNY.push(value);
+                                    }else {
+                                        orginBuyUSD.push(value);
+                                    }
+
+                                });
+
+                                var buyShowlist = [];
+                                if (this.state.isCNY) {
+                                    buyShowlist =  orginBuyCNY;
+                                }else {
+                                    buyShowlist =  orginBuyUSD;
+                                }
+
+
+
+
 
 
                                 this.setState({
-                                    buyCoinEntrust: resBody.data
+                                    buyCoinEntrust: resBody.data,
+                                    buyCoinEntrustCNY:orginBuyCNY,
+                                    buyCoinEntrustUSD:orginBuyUSD,
+                                    buyCoinListShow:buyShowlist
                                 });
                             } else {
+
+                                var orginSellList = resBody.data;
+                                var orginSellCNY = [];
+                                var orginSellUSD = [];
+
+
+                                orginSellList.map(value => {
+                                    if (value.currency === 'CNY'){
+                                        orginSellCNY.push(value);
+                                    }else {
+                                        orginSellUSD.push(value);
+                                    }
+                                });
+
+
+                                var  sellShowList= [];
+                                if (this.state.isCNY) {
+                                    sellShowList =  orginSellCNY;
+                                }else {
+                                    sellShowList =  orginSellUSD;
+                                }
+
+
                                 this.setState({
-                                    sellCoinEntrust: resBody.data
+                                    sellCoinEntrust: resBody.data,
+                                    sellCoinEntrustCNY: orginSellCNY,
+                                    sellCoinEntrustUSD: orginSellUSD,
+                                    sellCoinListShow:sellShowList
                                 });
                             }
                         }
@@ -352,7 +404,9 @@ class OTCTradePageView extends React.Component {
                     }}>
                         <TouchableHighlight
                             underlayColor='#ddd'
-                            onPress={() => this.setState({isCNY: true})}>
+                            onPress={() => this.changeMoneyTypeisCNY(true)
+
+                            }>
 
                             <Text style={{
                                 margin: 8,
@@ -365,7 +419,7 @@ class OTCTradePageView extends React.Component {
 
                         <TouchableHighlight
                             underlayColor='#ddd'
-                            onPress={() => this.setState({isCNY: false})}>
+                            onPress={() => this.changeMoneyTypeisCNY(false)}>
 
                             <Text style={{
                                 margin: 8,
@@ -384,6 +438,34 @@ class OTCTradePageView extends React.Component {
             </View>
         )
     }
+
+
+
+    changeMoneyTypeisCNY(value){
+        if (value) {
+            if(this.state.type === 0){
+                var showList = this.state.buyCoinEntrustCNY;
+                this.setState({isCNY: true, buyCoinListShow: showList});
+
+            }else{
+                var showList = this.state.sellCoinEntrustCNY;
+                this.setState({isCNY: true, sellCoinListShow: showList});
+            }
+        }else {
+            if(this.state.type === 0){
+                var showList = this.state.buyCoinEntrustUSD;
+                this.setState({isCNY: false, buyCoinListShow: showList});
+            }else{
+                var showList = this.state.sellCoinEntrustUSD;
+                this.setState({isCNY: false, sellCoinListShow: showList});
+            }
+        }
+    }
+
+
+
+
+
 
 
     coinsAction(item) {
@@ -437,7 +519,7 @@ class OTCTradePageView extends React.Component {
             <View style={[styles.scene, {backgroundColor: '#ffffff', flexDirection: 'row'}]}>
                 <FlatList
                     // data={this.state.nList}
-                    data={this.state.type === 0 ? this.state.buyCoinEntrust : this.state.sellCoinEntrust}
+                    data={this.state.type === 0 ? this.state.buyCoinListShow : this.state.sellCoinListShow}
 
                     keyExtractor={(item, index) => {
                         return 'item ' + index;
