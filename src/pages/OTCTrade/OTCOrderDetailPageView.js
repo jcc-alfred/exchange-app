@@ -109,14 +109,6 @@ class OTCOrderDetailPageView extends React.Component {
 
 
 
-
-
-
-
-
-
-
-
     render() {
         return (
             <View style={[commonStyles.wrapper,]}>
