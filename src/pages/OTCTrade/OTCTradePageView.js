@@ -963,10 +963,9 @@ class OTCTradePageView extends React.Component {
                 underlayColor='#ddd'
                 style={index % 2 === 1 ? {backgroundColor: '#efefef'} : {backgroundColor: 'white'}}
                 onPress={() => {
-                    // this.props.navigation.navigate('WebViewPage', {
-                    //     url: url + item.page_news_id,
-                    //     webTitle: I18n.t(Keys.news)
-                    // })
+                    this.props.navigation.navigate( 'OTCPostDetailPage', {
+                        entrust: item,
+                    } )
                 }}>
 
                 <View style={{flexDirection: 'row'}}>
@@ -996,15 +995,15 @@ class OTCTradePageView extends React.Component {
                             textAlign:'center',
                             fontSize:12
                         }]}>{item.remaining_amount}</Text>
-                    <View style={{flex:1, paddingRight:5}}>
+                    <View style={{flex:1.5, paddingRight:5}}>
                         <Text style={[{
-                            flex: 1,
+                            flex: 2,
                             marginTop: 16,
                             marginBottom: 4,
                             textAlign:'center',
                             fontSize:12
                         }]}>{item.price} {item.currency}</Text>
-                        <View style={{flexDirection: 'row', marginBottom: 12, justifyContent: 'center'}}>
+                        <View style={{flexDirection: 'row', marginBottom: 12, justifyContent: 'flex-end'}}>
                             {
                                 item.support_payments_id.map((num) => {
                                     return this.onSelectPayMethod(num)
@@ -1013,7 +1012,7 @@ class OTCTradePageView extends React.Component {
                         </View>
                     </View>
 
-                    <View style={{flex:2, paddingRight:5}}>
+                    <View style={{flex:2, paddingRight:5, justifyContent: 'flex-end'}}>
                         <Text style={[{
                             marginTop: 16,
                             marginBottom: 4,
@@ -1022,7 +1021,7 @@ class OTCTradePageView extends React.Component {
                         }]}>{item.valid_duration / 60} {I18n.t(Keys.Minutes)}</Text>
                         <Button
                             title={I18n.t(Keys.Detail)}
-                            containerStyle={[{flex: 1, marginTop:5, marginBottom:5}]}
+                            containerStyle={[{ marginTop:5, marginBottom:5, width: 80, alignSelf:'flex-end'}]}
                             titleStyle={[{fontSize: 10, fontWeight:'bold'}]}
                             onPress={() => {
                                 this.props.navigation.navigate( 'OTCPostDetailPage', {
@@ -1043,7 +1042,7 @@ class OTCTradePageView extends React.Component {
                         }]}>{this.checkPostStatus(item.status)}</Text>
                         <Button
                             title={I18n.t(Keys.Cancel)}
-                            containerStyle={[{flex: 1, marginTop:5, marginBottom:5}]}
+                            containerStyle={[{marginTop:5, marginBottom:5}]}
                             titleStyle={[{fontSize: 10, fontWeight:'bold'}]}
                             onPress={() => {
                                 this.deleteMyPost(item.id)
