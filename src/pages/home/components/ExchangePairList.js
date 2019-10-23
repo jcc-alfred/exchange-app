@@ -82,7 +82,7 @@ class ExchangePairList extends React.Component {
 
                     <View style={{flex: 1, alignItems: 'center'}}>
                         <View style={{
-                            backgroundColor: item.market.change_rate > 0 ? 'green' : 'red',
+                            backgroundColor: item.market.change_rate > 0 ? '#04a384' : '#ca4159',
                             width: '60%',
                             alignItems: 'center',
                         }}>

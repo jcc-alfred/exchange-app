@@ -377,10 +377,10 @@ class HomePageView extends React.Component {
                                                     <Text style={{
                                                         fontSize: 16,
                                                         fontWeight: 'bold',
-                                                        color: pair.market.change_rate < 0 ? 'red' : 'green'
+                                                        color: pair.market.change_rate < 0 ? '#ca4159' : '#04a384'
                                                     }}>{pair ? pair.market.last_price : ''}</Text>
                                                     <Text
-                                                        style={{color: pair.market.change_rate < 0 ? 'red' : 'green'}}>
+                                                        style={{color: pair.market.change_rate < 0 ? '#ca4159' : '#04a384'}}>
                                                         {pair ? (pair.market.change_rate * 100).toFixed(2) + '%' : null}
                                                     </Text>
                                                     <Text> ≈{pair ? pair.price_usd.toFixed(2) + ' USD' : null} </Text>

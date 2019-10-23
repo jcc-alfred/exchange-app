@@ -66,7 +66,7 @@ class TradeMenuPairList extends React.Component {
                     </View>
 
                     <View style={{flex: 1}}>
-                        <Text style={{color: item.market.change_rate > 0 ? 'green' : 'red', fontSize: 16}}>
+                        <Text style={{color: item.market.change_rate > 0 ? '#04a384' : '#ca4159', fontSize: 16}}>
                             {item.market.last_price}
                         </Text>
                         <Text style={{fontSize: 8}}>

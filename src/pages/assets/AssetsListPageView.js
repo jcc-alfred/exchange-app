@@ -25,7 +25,6 @@ class AssetsListPageView extends React.Component {
         this.state = {
             refreshing: false,
             isRequesting: false,
-            data: [],
         }
     }
 
@@ -101,7 +100,6 @@ class AssetsListPageView extends React.Component {
                     this.setState( {
                         isRequesting: false,
                         refreshing: false,
-                        data: resBody.data
                     } );
                 }
             } );
@@ -156,8 +154,8 @@ class AssetsListPageView extends React.Component {
     }
 
     renderTopBanner() {
-        const BTC_VALUE = this.state.data.length > 0 ? this.state.data.map( i => i.value_BTC ).reduce( ( a, b ) => parseFloat( a ) + parseFloat( b ) ) : 0;
-        const USD_VALUE = this.state.data.length > 0 ? this.state.data.map( i => i.value_USD ).reduce( ( a, b ) => parseFloat( a ) + parseFloat( b ) ) : 0;
+        const BTC_VALUE = this.props.userAssets.length > 0 ? this.props.userAssets.map( i => i.value_BTC ).reduce( ( a, b ) => parseFloat( a ) + parseFloat( b ) ) : 0;
+        const USD_VALUE = this.props.userAssets.length > 0 ? this.props.userAssets.map( i => i.value_USD ).reduce( ( a, b ) => parseFloat( a ) + parseFloat( b ) ) : 0;
         return (
             <View style={[ { backgroundColor: "#0083dc" } ]}>
                 <View>
@@ -188,7 +186,7 @@ class AssetsListPageView extends React.Component {
                             onRefresh={this._onRefresh}
                         />
                     }
-                    data={this.state.data}
+                    data={this.props.userAssets}
                     keyExtractor={( item, index ) => {
                         return 'item ' + index;
                     }}
