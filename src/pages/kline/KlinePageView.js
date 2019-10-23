@@ -256,7 +256,7 @@ class KlinePageView extends React.Component {
                                     <Text style={{
                                         fontSize: 12,
                                         color: coinEx.market.change_rate > 0 ? '#009d7a' : '#e7234c'
-                                    }}>={coinEx.market.change_rate ? coinEx.market.change_rate.toFixed( 2 ) : 0} % </Text>
+                                    }}>={coinEx.market.change_rate ? (coinEx.market.change_rate * 100).toFixed(2) : 0} % </Text>
                                 </View>
                             </View>
 
@@ -267,7 +267,7 @@ class KlinePageView extends React.Component {
                                     leftElement={() => {
                                         return ( <Text style={styles.marketLeftTitle}>{I18n.t( Keys.high )}</Text> )
                                     }}
-                                    title={coinEx.market ? coinEx.market.high_price.toFixed( 2 ) : '0'}
+                                    title={coinEx.market ? coinEx.market.high_price.toFixed( 8 ) : '0'}
                                 />
                                 <ListItem
                                     containerStyle={{ backgroundColor: constStyles.THEME_COLOR, padding: 3 }}
@@ -275,7 +275,7 @@ class KlinePageView extends React.Component {
                                     leftElement={() => {
                                         return ( <Text style={styles.marketLeftTitle}>{I18n.t( Keys.low )}</Text> )
                                     }}
-                                    title={coinEx.market ? coinEx.market.low_price.toFixed( 2 ) : '0'}
+                                    title={coinEx.market ? coinEx.market.low_price.toFixed( 8 ) : '0'}
                                 />
                                 <ListItem
                                     containerStyle={{ backgroundColor: constStyles.THEME_COLOR, padding: 3 }}

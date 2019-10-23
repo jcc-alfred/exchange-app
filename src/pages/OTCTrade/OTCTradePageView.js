@@ -603,6 +603,7 @@ class OTCTradePageView extends React.Component {
                             <Input
                                 onChangeText={value => this.setState({price: value})}
                                 placeholder={I18n.t(Keys.Price)}
+                                inputContainerStyle={{borderBottomWidth: 0}}
                                 containerStyle={[{flex: 9}]} keyboardType={'numeric'}/>
                             <Text style={{
                                 flex: 2,
