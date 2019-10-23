@@ -78,7 +78,6 @@ class OTCTradePageView extends React.Component {
 
             sellCoinListShow: [],
 
-
             buyCoinId: '',
             sellCoinId: '',
             coinName: 'GTB',
