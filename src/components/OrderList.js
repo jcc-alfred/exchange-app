@@ -45,7 +45,7 @@ class BuySellEntrustList extends React.Component {
                     style={{ flex: 1 }}>{order.create_time ? moment( order.create_time ).format( "HH-mm-ss" ) : ''}</Text>
                 <Text style={{
                     flex: 1,
-                    color: order.trigger_type_id === 0 ? 'red' : 'green'
+                    color: order.trigger_type_id === 0 ? '#ca4159' : '#04a384'
                 }}>{order.trigger_type_id === 0 ? I18n.t( Keys.Sell ) : I18n.t( Keys.Buy )}</Text>
                 <Text style={{ flex: 1 }}>{order.trade_price}</Text>
                 <Text style={{ flex: 1 }}>{order.trade_volume}</Text>
@@ -122,7 +122,7 @@ const styles = StyleSheet.create( {
         right: 0,
         bottom: 0,
         zIndex: -1,
-        backgroundColor: 'red'
+        backgroundColor: '#ca4159'
     },
 
     bigFontPrice: {

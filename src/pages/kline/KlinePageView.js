@@ -312,7 +312,7 @@ class KlinePageView extends React.Component {
                         <Button
                             title={I18n.t( Keys.Sell )}
                             containerStyle={{ flex: 1, margin: 10 }}
-                            buttonStyle={[ { height: 30, paddingTop: 7, paddingBottom: 7, backgroundColor: 'red' } ]}
+                            buttonStyle={[ { height: 30, paddingTop: 7, paddingBottom: 7, backgroundColor: '#04a384' } ]}
                             titleStyle={[ { fontSize: 14, } ]}
                             onPress={this.gotoTradePage.bind( this )}
                         />

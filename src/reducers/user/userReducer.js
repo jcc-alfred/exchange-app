@@ -24,6 +24,7 @@ const initialState = {
                 password: 'GTDOLLAR1234'
             }
         ],
+        userAssets: []
     }
 ;
 
@@ -42,6 +43,12 @@ export default function userReducer( state = initialState, action ) {
             return {
                 ...state,
                 userInfo: action.data
+            }
+        }
+        case userActionTypes.UPDATE_USER_ASSET: {
+            return {
+                ...state,
+                userAssets: action.data
             }
         }
         case userActionTypes.UPDATE_USER_IDENTITY: {

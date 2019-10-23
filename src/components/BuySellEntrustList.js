@@ -66,7 +66,7 @@ class BuySellEntrustList extends React.Component {
                         style={[ {
                             flexDirection: 'row',
                             flex: 1,
-                            backgroundColor: '#f0f7f5'
+                            backgroundColor: '#122835',
                         } ]}>
                         {
                             buyEntrust !== {} && (
@@ -79,7 +79,7 @@ class BuySellEntrustList extends React.Component {
                                     <Text style={[ {
                                         flex: 1,
                                         fontSize: 8,
-                                        color: '#9c9a97'
+                                        color: 'white'
                                     } ]}>{buyEntrust.no_completed_volume ? buyEntrust.no_completed_volume : null}</Text>
                                     <Text
                                         style={[ {
@@ -101,7 +101,7 @@ class BuySellEntrustList extends React.Component {
                             sellEntrust !== {} && (
                                 <View style={{ flexDirection: 'row', flex: 1 }}>
                                     <View style={[ styles.overlay, {
-                                        backgroundColor: '#faf2f0',
+                                        backgroundColor: '#22202f',
                                         width: Util.calcDisplayDiscount( sellEntrust.no_completed_volume / sellEntrust.entrust_volume )
                                     } ]}/>
                                     <Text
@@ -113,7 +113,7 @@ class BuySellEntrustList extends React.Component {
                                     <Text style={[ {
                                         flex: 1,
                                         fontSize: 8,
-                                        color: '#9c9a97'
+                                        color: 'white'
                                     } ]}>{sellEntrust.no_completed_volume ? sellEntrust.no_completed_volume : null}</Text>
 
                                     <Text style={[ { flex: 1, fontSize: 8, color: '#9c9a97' } ]}>{index}</Text>
@@ -136,7 +136,7 @@ class BuySellEntrustList extends React.Component {
                         }}>{order.create_time ? moment( order.create_time ).format( "HH:mm:ss" ) : ''}</Text>
                     <Text style={{
                         flex: 1,
-                        color: order.trigger_type_id === 0 ? 'red' : 'green'
+                        color: order.trigger_type_id === 0 ? '#ca4159' : '#04a384'
                     }}>{order.trigger_type_id === 0 ? I18n.t( Keys.Sell ) : I18n.t( Keys.Buy )}</Text>
                     <Text style={{ flex: 1, color: 'white' }}>{order.trade_price}</Text>
                     <Text style={{ flex: 1, color: 'white' }}>{order.trade_volume}</Text>
@@ -214,7 +214,7 @@ const styles = StyleSheet.create( {
         right: 0,
         bottom: 0,
         zIndex: -1,
-        backgroundColor: 'red'
+        backgroundColor: '#ca4159'
     },
 
     bigFontPrice: {

@@ -56,10 +56,10 @@ class TradePageView extends React.Component {
                   style={[{
                       flexDirection: 'row',
                       padding: 3,
-                      backgroundColor: type === 'buy' ? '#ebf7f7' : 'white'
+                      backgroundColor: type === 'buy' ? '#e8f7f4' : 'white'
                   }]}>
                 <View style={[styles.overlay, {
-                    backgroundColor: type === 'buy' ? 'white' : '#faf2f0',
+                    backgroundColor: type === 'buy' ? 'white' : '#fbeef1',
                     width: type === 'buy' ?
                         Util.calcDisplayDiscount(1 - entrustItem.no_completed_volume / entrustItem.entrust_volume) :
                         Util.calcDisplayDiscount(entrustItem.no_completed_volume / entrustItem.entrust_volume)
@@ -73,7 +73,7 @@ class TradePageView extends React.Component {
                 <Text style={[{
                     flex: 2,
                     fontSize: 8,
-                    color: type === 'buy' ? '#009d7a' : 'red'
+                    color: type === 'buy' ? '#04a384' : '#ca4159'
                 }]}>{entrustItem.entrust_price.toFixed(8)}</Text>
             </View>
         )
@@ -360,7 +360,7 @@ class TradePageView extends React.Component {
                         <Text style={{fontSize: 12, flex: 3, marginTop: 3}}>{I18n.t(Keys.ExchangeAmount)}</Text>
                         {ExchangeAmount}
                     </View>
-                    <Button buttonStyle={{margin: 10, backgroundColor: type === 'buy' ? '#009d7a' : 'red'}}
+                    <Button buttonStyle={{margin: 10, backgroundColor: type === 'buy' ? '#04a384' : '#ca4159'}}
                             containerStyle={{}}
                             titleStyle={{color: 'white'}}
                             title={(type === 'buy' ? I18n.t(Keys.Buy) : I18n.t(Keys.Sell)) + ' ' +
@@ -469,7 +469,7 @@ class TradePageView extends React.Component {
                 <View style={{flexDirection: 'row'}}>
                     <Text style={[{
                         flex: 1,
-                        color: entrust.entrust_type_id === 0 ? '#e7234c' : '#009d7a',
+                        color: entrust.entrust_type_id === 0 ? '#ca4159' : '#04a384',
                         fontSize: 20,
                         paddingLeft: 20,
                         paddingRight: 5,
@@ -519,8 +519,8 @@ class TradePageView extends React.Component {
                         {this.props.TradePageCoinEx ? this.props.TradePageCoinEx.coinEx.coin_name + '/' + this.props.TradePageCoinEx.coinEx.exchange_coin_name : ''}
                     </Text>
                     <Text style={[{
-                        color: this.props.TradePageCoinEx.market.change_rate > 0 ? '#489A48' : '#e7234c', fontSize: 16,
-                        backgroundColor: this.props.TradePageCoinEx.market.change_rate > 0 ? '#ebf7f7' : '#faf2f0',
+                        color: this.props.TradePageCoinEx.market.change_rate > 0 ? '#04a384' : '#ca4159', fontSize: 16,
+                        backgroundColor: this.props.TradePageCoinEx.market.change_rate > 0 ? '#e8f7f4' : '#faf2f0',
                         marginTop: 8, marginBottom: 8, padding: 4
                     }]}>
                         {this.props.TradePageCoinEx ? Util.numToPercentage(this.props.TradePageCoinEx.market.change_rate) : null}
@@ -622,7 +622,7 @@ const styles = StyleSheet.create({
         left: 0,
         right: 0,
         bottom: 0,
-        backgroundColor: 'red'
+        backgroundColor: '#04a384'
     },
 
     bigFontPrice: {

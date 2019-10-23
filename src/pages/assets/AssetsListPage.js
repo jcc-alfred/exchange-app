@@ -9,6 +9,7 @@ const mapStoreToProps = (store, ownProps) => {
     return {
         isLoggedIn: store.userStore.isLoggedIn,
         userInfo: store.userStore.userInfo,
+        userAssets:store.userStore.userAssets
     }
 };
 
