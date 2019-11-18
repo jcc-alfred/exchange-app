@@ -11,7 +11,7 @@ import Util from "../../../util/Util";
 class ExchangePairList extends React.Component {
     static propTypes = {
         containerStyle: ViewPropTypes.style,
-        data: PropTypes.object.isRequired,
+        data: PropTypes.array.isRequired,
         errorMessage: PropTypes.string,
     };
 
