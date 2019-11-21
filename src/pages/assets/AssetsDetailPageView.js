@@ -172,30 +172,32 @@ class AssetsDetailPageView extends React.Component {
 
     render() {
         return (
-            <View style={[ commonStyles.wrapper, { paddingLeft: 10, paddingRight: 10 } ]}>
+            <View style={[commonStyles.wrapper,]}>
                 <SafeAreaView style={[ commonStyles.wrapper, ]}>
-                    <Text style={[ styles.CoinName ]}>{this.props.assets.coin_name}</Text>
-                    <View style={[ { flexDirection: 'row', marginTop: 15 } ]}>
-                        <Text style={[ {
-                            flex: 1,
-                            paddingRight: 10
-                        }, styles.greyCommonFont ]}>{I18n.t( Keys.balance )}</Text>
-                        <Text
-                            style={[ {
+                    <View style={[{ paddingLeft: 10, paddingRight: 10 }]}>
+                        <Text style={[ styles.CoinName ]}>{this.props.assets.coin_name}</Text>
+                        <View style={[ { flexDirection: 'row', marginTop: 15 } ]}>
+                            <Text style={[ {
                                 flex: 1,
                                 paddingRight: 10
-                            }, styles.greyCommonFont ]}>{I18n.t( Keys.available )}</Text>
-                        <Text style={[ { flex: 1 }, styles.greyCommonFont ]}>{I18n.t( Keys.frozen )}</Text>
-                    </View>
-                    <View style={[ { flexDirection: 'row' } ]}>
-                        <Text style={[ { flex: 1, paddingRight: 10 } ]}>{this.props.assets.balance.toFixed( 4 )}</Text>
-                        <Text
-                            style={[ { flex: 1, paddingRight: 10 } ]}>{this.props.assets.available.toFixed( 4 )}</Text>
-                        <Text style={[ { flex: 1 } ]}>{this.props.assets.frozen.toFixed( 4 )}</Text>
-                    </View>
-                    {AssetsDetailPageView.separatorView( 8 )}
-                    <View style={{ paddingTop: 15, paddingBottom: 20 }}>
-                        <Text style={{ fontSize: 24, fontWeight: "bold" }}>{I18n.t( Keys.finance_history )}</Text>
+                            }, styles.greyCommonFont ]}>{I18n.t( Keys.balance )}</Text>
+                            <Text
+                                style={[ {
+                                    flex: 1,
+                                    paddingRight: 10
+                                }, styles.greyCommonFont ]}>{I18n.t( Keys.available )}</Text>
+                            <Text style={[ { flex: 1 }, styles.greyCommonFont ]}>{I18n.t( Keys.frozen )}</Text>
+                        </View>
+                        <View style={[ { flexDirection: 'row' } ]}>
+                            <Text style={[ { flex: 1, paddingRight: 10 } ]}>{this.props.assets.balance.toFixed( 4 )}</Text>
+                            <Text
+                                style={[ { flex: 1, paddingRight: 10 } ]}>{this.props.assets.available.toFixed( 4 )}</Text>
+                            <Text style={[ { flex: 1 } ]}>{this.props.assets.frozen.toFixed( 4 )}</Text>
+                        </View>
+                        {AssetsDetailPageView.separatorView( 8 )}
+                        <View style={{ paddingTop: 15, paddingBottom: 20 }}>
+                            <Text style={{ fontSize: 24, fontWeight: "bold" }}>{I18n.t( Keys.finance_history )}</Text>
+                        </View>
                     </View>
                     {this.transactionView()}
 
@@ -208,13 +210,12 @@ class AssetsDetailPageView extends React.Component {
                                     color={'white'}
                                 />
                             }
+                            disabled={this.props.assets.is_enable_deposit !== 1}
                             title={I18n.t( Keys.deposit )}
                             onPress={() => {
                                 this.props.navigation.navigate( "AssetsDepositPage", {
                                     assets: this.props.assets
                                 } )
-
-
                             }
                             }
                         />
@@ -229,6 +230,7 @@ class AssetsDetailPageView extends React.Component {
                                     color={'white'}
                                 />
                             }
+                            disabled={this.props.assets.is_enable_withdraw !== 1}
                             iconContainerStyle={{ marginRight: 50 }}
                             title={I18n.t( Keys.withdraw )}
                             onPress={() => {

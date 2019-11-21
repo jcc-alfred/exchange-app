@@ -20,7 +20,31 @@ class AssetTransactionList extends React.Component {
     }
 
     static header() {
-        return null
+        return (
+            <View
+                style={{
+                    flexDirection: 'row',
+                    height: 25,
+                    alignItems: 'center',
+                    lineHeight: 20
+                }}>
+
+                <View style={[ { flex: 1, alignItems: 'center' } ]}>
+                    <Text style={[ styles.greyCommonFont ]}>{I18n.t( Keys.Amount )}</Text>
+                </View>
+
+                <View style={{ flex: 1, alignItems: 'center' }}>
+                    <Text style={[ styles.greyCommonFont ]}>{I18n.t( Keys.status )}</Text>
+                </View>
+
+                <View style={{ flex: 2, alignItems: 'center' }}>
+                    <Text style={[ styles.greyCommonFont ]}>{I18n.t( Keys.time )}</Text>
+                </View>
+
+
+            </View>
+
+        );
     }
 
     shouldComponentUpdate( nextProps, nextState, nextContext ) {
@@ -35,42 +59,22 @@ class AssetTransactionList extends React.Component {
                 underlayColor='#ddd'
                 onPress={() => this.props.onPressItem( item )}>
                 <View>
-                    <View
-                        style={{
-                            flexDirection: 'row',
-                            height: 25,
-                            alignItems: 'center',
-                            lineHeight: 20
-                        }}>
 
-                        <View style={[ { flex: 1, alignItems: 'center' } ]}>
-                            <Text style={[ styles.greyCommonFont ]}>{I18n.t( Keys.Amount )}</Text>
-                        </View>
-
+                    <View style={{ alignItems: 'center', flexDirection: 'row', height: 50 }}>
                         <View style={{ flex: 1, alignItems: 'center' }}>
-                            <Text style={[ styles.greyCommonFont ]}>{I18n.t( Keys.status )}</Text>
-                        </View>
-
-                        <View style={{ flex: 1, alignItems: 'center' }}>
-                            <Text style={[ styles.greyCommonFont ]}>{I18n.t( Keys.time )}</Text>
-                        </View>
-                    </View>
-
-                    <View style={{ alignItems: 'center', flexDirection: 'row', height: 50, marginStart: 40 }}>
-                        <View style={{ flex: 1 }}>
                             <Text>
                                 {item.submit_amount ? item.submit_amount : item.trade_amount}
                             </Text>
                         </View>
 
-                        <View style={{ flex: 1 }}>
+                        <View style={{ flex: 1, alignItems: 'center' }}>
                             <Text>
                                 {item.confirm_status_name}
                             </Text>
                         </View>
 
 
-                        <View style={{ flex: 1, alignItems: 'center' }}>
+                        <View style={{ flex: 2, alignItems: 'center' }}>
                             <Text>
                                 {moment( item.create_time ).format( "YYYY-MM-DD HH:mm" )}
                             </Text>
@@ -84,7 +88,7 @@ class AssetTransactionList extends React.Component {
 
     render() {
         const separatorHeight = 1;
-        const viewHeight = 75;
+        const viewHeight = 50;
         return (
             <FlatList
                 refreshControl={
