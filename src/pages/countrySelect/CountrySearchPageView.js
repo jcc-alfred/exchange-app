@@ -193,7 +193,7 @@ class CountrySearchPageView extends React.Component {
     renderCommonItem( viewHeight, item, index ) {
         return (
             <ListItem
-                containerStyle={[ { height: 50 } ]}
+                containerStyle={[{ height: 50 }]}
                 title={item.displayTitle}
                 rightTitle={item.displayContent}
                 onPress={() => {
@@ -226,7 +226,7 @@ class CountrySearchPageView extends React.Component {
                         return this.renderCommonItem( viewHeight, item, index );
                     }}
                     ItemSeparatorComponent={() => {
-                        return <View style={[ commonStyles.commonIntervalStyle, { height: separatorHeight } ]}/>
+                        return <View style={[commonStyles.commonIntervalStyle, { height: separatorHeight }]}/>
                     }}
                     getItemLayout={( modelList, index ) => (
                         { length: viewHeight, offset: ( viewHeight + separatorHeight ) * index, index }

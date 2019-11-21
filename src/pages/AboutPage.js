@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import AboutPageView from "./AboutPageView";
-import {docGetArticleList, docGetHomeNewsList} from "../actions/DocAction";
+import { docGetArticleList } from "../actions/DocAction";
 import metaActionTypes from "../reducers/meta/metaActionTypes";
 
 const mapStoreToProps = ( store, ownProps ) => {

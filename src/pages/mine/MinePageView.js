@@ -47,9 +47,9 @@ class MinePageView extends React.Component {
 
     render() {
         return (
-            <View style={[ commonStyles.wrapper, ]}>
+            <View style={[commonStyles.wrapper,]}>
                 <StatusBar backgroundColor="blue" barStyle="dark-content"/>
-                <SafeAreaView style={[ commonStyles.wrapper, ]}>
+                <SafeAreaView style={[commonStyles.wrapper,]}>
                     <ScrollView>
                         <View>
                             <BasicUserInfoVerifyResultView/>

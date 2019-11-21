@@ -36,16 +36,16 @@ class ListItemWithPicker extends React.Component {
             <View style={this.props.containerStyle}>
                 {
                     this.props.topDivider ?
-                        <Divider style={[ commonStyles.divide, {
+                        <Divider style={[commonStyles.divide, {
                             marginLeft: 0,
                             marginRight: 0,
-                        } ]}/>
+                        }]}/>
                         :
                         null
                 }
                 {
                     this.props.title ?
-                        <Text style={[ { color: constStyles.tipTitleColor, fontSize: 14 } ]}>
+                        <Text style={[{ color: constStyles.tipTitleColor, fontSize: 14 }]}>
                             {this.props.title}
                         </Text>
                         :
@@ -56,12 +56,12 @@ class ListItemWithPicker extends React.Component {
                         this.picker = picker
                     }}
                     style={{
-                        inputIOS: [ {
+                        inputIOS: [{
                             ...styles.inputIOS,
-                        }, this.props.contentTextStyle ],
-                        inputAndroid: [ {
+                        }, this.props.contentTextStyle],
+                        inputAndroid: [{
                             ...styles.inputAndroid
-                        }, this.props.contentTextStyle ],
+                        }, this.props.contentTextStyle],
                         iconContainer: {
                             top: 20,
                             right: 10,
@@ -97,10 +97,10 @@ class ListItemWithPicker extends React.Component {
 
                 {
                     this.props.bottomDivider ?
-                        <Divider style={[ commonStyles.divide, {
+                        <Divider style={[commonStyles.divide, {
                             marginLeft: 0,
                             marginRight: 0,
-                        } ]}/>
+                        }]}/>
                         :
                         null
                 }

@@ -16,27 +16,30 @@ import {
 } from 'react-native';
 import commonStyles from "../../styles/commonStyles";
 import Toast from "react-native-root-toast";
-import {Text} from "react-native-elements";
-import {BorderlessButton} from "react-native-gesture-handler";
-import {Ionicons} from "@expo/vector-icons";
-import {DrawerActions} from 'react-navigation-drawer';
+import { Text } from "react-native-elements";
+import { BorderlessButton } from "react-native-gesture-handler";
+import { Ionicons } from "@expo/vector-icons";
+import { DrawerActions } from 'react-navigation-drawer';
 import I18n from "../../I18n";
 import Keys from "../../configs/Keys";
-import {Updates} from "expo";
-import {ConfirmDialog} from "react-native-simple-dialogs";
+import { Updates } from "expo";
+import { ConfirmDialog } from "react-native-simple-dialogs";
 import constStyles from "../../styles/constStyles";
 import Spinner from "react-native-loading-spinner-overlay";
 import ExchangePairList from "./components/ExchangePairList";
-import {SceneMap, TabBar, TabView} from "react-native-tab-view";
+import { SceneMap, TabBar, TabView } from "react-native-tab-view";
 
 
 class HomePageView extends React.Component {
 
-    constructor(props) {
-        super(props);
+    constructor( props ) {
+        super( props );
 
-        const tabData = [{title: I18n.t(Keys.change_rank), value: []}, {title: I18n.t(Keys.amount_rank), value: []}];
-        const {index, routes, scenes} = this.initTabData(this.props.coin_exchange_area);
+        const tabData = [{ title: I18n.t( Keys.change_rank ), value: [] }, {
+            title: I18n.t( Keys.amount_rank ),
+            value: []
+        }];
+        const { index, routes, scenes } = this.initTabData( this.props.coin_exchange_area );
 
         this.state = {
             isRequesting: true,
@@ -50,24 +53,24 @@ class HomePageView extends React.Component {
         }
     }
 
-    static navigationOptions = (props) => {
-        const {navigation} = props;
-        const {state, setParams} = navigation;
-        const {params} = state;
+    static navigationOptions = ( props ) => {
+        const { navigation } = props;
+        const { state, setParams } = navigation;
+        const { params } = state;
 
         return {
             title: null,
             headerBackTitle: null,
-            headerTitle: (<Image style={{width: 90, height: 20}}
-                                 source={require('../../../assets/images/asiaedx_logo.png')}/>),
+            headerTitle: ( <Image style={{ width: 90, height: 20 }}
+                                  source={require( '../../../assets/images/asiaedx_logo.png' )}/> ),
             headerLeft: (
                 <BorderlessButton
                     onPress={() => {
-                        navigation.dispatch(DrawerActions.openDrawer());
+                        navigation.dispatch( DrawerActions.openDrawer() );
                     }}
-                    style={{marginLeft: 15}}>
+                    style={{ marginLeft: 15 }}>
 
-                    <View style={{flexDirection: 'row'}}>
+                    <View style={{ flexDirection: 'row' }}>
                         <Ionicons
                             name="md-menu"
                             size={Platform.OS === 'ios' ? 22 : 25}
@@ -86,53 +89,53 @@ class HomePageView extends React.Component {
     }
 
     componentWillUnmount() {
-        this.interval && clearInterval(this.interval);
-        this.setState = (state, callback) => {
+        this.interval && clearInterval( this.interval );
+        this.setState = ( state, callback ) => {
         };
     }
 
-    componentWillReceiveProps(nextProps) {
+    componentWillReceiveProps( nextProps ) {
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        if (this.props.marketList !== nextProps.marketList) {
-            const change_rank_data = nextProps.marketList.sort((a, b) => {
+    shouldComponentUpdate( nextProps, nextState ) {
+        if ( this.props.marketList !== nextProps.marketList ) {
+            const change_rank_data = nextProps.marketList.sort( ( a, b ) => {
                 return b.market.change_rate - a.market.change_rate
-            }).slice(0, 8);
-            const amount_rank_data = nextProps.marketList.sort((a, b) => {
+            } ).slice( 0, 8 );
+            const amount_rank_data = nextProps.marketList.sort( ( a, b ) => {
                 return b.market.total_volume - a.market.total_volume
-            }).slice(0, 8);
+            } ).slice( 0, 8 );
 
-            const tabData = [{title: I18n.t(Keys.change_rank), value: change_rank_data}, {
-                title: I18n.t(Keys.amount_rank),
+            const tabData = [{ title: I18n.t( Keys.change_rank ), value: change_rank_data }, {
+                title: I18n.t( Keys.amount_rank ),
                 value: amount_rank_data
             }];
 
 
-            const {index, routes, scenes} = this.initTabData(tabData);
-            this.setState({
+            const { index, routes, scenes } = this.initTabData( tabData );
+            this.setState( {
                 routes: routes,
                 scenes: scenes
-            })
+            } )
         }
         return true;
     }
 
 
-    initTabData(tabData) {
+    initTabData( tabData ) {
         const routes = [];
         const scenes = [];
-        if (tabData) {
-            for (let index = 0; index < tabData.length; index++) {
-                routes.push({
+        if ( tabData ) {
+            for ( let index = 0; index < tabData.length; index++ ) {
+                routes.push( {
                     key: '' + index,
-                    title: tabData[index].title
-                });
-                scenes ['' + index] = () => {
+                    title: tabData[ index ].title
+                } );
+                scenes [ '' + index ] = () => {
                     return (
                         <ExchangePairList
-                            data={tabData[index].value}
-                            onPressItem={this.onPressItem.bind(this)}/>
+                            data={tabData[ index ].value}
+                            onPressItem={this.onPressItem.bind( this )}/>
                     );
                 };
             }
@@ -144,33 +147,33 @@ class HomePageView extends React.Component {
         }
     }
 
-    onPressItem(coin_exchange) {
-        this.props.navigation.navigate('KlinePage', {coin_exchange: coin_exchange})
+    onPressItem( coin_exchange ) {
+        this.props.navigation.navigate( 'KlinePage', { coin_exchange: coin_exchange } )
     }
 
     exchangeAreaTabs() {
-        if (this.state.scenes && this.state.scenes.length > 0) {
+        if ( this.state.scenes && this.state.scenes.length > 0 ) {
             return (
                 <View>
                     <TabView
                         navigationState={this.state}
-                        renderScene={SceneMap(this.state.scenes)}
-                        onIndexChange={index => this.setState({index})}
-                        initialLayout={{width: Dimensions.get('window').width}}
+                        renderScene={SceneMap( this.state.scenes )}
+                        onIndexChange={index => this.setState( { index } )}
+                        initialLayout={{ width: Dimensions.get( 'window' ).width }}
                         renderTabBar={props =>
                             <TabBar
                                 {...props}
-                                indicatorStyle={{backgroundColor: constStyles.THEME_COLOR}}
+                                indicatorStyle={{ backgroundColor: constStyles.THEME_COLOR }}
                                 inactiveColor={'#888'}
                                 activeColor={constStyles.THEME_COLOR}
-                                style={{backgroundColor: 'white', flexDirection: 'row'}}
-                                tabStyle={{width: 'auto'}}
+                                style={{ backgroundColor: 'white', flexDirection: 'row' }}
+                                tabStyle={{ width: 'auto' }}
                                 scrollEnabled={true}
                             />
                         }
                         lazy={true}
                     />
-                    <View style={{height: 10, backgroundColor: '#efefef'}}/>
+                    <View style={{ height: 10, backgroundColor: '#efefef' }}/>
                 </View>
             );
         } else {
@@ -178,132 +181,132 @@ class HomePageView extends React.Component {
         }
     }
 
-    loadData(isInit) {
-        if (isInit) {
-            this.setState({
+    loadData( isInit ) {
+        if ( isInit ) {
+            this.setState( {
                 refreshing: true,
                 isRequesting: true
-            });
+            } );
         } else {
-            if (this.state.refreshing) {
+            if ( this.state.refreshing ) {
                 return;
             }
 
-            this.setState({
+            this.setState( {
                 refreshing: true,
-            });
+            } );
         }
 
 
-        InteractionManager.runAfterInteractions(() => {
-            this.props.onExchangeGetMarketList((error, resBody) => {
-                if (error) {
-                    this.setState({
+        InteractionManager.runAfterInteractions( () => {
+            this.props.onExchangeGetMarketList( ( error, resBody ) => {
+                if ( error ) {
+                    this.setState( {
                         isRequesting: false
-                    });
+                    } );
 
-                    Toast.show(error.message);
+                    Toast.show( error.message );
                 } else {
-                    this.setState({
+                    this.setState( {
                         isRequesting: false,
-                    });
+                    } );
                 }
-            });
+            } );
 
 
-        });
+        } );
 
         try {
-            this.interval = setInterval(async () => {
-                InteractionManager.runAfterInteractions(() => {
-                    this.props.onExchangeGetMarketList((error, resBody) => {
-                        if (error) {
-                            this.setState({
+            this.interval = setInterval( async () => {
+                InteractionManager.runAfterInteractions( () => {
+                    this.props.onExchangeGetMarketList( ( error, resBody ) => {
+                        if ( error ) {
+                            this.setState( {
                                 isRequesting: false
-                            });
+                            } );
 
-                            Toast.show(error.message);
+                            Toast.show( error.message );
                         } else {
-                            this.setState({
+                            this.setState( {
                                 isRequesting: false,
-                            });
+                            } );
                         }
-                    });
+                    } );
 
 
-                });
-            }, 5000);
-        } catch (e) {
-            console.log(e);
+                } );
+            }, 5000 );
+        } catch ( e ) {
+            console.log( e );
         }
 
 
-        InteractionManager.runAfterInteractions(() => {
-            this.props.onGetNewsList((error, resBody1) => {
-                if (error) {
-                    this.setState({
+        InteractionManager.runAfterInteractions( () => {
+            this.props.onGetNewsList( ( error, resBody1 ) => {
+                if ( error ) {
+                    this.setState( {
                         isRequesting: false
-                    });
+                    } );
 
-                    Toast.show(error.message);
+                    Toast.show( error.message );
                 } else {
-                    this.setState({
+                    this.setState( {
                         isRequesting: false,
                         newsList: resBody1.data.news.list,
                         announcementList: resBody1.data.announcement.list,
-                    });
+                    } );
                 }
-            });
-        });
+            } );
+        } );
 
     }
 
     checkForUpdate() {
         Updates.checkForUpdateAsync()
-            .then((update) => {
-                if (update.isAvailable) {
-                    this.setState({
+            .then( ( update ) => {
+                if ( update.isAvailable ) {
+                    this.setState( {
                         updateDialogVisible: true
-                    });
+                    } );
                 }
-            })
-            .catch(err => {
+            } )
+            .catch( err => {
                 // console.log( err.message )
                 // Toast.show( err.message )
-            })
+            } )
     }
 
     doUpdate() {
         Updates.fetchUpdateAsync()
-            .then((update) => {
+            .then( ( update ) => {
                 Updates.reload()
-                    .then(() => {
+                    .then( () => {
 
-                    })
-                    .catch(err => {
+                    } )
+                    .catch( err => {
 
-                    });
-            })
-            .catch(err => {
+                    } );
+            } )
+            .catch( err => {
                 // Toast.show( err.message )
-            });
+            } );
     }
 
-    gotoKlinePage(coin_exchange) {
-        this.props.navigation.navigate('KlinePage', {coin_exchange: coin_exchange});
+    gotoKlinePage( coin_exchange ) {
+        this.props.navigation.navigate( 'KlinePage', { coin_exchange: coin_exchange } );
     }
 
     render() {
         const viewHeight = 110;
         const separatorHeight = 1;
 
-        if (this.state.isRequesting) {
+        if ( this.state.isRequesting ) {
             return <Text>Loading...</Text>
         }
 
-        const EHT_BTC = this.props.marketList ? this.props.marketList.find(i => i.coinEx.coin_name.toUpperCase() === "ETH" && i.coinEx.exchange_coin_name.toUpperCase() === "BTC") : null;
-        const GTB_BTC = this.props.marketList ? this.props.marketList.find(i => i.coinEx.coin_name.toUpperCase() === "GTB" && i.coinEx.exchange_coin_name.toUpperCase() === "BTC") : null;
-        const GTB_ETH = this.props.marketList ? this.props.marketList.find(i => i.coinEx.coin_name.toUpperCase() === "GTB" && i.coinEx.exchange_coin_name.toUpperCase() === "ETH") : null;
+        const EHT_BTC = this.props.marketList ? this.props.marketList.find( i => i.coinEx.coin_name.toUpperCase() === "ETH" && i.coinEx.exchange_coin_name.toUpperCase() === "BTC" ) : null;
+        const GTB_BTC = this.props.marketList ? this.props.marketList.find( i => i.coinEx.coin_name.toUpperCase() === "GTB" && i.coinEx.exchange_coin_name.toUpperCase() === "BTC" ) : null;
+        const GTB_ETH = this.props.marketList ? this.props.marketList.find( i => i.coinEx.coin_name.toUpperCase() === "GTB" && i.coinEx.exchange_coin_name.toUpperCase() === "ETH" ) : null;
         const mainTradePair = [EHT_BTC, GTB_BTC, GTB_ETH];
 
 
@@ -315,12 +318,12 @@ class HomePageView extends React.Component {
                     contentContainerStyle={styles.contentContainer}>
 
                     <View>
-                        <TouchableOpacity onPress={() => Linking.openURL('https://t.me/AsiaEDXenglish')}
+                        <TouchableOpacity onPress={() => Linking.openURL( 'https://t.me/AsiaEDXenglish' )}
                                           underlayColor={commonStyles.backgroundColor}>
                             <View style={styles.welcomeContainer}>
 
 
-                                <ImageBackground source={require('../../../assets/images/banner-image.png')}
+                                <ImageBackground source={require( '../../../assets/images/banner-image.png' )}
                                                  style={styles.welcomeImage}>
 
 
@@ -336,19 +339,19 @@ class HomePageView extends React.Component {
                                             fontSize: 20,
                                             color: 'white',
                                             alignItems: 'flex-start'
-                                        }}>{I18n.t(Keys.join_our)}</Text>
+                                        }}>{I18n.t( Keys.join_our )}</Text>
                                         <Text style={{
                                             fontSize: 20,
                                             color: 'white',
                                             alignItems: 'flex-start',
                                             marginTop: 5
-                                        }}>{I18n.t(Keys.telegram_group)}</Text>
+                                        }}>{I18n.t( Keys.telegram_group )}</Text>
                                         <Text style={{
                                             fontSize: 16,
                                             color: 'white',
                                             alignItems: 'flex-start',
                                             marginTop: 5
-                                        }}>{I18n.t(Keys.for_latest_news)}</Text>
+                                        }}>{I18n.t( Keys.for_latest_news )}</Text>
 
                                     </View>
                                 </ImageBackground>
@@ -364,15 +367,15 @@ class HomePageView extends React.Component {
                             }}>
                             {
 
-                                mainTradePair.map((pair, index) => {
-                                    if (pair) {
+                                mainTradePair.map( ( pair, index ) => {
+                                    if ( pair ) {
                                         return (
                                             <TouchableHighlight
                                                 key={"items " + index}
-                                                style={{flex: 1}}
+                                                style={{ flex: 1 }}
                                                 underlayColor='#ddd'
-                                                onPress={() => this.gotoKlinePage(pair)}>
-                                                <View style={{flex: 1, alignItems: 'center'}}>
+                                                onPress={() => this.gotoKlinePage( pair )}>
+                                                <View style={{ flex: 1, alignItems: 'center' }}>
                                                     <Text>{pair.coinEx.coin_name + '/' + pair.coinEx.exchange_coin_name}</Text>
                                                     <Text style={{
                                                         fontSize: 16,
@@ -380,66 +383,70 @@ class HomePageView extends React.Component {
                                                         color: pair.market.change_rate < 0 ? '#ca4159' : '#04a384'
                                                     }}>{pair ? pair.market.last_price : ''}</Text>
                                                     <Text
-                                                        style={{color: pair.market.change_rate < 0 ? '#ca4159' : '#04a384'}}>
-                                                        {pair ? (pair.market.change_rate * 100).toFixed(2) + '%' : null}
+                                                        style={{ color: pair.market.change_rate < 0 ? '#ca4159' : '#04a384' }}>
+                                                        {pair ? ( pair.market.change_rate * 100 ).toFixed( 2 ) + '%' : null}
                                                     </Text>
-                                                    <Text> ≈{pair ? pair.price_usd.toFixed(2) + ' USD' : null} </Text>
+                                                    <Text> ≈{pair ? pair.price_usd.toFixed( 2 ) + ' USD' : null} </Text>
                                                 </View>
                                             </TouchableHighlight>
                                         )
                                     } else {
                                         return null;
                                     }
-                                })
+                                } )
                             }
                         </View>
 
-                        <View style={{height: 10, backgroundColor: '#efefef'}}/>
+                        <View style={{ height: 10, backgroundColor: '#efefef' }}/>
                     </View>
                     {this.exchangeAreaTabs()}
 
 
                     <View>
 
-                        <Text style={{padding: 10, fontSize: 22, fontWeight: 'bold'}}>{I18n.t(Keys.news)}</Text>
+                        <Text style={{ padding: 10, fontSize: 22, fontWeight: 'bold' }}>{I18n.t( Keys.news )}</Text>
 
                         <FlatList
                             data={this.state.newsList}
-                            keyExtractor={(item, index) => {
+                            keyExtractor={( item, index ) => {
                                 return 'item ' + index;
                             }}
-                            renderItem={({item, index}) => {
-                                return this.renderItem(viewHeight, item, index);
+                            renderItem={( { item, index } ) => {
+                                return this.renderItem( viewHeight, item, index );
                             }}
                             ItemSeparatorComponent={() => {
                                 return <View
-                                    style={[commonStyles.commonIntervalStyle, {height: separatorHeight}]}/>;
+                                    style={[commonStyles.commonIntervalStyle, { height: separatorHeight }]}/>;
                             }}
-                            getItemLayout={(data, index) => (
-                                {length: viewHeight, offset: (viewHeight + separatorHeight) * index, index}
+                            getItemLayout={( data, index ) => (
+                                { length: viewHeight, offset: ( viewHeight + separatorHeight ) * index, index }
                             )}
                             onScroll={() => {
                             }}
                         />
 
-                        <View style={{height: 1, backgroundColor: '#efefef'}}/>
+                        <View style={{ height: 1, backgroundColor: '#efefef' }}/>
 
-                        <Text style={{padding: 10, fontSize: 22, fontWeight: 'bold'}}>{I18n.t(Keys.announcement)}</Text>
+                        <Text style={{
+                            padding: 10,
+                            fontSize: 22,
+                            fontWeight: 'bold'
+                        }}>{I18n.t( Keys.announcement )}</Text>
 
                         <FlatList
                             data={this.state.announcementList}
-                            keyExtractor={(item, index) => {
+                            keyExtractor={( item, index ) => {
                                 return 'item ' + index;
                             }}
-                            renderItem={({item, index}) => {
-                                return this.renderItem(viewHeight, item, index);
+                            renderItem={( { item, index } ) => {
+                                return this.renderItem( viewHeight, item, index );
                             }}
                             ItemSeparatorComponent={() => {
                                 return <View
-                                    style={[commonStyles.commonIntervalStyle, {height: separatorHeight}]}/>;
+                                    style={[commonStyles.commonIntervalStyle, { height: separatorHeight }]}/>;
                             }}
-                            getItemLayout={(data, index) => (
-                                {length: viewHeight, offset: (viewHeight + separatorHeight) * index, index}
+                            getItemLayout={( data, index ) => (
+                                { length: viewHeight, offset: ( viewHeight + separatorHeight ) * index, index }
                             )}
                             onScroll={() => {
                             }}
@@ -452,25 +459,25 @@ class HomePageView extends React.Component {
                 <Spinner visible={this.state.isRequesting} cancelable={true}/>
 
                 <ConfirmDialog
-                    title={I18n.t(Keys.notification)}
-                    message={I18n.t(Keys.update_now)}
+                    title={I18n.t( Keys.notification )}
+                    message={I18n.t( Keys.update_now )}
                     visible={this.state.updateDialogVisible}
-                    onTouchOutside={() => this.setState({updateDialogVisible: false})}
+                    onTouchOutside={() => this.setState( { updateDialogVisible: false } )}
                     positiveButton={{
-                        title: I18n.t(Keys.yes),
+                        title: I18n.t( Keys.yes ),
                         onPress: () => {
-                            this.setState({
+                            this.setState( {
                                 updateDialogVisible: false
-                            });
+                            } );
                             this.doUpdate();
                         }
                     }}
                     negativeButton={{
-                        title: I18n.t(Keys.no),
+                        title: I18n.t( Keys.no ),
                         onPress: () => {
-                            this.setState({
+                            this.setState( {
                                 updateDialogVisible: false
-                            });
+                            } );
                         }
                     }}
                 />
@@ -480,27 +487,27 @@ class HomePageView extends React.Component {
             ;
     }
 
-    renderItem(viewHeight, item, index) {
+    renderItem( viewHeight, item, index ) {
         const url = "https://www.asiaedx.com/#/doc/newsDetail/";
 
         return (
             <TouchableHighlight
                 underlayColor='#ddd'
-                style={index % 2 === 1 ? {backgroundColor: '#efefef'} : {backgroundColor: 'white'}}
+                style={index % 2 === 1 ? { backgroundColor: '#efefef' } : { backgroundColor: 'white' }}
                 onPress={() => {
-                    this.props.navigation.navigate('WebViewPage', {
-                        url: url + item.page_news_id + (I18n.locale === 'zh-Hans' ? "lang=zh-cn" : ""),
+                    this.props.navigation.navigate( 'WebViewPage', {
+                        url: url + item.page_news_id + ( I18n.locale === 'zh-Hans' ? "lang=zh-cn" : "" ),
                         webTitle: I18n.locale === 'zh-Hans' ? item.news_title : item.news_title_en
-                    })
+                    } )
                 }}>
 
-                <View style={{alignItems: 'flex-start', height: 60, marginStart: 20, marginEnd: 20, marginTop: 10}}>
+                <View style={{ alignItems: 'flex-start', height: 60, marginStart: 20, marginEnd: 20, marginTop: 10 }}>
 
                     <Text>
                         {I18n.locale === 'zh-Hans' ? item.news_title : item.news_title_en}
                     </Text>
 
-                    <Text style={{marginTop: 5}}>
+                    <Text style={{ marginTop: 5 }}>
                         {item.update_time}
                     </Text>
                 </View>
@@ -510,7 +517,7 @@ class HomePageView extends React.Component {
     }
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create( {
     container: {
         flex: 1,
         backgroundColor: '#fff',
@@ -565,17 +572,17 @@ const styles = StyleSheet.create({
         bottom: 0,
         left: 0,
         right: 0,
-        ...Platform.select({
+        ...Platform.select( {
             ios: {
                 shadowColor: 'black',
-                shadowOffset: {width: 0, height: -3},
+                shadowOffset: { width: 0, height: -3 },
                 shadowOpacity: 0.1,
                 shadowRadius: 3,
             },
             android: {
                 elevation: 20,
             },
-        }),
+        } ),
         alignItems: 'center',
         backgroundColor: '#fbfbfb',
         paddingVertical: 20,
@@ -607,7 +614,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
         color: '#ff0000',
     },
-});
+} );
 
 export default HomePageView;
 

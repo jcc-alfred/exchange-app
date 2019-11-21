@@ -13,8 +13,8 @@ let _store;
 export function setup( props ) {
     console.disableYellowBox = true;
 
-    const [ isLoadingComplete, setLoadingComplete ] = useState( false );
-    const [ store, setStore ] = useState( null );
+    const [isLoadingComplete, setLoadingComplete] = useState( false );
+    const [store, setStore] = useState( null );
 
     if ( !isLoadingComplete && !props.skipLoadingScreen ) {
         return (

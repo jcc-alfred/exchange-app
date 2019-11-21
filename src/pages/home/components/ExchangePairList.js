@@ -1,8 +1,8 @@
 import React from "react";
 
-import {FlatList, RefreshControl, TouchableHighlight, View, ViewPropTypes} from "react-native";
+import { FlatList, RefreshControl, TouchableHighlight, View, ViewPropTypes } from "react-native";
 import PropTypes from 'prop-types';
-import {Text} from "react-native-elements";
+import { Text } from "react-native-elements";
 import commonStyles from "../../../styles/commonStyles";
 import I18n from "../../../I18n";
 import Keys from "../../../configs/Keys";
@@ -15,8 +15,8 @@ class ExchangePairList extends React.Component {
         errorMessage: PropTypes.string,
     };
 
-    constructor(props) {
-        super(props);
+    constructor( props ) {
+        super( props );
     }
 
     static header() {
@@ -30,64 +30,64 @@ class ExchangePairList extends React.Component {
                     marginLeft: 5
                 }}>
 
-                <View style={{flex: 1,}}>
-                    <Text style={{textAlign: 'left'}}>{I18n.t(Keys.name)}</Text>
+                <View style={{ flex: 1, }}>
+                    <Text style={{ textAlign: 'left' }}>{I18n.t( Keys.name )}</Text>
                 </View>
 
-                <View style={{flex: 1}}>
-                    <Text>{I18n.t(Keys.latest_price)}</Text>
+                <View style={{ flex: 1 }}>
+                    <Text>{I18n.t( Keys.latest_price )}</Text>
                 </View>
 
-                <View style={{flex: 1, alignItems: 'center'}}>
-                    <Text>{I18n.t(Keys.change_rate)}</Text>
+                <View style={{ flex: 1, alignItems: 'center' }}>
+                    <Text>{I18n.t( Keys.change_rate )}</Text>
                 </View>
             </View>
         )
     }
 
-    shouldComponentUpdate(nextProps, nextState, nextContext) {
-        if (nextProps.data !== this.props.data) {
+    shouldComponentUpdate( nextProps, nextState, nextContext ) {
+        if ( nextProps.data !== this.props.data ) {
             return true
         }
     }
 
-    renderItem(viewHeight, item, index) {
+    renderItem( viewHeight, item, index ) {
         return (
             <TouchableHighlight
                 underlayColor='#ddd'
-                onPress={() => this.props.onPressItem(item)}>
+                onPress={() => this.props.onPressItem( item )}>
 
-                <View style={{alignItems: 'center', flexDirection: 'row', height: viewHeight, marginLeft: 5}}>
-                    <View style={{flex: 1}}>
-                        <View style={{flexDirection: 'row'}}>
-                            <Text style={{fontWeight: 'bold', fontSize: 16}}>
+                <View style={{ alignItems: 'center', flexDirection: 'row', height: viewHeight, marginLeft: 5 }}>
+                    <View style={{ flex: 1 }}>
+                        <View style={{ flexDirection: 'row' }}>
+                            <Text style={{ fontWeight: 'bold', fontSize: 16 }}>
                                 {item.coinEx.coin_name}
                             </Text>
-                            <Text style={{color: '#e8e4dc', fontSize: 16}}>/{item.coinEx.exchange_coin_name}</Text>
+                            <Text style={{ color: '#e8e4dc', fontSize: 16 }}>/{item.coinEx.exchange_coin_name}</Text>
                         </View>
-                        <Text style={{color: '#696965', fontSize: 12, marginTop: 3}}>
-                            24{I18n.t(Keys.vol)} {Util.toVolumeDisplay(item.market.total_volume)}
+                        <Text style={{ color: '#696965', fontSize: 12, marginTop: 3 }}>
+                            24{I18n.t( Keys.vol )} {Util.toVolumeDisplay( item.market.total_volume )}
                         </Text>
                     </View>
 
-                    <View style={{flex: 1}}>
-                        <Text style={{fontWeight: 'bold', fontSize: 16}}>
+                    <View style={{ flex: 1 }}>
+                        <Text style={{ fontWeight: 'bold', fontSize: 16 }}>
                             {item.market.last_price}
                         </Text>
-                        <Text style={{color: '#696965', fontSize: 12, marginTop: 3}}>
-                            ${Util.toMoneyDisplay(item.price_usd)}
+                        <Text style={{ color: '#696965', fontSize: 12, marginTop: 3 }}>
+                            ${Util.toMoneyDisplay( item.price_usd )}
                         </Text>
                     </View>
 
 
-                    <View style={{flex: 1, alignItems: 'center'}}>
+                    <View style={{ flex: 1, alignItems: 'center' }}>
                         <View style={{
                             backgroundColor: item.market.change_rate > 0 ? '#04a384' : '#ca4159',
                             width: '60%',
                             alignItems: 'center',
                         }}>
-                            <Text style={{color: 'white', fontWeight: 'bold', lineHeight: 28, fontSize: 16}}>
-                                {Util.numToPercentage(item.market.change_rate)}
+                            <Text style={{ color: 'white', fontWeight: 'bold', lineHeight: 28, fontSize: 16 }}>
+                                {Util.numToPercentage( item.market.change_rate )}
                             </Text>
                         </View>
                     </View>
@@ -109,21 +109,21 @@ class ExchangePairList extends React.Component {
                     />
                 }
                 data={this.props.data}
-                keyExtractor={(item, index) => {
+                keyExtractor={( item, index ) => {
                     return 'item ' + index;
                 }}
-                renderItem={({item, index}) => {
-                    return this.renderItem(viewHeight, item, index);
+                renderItem={( { item, index } ) => {
+                    return this.renderItem( viewHeight, item, index );
                 }}
                 ListHeaderComponent={() => {
                     return ExchangePairList.header();
                 }}
                 ItemSeparatorComponent={() => {
                     return <View
-                        style={[commonStyles.commonIntervalStyle, {height: separatorHeight}]}/>;
+                        style={[commonStyles.commonIntervalStyle, { height: separatorHeight }]}/>;
                 }}
-                getItemLayout={(data, index) => (
-                    {length: viewHeight, offset: (viewHeight + separatorHeight) * index, index}
+                getItemLayout={( data, index ) => (
+                    { length: viewHeight, offset: ( viewHeight + separatorHeight ) * index, index }
                 )}
                 onScroll={() => {
                 }}

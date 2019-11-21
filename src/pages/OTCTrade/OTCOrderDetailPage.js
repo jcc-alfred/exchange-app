@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from "react-redux";
 import OTCOrderDetailPageView from "./OTCOrderDetailPageView";
 
-import {otcOrder, otcOrderMy} from "../../actions/OtcAction";
+import { otcOrder } from "../../actions/OtcAction";
 
 const mapStoreToProps = ( store, ownProps ) => {
     const { params } = ownProps.navigation.state;
@@ -19,10 +19,10 @@ const mapStoreToProps = ( store, ownProps ) => {
 const mapDispatchToProps = ( dispatch, ownProps ) => ( {
 
 
-    onOtcOrder: (id, callback )=>{
-        dispatch( otcOrder(id, (err,res) =>{
+    onOtcOrder: ( id, callback ) => {
+        dispatch( otcOrder( id, ( err, res ) => {
             callback && callback( err, res )
-        }));
+        } ) );
     }
 
 

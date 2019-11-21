@@ -101,10 +101,10 @@ class FundPasswordChangePageView extends React.Component {
 
     render() {
         return (
-            <View style={[ commonStyles.wrapper, ]}>
+            <View style={[commonStyles.wrapper,]}>
                 <StatusBar backgroundColor="blue" barStyle="dark-content"/>
-                <SafeAreaView style={[ commonStyles.wrapper, ]}>
-                    <ScrollView style={[ commonStyles.wrapper ]}>
+                <SafeAreaView style={[commonStyles.wrapper,]}>
+                    <ScrollView style={[commonStyles.wrapper]}>
                         <View>
                             {
                                 this.props.isReset ?
@@ -154,12 +154,12 @@ class FundPasswordChangePageView extends React.Component {
 
                             <Input
                                 label={I18n.t( Keys.verify_code )}
-                                style={[ commonStyles.wrapper ]}
+                                style={[commonStyles.wrapper]}
                                 maxLength={6}
                                 rightIcon={
                                     this.state.isCountingDown ?
                                         <CountDown
-                                            style={[ { height: 20 } ]}
+                                            style={[{ height: 20 }]}
                                             until={__DEV__ ? 10 : 60}
                                             size={12}
                                             onFinish={() => {
@@ -169,7 +169,7 @@ class FundPasswordChangePageView extends React.Component {
                                             }}
                                             digitStyle={{ backgroundColor: constStyles.THEME_COLOR }}
                                             digitTxtStyle={{ color: 'white' }}
-                                            timeToShow={[ 'S' ]}
+                                            timeToShow={['S']}
                                             timeLabels={{}}
                                             running={this.state.isCountingDown}
                                         />
@@ -177,15 +177,15 @@ class FundPasswordChangePageView extends React.Component {
                                         <Button
                                             title={I18n.t( Keys.resend )}
                                             type="outline"
-                                            buttonStyle={[ { height: 30, paddingTop: 7, paddingBottom: 7 } ]}
-                                            titleStyle={[ { fontSize: 14, } ]}
+                                            buttonStyle={[{ height: 30, paddingTop: 7, paddingBottom: 7 }]}
+                                            titleStyle={[{ fontSize: 14, }]}
                                             onPress={() => {
                                                 this.verificationCodeGet()
                                             }
                                             }
                                         />
                                 }
-                                leftIconContainerStyle={[ commonStyles.pdr_normal ]}
+                                leftIconContainerStyle={[commonStyles.pdr_normal]}
                                 value={this.state.code}
                                 onChangeText={( text ) => this.setState( {
                                     code: text
@@ -207,7 +207,7 @@ class FundPasswordChangePageView extends React.Component {
                                     this.resetPassword()
                                 }
                                 }
-                                containerStyle={[ commonStyles.mgt_normal, commonStyles.mgl_normal, commonStyles.mgr_normal ]}
+                                containerStyle={[commonStyles.mgt_normal, commonStyles.mgl_normal, commonStyles.mgr_normal]}
                             />
 
 
@@ -224,7 +224,7 @@ class FundPasswordChangePageView extends React.Component {
                                             } )
                                         }
                                         }
-                                        containerStyle={[ commonStyles.mgt_normal, commonStyles.mgl_normal, commonStyles.mgr_normal ]}
+                                        containerStyle={[commonStyles.mgt_normal, commonStyles.mgl_normal, commonStyles.mgr_normal]}
                                     />
                             }
                         </View>

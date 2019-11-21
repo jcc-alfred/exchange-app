@@ -69,11 +69,11 @@ class SettingsPageView extends React.Component {
 
     render() {
         return (
-            <View style={[ commonStyles.wrapper, ]}>
+            <View style={[commonStyles.wrapper,]}>
                 <StatusBar backgroundColor="blue" barStyle="dark-content"/>
-                <SafeAreaView style={[ commonStyles.wrapper, ]}>
+                <SafeAreaView style={[commonStyles.wrapper,]}>
                     <ScrollView>
-                        <View style={[ commonStyles.pdt_normal, commonStyles.pdb_normal ]}>
+                        <View style={[commonStyles.pdt_normal, commonStyles.pdb_normal]}>
 
                             <ListItem
                                 title={I18n.t( Keys.languages )}
@@ -92,7 +92,7 @@ class SettingsPageView extends React.Component {
                                             this.logout();
                                         }
                                         }
-                                        containerStyle={[ commonStyles.mgt_normal, commonStyles.mgl_normal, commonStyles.mgr_normal ]}
+                                        containerStyle={[commonStyles.mgt_normal, commonStyles.mgl_normal, commonStyles.mgr_normal]}
                                     />
                                     :
                                     null

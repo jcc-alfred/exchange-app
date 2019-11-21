@@ -104,10 +104,10 @@ class UserInfoVerifyPageView extends React.Component {
 
     render() {
         return (
-            <View style={[ commonStyles.wrapper, ]}>
+            <View style={[commonStyles.wrapper,]}>
                 <StatusBar backgroundColor="blue" barStyle="dark-content"/>
-                <SafeAreaView style={[ commonStyles.wrapper, ]}>
-                    <ScrollView style={[ commonStyles.wrapper ]}>
+                <SafeAreaView style={[commonStyles.wrapper,]}>
+                    <ScrollView style={[commonStyles.wrapper]}>
                         <View>
                             <MediaSingleComponent
                                 editOptions={{}}
@@ -156,7 +156,7 @@ class UserInfoVerifyPageView extends React.Component {
                                     this.send()
                                 }
                                 }
-                                containerStyle={[ commonStyles.mgt_normal ]}
+                                containerStyle={[commonStyles.mgt_normal]}
                             />
                         </View>
                     </ScrollView>

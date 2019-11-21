@@ -111,7 +111,7 @@ class AssetsListPageView extends React.Component {
     };
 
     renderItem( viewHeight, item, index ) {
-        console.log(item);
+        console.log( item );
         return (
             <TouchableHighlight
                 underlayColor='#ddd'
@@ -120,19 +120,19 @@ class AssetsListPageView extends React.Component {
                         assets: item
                     } )
                 }}>
-                <View style={[ { height: viewHeight } ]}>
+                <View style={[{ height: viewHeight }]}>
                     <View style={{ flexDirection: "row" }}><Text
-                        style={[ { flex: 1 }, styles.cellCoinNameText ]}>{item.coin_name}</Text></View>
+                        style={[{ flex: 1 }, styles.cellCoinNameText]}>{item.coin_name}</Text></View>
                     <View style={{ flexDirection: "row" }}><Text
-                        style={[ { flex: 1 }, styles.cellMenuText ]}>{I18n.t( Keys.available )}</Text><Text
-                        style={[ { flex: 1 }, styles.cellMenuText ]}>{I18n.t( Keys.frozen )}</Text><Text
-                        style={[ { flex: 1 }, styles.cellMenuText ]}>{I18n.t( Keys.Estimated )}(USD)</Text></View>
-                    <View style={{ flexDirection: "row" }}><Text style={[ {
+                        style={[{ flex: 1 }, styles.cellMenuText]}>{I18n.t( Keys.available )}</Text><Text
+                        style={[{ flex: 1 }, styles.cellMenuText]}>{I18n.t( Keys.frozen )}</Text><Text
+                        style={[{ flex: 1 }, styles.cellMenuText]}>{I18n.t( Keys.Estimated )}(USD)</Text></View>
+                    <View style={{ flexDirection: "row" }}><Text style={[{
                         flex: 1,
                         marginLeft: 10
-                    }, styles.cellValueText ]}>{item.available.toFixed( 2 )}</Text><Text
-                        style={[ { flex: 1 }, styles.cellValueText ]}>{item.frozen.toFixed( 2 )}</Text><Text
-                        style={[ { flex: 1 }, styles.cellValueText ]}>{parseFloat(item.value_USD).toFixed( 2 )}</Text></View>
+                    }, styles.cellValueText]}>{item.available.toFixed( 2 )}</Text><Text
+                        style={[{ flex: 1 }, styles.cellValueText]}>{item.frozen.toFixed( 2 )}</Text><Text
+                        style={[{ flex: 1 }, styles.cellValueText]}>{parseFloat( item.value_USD ).toFixed( 2 )}</Text></View>
                 </View>
             </TouchableHighlight>
         );
@@ -140,10 +140,10 @@ class AssetsListPageView extends React.Component {
 
     render() {
         return (
-            <View style={[ commonStyles.wrapper, ]}>
+            <View style={[commonStyles.wrapper,]}>
                 <StatusBar backgroundColor="blue" barStyle="dark-content"/>
-                <SafeAreaView style={[ commonStyles.wrapper, ]}>
-                    <View style={[ commonStyles.wrapper, ]}>
+                <SafeAreaView style={[commonStyles.wrapper,]}>
+                    <View style={[commonStyles.wrapper,]}>
                         {this.renderTopBanner()}
                         {this.renderDataList()}
                     </View>
@@ -157,10 +157,10 @@ class AssetsListPageView extends React.Component {
         const BTC_VALUE = this.props.userAssets.length > 0 ? this.props.userAssets.map( i => i.value_BTC ).reduce( ( a, b ) => parseFloat( a ) + parseFloat( b ) ) : 0;
         const USD_VALUE = this.props.userAssets.length > 0 ? this.props.userAssets.map( i => i.value_USD ).reduce( ( a, b ) => parseFloat( a ) + parseFloat( b ) ) : 0;
         return (
-            <View style={[ { backgroundColor: "#0083dc" } ]}>
+            <View style={[{ backgroundColor: "#0083dc" }]}>
                 <View>
                     <Text
-                        style={[ styles.smallGrayFont, { marginLeft: 8 } ]}>{I18n.t( Keys.Total_account_assets )} (BTC)</Text>
+                        style={[styles.smallGrayFont, { marginLeft: 8 }]}>{I18n.t( Keys.Total_account_assets )} (BTC)</Text>
                 </View>
                 <View style={{ flexDirection: "row" }}>
                     <Text style={styles.bigAssetFont}>{BTC_VALUE.toFixed( 2 )} BTC</Text>
@@ -177,7 +177,7 @@ class AssetsListPageView extends React.Component {
         const viewHeight = 100;
         const separatorHeight = 1;
         return (
-            <View style={[ commonStyles.wrapper, ]}>
+            <View style={[commonStyles.wrapper,]}>
 
                 <FlatList
                     refreshControl={
@@ -198,7 +198,7 @@ class AssetsListPageView extends React.Component {
                     }}
                     ItemSeparatorComponent={() => {
                         return <View
-                            style={[ commonStyles.commonIntervalStyle, { height: separatorHeight } ]}/>;
+                            style={[commonStyles.commonIntervalStyle, { height: separatorHeight }]}/>;
                     }}
                     getItemLayout={( data, index ) => (
                         { length: viewHeight, offset: ( viewHeight + separatorHeight ) * index, index }

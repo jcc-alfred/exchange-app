@@ -63,60 +63,60 @@ class BuySellEntrustList extends React.Component {
             return (
                 <View style={{ flexDirection: 'row', height: viewHeight }}>
                     <View
-                        style={[ {
+                        style={[{
                             flexDirection: 'row',
                             flex: 1,
                             backgroundColor: '#122835',
-                        } ]}>
+                        }]}>
                         {
                             buyEntrust !== {} && (
                                 <View style={{ flexDirection: 'row', flex: 1 }}>
-                                    <View style={[ styles.overlay, {
+                                    <View style={[styles.overlay, {
                                         backgroundColor: constStyles.THEME_COLOR,
                                         width: Util.calcDisplayDiscount( 1 - buyEntrust.no_completed_volume / buyEntrust.entrust_volume )
-                                    } ]}/>
-                                    <Text style={[ { flex: 1, fontSize: 8, color: '#9c9a97' } ]}>{index}</Text>
-                                    <Text style={[ {
+                                    }]}/>
+                                    <Text style={[{ flex: 1, fontSize: 8, color: '#9c9a97' }]}>{index}</Text>
+                                    <Text style={[{
                                         flex: 1,
                                         fontSize: 8,
                                         color: 'white'
-                                    } ]}>{buyEntrust.no_completed_volume ? buyEntrust.no_completed_volume : null}</Text>
+                                    }]}>{buyEntrust.no_completed_volume ? buyEntrust.no_completed_volume : null}</Text>
                                     <Text
-                                        style={[ {
+                                        style={[{
                                             flex: 1,
                                             fontSize: 8,
                                             color: '#009d7a'
-                                        } ]}>{buyEntrust.entrust_price ? buyEntrust.entrust_price.toFixed( 8 ) : null}</Text>
+                                        }]}>{buyEntrust.entrust_price ? buyEntrust.entrust_price.toFixed( 8 ) : null}</Text>
                                 </View>
                             )
                         }
                     </View>
                     <View
-                        style={[ {
+                        style={[{
                             flexDirection: 'row',
                             flex: 1,
                             backgroundColor: constStyles.THEME_COLOR
-                        } ]}>
+                        }]}>
                         {
                             sellEntrust !== {} && (
                                 <View style={{ flexDirection: 'row', flex: 1 }}>
-                                    <View style={[ styles.overlay, {
+                                    <View style={[styles.overlay, {
                                         backgroundColor: '#22202f',
                                         width: Util.calcDisplayDiscount( sellEntrust.no_completed_volume / sellEntrust.entrust_volume )
-                                    } ]}/>
+                                    }]}/>
                                     <Text
-                                        style={[ {
+                                        style={[{
                                             flex: 1,
                                             fontSize: 8,
                                             color: '#e7234c'
-                                        } ]}>{sellEntrust.entrust_price ? sellEntrust.entrust_price.toFixed( 8 ) : null}</Text>
-                                    <Text style={[ {
+                                        }]}>{sellEntrust.entrust_price ? sellEntrust.entrust_price.toFixed( 8 ) : null}</Text>
+                                    <Text style={[{
                                         flex: 1,
                                         fontSize: 8,
                                         color: 'white'
-                                    } ]}>{sellEntrust.no_completed_volume ? sellEntrust.no_completed_volume : null}</Text>
+                                    }]}>{sellEntrust.no_completed_volume ? sellEntrust.no_completed_volume : null}</Text>
 
-                                    <Text style={[ { flex: 1, fontSize: 8, color: '#9c9a97' } ]}>{index}</Text>
+                                    <Text style={[{ flex: 1, fontSize: 8, color: '#9c9a97' }]}>{index}</Text>
                                 </View>
 
                             )
@@ -168,7 +168,7 @@ class BuySellEntrustList extends React.Component {
                 }}
                 ItemSeparatorComponent={() => {
                     return <View
-                        style={[ commonStyles.commonIntervalStyle, { height: separatorHeight } ]}/>;
+                        style={[commonStyles.commonIntervalStyle, { height: separatorHeight }]}/>;
                 }}
                 getItemLayout={( data, index ) => (
                     { length: viewHeight, offset: ( viewHeight + separatorHeight ) * index, index }

@@ -6,7 +6,7 @@ const initialState = {
     coinList: [],
     marketList: [],
     TradePageCoinEx: null,
-    docList:[]
+    docList: []
 };
 
 export default function metaReducer( state = initialState, action ) {

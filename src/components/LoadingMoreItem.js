@@ -15,7 +15,7 @@ class LoadingMoreItem extends React.Component {
     render() {
         return (
             this.props.waiting ?
-                <ActivityIndicator style={[ { width: Dimensions.get( 'window' ).width, height: 40 } ]}/>
+                <ActivityIndicator style={[{ width: Dimensions.get( 'window' ).width, height: 40 }]}/>
                 :
                 null
         );

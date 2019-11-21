@@ -121,7 +121,7 @@ class ExchangePairList extends React.Component {
                 }}
                 ItemSeparatorComponent={() => {
                     return <View
-                        style={[ commonStyles.commonIntervalStyle, { height: separatorHeight } ]}/>;
+                        style={[commonStyles.commonIntervalStyle, { height: separatorHeight }]}/>;
                 }}
                 getItemLayout={( data, index ) => (
                     { length: viewHeight, offset: ( viewHeight + separatorHeight ) * index, index }

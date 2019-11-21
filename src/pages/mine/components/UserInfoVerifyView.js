@@ -83,13 +83,13 @@ class UserInfoVerifyView extends React.Component {
             <View>
                 <ListItem
                     title={
-                        <View style={[ { flexDirection: 'row', justifyContent: 'center' } ]}>
-                            <Text style={[ {
+                        <View style={[{ flexDirection: 'row', justifyContent: 'center' }]}>
+                            <Text style={[{
                                 flex: 8,
                                 textAlignVertical: 'center',
                                 alignItems: 'center',
                                 padding: 8
-                            } ]}>{I18n.t( Keys.senior_Verification )}</Text>
+                            }]}>{I18n.t( Keys.senior_Verification )}</Text>
                             <View style={{ flex: 3 }}>
                                 {
                                     this.renderState()

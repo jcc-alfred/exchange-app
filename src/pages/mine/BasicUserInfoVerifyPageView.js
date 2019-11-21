@@ -94,10 +94,10 @@ class BasicUserInfoVerifyPageView extends React.Component {
 
     render() {
         return (
-            <View style={[ commonStyles.wrapper, ]}>
+            <View style={[commonStyles.wrapper,]}>
                 <StatusBar backgroundColor="blue" barStyle="dark-content"/>
-                <SafeAreaView style={[ commonStyles.wrapper, ]}>
-                    <ScrollView style={[ commonStyles.wrapper ]}>
+                <SafeAreaView style={[commonStyles.wrapper,]}>
+                    <ScrollView style={[commonStyles.wrapper]}>
                         <View>
                             <ListItem
                                 title={"Country"}
@@ -117,8 +117,8 @@ class BasicUserInfoVerifyPageView extends React.Component {
 
                             <Input
                                 label={"First Name"}
-                                style={[ commonStyles.wrapper ]}
-                                leftIconContainerStyle={[ commonStyles.pdr_normal ]}
+                                style={[commonStyles.wrapper]}
+                                leftIconContainerStyle={[commonStyles.pdr_normal]}
                                 value={this.state.firstName}
                                 onChangeText={( text ) => this.setState( {
                                     firstName: text
@@ -135,8 +135,8 @@ class BasicUserInfoVerifyPageView extends React.Component {
 
                             <Input
                                 label={"Last Name"}
-                                style={[ commonStyles.wrapper ]}
-                                leftIconContainerStyle={[ commonStyles.pdr_normal ]}
+                                style={[commonStyles.wrapper]}
+                                leftIconContainerStyle={[commonStyles.pdr_normal]}
                                 value={this.state.lastName}
                                 onChangeText={( text ) => this.setState( {
                                     lastName: text
@@ -153,8 +153,8 @@ class BasicUserInfoVerifyPageView extends React.Component {
 
                             <Input
                                 label={"Id No"}
-                                style={[ commonStyles.wrapper ]}
-                                leftIconContainerStyle={[ commonStyles.pdr_normal ]}
+                                style={[commonStyles.wrapper]}
+                                leftIconContainerStyle={[commonStyles.pdr_normal]}
                                 value={this.state.idNo}
                                 onChangeText={( text ) => this.setState( {
                                     idNo: text
@@ -177,7 +177,7 @@ class BasicUserInfoVerifyPageView extends React.Component {
                                     this.send()
                                 }
                                 }
-                                containerStyle={[ commonStyles.mgt_normal ]}
+                                containerStyle={[commonStyles.mgt_normal]}
                             />
                         </View>
                     </ScrollView>

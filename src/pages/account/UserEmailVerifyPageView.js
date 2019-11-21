@@ -99,17 +99,17 @@ class UserEmailVerifyPageView extends React.Component {
 
     render() {
         return (
-            <View style={[ commonStyles.wrapper, ]}>
+            <View style={[commonStyles.wrapper,]}>
                 <StatusBar backgroundColor="blue" barStyle="dark-content"/>
-                <SafeAreaView style={[ commonStyles.wrapper, ]}>
+                <SafeAreaView style={[commonStyles.wrapper,]}>
                     <ScrollView>
                         <View>
                             <Input
-                                style={[ commonStyles.wrapper ]}
-                                leftIconContainerStyle={[ commonStyles.pdr_normal, {
+                                style={[commonStyles.wrapper]}
+                                leftIconContainerStyle={[commonStyles.pdr_normal, {
                                     paddingLeft: 0,
                                     marginLeft: 0
-                                } ]}
+                                }]}
                                 value={this.state.email}
                                 onChangeText={( text ) => this.setState( { email: text } )}
                                 keyboardType={'email-address'}
@@ -124,12 +124,12 @@ class UserEmailVerifyPageView extends React.Component {
                             />
                             <Input
                                 label={I18n.t( Keys.new_email_verify_code )}
-                                style={[ commonStyles.wrapper ]}
+                                style={[commonStyles.wrapper]}
                                 maxLength={6}
                                 rightIcon={
                                     this.state.isNewEmailCountingDown ?
                                         <CountDown
-                                            style={[ { height: 20 } ]}
+                                            style={[{ height: 20 }]}
                                             until={__DEV__ ? 10 : 60}
                                             size={12}
                                             onFinish={() => {
@@ -139,7 +139,7 @@ class UserEmailVerifyPageView extends React.Component {
                                             }}
                                             digitStyle={{ backgroundColor: constStyles.THEME_COLOR }}
                                             digitTxtStyle={{ color: 'white' }}
-                                            timeToShow={[ 'S' ]}
+                                            timeToShow={['S']}
                                             timeLabels={{}}
                                             running={this.state.isNewEmailCountingDown}
                                         />
@@ -147,15 +147,15 @@ class UserEmailVerifyPageView extends React.Component {
                                         <Button
                                             title={I18n.t( Keys.resend )}
                                             type="outline"
-                                            buttonStyle={[ { height: 30, paddingTop: 7, paddingBottom: 7 } ]}
-                                            titleStyle={[ { fontSize: 14, } ]}
+                                            buttonStyle={[{ height: 30, paddingTop: 7, paddingBottom: 7 }]}
+                                            titleStyle={[{ fontSize: 14, }]}
                                             onPress={() => {
                                                 this.verificationCodeGet( "email" )
                                             }
                                             }
                                         />
                                 }
-                                leftIconContainerStyle={[ commonStyles.pdr_normal ]}
+                                leftIconContainerStyle={[commonStyles.pdr_normal]}
                                 value={this.state.newEmailCode}
                                 onChangeText={( text ) => this.setState( {
                                     newEmailCode: text
@@ -172,12 +172,12 @@ class UserEmailVerifyPageView extends React.Component {
 
                             <Input
                                 label={I18n.t( Keys.email_verify_code )}
-                                style={[ commonStyles.wrapper ]}
+                                style={[commonStyles.wrapper]}
                                 maxLength={6}
                                 rightIcon={
                                     this.state.isEmailCountingDown ?
                                         <CountDown
-                                            style={[ { height: 20 } ]}
+                                            style={[{ height: 20 }]}
                                             until={__DEV__ ? 10 : 60}
                                             size={12}
                                             onFinish={() => {
@@ -187,7 +187,7 @@ class UserEmailVerifyPageView extends React.Component {
                                             }}
                                             digitStyle={{ backgroundColor: constStyles.THEME_COLOR }}
                                             digitTxtStyle={{ color: 'white' }}
-                                            timeToShow={[ 'S' ]}
+                                            timeToShow={['S']}
                                             timeLabels={{}}
                                             running={this.state.isEmailCountingDown}
                                         />
@@ -195,15 +195,15 @@ class UserEmailVerifyPageView extends React.Component {
                                         <Button
                                             title={I18n.t( Keys.resend )}
                                             type="outline"
-                                            buttonStyle={[ { height: 30, paddingTop: 7, paddingBottom: 7 } ]}
-                                            titleStyle={[ { fontSize: 14, } ]}
+                                            buttonStyle={[{ height: 30, paddingTop: 7, paddingBottom: 7 }]}
+                                            titleStyle={[{ fontSize: 14, }]}
                                             onPress={() => {
                                                 this.verificationCodeGet( "email" )
                                             }
                                             }
                                         />
                                 }
-                                leftIconContainerStyle={[ commonStyles.pdr_normal ]}
+                                leftIconContainerStyle={[commonStyles.pdr_normal]}
                                 value={this.state.emailCode}
                                 onChangeText={( text ) => this.setState( {
                                     emailCode: text
@@ -226,7 +226,7 @@ class UserEmailVerifyPageView extends React.Component {
                                     this.resetPassword()
                                 }
                                 }
-                                containerStyle={[ commonStyles.mgt_normal, commonStyles.mgl_normal, commonStyles.mgr_normal ]}
+                                containerStyle={[commonStyles.mgt_normal, commonStyles.mgl_normal, commonStyles.mgr_normal]}
                             />
                         </View>
                     </ScrollView>

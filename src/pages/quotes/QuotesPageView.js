@@ -144,8 +144,10 @@ class QuotesPageView extends React.Component {
                 };
             }
         } else {
-            routes.push({key: '0', title: "loading"});
-            scenes['0']=()=>{return(<View/>)}
+            routes.push( { key: '0', title: "loading" } );
+            scenes[ '0' ] = () => {
+                return ( <View/> )
+            }
         }
 
 
@@ -189,7 +191,7 @@ class QuotesPageView extends React.Component {
         return (
             <View style={commonStyles.wrapper}>
                 <StatusBar backgroundColor="blue" barStyle="dark-content"/>
-                <SafeAreaView style={[ commonStyles.wrapper ]}>
+                <SafeAreaView style={[commonStyles.wrapper]}>
                     {this.exchangeAreaTabs()}
                     <Spinner visible={this.state.isRequesting} cancelable={true}/>
                 </SafeAreaView>

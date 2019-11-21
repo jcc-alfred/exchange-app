@@ -93,14 +93,14 @@ class ModalPicker extends ( React.PureComponent || React.Component ) {
     renderOption( option ) {
         return (
             <TouchableOpacity key={option.key} onPress={() => this.onSelect( option )}>
-                <View style={[ {
+                <View style={[{
                     height: 48
-                }, commonStyles.justAlignCenter ]}>
-                    <Text style={[ {
+                }, commonStyles.justAlignCenter]}>
+                    <Text style={[{
                         textAlign: 'center',
                         fontSize: 18,
                         color: '#0166be'
-                    } ]}>{option.label}</Text>
+                    }]}>{option.label}</Text>
                 </View>
             </TouchableOpacity> )
     }
@@ -111,44 +111,44 @@ class ModalPicker extends ( React.PureComponent || React.Component ) {
             items.push( this.renderOption( this.props.data[ index ] ) );
 
             if ( index < this.props.data.length - 1 ) {
-                items.push( <View key={'interval:' + index} style={[ commonStyles.commonIntervalStyle ]}/> );
+                items.push( <View key={'interval:' + index} style={[commonStyles.commonIntervalStyle]}/> );
             }
         }
 
         return (
-            <View style={[ {
+            <View style={[{
                 paddingLeft: 10,
                 paddingRight: 10,
                 position: 'absolute', left: 0, bottom: getBottomSpace() + 10, right: 0
-            } ]}>
-                <View style={[ commonStyles.wrapper ]}/>
-                <View style={[ {
+            }]}>
+                <View style={[commonStyles.wrapper]}/>
+                <View style={[{
                     borderRadius: 5,
                     backgroundColor: 'white',
-                } ]}>
-                    <ScrollView style={[ { maxHeight: window.height * ( 3 / 5 ) } ]}>
+                }]}>
+                    <ScrollView style={[{ maxHeight: window.height * ( 3 / 5 ) }]}>
                         <View>
                             {items}
                         </View>
                     </ScrollView>
                 </View>
-                <View style={[ {
+                <View style={[{
                     marginTop: 10,
                     backgroundColor: 'white',
                     borderRadius: 5,
-                } ]}>
+                }]}>
                     <TouchableOpacity onPress={() => {
                         this.close()
                     }}>
-                        <View style={[ {
+                        <View style={[{
                             height: 48,
-                        }, commonStyles.justAlignCenter ]}>
+                        }, commonStyles.justAlignCenter]}>
                             <Text
-                                style={[ {
+                                style={[{
                                     textAlign: 'center',
                                     color: '#0166be',
                                     fontSize: 18
-                                } ]}>{I18n.t( Keys.cancel )}</Text>
+                                }]}>{I18n.t( Keys.cancel )}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -177,20 +177,20 @@ class ModalPicker extends ( React.PureComponent || React.Component ) {
                     this.close()
                 }}
             >
-                <View style={[ { position: 'absolute', left: 0, top: 0, right: 0 } ]}>
+                <View style={[{ position: 'absolute', left: 0, top: 0, right: 0 }]}>
                     <TouchableWithoutFeedback
-                        style={[ {
+                        style={[{
                             flex: 1,
                             height: window.height,
-                        } ]}
+                        }]}
                         onPress={() => {
                             this.closeModal();
                         }}
                     >
-                        <View style={[ {
+                        <View style={[{
                             backgroundColor: 'rgba(0, 0, 0, 0.5)',
                             height: window.height,
-                        } ]}/>
+                        }]}/>
 
                     </TouchableWithoutFeedback>
                 </View>

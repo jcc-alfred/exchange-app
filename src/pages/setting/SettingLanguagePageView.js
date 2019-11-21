@@ -48,7 +48,7 @@ class SettingLanguagePageView extends React.Component {
     renderItem( { item, index, viewHeight } ) {
         return (
             <ListItem
-                containerStyle={[ { height: viewHeight } ]}
+                containerStyle={[{ height: viewHeight }]}
                 title={I18n.t( "language." + item.name )}
                 checkmark={this.props.language === item.code}
                 onPress={() => {
@@ -64,9 +64,9 @@ class SettingLanguagePageView extends React.Component {
 
 
         return (
-            <View style={[ commonStyles.wrapper, ]}>
+            <View style={[commonStyles.wrapper,]}>
                 <StatusBar backgroundColor="blue" barStyle="dark-content"/>
-                <SafeAreaView style={[ commonStyles.wrapper, ]}>
+                <SafeAreaView style={[commonStyles.wrapper,]}>
                     <FlatList
                         data={this.state.languageData}
                         keyExtractor={( item, index ) => {
@@ -77,10 +77,10 @@ class SettingLanguagePageView extends React.Component {
                         }}
                         ItemSeparatorComponent={() => {
                             return (
-                                <View style={[ commonStyles.commonIntervalStyle, {
+                                <View style={[commonStyles.commonIntervalStyle, {
                                     height: separatorHeight,
                                     marginLeft: 15,
-                                } ]}/>
+                                }]}/>
                             )
                         }}
                         getItemLayout={( data, index ) => (

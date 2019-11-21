@@ -62,16 +62,16 @@ class PhoneVerificationComponent extends React.Component {
         return (
             <View style={[]}>
                 <Input
-                    style={[ commonStyles.wrapper ]}
+                    style={[commonStyles.wrapper]}
                     leftIcon={
                         <Button
                             title={'+' + this.props.phoneCode}
                             type="outline"
-                            buttonStyle={[ { height: 30, paddingTop: 7, paddingBottom: 7 } ]}
-                            titleStyle={[ { fontSize: 14, } ]}
+                            buttonStyle={[{ height: 30, paddingTop: 7, paddingBottom: 7 }]}
+                            titleStyle={[{ fontSize: 14, }]}
                         />
                     }
-                    leftIconContainerStyle={[ commonStyles.pdr_normal, { paddingLeft: 0, marginLeft: 0 } ]}
+                    leftIconContainerStyle={[commonStyles.pdr_normal, { paddingLeft: 0, marginLeft: 0 }]}
                     value={this.props.phone}
                     keyboardType={'phone-pad'}
                     label={I18n.t( Keys.phone )}
@@ -80,12 +80,12 @@ class PhoneVerificationComponent extends React.Component {
 
                 <Input
                     label={I18n.t( Keys.verify_code )}
-                    style={[ commonStyles.wrapper ]}
+                    style={[commonStyles.wrapper]}
                     maxLength={4}
                     rightIcon={
                         this.state.isCountingDown ?
                             <CountDown
-                                style={[ { height: 20 } ]}
+                                style={[{ height: 20 }]}
                                 until={__DEV__ ? 10 : 60}
                                 size={12}
                                 onFinish={() => {
@@ -95,7 +95,7 @@ class PhoneVerificationComponent extends React.Component {
                                 }}
                                 digitStyle={{ backgroundColor: constStyles.THEME_COLOR }}
                                 digitTxtStyle={{ color: 'white' }}
-                                timeToShow={[ 'S' ]}
+                                timeToShow={['S']}
                                 timeLabels={{}}
                                 running={this.state.isCountingDown}
                             />
@@ -103,15 +103,15 @@ class PhoneVerificationComponent extends React.Component {
                             <Button
                                 title={I18n.t( Keys.resend )}
                                 type="outline"
-                                buttonStyle={[ { height: 30, paddingTop: 7, paddingBottom: 7 } ]}
-                                titleStyle={[ { fontSize: 14, } ]}
+                                buttonStyle={[{ height: 30, paddingTop: 7, paddingBottom: 7 }]}
+                                titleStyle={[{ fontSize: 14, }]}
                                 onPress={() => {
                                     this.verificationCodeGet()
                                 }
                                 }
                             />
                     }
-                    leftIconContainerStyle={[ commonStyles.pdr_normal ]}
+                    leftIconContainerStyle={[commonStyles.pdr_normal]}
                     value={this.props.code}
                     onChangeText={( text ) => this.props.onCodeChange && this.props.onCodeChange( text )}
                     keyboardType={'phone-pad'}

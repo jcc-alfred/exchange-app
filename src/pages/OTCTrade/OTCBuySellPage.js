@@ -1,9 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import OTCBuySellPageView from "./OTCBuySellPageView";
-import {
-    otcOrderCreate
-} from "../../actions/OtcAction";
+import { otcOrderCreate } from "../../actions/OtcAction";
 
 const mapStoreToProps = ( store, ownProps ) => {
     const { params } = ownProps.navigation.state;

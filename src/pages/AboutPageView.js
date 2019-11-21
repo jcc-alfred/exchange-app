@@ -1,17 +1,17 @@
 import React from 'react';
-import {Platform, SafeAreaView, StatusBar, StyleSheet, View} from 'react-native';
-import {ListItem, Text} from "react-native-elements";
+import { SafeAreaView, StatusBar, StyleSheet, View } from 'react-native';
+import { ListItem } from "react-native-elements";
 import commonStyles from "../styles/commonStyles";
 import Constants from 'expo-constants';
 import I18n from "../I18n";
 import Keys from "../configs/Keys";
-import {AntDesign} from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 import * as env from '../env';
 
 class AboutPageView extends React.Component {
 
-    constructor(props) {
-        super(props);
+    constructor( props ) {
+        super( props );
 
 
         this.state = {
@@ -20,13 +20,13 @@ class AboutPageView extends React.Component {
         }
     }
 
-    static navigationOptions = (props) => {
-        const {navigation} = props;
-        const {state, setParams} = navigation;
-        const {params} = state;
+    static navigationOptions = ( props ) => {
+        const { navigation } = props;
+        const { state, setParams } = navigation;
+        const { params } = state;
 
         return {
-            title: I18n.t(Keys.about),
+            title: I18n.t( Keys.about ),
             headerBackTitle: null,
         };
     };
@@ -36,15 +36,15 @@ class AboutPageView extends React.Component {
     }
 
     componentWillUnmount() {
-        this.setState = (state, callback) => {
+        this.setState = ( state, callback ) => {
 
         };
     }
 
-    componentWillReceiveProps(nextProps) {
+    componentWillReceiveProps( nextProps ) {
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
+    shouldComponentUpdate( nextProps, nextState ) {
         return true;
     }
 
@@ -55,7 +55,7 @@ class AboutPageView extends React.Component {
                 <SafeAreaView style={[commonStyles.wrapper]}>
                     <View>
                         {
-                            this.props.docList.map(i => {
+                            this.props.docList.map( i => {
                                 return (
                                     <ListItem
                                         key={i.page_doc_id}
@@ -68,21 +68,21 @@ class AboutPageView extends React.Component {
                                             />
                                         }
                                         onPress={() => {
-                                            this.props.navigation.navigate('WebViewPage', {
-                                                url: env.webDomain + '/#' + i.page_url + (I18n.locale === 'zh-Hans' ? "lang=zh-cn" : ""),
+                                            this.props.navigation.navigate( 'WebViewPage', {
+                                                url: env.webDomain + '/#' + i.page_url + ( I18n.locale === 'zh-Hans' ? "lang=zh-cn" : "" ),
                                                 webTitle: I18n.locale === 'zh-Hans' ? i.doc_title : i.doc_title_en
-                                            })
+                                            } )
                                         }}
                                         topDivider={true}
                                         bottomDivider={false}
                                     />
                                 )
 
-                            })
+                            } )
                         }
                         <ListItem
-                            title={I18n.t(Keys.version)}
-                            titleStyle={{color: 'black'}}
+                            title={I18n.t( Keys.version )}
+                            titleStyle={{ color: 'black' }}
                             rightTitle={Constants.nativeAppVersion}
                             topDivider={true}
                             bottomDivider={false}
@@ -97,7 +97,7 @@ class AboutPageView extends React.Component {
 }
 
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create( {} );
 
 export default AboutPageView;
 

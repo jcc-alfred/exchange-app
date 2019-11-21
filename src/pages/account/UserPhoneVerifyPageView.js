@@ -117,19 +117,19 @@ class UserPhoneVerifyPageView extends React.Component {
 
     render() {
         return (
-            <View style={[ commonStyles.wrapper, ]}>
+            <View style={[commonStyles.wrapper,]}>
                 <StatusBar backgroundColor="blue" barStyle="dark-content"/>
-                <SafeAreaView style={[ commonStyles.wrapper, ]}>
-                    <ScrollView style={[ commonStyles.wrapper ]}>
+                <SafeAreaView style={[commonStyles.wrapper,]}>
+                    <ScrollView style={[commonStyles.wrapper]}>
                         <View>
                             <Input
-                                style={[ commonStyles.wrapper ]}
+                                style={[commonStyles.wrapper]}
                                 leftIcon={
                                     <Button
                                         title={this.state.currentCountry ? ( '+' + this.state.currentCountry.phoneCode ) : ''}
                                         type="outline"
-                                        buttonStyle={[ { height: 30, paddingTop: 7, paddingBottom: 7 } ]}
-                                        titleStyle={[ { fontSize: 14, } ]}
+                                        buttonStyle={[{ height: 30, paddingTop: 7, paddingBottom: 7 }]}
+                                        titleStyle={[{ fontSize: 14, }]}
                                         onPress={() => {
                                             this.props.navigation.navigate( "CountrySelectPage", {
                                                 callback: ( country ) => {
@@ -142,10 +142,10 @@ class UserPhoneVerifyPageView extends React.Component {
                                         }
                                     />
                                 }
-                                leftIconContainerStyle={[ commonStyles.pdr_normal, {
+                                leftIconContainerStyle={[commonStyles.pdr_normal, {
                                     paddingLeft: 0,
                                     marginLeft: 0
-                                } ]}
+                                }]}
                                 value={this.state.phone}
                                 onChangeText={( text ) => this.setState( { phone: text } )}
                                 keyboardType={'phone-pad'}
@@ -161,12 +161,12 @@ class UserPhoneVerifyPageView extends React.Component {
 
                             <Input
                                 label={I18n.t( Keys.phone_verify_code )}
-                                style={[ commonStyles.wrapper ]}
+                                style={[commonStyles.wrapper]}
                                 maxLength={6}
                                 rightIcon={
                                     this.state.isPhoneCountingDown ?
                                         <CountDown
-                                            style={[ { height: 20 } ]}
+                                            style={[{ height: 20 }]}
                                             until={__DEV__ ? 10 : 60}
                                             size={12}
                                             onFinish={() => {
@@ -176,7 +176,7 @@ class UserPhoneVerifyPageView extends React.Component {
                                             }}
                                             digitStyle={{ backgroundColor: constStyles.THEME_COLOR }}
                                             digitTxtStyle={{ color: 'white' }}
-                                            timeToShow={[ 'S' ]}
+                                            timeToShow={['S']}
                                             timeLabels={{}}
                                             running={this.state.isPhoneCountingDown}
                                         />
@@ -184,15 +184,15 @@ class UserPhoneVerifyPageView extends React.Component {
                                         <Button
                                             title={I18n.t( Keys.resend )}
                                             type="outline"
-                                            buttonStyle={[ { height: 30, paddingTop: 7, paddingBottom: 7 } ]}
-                                            titleStyle={[ { fontSize: 14, } ]}
+                                            buttonStyle={[{ height: 30, paddingTop: 7, paddingBottom: 7 }]}
+                                            titleStyle={[{ fontSize: 14, }]}
                                             onPress={() => {
                                                 this.verificationCodeGet( "phone" )
                                             }
                                             }
                                         />
                                 }
-                                leftIconContainerStyle={[ commonStyles.pdr_normal ]}
+                                leftIconContainerStyle={[commonStyles.pdr_normal]}
                                 value={this.state.phoneCode}
                                 onChangeText={( text ) => this.setState( {
                                     phoneCode: text
@@ -209,12 +209,12 @@ class UserPhoneVerifyPageView extends React.Component {
 
                             <Input
                                 label={I18n.t( Keys.email_verify_code )}
-                                style={[ commonStyles.wrapper ]}
+                                style={[commonStyles.wrapper]}
                                 maxLength={6}
                                 rightIcon={
                                     this.state.isEmailCountingDown ?
                                         <CountDown
-                                            style={[ { height: 20 } ]}
+                                            style={[{ height: 20 }]}
                                             until={__DEV__ ? 10 : 60}
                                             size={12}
                                             onFinish={() => {
@@ -224,7 +224,7 @@ class UserPhoneVerifyPageView extends React.Component {
                                             }}
                                             digitStyle={{ backgroundColor: constStyles.THEME_COLOR }}
                                             digitTxtStyle={{ color: 'white' }}
-                                            timeToShow={[ 'S' ]}
+                                            timeToShow={['S']}
                                             timeLabels={{}}
                                             running={this.state.isEmailCountingDown}
                                         />
@@ -232,15 +232,15 @@ class UserPhoneVerifyPageView extends React.Component {
                                         <Button
                                             title={I18n.t( Keys.resend )}
                                             type="outline"
-                                            buttonStyle={[ { height: 30, paddingTop: 7, paddingBottom: 7 } ]}
-                                            titleStyle={[ { fontSize: 14, } ]}
+                                            buttonStyle={[{ height: 30, paddingTop: 7, paddingBottom: 7 }]}
+                                            titleStyle={[{ fontSize: 14, }]}
                                             onPress={() => {
                                                 this.verificationCodeGet( "email" )
                                             }
                                             }
                                         />
                                 }
-                                leftIconContainerStyle={[ commonStyles.pdr_normal ]}
+                                leftIconContainerStyle={[commonStyles.pdr_normal]}
                                 value={this.state.emailCode}
                                 onChangeText={( text ) => this.setState( {
                                     emailCode: text
@@ -262,7 +262,7 @@ class UserPhoneVerifyPageView extends React.Component {
                                     this.resetPassword()
                                 }
                                 }
-                                containerStyle={[ commonStyles.mgt_normal, commonStyles.mgl_normal, commonStyles.mgr_normal ]}
+                                containerStyle={[commonStyles.mgt_normal, commonStyles.mgl_normal, commonStyles.mgr_normal]}
                             />
                         </View>
                     </ScrollView>

@@ -195,7 +195,7 @@ class MediaMultipleComponent extends React.Component {
     renderContent() {
         return (
             <FlatGrid
-                style={[ {} ]}
+                style={[{}]}
                 items={this.state.displayItems}
                 itemDimension={( constStyles.window.width - 30 - ( this.state.columnCounter + 1 ) * 10 - this.state.columnCounter ) / this.state.columnCounter}
                 spacing={10}
@@ -223,7 +223,7 @@ class MediaMultipleComponent extends React.Component {
                             }
                         }}>
 
-                            <View style={[ commonStyles.wrapper, { height: 50 } ]}>
+                            <View style={[commonStyles.wrapper, { height: 50 }]}>
                                 <Image
                                     source={{ uri: item.content.url }}
                                     style={{ height: 50 }}
@@ -231,9 +231,9 @@ class MediaMultipleComponent extends React.Component {
 
                                 {
                                     item.content.mediaType === 'Video' ?
-                                        <View style={[ {
+                                        <View style={[{
                                             position: 'absolute', left: 0, top: 0, right: 0, bottom: 0
-                                        }, commonStyles.justAlignCenter ]}>
+                                        }, commonStyles.justAlignCenter]}>
                                             <Ionicons
                                                 name="md-play"
                                                 size={Platform.OS === 'ios' ? 22 : 25}
@@ -246,7 +246,7 @@ class MediaMultipleComponent extends React.Component {
                             </View>
                         </TouchableHighlight>
                         :
-                        <View style={[ commonStyles.wrapper, { height: 50 } ]}>
+                        <View style={[commonStyles.wrapper, { height: 50 }]}>
                             <Button
                                 buttonStyle={{ height: 50 }}
                                 icon={

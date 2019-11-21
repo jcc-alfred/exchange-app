@@ -157,21 +157,21 @@ class AuthRegisterPageView extends React.Component {
 
     render() {
         return (
-            <View style={[ commonStyles.wrapper, ]}>
+            <View style={[commonStyles.wrapper,]}>
                 <StatusBar backgroundColor="blue" barStyle="dark-content"/>
-                <SafeAreaView style={[ commonStyles.wrapper, ]}>
-                    <View style={[ commonStyles.paddingCommon ]}>
+                <SafeAreaView style={[commonStyles.wrapper,]}>
+                    <View style={[commonStyles.paddingCommon]}>
 
                         {
                             this.state.type === 'phone' ?
                                 <Input
-                                    style={[ commonStyles.wrapper ]}
+                                    style={[commonStyles.wrapper]}
                                     leftIcon={
                                         <Button
                                             title={this.state.currentCountry ? ( '+' + this.state.currentCountry.phoneCode ) : ''}
                                             type="outline"
-                                            buttonStyle={[ { height: 30, paddingTop: 7, paddingBottom: 7 } ]}
-                                            titleStyle={[ { fontSize: 14, } ]}
+                                            buttonStyle={[{ height: 30, paddingTop: 7, paddingBottom: 7 }]}
+                                            titleStyle={[{ fontSize: 14, }]}
                                             onPress={() => {
                                                 this.props.navigation.navigate( "CountrySelectPage", {
                                                     callback: ( country ) => {
@@ -184,10 +184,10 @@ class AuthRegisterPageView extends React.Component {
                                             }
                                         />
                                     }
-                                    leftIconContainerStyle={[ commonStyles.pdr_normal, {
+                                    leftIconContainerStyle={[commonStyles.pdr_normal, {
                                         paddingLeft: 0,
                                         marginLeft: 0
-                                    } ]}
+                                    }]}
                                     value={this.state.phone}
                                     onChangeText={( text ) => this.setState( { phone: text } )}
                                     keyboardType={'phone-pad'}
@@ -206,11 +206,11 @@ class AuthRegisterPageView extends React.Component {
                                 />
                                 :
                                 <Input
-                                    style={[ commonStyles.wrapper ]}
-                                    leftIconContainerStyle={[ commonStyles.pdr_normal, {
+                                    style={[commonStyles.wrapper]}
+                                    leftIconContainerStyle={[commonStyles.pdr_normal, {
                                         paddingLeft: 0,
                                         marginLeft: 0
-                                    } ]}
+                                    }]}
                                     value={this.state.email}
                                     onChangeText={( text ) => this.setState( { email: text } )}
                                     keyboardType={'email-address'}
@@ -234,12 +234,12 @@ class AuthRegisterPageView extends React.Component {
                                 this.verifyCodeInput = input;
                             }}
                             label={I18n.t( Keys.verify_code )}
-                            style={[ commonStyles.wrapper ]}
+                            style={[commonStyles.wrapper]}
                             maxLength={6}
                             rightIcon={
                                 this.state.isCountingDown ?
                                     <CountDown
-                                        style={[ { height: 20 } ]}
+                                        style={[{ height: 20 }]}
                                         until={__DEV__ ? 10 : 60}
                                         size={12}
                                         onFinish={() => {
@@ -249,7 +249,7 @@ class AuthRegisterPageView extends React.Component {
                                         }}
                                         digitStyle={{ backgroundColor: constStyles.THEME_COLOR }}
                                         digitTxtStyle={{ color: 'white' }}
-                                        timeToShow={[ 'S' ]}
+                                        timeToShow={['S']}
                                         timeLabels={{}}
                                         running={this.state.isCountingDown}
                                     />
@@ -257,15 +257,15 @@ class AuthRegisterPageView extends React.Component {
                                     <Button
                                         title={I18n.t( Keys.resend )}
                                         type="outline"
-                                        buttonStyle={[ { height: 30, paddingTop: 7, paddingBottom: 7 } ]}
-                                        titleStyle={[ { fontSize: 14, } ]}
+                                        buttonStyle={[{ height: 30, paddingTop: 7, paddingBottom: 7 }]}
+                                        titleStyle={[{ fontSize: 14, }]}
                                         onPress={() => {
                                             this.verificationCodeGet()
                                         }
                                         }
                                     />
                             }
-                            leftIconContainerStyle={[ commonStyles.pdr_normal ]}
+                            leftIconContainerStyle={[commonStyles.pdr_normal]}
                             value={this.state.code}
                             onChangeText={( text ) => this.setState( {
                                 code: text
@@ -313,7 +313,7 @@ class AuthRegisterPageView extends React.Component {
                                 this.signUp()
                             }
                             }
-                            containerStyle={[ commonStyles.mgt_normal ]}
+                            containerStyle={[commonStyles.mgt_normal]}
                         />
 
                         <Button
@@ -335,7 +335,7 @@ class AuthRegisterPageView extends React.Component {
                                 }
                             }
                             }
-                            containerStyle={[ commonStyles.mgt_normal ]}
+                            containerStyle={[commonStyles.mgt_normal]}
                         />
 
                     </View>

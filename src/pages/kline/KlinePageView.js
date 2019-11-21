@@ -17,7 +17,7 @@ class KlinePageView extends React.Component {
 
     constructor( props ) {
         super( props );
-        const tabData = [ { title: "Depth", value: [] }, { title: "Order", value: [] } ];
+        const tabData = [{ title: "Depth", value: [] }, { title: "Order", value: [] }];
         const { index, routes, scenes } = this.initTabData( tabData );
         this.state = {
             isRequesting: false,
@@ -73,7 +73,7 @@ class KlinePageView extends React.Component {
             for ( let index = 0; index < tabData.length; index++ ) {
                 routes.push( {
                     key: '' + index,
-                    title: I18n.t(tabData[ index ].title)
+                    title: I18n.t( tabData[ index ].title )
                 } );
                 scenes [ '' + index ] = () => {
                     return (
@@ -178,20 +178,20 @@ class KlinePageView extends React.Component {
             let buyList = nextState.buyList;
             if ( sellList.length > buyList.length ) {
                 for ( let index = 0; index < buyList.length; index++ ) {
-                    EntrustList.push( [ buyList[ index ], sellList[ index ] ] )
+                    EntrustList.push( [buyList[ index ], sellList[ index ]] )
                 }
                 for ( let index = buyList.length; index < sellList.length; index++ ) {
-                    EntrustList.push( [ {}, sellList[ index ] ] )
+                    EntrustList.push( [{}, sellList[ index ]] )
                 }
             } else {
                 for ( let index = 0; index < sellList.length; index++ ) {
-                    EntrustList.push( [ buyList[ index ], sellList[ index ] ] )
+                    EntrustList.push( [buyList[ index ], sellList[ index ]] )
                 }
                 for ( let index = sellList.length; index < buyList.length; index++ ) {
-                    EntrustList.push( [ buyList[ index ], {} ] )
+                    EntrustList.push( [buyList[ index ], {}] )
                 }
             }
-            const tabData = [ { title: "Depth", value: EntrustList }, { title: "Order", value: this.state.orderList } ];
+            const tabData = [{ title: "Depth", value: EntrustList }, { title: "Order", value: this.state.orderList }];
             const { index, routes, scenes } = this.initTabData( tabData );
             this.setState( {
                 routes, scenes
@@ -205,20 +205,20 @@ class KlinePageView extends React.Component {
             let buyList = this.state.buyList;
             if ( sellList.length > buyList.length ) {
                 for ( let index = 0; index < buyList.length; index++ ) {
-                    EntrustList.push( [ buyList[ index ], sellList[ index ] ] )
+                    EntrustList.push( [buyList[ index ], sellList[ index ]] )
                 }
                 for ( let index = buyList.length; index < sellList.length; index++ ) {
-                    EntrustList.push( [ {}, sellList[ index ] ] )
+                    EntrustList.push( [{}, sellList[ index ]] )
                 }
             } else {
                 for ( let index = 0; index < sellList.length; index++ ) {
-                    EntrustList.push( [ buyList[ index ], sellList[ index ] ] )
+                    EntrustList.push( [buyList[ index ], sellList[ index ]] )
                 }
                 for ( let index = sellList.length; index < buyList.length; index++ ) {
-                    EntrustList.push( [ buyList[ index ], {} ] )
+                    EntrustList.push( [buyList[ index ], {}] )
                 }
             }
-            const tabData = [ { title: "Depth", value: EntrustList }, { title: "Order", value: nextState.orderList } ];
+            const tabData = [{ title: "Depth", value: EntrustList }, { title: "Order", value: nextState.orderList }];
             const { index, routes, scenes } = this.initTabData( tabData );
             this.setState( {
                 routes, scenes
@@ -238,9 +238,9 @@ class KlinePageView extends React.Component {
         }
 
         return (
-            <View style={[ commonStyles.wrapper, { backgroundColor: constStyles.THEME_COLOR } ]}>
+            <View style={[commonStyles.wrapper, { backgroundColor: constStyles.THEME_COLOR }]}>
                 <StatusBar backgroundColor="blue" barStyle="dark-content"/>
-                <SafeAreaView style={[ commonStyles.wrapper ]}>
+                <SafeAreaView style={[commonStyles.wrapper]}>
                     <ScrollView>
                         <View style={{ flexDirection: 'row' }}>
                             <View style={{ flex: 8 }}>
@@ -256,14 +256,14 @@ class KlinePageView extends React.Component {
                                     <Text style={{
                                         fontSize: 12,
                                         color: coinEx.market.change_rate > 0 ? '#009d7a' : '#e7234c'
-                                    }}>={coinEx.market.change_rate ? (coinEx.market.change_rate * 100).toFixed(2) : 0} % </Text>
+                                    }}>={coinEx.market.change_rate ? ( coinEx.market.change_rate * 100 ).toFixed( 2 ) : 0} % </Text>
                                 </View>
                             </View>
 
                             <View style={{ flex: 3 }}>
                                 <ListItem
                                     containerStyle={{ backgroundColor: constStyles.THEME_COLOR, padding: 3 }}
-                                    titleStyle={[ styles.marketTitle ]}
+                                    titleStyle={[styles.marketTitle]}
                                     leftElement={() => {
                                         return ( <Text style={styles.marketLeftTitle}>{I18n.t( Keys.high )}</Text> )
                                     }}
@@ -271,7 +271,7 @@ class KlinePageView extends React.Component {
                                 />
                                 <ListItem
                                     containerStyle={{ backgroundColor: constStyles.THEME_COLOR, padding: 3 }}
-                                    titleStyle={[ styles.marketTitle ]}
+                                    titleStyle={[styles.marketTitle]}
                                     leftElement={() => {
                                         return ( <Text style={styles.marketLeftTitle}>{I18n.t( Keys.low )}</Text> )
                                     }}
@@ -279,7 +279,7 @@ class KlinePageView extends React.Component {
                                 />
                                 <ListItem
                                     containerStyle={{ backgroundColor: constStyles.THEME_COLOR, padding: 3 }}
-                                    titleStyle={[ styles.marketTitle ]}
+                                    titleStyle={[styles.marketTitle]}
                                     leftElement={() => {
                                         return ( <Text style={styles.marketLeftTitle}>24H</Text> )
                                     }}
@@ -290,7 +290,7 @@ class KlinePageView extends React.Component {
                         </View>
 
 
-                        <View style={[ { height: 280, marginTop: 10 } ]}>
+                        <View style={[{ height: 280, marginTop: 10 }]}>
                             <WebView
                                 source={{ uri: KlineWebUrl }}
                                 useWebKit={true}
@@ -304,16 +304,16 @@ class KlinePageView extends React.Component {
                         <Button
                             title={I18n.t( Keys.Buy )}
                             containerStyle={{ flex: 1, margin: 10 }}
-                            buttonStyle={[ { height: 30, paddingTop: 7, paddingBottom: 7 } ]}
-                            titleStyle={[ { fontSize: 14, } ]}
+                            buttonStyle={[{ height: 30, paddingTop: 7, paddingBottom: 7 }]}
+                            titleStyle={[{ fontSize: 14, }]}
                             onPress={this.gotoTradePage.bind( this )}
 
                         />
                         <Button
                             title={I18n.t( Keys.Sell )}
                             containerStyle={{ flex: 1, margin: 10 }}
-                            buttonStyle={[ { height: 30, paddingTop: 7, paddingBottom: 7, backgroundColor: '#04a384' } ]}
-                            titleStyle={[ { fontSize: 14, } ]}
+                            buttonStyle={[{ height: 30, paddingTop: 7, paddingBottom: 7, backgroundColor: '#04a384' }]}
+                            titleStyle={[{ fontSize: 14, }]}
                             onPress={this.gotoTradePage.bind( this )}
                         />
                     </View>

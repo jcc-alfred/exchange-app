@@ -32,7 +32,7 @@ class MainSideMenu extends React.Component {
 
     render() {
         return (
-            <View style={[ { paddingTop: getStatusBarHeight() + Header.HEIGHT } ]}>
+            <View style={[{ paddingTop: getStatusBarHeight() + Header.HEIGHT }]}>
                 {
                     this.props.isLoggedIn ?
                         <ListItem

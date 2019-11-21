@@ -45,10 +45,10 @@ class NewsDetailPageView extends React.Component {
     render() {
         const { navigation } = this.props;
         return (
-            <View style={[ commonStyles.wrapper, ]}>
+            <View style={[commonStyles.wrapper,]}>
                 <StatusBar backgroundColor="blue" barStyle="dark-content"/>
-                <SafeAreaView style={[ commonStyles.wrapper ]}>
-                    <ScrollView style={[ commonStyles.wrapper ]}>
+                <SafeAreaView style={[commonStyles.wrapper]}>
+                    <ScrollView style={[commonStyles.wrapper]}>
                         <View>
                             <Text style={{ padding: 16 }}>{this.news.news_title}</Text>
                             <Text style={{ paddingStart: 16, color: ColorUtil.secondary_text_color }}>Update

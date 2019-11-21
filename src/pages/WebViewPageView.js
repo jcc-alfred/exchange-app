@@ -46,10 +46,10 @@ class WebViewPageView extends React.Component {
 
     render() {
         return (
-            <View style={[ commonStyles.wrapper, commonStyles.commonBG ]}>
+            <View style={[commonStyles.wrapper, commonStyles.commonBG]}>
                 <StatusBar backgroundColor="blue" barStyle="dark-content"/>
                 <SafeAreaView style={commonStyles.wrapper}>
-                    <View style={[ commonStyles.wrapper, commonStyles.commonBG, commonStyles.commonBorderTop ]}>
+                    <View style={[commonStyles.wrapper, commonStyles.commonBG, commonStyles.commonBorderTop]}>
 
                         <WebView
                             source={{ uri: this.state.url + "" }}

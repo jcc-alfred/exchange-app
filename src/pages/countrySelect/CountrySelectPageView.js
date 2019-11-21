@@ -51,12 +51,12 @@ class CountrySelectPageView extends ( React.PureComponent || React.Component ) {
 
     static renderSectionHeader = ( { section } ) => {
         return (
-            <View style={[ commonStyles.commonBG, { height: 30, justifyContent: 'center' } ]}>
-                <Text style={[ {
+            <View style={[commonStyles.commonBG, { height: 30, justifyContent: 'center' }]}>
+                <Text style={[{
                     marginLeft: 15,
                     color: constStyles.THEME_COLOR,
                     fontSize: 14,
-                } ]}>{section.isFav ? 'Common List' : section.title}</Text>
+                }]}>{section.isFav ? 'Common List' : section.title}</Text>
             </View>
         );
     };
@@ -105,10 +105,10 @@ class CountrySelectPageView extends ( React.PureComponent || React.Component ) {
     renderCommonItem = ( { item } ) => {
         return (
             <ListItem
-                containerStyle={[ { height: 50 } ]}
+                containerStyle={[{ height: 50 }]}
                 title={item.data.displayTitle}
                 rightTitle={item.data.displayContent}
-                rightTitleStyle={[ { paddingRight: 20 } ]}
+                rightTitleStyle={[{ paddingRight: 20 }]}
                 onPress={() => {
                     this.onCallback( item.data.data );
                 }}
@@ -156,10 +156,10 @@ class CountrySelectPageView extends ( React.PureComponent || React.Component ) {
         } );
 
         return (
-            <View style={[ commonStyles.wrapper ]}>
+            <View style={[commonStyles.wrapper]}>
                 <StatusBar backgroundColor="blue" barStyle="dark-content"/>
                 <SafeAreaView style={commonStyles.wrapper}>
-                    <View style={[ commonStyles.wrapper ]}>
+                    <View style={[commonStyles.wrapper]}>
                         <SectionList
                             ref={( sectionList ) => {
                                 this._sectionList = sectionList;
@@ -171,7 +171,7 @@ class CountrySelectPageView extends ( React.PureComponent || React.Component ) {
                             renderItem={this.renderCommonItem}
                             renderSectionHeader={CountrySelectPageView.renderSectionHeader}
                             ItemSeparatorComponent={() => {
-                                return <View style={[ commonStyles.commonIntervalStyle ]}/>
+                                return <View style={[commonStyles.commonIntervalStyle]}/>
                             }}
                             getItemLayout={this.getItemLayout}
                             onScroll={() => {
@@ -182,7 +182,7 @@ class CountrySelectPageView extends ( React.PureComponent || React.Component ) {
                         />
 
                         <YIndexComponent
-                            style={[ { position: 'absolute', right: 0, top: 0, bottom: 0 } ]}
+                            style={[{ position: 'absolute', right: 0, top: 0, bottom: 0 }]}
                             isOpen={true}
                             isContainFav={false}
                             onSelect={( key ) => {

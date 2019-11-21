@@ -74,8 +74,8 @@ class TradeExMenu extends React.Component {
         const { search } = this.state;
 
         return (
-            <View style={[ commonStyles.wrapper, { marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight } ]}>
-                <SafeAreaView style={[ commonStyles.wrapper ]}>
+            <View style={[commonStyles.wrapper, { marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight }]}>
+                <SafeAreaView style={[commonStyles.wrapper]}>
                     <SearchBar
                         placeholder={I18n.t( Keys.SearchCoin ) + "..."}
                         onChangeText={this.updateSearch}

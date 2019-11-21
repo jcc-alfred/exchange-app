@@ -18,7 +18,7 @@ class AssetsDetailPageView extends React.Component {
         super( props );
         const tabData = [
             { title: I18n.t( Keys.deposit ), value: [] },
-            { title: I18n.t( Keys.withdraw ), value: [] } ];
+            { title: I18n.t( Keys.withdraw ), value: [] }];
         const { index, routes, scenes } = this.initTabData( tabData );
 
         this.state = {
@@ -123,8 +123,8 @@ class AssetsDetailPageView extends React.Component {
         if ( this.state.depositList !== nextState.depositList || nextState.withdrawList !== this.state.withdrawList ) {
 
             const tabData = [
-                { title: I18n.t(Keys.deposit), value: nextState.depositList },
-                { title: I18n.t(Keys.withdraw), value: nextState.withdrawList } ];
+                { title: I18n.t( Keys.deposit ), value: nextState.depositList },
+                { title: I18n.t( Keys.withdraw ), value: nextState.withdrawList }];
             const { index, routes, scenes } = this.initTabData( tabData );
             this.setState( {
                 routes: routes,
@@ -153,9 +153,11 @@ class AssetsDetailPageView extends React.Component {
                     return (
                         <AssetTransactionList
                             refreshing={this.state.refreshing}
-                            onRefresh={this.loadData.bind(this)}
+                            onRefresh={this.loadData.bind( this )}
                             data={tabData[ index ].value}
-                            onPressItem={this.onPressItem.bind( this )}/>
+                            onPressItem={this.onPressItem.bind( this )}
+                            dataType={index === 0 ? 0 : 1}
+                        />
                     );
                 };
             }
@@ -173,26 +175,30 @@ class AssetsDetailPageView extends React.Component {
     render() {
         return (
             <View style={[commonStyles.wrapper,]}>
-                <SafeAreaView style={[ commonStyles.wrapper, ]}>
+                <SafeAreaView style={[commonStyles.wrapper,]}>
                     <View style={[{ paddingLeft: 10, paddingRight: 10 }]}>
-                        <Text style={[ styles.CoinName ]}>{this.props.assets.coin_name}</Text>
-                        <View style={[ { flexDirection: 'row', marginTop: 15 } ]}>
-                            <Text style={[ {
+                        <Text style={[styles.CoinName]}>{this.props.assets.coin_name}</Text>
+                        <View style={[{ flexDirection: 'row', marginTop: 15 }]}>
+                            <Text style={[{
                                 flex: 1,
                                 paddingRight: 10
-                            }, styles.greyCommonFont ]}>{I18n.t( Keys.balance )}</Text>
+                            }, styles.greyCommonFont]}>{I18n.t( Keys.balance )}</Text>
                             <Text
-                                style={[ {
+                                style={[{
                                     flex: 1,
                                     paddingRight: 10
-                                }, styles.greyCommonFont ]}>{I18n.t( Keys.available )}</Text>
-                            <Text style={[ { flex: 1 }, styles.greyCommonFont ]}>{I18n.t( Keys.frozen )}</Text>
+                                }, styles.greyCommonFont]}>{I18n.t( Keys.available )}</Text>
+                            <Text style={[{ flex: 1 }, styles.greyCommonFont]}>{I18n.t( Keys.frozen )}</Text>
                         </View>
-                        <View style={[ { flexDirection: 'row' } ]}>
-                            <Text style={[ { flex: 1, paddingRight: 10 } ]}>{this.props.assets.balance.toFixed( 4 )}</Text>
+                        <View style={[{ flexDirection: 'row' }]}>
                             <Text
-                                style={[ { flex: 1, paddingRight: 10 } ]}>{this.props.assets.available.toFixed( 4 )}</Text>
-                            <Text style={[ { flex: 1 } ]}>{this.props.assets.frozen.toFixed( 4 )}</Text>
+                                style={[{ flex: 1, paddingRight: 10 }]}>{this.props.assets.balance.toFixed( 4 )}</Text>
+                            <Text
+                                style={[{
+                                    flex: 1,
+                                    paddingRight: 10
+                                }]}>{this.props.assets.available.toFixed( 4 )}</Text>
+                            <Text style={[{ flex: 1 }]}>{this.props.assets.frozen.toFixed( 4 )}</Text>
                         </View>
                         {AssetsDetailPageView.separatorView( 8 )}
                         <View style={{ paddingTop: 15, paddingBottom: 20 }}>
@@ -201,7 +207,7 @@ class AssetsDetailPageView extends React.Component {
                     </View>
                     {this.transactionView()}
 
-                    <View style={[ { flexDirection: 'row' }, commonStyles.paddingCommon ]}>
+                    <View style={[{ flexDirection: 'row' }, commonStyles.paddingCommon]}>
                         <Button
                             icon={
                                 <Ionicons
@@ -220,7 +226,7 @@ class AssetsDetailPageView extends React.Component {
                             }
                         />
 
-                        <View style={[ commonStyles.wrapper ]}/>
+                        <View style={[commonStyles.wrapper]}/>
 
                         <Button
                             icon={

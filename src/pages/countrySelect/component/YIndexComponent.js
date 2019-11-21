@@ -24,12 +24,12 @@ class YIndexComponent extends ( React.PureComponent || React.Component ) {
             data = [
                 YIndexComponent.FAV_CODE, '#', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
                 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y',
-                'Z' ];
+                'Z'];
         } else {
             data = [
                 '#', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
                 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y',
-                'Z' ];
+                'Z'];
         }
 
         this.state = {
@@ -48,7 +48,7 @@ class YIndexComponent extends ( React.PureComponent || React.Component ) {
     static renderItem( data ) {
         return (
             <View
-                style={[ commonStyles.wrapper, commonStyles.justAlignCenter, {} ]}
+                style={[commonStyles.wrapper, commonStyles.justAlignCenter, {}]}
                 key={data}
                 onStartShouldSetResponder={() => {
                     return false;
@@ -58,7 +58,7 @@ class YIndexComponent extends ( React.PureComponent || React.Component ) {
                 }}
             >
                 <Text
-                    style={[ commonStyles.commonTextColorStyle, { fontSize: 12 } ]}
+                    style={[commonStyles.commonTextColorStyle, { fontSize: 12 }]}
                     onStartShouldSetResponder={() => {
                         return false;
                     }}
@@ -77,7 +77,7 @@ class YIndexComponent extends ( React.PureComponent || React.Component ) {
     static renderFAVItem( data ) {
         return (
             <View
-                style={[ commonStyles.wrapper, commonStyles.justAlignCenter, {} ]}
+                style={[commonStyles.wrapper, commonStyles.justAlignCenter, {}]}
                 key={data}
                 onStartShouldSetResponder={() => {
                     return false;
@@ -93,7 +93,7 @@ class YIndexComponent extends ( React.PureComponent || React.Component ) {
                     onMoveShouldSetResponder={() => {
                         return false;
                     }}
-                    style={[ {} ]}
+                    style={[{}]}
                     name={'ios-star-outline'}
                     size={12}
                     color={'#292e33'}>
@@ -166,7 +166,7 @@ class YIndexComponent extends ( React.PureComponent || React.Component ) {
                         paddingTop: 15,
                         paddingBottom: 15
                     },
-                    this.props.style ]}
+                    this.props.style]}
                 onLayout={( event ) => {
                     this._view.measure( ( x,
                                           y,

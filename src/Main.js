@@ -142,7 +142,7 @@ class Main extends React.Component {
 
     render() {
         return (
-            <View style={[ commonStyles.wrapper, commonStyles.commonBG, {} ]}>
+            <View style={[commonStyles.wrapper, commonStyles.commonBG, {}]}>
                 <StatusBar backgroundColor="blue" barStyle="dark-content"/>
                 <AppNavigator/>
             </View>

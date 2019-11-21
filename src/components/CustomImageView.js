@@ -64,49 +64,49 @@ class CustomImageView extends React.Component {
                     }}
                     menus={( { cancel, saveToLocal } ) => {
                         return (
-                            <View style={[ {
+                            <View style={[{
                                 paddingLeft: 10,
                                 paddingRight: 10,
                                 position: 'absolute', left: 0, bottom: getBottomSpace() + 10, right: 0
-                            } ]}>
-                                <View style={[ commonStyles.wrapper ]}/>
-                                <View style={[ {
+                            }]}>
+                                <View style={[commonStyles.wrapper]}/>
+                                <View style={[{
                                     borderRadius: 5,
                                     backgroundColor: 'white',
-                                } ]}>
+                                }]}>
                                     <TouchableOpacity onPress={() => {
                                         saveToLocal()
                                     }}>
-                                        <View style={[ {
+                                        <View style={[{
                                             height: 48
-                                        }, commonStyles.justAlignCenter ]}>
-                                            <Text style={[ {
+                                        }, commonStyles.justAlignCenter]}>
+                                            <Text style={[{
                                                 textAlign: 'center',
                                                 fontSize: 18,
                                                 color: '#0166be'
-                                            } ]}>
+                                            }]}>
                                                 {I18n.t( Keys.save_to_album )}
                                             </Text>
                                         </View>
                                     </TouchableOpacity>
                                 </View>
-                                <View style={[ {
+                                <View style={[{
                                     marginTop: 10,
                                     backgroundColor: 'white',
                                     borderRadius: 5,
-                                } ]}>
+                                }]}>
                                     <TouchableOpacity onPress={() => {
                                         cancel()
                                     }}>
-                                        <View style={[ {
+                                        <View style={[{
                                             height: 48,
-                                        }, commonStyles.justAlignCenter ]}>
+                                        }, commonStyles.justAlignCenter]}>
                                             <Text
-                                                style={[ {
+                                                style={[{
                                                     textAlign: 'center',
                                                     color: '#0166be',
                                                     fontSize: 18
-                                                } ]}>{I18n.t( Keys.cancel )}</Text>
+                                                }]}>{I18n.t( Keys.cancel )}</Text>
                                         </View>
                                     </TouchableOpacity>
                                 </View>
@@ -115,9 +115,9 @@ class CustomImageView extends React.Component {
                     }
                     }
                 />
-                <View style={[ {
+                <View style={[{
                     position: 'absolute', top: getStatusBarHeight( true ), right: 15
-                }, commonStyles.justAlignCenter ]}>
+                }, commonStyles.justAlignCenter]}>
                     <Button
                         title={I18n.t( Keys.close )}
                         type="outline"

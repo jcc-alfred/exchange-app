@@ -13,7 +13,7 @@ class OrderHistoryPageView extends React.Component {
 
     constructor( props ) {
         super( props );
-        const tabData = [ { title: I18n.t( Keys.all ), value: [] }, { title: I18n.t( Keys.history ), value: [] } ];
+        const tabData = [{ title: I18n.t( Keys.all ), value: [] }, { title: I18n.t( Keys.history ), value: [] }];
         const { index, routes, scenes } = this.initTabData( tabData );
 
         this.state = {
@@ -73,10 +73,10 @@ class OrderHistoryPageView extends React.Component {
                         userEntrustList: resBody.data
                     } );
 
-                    const tabData = [ { title: I18n.t( Keys.all ), value: this.state.userEntrustList }, {
+                    const tabData = [{ title: I18n.t( Keys.all ), value: this.state.userEntrustList }, {
                         title: I18n.t( Keys.history ),
                         value: this.state.userHistoryEntrustList
-                    } ];
+                    }];
                     const { index, routes, scenes } = this.initTabData( tabData );
                     this.setState( {
                         routes, scenes
@@ -102,10 +102,10 @@ class OrderHistoryPageView extends React.Component {
                         userHistoryEntrustList: resBody.data
                     } );
 
-                    const tabData = [ { title: I18n.t( Keys.all ), value: this.state.userEntrustList }, {
+                    const tabData = [{ title: I18n.t( Keys.all ), value: this.state.userEntrustList }, {
                         title: I18n.t( Keys.history ),
                         value: this.state.userHistoryEntrustList
-                    } ];
+                    }];
                     const { index, routes, scenes } = this.initTabData( tabData );
                     this.setState( {
                         routes, scenes
@@ -120,9 +120,9 @@ class OrderHistoryPageView extends React.Component {
 
     render() {
         return (
-            <View style={[ commonStyles.wrapper, ]}>
+            <View style={[commonStyles.wrapper,]}>
                 <StatusBar backgroundColor="blue" barStyle="dark-content"/>
-                <SafeAreaView style={[ commonStyles.wrapper, ]}>
+                <SafeAreaView style={[commonStyles.wrapper,]}>
 
                     {/*<Text>*/}
                     {/*{"OrderHistoryPageView"}*/}
@@ -202,10 +202,10 @@ class OrderHistoryPageView extends React.Component {
             userEntrustList: this.state.userEntrustList.filter( item => item.entrust_id !== id )
         } );
 
-        const tabData = [ { title: I18n.t( Keys.all ), value: this.state.userEntrustList }, {
+        const tabData = [{ title: I18n.t( Keys.all ), value: this.state.userEntrustList }, {
             title: I18n.t( Keys.history ),
             value: this.state.userHistoryEntrustList
-        } ];
+        }];
         const { index, routes, scenes } = this.initTabData( tabData );
         this.setState( {
             routes, scenes

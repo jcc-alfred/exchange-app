@@ -1,10 +1,10 @@
-import { netAssetsDoUserWithdraw, netAssetsGetUserAssets } from "../net/AssetsApiNet";
+import { netAssetsCancelUserWithdraw, netAssetsDoUserWithdraw, netAssetsGetUserAssets } from "../net/AssetsApiNet";
 import userActionTypes from "../reducers/user/userActionTypes";
 
 
-export function assetsGetUserAssets( callback ,refresh = false) {
+export function assetsGetUserAssets( callback, refresh = false ) {
     return ( dispatch ) => {
-        netAssetsGetUserAssets( refresh,( err, res ) => {
+        netAssetsGetUserAssets( refresh, ( err, res ) => {
             if ( !err ) {
                 dispatch(
                     {
@@ -22,6 +22,14 @@ export function assetsGetUserAssets( callback ,refresh = false) {
 export function assetsDoUserWithdraw( query, callback ) {
     return ( dispatch ) => {
         netAssetsDoUserWithdraw( query, ( err, res ) => {
+            callback && callback( err, res )
+        } );
+    };
+}
+
+export function assetsCancelUserWithdraw( userWithdrawId, callback ) {
+    return ( dispatch ) => {
+        netAssetsCancelUserWithdraw( userWithdrawId, ( err, res ) => {
             callback && callback( err, res )
         } );
     };

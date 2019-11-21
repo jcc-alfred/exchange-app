@@ -51,7 +51,7 @@ class AuthLoginHistoryPageView extends React.Component {
     _renderItem( viewHeight, item, index ) {
         return (
             <ListItem
-                containerStyle={[ { height: 50 } ]}
+                containerStyle={[{ height: 50 }]}
                 title={item.account}
                 onPress={() => {
                     if ( this.state.callback instanceof Function ) {
@@ -77,7 +77,7 @@ class AuthLoginHistoryPageView extends React.Component {
                     commonStyles.wrapper, commonStyles.commonBG
                 ]}>
                     <FlatList
-                        style={[ commonStyles.wrapper, {} ]}
+                        style={[commonStyles.wrapper, {}]}
                         renderItem={( { item, index } ) => {
                             return this._renderItem( viewHeight, item, index );
                         }}
@@ -86,7 +86,7 @@ class AuthLoginHistoryPageView extends React.Component {
                             return '' + index;
                         }}
                         ItemSeparatorComponent={() => {
-                            return <View style={[ commonStyles.commonIntervalStyle, { height: separatorHeight } ]}/>;
+                            return <View style={[commonStyles.commonIntervalStyle, { height: separatorHeight }]}/>;
                         }}
                         getItemLayout={( data, index ) => (
                             { length: viewHeight, offset: ( viewHeight + separatorHeight ) * index, index }

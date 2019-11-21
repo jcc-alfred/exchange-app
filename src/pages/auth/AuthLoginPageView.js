@@ -92,16 +92,16 @@ class AuthLoginPageView extends React.Component {
 
     render() {
         return (
-            <View style={[ commonStyles.wrapper, ]}>
+            <View style={[commonStyles.wrapper,]}>
                 <StatusBar backgroundColor="blue" barStyle="dark-content"/>
-                <SafeAreaView style={[ commonStyles.wrapper, ]}>
+                <SafeAreaView style={[commonStyles.wrapper,]}>
 
-                    <View style={[ commonStyles.paddingCommon ]}>
+                    <View style={[commonStyles.paddingCommon]}>
 
 
                         <Input
-                            style={[ commonStyles.wrapper ]}
-                            leftIconContainerStyle={[ commonStyles.pdr_normal, { paddingLeft: 0, marginLeft: 0 } ]}
+                            style={[commonStyles.wrapper]}
+                            leftIconContainerStyle={[commonStyles.pdr_normal, { paddingLeft: 0, marginLeft: 0 }]}
                             value={this.state.account}
                             onChangeText={( text ) => this.setState( { account: text } )}
                             label={I18n.t( Keys.account )}
@@ -146,10 +146,10 @@ class AuthLoginPageView extends React.Component {
                                 this.login();
                             }
                             }
-                            containerStyle={[ commonStyles.mgt_normal ]}
+                            containerStyle={[commonStyles.mgt_normal]}
                         />
 
-                        <View style={[ { flexDirection: 'row' }, commonStyles.mgt_normal ]}>
+                        <View style={[{ flexDirection: 'row' }, commonStyles.mgt_normal]}>
                             <Button
                                 title={I18n.t( Keys.forgot_password )}
                                 type="outline"
@@ -160,7 +160,7 @@ class AuthLoginPageView extends React.Component {
                                 }
                                 }
                             />
-                            <View style={[ commonStyles.wrapper ]}/>
+                            <View style={[commonStyles.wrapper]}/>
 
                             <Button
                                 title={I18n.t( Keys.sign_up_1 )}
@@ -189,7 +189,7 @@ class AuthLoginPageView extends React.Component {
                                         } )
                                     }
                                     }
-                                    containerStyle={[ commonStyles.mgt_normal ]}
+                                    containerStyle={[commonStyles.mgt_normal]}
                                 />
                                 :
                                 null

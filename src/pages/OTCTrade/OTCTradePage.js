@@ -3,13 +3,13 @@ import { connect } from "react-redux";
 import OTCTradePageView from "./OTCTradePageView";
 import {
     otcCoins,
+    otcEntrustCancel,
     otcEntrustCreate,
     otcEntrustList,
-    otcGetSecretRemark,
-    otcSecretRemark,
     otcEntrustMy,
+    otcGetSecretRemark,
     otcOrderMy,
-    otcEntrustCancel
+    otcSecretRemark
 } from "../../actions/OtcAction";
 import { assetsGetUserAssets } from "../../actions/AssetsAction";
 
@@ -62,24 +62,23 @@ const mapDispatchToProps = ( dispatch, ownProps ) => ( {
 
     },
 
-    onOTCEntrustMy: ( callback )=>{
-        dispatch( otcEntrustMy( (err,res) =>{
+    onOTCEntrustMy: ( callback ) => {
+        dispatch( otcEntrustMy( ( err, res ) => {
             callback && callback( err, res )
-        }));
+        } ) );
     },
 
-    onOTCOrderMy: (coin_id, callback )=>{
-        dispatch( otcOrderMy(coin_id, (err,res) =>{
+    onOTCOrderMy: ( coin_id, callback ) => {
+        dispatch( otcOrderMy( coin_id, ( err, res ) => {
             callback && callback( err, res )
-        }));
+        } ) );
     },
 
-    onOTCEntrustCancel: ( entrust_id, callback )=>{
-        dispatch( otcEntrustCancel( entrust_id, (err,res) =>{
+    onOTCEntrustCancel: ( entrust_id, callback ) => {
+        dispatch( otcEntrustCancel( entrust_id, ( err, res ) => {
             callback && callback( err, res )
-        }));
+        } ) );
     }
-
 
 
 } );
